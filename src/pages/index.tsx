@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
+
 import { LoadingPage } from "~/components/Loading";
 
 import { api } from "~/utils/api";
@@ -243,7 +243,7 @@ const Home: NextPage = () => {
             Website is under maintenance. 🤕
           </p>
           <p className="mt-4 text-xl uppercase text-gray-700">
-            We'll be back soon
+            {`We'll be back soon`}
           </p>
         </div>
       </main>
