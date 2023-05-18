@@ -45,7 +45,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { userId } = getAuth(ctx.req);
 
   // WITH USER INFO
-  // const user = userId ? await clerkClient.users.getUser(userId) : undefined;
+  const user = userId ? await clerkClient.users.getUser(userId) : undefined;
+  console.log(user);
+
   // return {
   //   props: {
   //     foo: {
@@ -56,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      userId: userId,
+      userId: userId ? userId : null,
     },
   };
 };
