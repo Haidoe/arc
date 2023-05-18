@@ -8,6 +8,12 @@ const PrefetchUser: NextPage<{ userId: string | null }> = ({ userId }) => {
 
   return (
     <>
+      <Head>
+        <title>Kaos 🌚 | Dummy Page</title>
+        <meta name="description" content="💭 Delete me later" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <nav className="bg-gray-800">
         <ul className="p-2 text-center text-white md:flex">
           <li className="cursor-pointer">
@@ -40,6 +46,7 @@ import {
   User,
 } from "@clerk/nextjs/server";
 import type { GetServerSideProps } from "next";
+import Head from "next/head";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { userId } = getAuth(ctx.req);
