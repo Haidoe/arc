@@ -10,7 +10,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <ClerkProvider {...pageProps}>
       <Head>
         <title>Clap Track 🎬 </title>
-        <meta name="description" content="🎬" />
+        <meta name="description" content="🎬 🎬" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
