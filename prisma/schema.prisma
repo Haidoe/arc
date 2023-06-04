@@ -6,15 +6,66 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
+model User {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  created     DateTime     @default(now())
+  email       String       @unique
+  name        String?
+  company     String?
+  title       String?
+  productions Production[]
+}
 
-model Example {
-    id        String   @id @default(cuid())
-    content   String @db.VarChar(255)
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model Production {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  directors   Director[]
+  producers   User?      @relation(fields: [producerId], references: [id])
+  producerId  String     @db.ObjectId
+  description String
+  locations   Location[]
+  crews       Crew[]
+
+  created DateTime @default(now())
+  updated DateTime @updatedAt
+
+  report ProductionReport[]
+}
+
+model ProductionReport {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  
+  Production   Production? @relation(fields: [productionId], references: [id])
+  productionId String?     @db.ObjectId
+
+  created    DateTime    @default(now())
+  updated    DateTime    @updatedAt
+}
+
+type Director {
+  name  String
+  title String
+}
+
+type Location {
+  name        String
+  address     String
+  city        String
+  state       String
+  zip         String
+  country     String
+  coordinates Float[]
+}
+
+type Crew {
+  name String
+  role String
+}
+
+type Duration {
+  startDate           DateTime
+  estimatedFinishDate DateTime
 }
