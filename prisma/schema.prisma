@@ -69,3 +69,13 @@ type Duration {
   startDate           DateTime
   estimatedFinishDate DateTime
 }
+
+
+//For Testing
+model Example {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String?
+  content String?
+  created DateTime? @default(now())
+  updated DateTime? @updatedAt
+}
