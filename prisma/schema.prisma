@@ -24,8 +24,8 @@ model User {
 model Production {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
   directors   Director[]
-  producers   User?      @relation(fields: [producerId], references: [id])
-  producerId  String     @db.ObjectId
+  producers   User?      @relation(fields: [producerId], references: [externalId])
+  producerId  String
   description String
   locations   Location[]
   crews       Crew[]
