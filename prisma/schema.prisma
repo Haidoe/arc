@@ -12,6 +12,7 @@ datasource db {
 
 model User {
   id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  externalId  String       @unique
   created     DateTime     @default(now())
   email       String       @unique
   name        String?
