@@ -82,46 +82,16 @@
       }
     ],
     "scenes": [
-      {
-        "number": 1,
-        "length": 16
-      },
-      {
-        "number": 2,
-        "length": 16
-      },
-      {
-        "number": 3,
-        "length": 20
-      },
-      {
-        "number": 4,
-        "length": 18
-      },
-      {
-        "number": 5,
-        "length": 15
-      },
-      {
-        "number": 6,
-        "length": 7
-      },
-      {
-        "number": 7,
-        "length": 19
-      },
-      {
-        "number": 8,
-        "length": 3
-      },
-      {
-        "number": 9,
-        "length": 13
-      },
-      {
-        "number": 10,
-        "length": 14
-      }
+      6,
+      16,
+      9,
+      17,
+      10,
+      7,
+      18,
+      26,
+      6,
+      45
     ],
     "created": "2021-06-10T00:00:00.000+00:00",
     "updated": "2021-06-30T00:00:00.000+00:00"
@@ -192,165 +162,36 @@
     ],
     "duration": {
       "startDate": "2023-07-01T00:00:00.000+00:00",
-      "estimatedFinishDate": "2023-07-23T00:00:00.000+00:00"
+      "estimatedFinishDate": "2023-10-23T00:00:00.000+00:00"
     },
     "scenes": [
-      {
-        "number": 1,
-        "length": 16
-      },
-      {
-        "number": 2,
-        "length": 16
-      },
-      {
-        "number": 3,
-        "length": 20
-      },
-      {
-        "number": 4,
-        "length": 18
-      },
-      {
-        "number": 5,
-        "length": 15
-      },
-      {
-        "number": 6,
-        "length": 7
-      },
-      {
-        "number": 7,
-        "length": 19
-      },
-      {
-        "number": 8,
-        "length": 3
-      },
-      {
-        "number": 9,
-        "length": 13
-      },
-      {
-        "number": 10,
-        "length": 14
-      },
-      {
-        "number": 11,
-        "length": 16
-      },
-      {
-        "number": 12,
-        "length": 22
-      },
-      {
-        "number": 13,
-        "length": 18
-      },
-      {
-        "number": 14,
-        "length": 15
-      },
-      {
-        "number": 15,
-        "length": 7
-      },
-      {
-        "number": 16,
-        "length": 19
-      },
-      {
-        "number": 17,
-        "length": 3
-      },
-      {
-        "number": 18,
-        "length": 13
-      },
-      {
-        "number": 19,
-        "length": 14
-      },
-      {
-        "number": 20,
-        "length": 16
-      },
-      {
-        "number": 21,
-        "length": 22
-      },
-      {
-        "number": 22,
-        "length": 18
-      },
-      {
-        "number": 23,
-        "length": 15
-      },
-      {
-        "number": 24,
-        "length": 7
-      },
-      {
-        "number": 25,
-        "length": 19
-      },
-      {
-        "number": 26,
-        "length": 3
-      },
-      {
-        "number": 27,
-        "length": 13
-      },
-      {
-        "number": 28,
-        "length": 40
-      },
-      {
-        "number": 29,
-        "length": 14
-      },
-      {
-        "number": 30,
-        "length": 27
-      },
-      {
-        "number": 31,
-        "length": 9
-      },
-      {
-        "number": 32,
-        "length": 16
-      },
-      {
-        "number": 33,
-        "length": 11
-      },
-      {
-        "number": 34,
-        "length": 22
-      },
-      {
-        "number": 35,
-        "length": 80
-      },
-      {
-        "number": 36,
-        "length": 4
-      },
-      {
-        "number": 37,
-        "length": 28
-      },
-      {
-        "number": 38,
-        "length": 45
-      },
-      {
-        "number": 39,
-        "length": 5
-      }
+      6,
+      16,
+      9,
+      17,
+      10,
+      7,
+      18,
+      26,
+      6,
+      45,
+      6,
+      16,
+      31,
+      17,
+      7,
+      22,
+      29,
+      10,
+      7,
+      18,
+      26,
+      6,
+      45,
+      6,
+      16,
+      31,
+      17
     ],
     "created": "2021-06-10T00:00:00.000+00:00",
     "updated": "2021-06-30T00:00:00.000+00:00"
