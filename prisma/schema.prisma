@@ -69,7 +69,7 @@ type Crew {
 
 type Scene {
   number Int
-  lenght Int
+  length Int
 }
 
 type Duration {
