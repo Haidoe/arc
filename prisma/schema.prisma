@@ -29,7 +29,7 @@ model Production {
   description String
   locations   Location[]
   crews       Crew[]
-  scenes      Scene[]
+  scenes      Int[]
 
   created DateTime @default(now())
   updated DateTime @updatedAt
@@ -65,11 +65,6 @@ type Location {
 type Crew {
   name String
   role String
-}
-
-type Scene {
-  number Int
-  lenght Int
 }
 
 type Duration {
