@@ -29,6 +29,7 @@ model Production {
   description String
   locations   Location[]
   crews       Crew[]
+  scenes      Int[]
 
   created DateTime @default(now())
   updated DateTime @updatedAt
