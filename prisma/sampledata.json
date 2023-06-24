@@ -1,43 +1,203 @@
-{
-  "producerId": "JodieM",
-  "directors": [
-    {
-      "name": "Steven Spielberg",
-      "title": "Director"
+[
+  {
+    "producerId": "JodieM",
+    "directors": [
+      {
+        "name": "Steven Spielberg",
+        "title": "Director"
+      },
+      {
+        "name": "Mike",
+        "title": "Assistant Director 1"
+      },
+      {
+        "name": "John",
+        "title": "Assistant Director 2"
+      },
+      {
+        "name": "Jane",
+        "title": "Assistant Director 3"
+      }
+    ],
+    "description": "After a series of events, the lives of a security operative and an assassin become inextricably linked. Eve is a bored, whip-smart security services operative whose desk-bound job doesn't fulfill her fantasies of being a spy. Villanelle is a talented killer, who clings to the luxuries her violent job affords her.",
+    "location": [
+      {
+        "name": "Jodie's House",
+        "address": "123 Main St",
+        "city": "Boston",
+        "state": "MA",
+        "zip": "02110"
+      },
+      {
+        "name": "Killing Field",
+        "address": "45th and Main St",
+        "city": "Madrid",
+        "state": "Spain",
+        "zip": "12345"
+      },
+      {
+        "name": "Eve's Office",
+        "address": "16 Hudson St",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10013"
+      }
+    ],
+    "duration": {
+      "startDate": "2023-07-01T00:00:00.000+00:00",
+      "estimatedFinishDate": "2023-07-23T00:00:00.000+00:00"
     },
-    {
-      "name": "Mike",
-      "title": "Assistant Director 1"
+    "crews": [
+      {
+        "name": "Joe",
+        "role": "Director of Photography"
+      },
+      {
+        "name": "Jill",
+        "role": "Assistant Director of Photography"
+      },
+      {
+        "name": "Jack",
+        "role": "Gaffer"
+      },
+      {
+        "name": "Jenny",
+        "role": "Assistant Gaffer"
+      },
+      {
+        "name": "Jesse",
+        "role": "Key Grip"
+      },
+      {
+        "name": "Jen",
+        "role": "Assistant Key Grip"
+      },
+      {
+        "name": "Paul",
+        "role": "Sound"
+      },
+      {
+        "name": "Peter",
+        "role": "Assistant Sound"
+      }
+    ],
+    "scenes": [
+      6,
+      16,
+      9,
+      17,
+      10,
+      7,
+      18,
+      26,
+      6,
+      45
+    ],
+    "created": "2021-06-10T00:00:00.000+00:00",
+    "updated": "2021-06-30T00:00:00.000+00:00",
+    "scriptSupervisor": "Taylor Miller",
+    "dataWrangler": "Aaron Mallin"
+  },
+  {
+    "producerId": "JodieM",
+    "directors": [
+      {
+        "name": "Park Chan-wook",
+        "title": "Director"
+      },
+      {
+        "name": "Mike",
+        "title": "Assistant Director 1"
+      },
+      {
+        "name": "John",
+        "title": "Assistant Director 2"
+      },
+      {
+        "name": "Jane",
+        "title": "Assistant Director 3"
+      }
+    ],
+    "description": "Untitle project of Park Chan-wook. Planning to shoot in 2023. Korean language. Location is all in Korea.",
+    "location": [
+      {
+        "name": "Protagonist's House",
+        "address": "Seoul",
+        "city": "Seoul",
+        "state": "Seoul",
+        "zip": "12345"
+      }
+    ],
+    "crews": [
+      {
+        "name": "Kim Ji-yong",
+        "role": "Director of Photography"
+      },
+      {
+        "name": "Park Chin-hong",
+        "role": "Assistant Director of Photography"
+      },
+      {
+        "name": "Lee Seung-chul",
+        "role": "Gaffer"
+      },
+      {
+        "name": "Kim Seung-ho",
+        "role": "Assistant Gaffer"
+      },
+      {
+        "name": "Lee Seung-ho",
+        "role": "Key Grip"
+      },
+      {
+        "name": "Kim Seung-ho",
+        "role": "Assistant Key Grip"
+      },
+      {
+        "name": "Park Seung-ho",
+        "role": "Sound"
+      },
+      {
+        "name": "Lee Seung-ho",
+        "role": "Assistant Sound"
+      }
+    ],
+    "duration": {
+      "startDate": "2023-07-01T00:00:00.000+00:00",
+      "estimatedFinishDate": "2023-10-23T00:00:00.000+00:00"
     },
-    {
-      "name": "John",
-      "title": "Assistant Director 2"
-    },
-    {
-      "name": "Jane",
-      "title": "Assistant Director 3"
-    }
-  ],
-  "description": "This is a description of the project.",
-  "location": [
-    {
-      "name": "Location 1",
-      "address": "Address 1",
-      "city": "City 1",
-      "state": "State 1",
-      "zip": "Zip 1"
-    }
-  ],
-  "crews": [
-    {
-      "name": "Joe",
-      "role": "Director of Photography"
-    }
-  ],
-  "scenes": [
-    {
-      "number": 1,
-      "length": 16
-    }
-  ]
-}
+    "scenes": [
+      6,
+      16,
+      9,
+      17,
+      10,
+      7,
+      18,
+      26,
+      6,
+      45,
+      6,
+      16,
+      31,
+      17,
+      7,
+      22,
+      29,
+      10,
+      7,
+      18,
+      26,
+      6,
+      45,
+      6,
+      16,
+      31,
+      17
+    ],
+    "created": "2021-06-10T00:00:00.000+00:00",
+    "updated": "2021-06-30T00:00:00.000+00:00",
+    "scriptSupervisor": "Taylor Miller",
+    "dataWrangler": "Aaron Mallin"
+  }
+]
