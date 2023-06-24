@@ -32,6 +32,8 @@ model Production {
   scenes      Int[]
   duration    Duration
   totalHours  Int
+  scriptSupervisor String
+  dataWrangler     String
 
   created DateTime @default(now())
   updated DateTime @updatedAt
