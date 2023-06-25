@@ -19,6 +19,7 @@ model User {
   company     String?
   title       String?
   productions Production[]
+  productionIds String[]
 }
 
 model Production {
