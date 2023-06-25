@@ -31,7 +31,7 @@ model Production {
   crews       Crew[]
   scenes      Int[]
   duration    Duration
-  totalHours  Int
+  totalHours  Int?
   scriptSupervisor String
   dataWrangler     String
 
