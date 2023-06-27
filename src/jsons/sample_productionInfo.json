@@ -1,6 +1,5 @@
 [
   {
-    "producerId": "JodieM",
     "directors": [
       {
         "name": "Steven Spielberg",
@@ -20,29 +19,7 @@
       }
     ],
     "description": "After a series of events, the lives of a security operative and an assassin become inextricably linked. Eve is a bored, whip-smart security services operative whose desk-bound job doesn't fulfill her fantasies of being a spy. Villanelle is a talented killer, who clings to the luxuries her violent job affords her.",
-    "location": [
-      {
-        "name": "Jodie's House",
-        "address": "123 Main St",
-        "city": "Boston",
-        "state": "MA",
-        "zip": "02110"
-      },
-      {
-        "name": "Killing Field",
-        "address": "45th and Main St",
-        "city": "Madrid",
-        "state": "Spain",
-        "zip": "12345"
-      },
-      {
-        "name": "Eve's Office",
-        "address": "16 Hudson St",
-        "city": "New York",
-        "state": "NY",
-        "zip": "10013"
-      }
-    ],
+    "locations": [],
     "duration": {
       "startDate": "2023-07-01T00:00:00.000+00:00",
       "estimatedFinishDate": "2023-07-23T00:00:00.000+00:00"
@@ -119,15 +96,7 @@
       }
     ],
     "description": "Untitle project of Park Chan-wook. Planning to shoot in 2023. Korean language. Location is all in Korea.",
-    "location": [
-      {
-        "name": "Protagonist's House",
-        "address": "Seoul",
-        "city": "Seoul",
-        "state": "Seoul",
-        "zip": "12345"
-      }
-    ],
+    "locations": [],
     "crews": [
       {
         "name": "Kim Ji-yong",
