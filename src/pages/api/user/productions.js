@@ -1,6 +1,6 @@
+import { requireAuth } from "@clerk/nextjs/dist/api";
 import { prisma } from "~/server/db";
 
-// GET method handler
 const getHandler = async (req, res) => {
   const { userId } = req.query;
 
@@ -15,13 +15,6 @@ const getHandler = async (req, res) => {
     where: {
       externalId: userId,
     },
-    include: {
-      productions: {
-        select: {
-          id: true,
-        },
-      },
-    },
   });
 
   res.status(200).json({
@@ -29,44 +22,28 @@ const getHandler = async (req, res) => {
   });
 };
 
-// POST method handler
 const postHandler = async (req, res) => {
-  const { userId } = req.query;
+  const { userId, productionId } = req.body;
 
-  if (!userId) {
-    return res.status(404).json({
-      error: "Not Found",
-      message: "User not found",
-    });
-  }
-
-  const user = await prisma.user.findUnique({
-    where: {
-      externalId: userId,
-    },
-    include: {
-      productions: {
-        select: {
-          id: true,
-        },
-      },
-    },
-  });
-
-  if (user && user.productions && user.productions.length > 0) {
-    const productionIds = user.productions.map((production) => production.id);
-
-    await prisma.user.update({
+  try {
+    const production = await prisma.user.update({
       where: {
-        externalId: userId,
+        id: userId,
       },
       data: {
-        productionIds: productionIds,
+        productionIds: {
+          push: productionId,
+        },
       },
     });
-  }
 
-  res.status(200).json({ success: true });
+    res.status(200).json({
+      productionIds: production.productionIds,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error });
+  }
 };
 
 // Main handler function that routes the request based on the HTTP method
@@ -78,4 +55,4 @@ const handler = (req, res) => {
   }
 };
 
-export default handler;
+export default requireAuth(handler);
