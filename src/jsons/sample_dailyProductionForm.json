@@ -1,0 +1,137 @@
+{
+    "productionId": "production-id",
+    "startDate": 1675148400,
+    "scheduleForDay": {
+      "breakfastFrom": 1675144800,
+      "breakfastTo": 1675146000,
+      "crewCallFrom": 1675146000,
+      "crewCallTo": 1675148400,
+      "shootingCallFrom": 1675151400,
+      "shootingCallTo": 1675186800,
+      "lunchFrom": 1675165200,
+      "lunchTo": 1675168800
+    },
+    "notShotScene": ["Scene1", "Scene2"],
+    "shotScene": [
+      {
+        "number": 1,
+        "set": "SetA",
+        "casts": ["Actor1", "Actor2"],
+        "location": "LocationA",
+        "dayOrNight": "Day",
+        "pages": {
+          "total": 5,
+          "portion": 2,
+          "completed": 1
+        },
+        "Location": "LocationA"
+      },
+      {
+        "number": 2,
+        "set": "SetB",
+        "casts": ["Actor3", "Actor4"],
+        "location": "LocationB",
+        "dayOrNight": "Night",
+        "pages": {
+          "total": 8,
+          "portion": 3,
+          "completed": 2
+        },
+        "Location": "LocationB"
+      }
+    ],
+    "castTimeLog": [
+      {
+        "cast": "Actor1",
+        "character": "Character1",
+        "status": "Status1",
+        "workSchedule": {
+          "muReport": 1675144800,
+          "onSet": 1675148400,
+          "setWrap": 1675186800,
+          "setDismiss": 1675190400
+        },
+        "meals": {
+          "lunchIn": 1675165200,
+          "lunchOut": 1675168800,
+          "secondMealIn": 1675190400,
+          "secondMealOut": 1675194000
+        }
+      },
+      {
+        "cast": "Actor2",
+        "character": "Character2",
+        "status": "Status2",
+        "workSchedule": {
+          "muReport": 1675144800,
+          "onSet": 1675149000,
+          "setWrap": 1675187400,
+          "setDismiss": 1675191000
+        },
+        "meals": {
+          "lunchIn": 1675165800,
+          "lunchOut": 1675169400,
+          "secondMealIn": 1675191000,
+          "secondMealOut": 1675194600
+        }
+      }
+    ],
+    "extras": [
+      {
+        "qty": 1,
+        "name": "Extra1",
+        "notes": "Note1",
+        "schedule": {
+          "in": 1675152000,
+          "out": 1675186800,
+          "meal": 1675165200,
+          "rate": 10,
+          "rateType": "Hourly"
+        }
+      },
+      {
+        "qty": 2,
+        "name": "Extra2",
+        "notes": "Note2",
+        "schedule": {
+          "in": 1675155600,
+          "out": 1675190400,
+          "meal": 1675168800,
+          "rate": 15,
+          "rateType": "Hourly"
+        }
+      }
+    ],
+    "rolls": [
+      {
+        "scriptSupervisor": "Supervisor1",
+        "dataWrangler": "Wrangler1",
+        "entries": [
+          {
+            "name": "Entry1",
+            "previously": 10,
+            "today": 5,
+            "toDate": 15
+          },
+          {
+            "name": "Entry2",
+            "previously": 5,
+            "today": 3,
+            "toDate": 8
+          }
+        ]
+      }
+    ],
+    "actualSchedule": [
+      {
+        "name": "Scene1",
+        "schedule": 10,
+        "actual": 8
+      },
+      {
+        "name": "Scene2",
+        "schedule": 12,
+        "actual": 12
+      }
+    ]
+  }
