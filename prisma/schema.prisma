@@ -93,9 +93,10 @@ model ProductionReport {
 
 
   // form fields - Type 1 -> input only
-  startDate DateTime
-  scheduleForDay Json // made json instead of type because dynamic type
-  notShotScene String[]
+  startDate DateTime?
+  scheduleForDay scheduleForDay // made json instead of type because dynamic type
+  notShotScene NotShotScene[]
+  
   shotScene Scenes[]
   castTimeLog CastTimeLog[]
   extras Extras[]  
@@ -103,6 +104,11 @@ model ProductionReport {
   // form fields - Type 2 -> Mixed
   rolls Rolls[]
   actualSchedule ActualSchedule[]   
+}
+
+type NotShotScene {
+  number Int
+  description String
 }
 
 type Rolls {

@@ -1,0 +1,141 @@
+{
+  "startDate": "2023-07-01T00:00:00.000Z",
+  "scheduleForDay": {
+    "breakfastFrom": "2023-07-01T07:00:00.000Z",
+    "breakfastTo": "2023-07-01T09:00:00.000Z",
+    "crewCallFrom": "2023-07-01T09:00:00.000Z",
+    "crewCallTo": "2023-07-01T12:00:00.000Z",
+    "shootingCallFrom": "2023-07-01T13:30:00.000Z",
+    "shootingCallTo": "2023-07-04T19:00:00.000Z",
+    "lunchFrom": "2023-07-02T09:00:00.000Z",
+    "lunchTo": "2023-07-02T10:00:00.000Z"
+  },
+  "notShotScene": [
+    {
+      "number": 1,
+      "description": "Actor is sick"
+    }
+  ],
+  "shotScene": [
+    {
+      "number": 1,
+      "set": "SetA",
+      "casts": ["Actor1", "Actor2"],
+      "location": "LocationA",
+      "dayOrNight": "Day",
+      "pages": {
+        "total": 5,
+        "portion": 2,
+        "completed": 1
+      },
+      "Location": "LocationA"
+    },
+    {
+      "number": 2,
+      "set": "SetB",
+      "casts": ["Actor3", "Actor4"],
+      "location": "LocationB",
+      "dayOrNight": "Night",
+      "pages": {
+        "total": 8,
+        "portion": 3,
+        "completed": 2
+      },
+      "Location": "LocationB"
+    }
+  ],
+  "castTimeLog": [
+    {
+      "cast": "Actor1",
+      "character": "Character1",
+      "status": "Status1",
+      "workSchedule": {
+        "muReport": "2023-07-01T07:00:00.000Z",
+        "onSet": "2023-07-01T12:00:00.000Z",
+        "setWrap": "2023-07-04T19:00:00.000Z",
+        "setDismiss": "2023-07-04T20:00:00.000Z"
+      },
+      "meals": {
+        "lunchIn": "2023-07-02T09:00:00.000Z",
+        "lunchOut": "2023-07-02T10:00:00.000Z",
+        "secondMealIn": "2023-07-04T20:00:00.000Z",
+        "secondMealOut": "2023-07-04T21:00:00.000Z"
+      }
+    },
+    {
+      "cast": "Actor2",
+      "character": "Character2",
+      "status": "Status2",
+      "workSchedule": {
+        "muReport": "2023-07-01T07:00:00.000Z",
+        "onSet": "2023-07-01T12:30:00.000Z",
+        "setWrap": "2023-07-04T19:30:00.000Z",
+        "setDismiss": "2023-07-04T20:30:00.000Z"
+      },
+      "meals": {
+        "lunchIn": "2023-07-02T09:30:00.000Z",
+        "lunchOut": "2023-07-02T10:30:00.000Z",
+        "secondMealIn": "2023-07-04T20:30:00.000Z",
+        "secondMealOut": "2023-07-04T21:30:00.000Z"
+      }
+    }
+  ],
+  "extras": [
+    {
+      "qty": 1,
+      "name": "Extra1",
+      "notes": "Note1",
+      "schedule": {
+        "in": "2023-07-01T13:00:00.000Z",
+        "out": "2023-07-04T19:00:00.000Z",
+        "meal": "2023-07-02T09:00:00.000Z",
+        "rate": 10,
+        "rateType": "Hourly"
+      }
+    },
+    {
+      "qty": 2,
+      "name": "Extra2",
+      "notes": "Note2",
+      "schedule": {
+        "in": "2023-07-01T14:00:00.000Z",
+        "out": "2023-07-04T21:00:00.000Z",
+        "meal": "2023-07-02T10:00:00.000Z",
+        "rate": 15,
+        "rateType": "Hourly"
+      }
+    }
+  ],
+  "rolls": [
+    {
+      "scriptSupervisor": "Supervisor1",
+      "dataWrangler": "Wrangler1",
+      "entries": [
+        {
+          "name": "Entry1",
+          "previously": 10,
+          "today": 5,
+          "toDate": 15
+        },
+        {
+          "name": "Entry2",
+          "previously": 5,
+          "today": 3,
+          "toDate": 8
+        }
+      ]
+    }
+  ],
+  "actualSchedule": [
+    {
+      "name": "Scene1",
+      "schedule": 10,
+      "actual": 8
+    },
+    {
+      "name": "Scene2",
+      "schedule": 12,
+      "actual": 12
+    }
+  ]
+}
