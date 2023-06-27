@@ -52,14 +52,6 @@ model Production {
   report ProductionReport[]
 }
 
-model ProductionReport {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  Production   Production? @relation(fields: [productionId], references: [id])
-  productionId String?     @db.ObjectId
-  created    DateTime    @default(now())
-  updated    DateTime    @updatedAt
-}
-
 type Director {
   name  String
   title String
@@ -94,3 +86,121 @@ model Example {
   created DateTime? @default(now())
   updated DateTime? @updatedAt
 }
+
+
+
+
+// =====================> Model and Type for Production Report <=====================
+
+
+model ProductionReport {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  // optional fields
+  Production   Production? @relation(fields: [productionId], references: [id])
+  productionId String?     @db.ObjectId
+  created    DateTime    @default(now())
+  updated    DateTime    @updatedAt
+
+
+  // form fields - Type 1 -> input only
+  startDate DateTime
+  scheduleForDay Json // made json instead of type because dynamic type
+  notShotScene String[]
+  shotScene Scenes[]
+  castTimeLog CastTimeLog[]
+  extras Extras[]  
+
+  // form fields - Type 2 -> Mixed
+  rolls Rolls[]
+  actualSchedule ActualSchedule[]   
+}
+
+type Rolls {
+  scriptSupervisor String
+  dataWrangler String
+  entries RollEntries[]
+}
+
+type RollEntries {
+  name String
+  previously Int
+  today Int
+  toDate Int
+}
+
+
+type Extras {
+  qty Int
+  name String
+  notes String
+  schedule ExtraSchedule
+}
+
+type ExtraSchedule {
+  in DateTime
+  out DateTime
+  meal DateTime
+  rate Int
+  rateType String
+}
+
+
+
+type Scenes {
+  number Int
+  set String
+  casts String[]
+  location String
+  dayOrNight String
+  pages Pages
+  Location String
+}
+
+type Pages {
+  total Int
+  portion Int
+  completed Int
+}
+
+
+// dynamic type 
+type scheduleForDay {
+  breakfastFrom DateTime?
+  breakfastTo DateTime?
+  crewCallFrom DateTime?
+  crewCallTo DateTime?
+  shootingCallFrom DateTime?
+  shootingCallTo DateTime?
+  lunchFrom DateTime?
+  lunchTo DateTime?
+}
+
+
+type CastTimeLog {
+  cast String
+  character String
+  status String
+  workSchedule WorkScheduleObject
+  meals mealsObject 
+}
+
+
+type mealsObject {
+  lunchIn DateTime?
+  lunchOut DateTime?
+  secondMealIn DateTime?
+  secondMealOut DateTime?
+}
+type WorkScheduleObject {
+    muReport DateTime?
+    onSet DateTime?
+    setWrap DateTime?
+    setDismiss DateTime?
+  }
+
+type ActualSchedule  {
+  name String
+  schedule Int
+  actual Int
+}
+
