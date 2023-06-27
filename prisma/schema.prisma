@@ -18,24 +18,16 @@ model User {
   name        String?
   company     String?
   title       String?
-  // productions UserProductions[]
   productionIds String[]
+  productions Production[]
 }
-
-// model UserProductions {
-//   id          String       @id @default(auto()) @map("_id") @db.ObjectId
-//   userId String
-//   user   User   @relation(fields: [userId], references: [externalId])
-//   productionId String @db.ObjectId
-//   production   Production @relation(fields: [productionId], references: [id])
-// }
 
 model Production {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
-
   directors   Director[]
+  
+  producer   User?      @relation(fields: [producerId], references: [externalId])
   producerId String
-  // producers UserProductions[]
 
   description String
   locations   Location[]
@@ -45,10 +37,8 @@ model Production {
   totalHours  Int?
   scriptSupervisor String
   dataWrangler     String
-
   created DateTime @default(now())
   updated DateTime @updatedAt
-
   report ProductionReport[]
 }
 
