@@ -54,10 +54,8 @@ model Production {
 
 model ProductionReport {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  
   Production   Production? @relation(fields: [productionId], references: [id])
   productionId String?     @db.ObjectId
-
   created    DateTime    @default(now())
   updated    DateTime    @updatedAt
 }
