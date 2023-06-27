@@ -1,13 +1,15 @@
 import { requireAuth } from "@clerk/nextjs/dist/api";
 import { getAuth } from "@clerk/nextjs/server";
-import { type Production } from "@prisma/client";
-import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "~/server/db";
+
+import type { Production } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from "next";
+import type { ErrorResponse } from "~/types/types";
 
 //used requireAuth to make sure the user is logged in
 export default requireAuth(async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse<Production | ErrorResponse>
 ) {
   const { productionId } = req.query as { productionId: string };
 
@@ -15,20 +17,14 @@ export default requireAuth(async function handler(
   const { userId } = getAuth(req);
 
   try {
-    const result = (await prisma.userProductions.findFirst({
+    const result = await prisma.production.findFirstOrThrow({
       where: {
-        userId: userId ?? "",
-        productionId: productionId,
+        id: productionId,
+        producerId: userId ?? "",
       },
+    });
 
-      include: {
-        production: true,
-      },
-    })) as {
-      production: Production;
-    };
-
-    res.json(result.production);
+    res.json(result);
   } catch (error) {
     res.status(400).json({ message: "Invalid Parameters" });
   }
