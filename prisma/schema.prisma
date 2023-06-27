@@ -27,16 +27,16 @@ model Production {
   directors   Director[]
   
   producer   User?      @relation(fields: [producerId], references: [externalId])
-  producerId String
+  producerId String?
 
-  description String
-  locations   Location[]
+  description String?
+  locations   String[]
   crews       Crew[]
   scenes      Int[]
-  duration    Duration
+  duration    Duration?
   totalHours  Int?
-  scriptSupervisor String
-  dataWrangler     String
+  scriptSupervisor String?
+  dataWrangler     String?
   created DateTime @default(now())
   updated DateTime @updatedAt
   report ProductionReport[]
