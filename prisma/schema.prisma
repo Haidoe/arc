@@ -196,8 +196,16 @@ type WorkScheduleObject {
   }
 
 type ActualSchedule  {
-  name String
-  schedule Int
-  actual Int
+  firstUnitInput ActualScheduleInput?
+  secondUnitInput ActualScheduleInput
+  prep ActualScheduleInput?
+  travel ActualScheduleInput?
+  idle ActualScheduleInput?
+  holiday ActualScheduleInput?
+}
+
+type ActualScheduleInput {
+  schedule Int?
+  actual Int?
 }
 
