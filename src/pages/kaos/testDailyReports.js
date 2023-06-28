@@ -9,6 +9,9 @@ const CREATE_REPORT_API = `/api/production/${productionId}/report`;
 const GET_TODAY_REPORT_ID_API = `/api/production/${productionId}/today-report-id`;
 
 const TestDailyReports = () => {
+  
+  // Production Id Validation Pending
+
   // store report id in state
   const [reportId, setReportId] = useState(null);
   const [reportTimestamp, setReportTimestamp] = useState(null);
@@ -48,6 +51,12 @@ const TestDailyReports = () => {
 
   return (
     <div>
+      <div>
+        <h1 className="text-2xl font-bold">For Production: {productionId}</h1>
+      </div>
+      <div>
+        Action: {reportId ? "Update" : "Save"} a report for today
+      </div>
       <button
         onClick={createDailyProductionReport}
         className="m-4 rounded-lg border border-slate-800 bg-gray-500 px-4 py-2 hover:bg-gray-600"
