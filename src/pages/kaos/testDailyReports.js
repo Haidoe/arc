@@ -31,20 +31,23 @@ const TestDailyReports = () => {
     const resp = await fetch(CREATE_REPORT_API, config);
     const respJson = await resp.json();
     console.log(respJson);
+    
+    // what does it return?
+
   };
 
   // returns a report id if exists and if not create a new report
   const getTodayReportId = async () => {
     const resp = await fetch(GET_TODAY_REPORT_ID_API);
     const respJson = await resp.json();
-    console.log(respJson);
+    return respJson;
   };
 
 
   // use Effect to get the report id
   useEffect(() => {
     const { reportId, timestamp } = getTodayReportId();
-    console.log(timestamp);
+    setReportTimestamp(timestamp);
     setReportId(reportId);
   }, []);
 
@@ -52,7 +55,7 @@ const TestDailyReports = () => {
   return (
     <div>
       <div>
-        <h1 className="text-2xl font-bold">For Production: {productionId}</h1>
+        <h1 className="text-2xl font-bold">For Production Id: {productionId}</h1>
       </div>
       <div>
         Action: {reportId ? "Update" : "Save"} a report for today
