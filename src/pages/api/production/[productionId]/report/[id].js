@@ -10,14 +10,14 @@ import getTodayTimestamp from "~/helper/getTodayTimestamp.js";
 const postHandler = async (req, res) => {
   try {
     if (req.method !== "POST") {
-        return res.status(405).json({ error: "Method not allowed" });
+      return res.status(405).json({ error: "Method not allowed" });
     }
 
     const { productionId, id } = req.query;
-    
-    return res.status(200).json({ 
-        productionId,
-        id
+
+    return res.status(200).json({
+      productionId,
+      id,
     });
 
     // end everything here
@@ -38,7 +38,7 @@ const postHandler = async (req, res) => {
 
     // using prisma append the report id and timestamp into the Production document
 
-      // =========> FIRST: get the object from database
+    // =========> FIRST: get the object from database
     const timestamp = getTodayTimestamp();
     const existingObject = await prisma.production.findFirst({
       where: {
@@ -50,9 +50,9 @@ const postHandler = async (req, res) => {
     const updatedReportIdsObj_payload = {
       ...existingObject.reportIdsObj,
       [timestamp]: report.id,
-    }
+    };
 
-      // =========> SECOND: ovewrite the object with the new report id
+    // =========> SECOND: ovewrite the object with the new report id
     const updatedReportIdsObj = await prisma.production.update({
       where: { id: productionId },
       data: { reportIdsObj: updatedReportIdsObj_payload },
@@ -63,7 +63,6 @@ const postHandler = async (req, res) => {
       timestamp: timestamp,
       reportIdsObj: updatedReportIdsObj.reportIdsObj,
     });
-
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error });
