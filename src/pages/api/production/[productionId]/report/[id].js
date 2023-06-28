@@ -12,13 +12,9 @@ const postHandler = async (req, res) => {
     if (req.method !== "POST") {
       return res.status(405).json({ error: "Method not allowed" });
     }
-
+    
     const { productionId, id } = req.query;
 
-    return res.status(200).json({
-      productionId,
-      id,
-    });
 
     // end everything here
 
@@ -68,5 +64,39 @@ const postHandler = async (req, res) => {
     res.status(500).json({ error: error });
   }
 };
+
+// =================================> Dependent Functions
+
+// inserts the record id into the production document
+async function appendRecordIdInProduction(timestamp, recordId) {
+  // ==========> FIRST
+  // get the production document and select the recordsIdObj from prisma
+  const getRsp = await prisma.production.findFirst({
+    where: {
+      id: productionId,
+    },
+    select: {
+      recordsIdObj: true,
+    },
+  });
+
+  const recordsIdObj = getRsp.recordsIdObj;
+  recordsIdObj[timestamp] = recordId;
+
+  // ==========> SECOND
+  // post the recordIdObj into the production document
+  const postRsp = await prisma.production.update({
+    where: {
+      id: productionId,
+    },
+    data: {
+      recordsIdObj: recordsIdObj,
+    },
+  });
+
+  const updatedRecordsIdObj = postRsp.recordsIdObj;
+
+  return updatedRecordsIdObj;
+}
 
 export default requireAuth(postHandler);
