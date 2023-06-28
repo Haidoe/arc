@@ -8,32 +8,37 @@ import { prisma } from "~/server/db";
 
 // handles pages/api/production/[id]/scene-info
 const getHandler = async (req, res) => {
-  const { productionId } = req.query;
+  try {
+    const { productionId } = req.query;
 
-  const scenesInfo = await prisma.production.findUnique({
-    where: {
-      id: productionId,
-    },
-    include: {
-      report: {
-        select: {
-          shotScene: {
-            select: {
-              number: true,
-              pages: true,
+    const scenesInfo = await prisma.production.findUnique({
+      where: {
+        id: productionId,
+      },
+      include: {
+        report: {
+          select: {
+            shotScene: {
+              select: {
+                number: true,
+                pages: true,
+              },
             },
           },
         },
       },
-    },
-  });
+    });
 
-  return res.status(200).json({
-    productionId: scenesInfo.id,
-    allScenes: scenesInfo.scenes,
-    numberOfScenes: scenesInfo.scenes.length,
-    shotScene: scenesInfo.report[0].shotScene,
-  });
+    return res.status(200).json({
+      productionId: scenesInfo.id,
+      allScenes: scenesInfo.scenes,
+      numberOfScenes: scenesInfo.scenes.length,
+      shotScene: scenesInfo.report[0].shotScene,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error });
+  }
 };
 
 export default requireAuth(getHandler);
