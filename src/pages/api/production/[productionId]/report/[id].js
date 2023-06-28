@@ -20,6 +20,8 @@ const postHandler = async (req, res) => {
         id
     });
 
+    // end everything here
+
     const dailyReport = req.body.dailyReport;
 
     // using prisma create a new daily report to the ProductionReport document
