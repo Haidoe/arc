@@ -6,12 +6,12 @@ import { prisma } from "~/server/db";
 
 // let productionId = "648fe91b5a6933035f1b9ab2";
 
-// handles pages/api/production/[id]/scene-info
+// handles pages/api/production/[id]/scene-progress
 const getHandler = async (req, res) => {
   try {
     const { productionId } = req.query;
 
-    const scenesInfo = await prisma.production.findUnique({
+    const scenesProgress = await prisma.production.findUnique({
       where: {
         id: productionId,
       },
@@ -21,7 +21,7 @@ const getHandler = async (req, res) => {
             shotScene: {
               select: {
                 number: true,
-                pages: true,
+                pagePortion: true,
               },
             },
           },
@@ -29,11 +29,23 @@ const getHandler = async (req, res) => {
       },
     });
 
+    const sceneProgressArray = scenesProgress.scenes.map((expected, index) => ({
+      // number: index + 1,
+      expected: expected,
+      completed: 0,
+    }));
+
+    scenesProgress.report.forEach((report) => {
+      report.shotScene.forEach((shotScene) => {
+        sceneProgressArray[shotScene.number - 1].completed +=
+          shotScene.pagePortion;
+      });
+    });
+
     return res.status(200).json({
-      productionId: scenesInfo.id,
-      allScenes: scenesInfo.scenes,
-      numberOfScenes: scenesInfo.scenes.length,
-      shotScene: scenesInfo.report[0].shotScene,
+      // scenesProgress,
+      // allScenes: scenesProgress.scenes,
+      sceneProgressArray,
     });
   } catch (error) {
     console.log(error);
