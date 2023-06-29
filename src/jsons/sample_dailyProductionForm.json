@@ -20,27 +20,25 @@
     {
       "number": 1,
       "set": "SetA",
-      "casts": ["Actor1", "Actor2"],
+      "casts": [
+        "Actor1",
+        "Actor2"
+      ],
       "location": "LocationA",
       "dayOrNight": "Day",
-      "pages": {
-        "total": 5,
-        "portion": 2,
-        "completed": 1
-      },
+      "pagePortion": 4,
       "Location": "LocationA"
     },
     {
       "number": 2,
       "set": "SetB",
-      "casts": ["Actor3", "Actor4"],
+      "casts": [
+        "Actor3",
+        "Actor4"
+      ],
       "location": "LocationB",
       "dayOrNight": "Night",
-      "pages": {
-        "total": 8,
-        "portion": 3,
-        "completed": 2
-      },
+      "pagePortion": 8,
       "Location": "LocationB"
     }
   ],
@@ -126,16 +124,30 @@
       ]
     }
   ],
-  "actualSchedule": [
-    {
-      "name": "Scene1",
-      "schedule": 10,
-      "actual": 8
+  "actualSchedule": {
+    "firstUnitInput": {
+      "schedule": 5,
+      "actual": 4
     },
-    {
-      "name": "Scene2",
-      "schedule": 12,
-      "actual": 12
+    "secondUnitInput": {
+      "schedule": 5,
+      "actual": 4
+    },
+    "prep": {
+      "schedule": 5,
+      "actual": 4
+    },
+    "travel": {
+      "schedule": 5,
+      "actual": 4
+    },
+    "idle": {
+      "schedule": 5,
+      "actual": 4
+    },
+    "holiday": {
+      "schedule": 5,
+      "actual": 4
     }
-  ]
+  }
 }

@@ -13,7 +13,7 @@ const testAddProdInfoApi = () => {
 
   const handleClick = () => {
     //pointing to local api
-    fetch("/api/production/add", config);
+    fetch("/api/production/addProductionDemo", config);
   };
 
   return (

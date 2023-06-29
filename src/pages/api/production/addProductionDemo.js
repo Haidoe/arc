@@ -3,8 +3,7 @@ import { getAuth } from "@clerk/nextjs/server";
 import { prisma } from "~/server/db";
 
 const handler = async (req, res) => {
-  // req.method === "POST";
-
+  
   const { userId } = getAuth(req);
 
   const { productionInfo } = req.body;

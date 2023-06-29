@@ -4,6 +4,7 @@
 
 import { requireAuth } from "@clerk/nextjs/dist/api";
 import { prisma } from "~/server/db";
+import { getTodayTimestamp } from "~/helper/getTodayTimestamp";
 
 // handles pages/api/production/[id]/report
 const postHandler = async (req, res) => {
@@ -13,7 +14,6 @@ const postHandler = async (req, res) => {
     }
 
     const { productionId } = req.query;
-
     const dailyReport = req.body.dailyReport;
 
     // using prisma create a new daily report to the ProductionReport document
@@ -29,20 +29,14 @@ const postHandler = async (req, res) => {
     });
 
     // using prisma append the report id into the Production document
-    const production = await prisma.production.update({
-      where: {
-        id: productionId,
-      },
-      data: {
-        reportIds: {
-          push: report.id,
-        },
-      },
-    });
+    const timestamp = getTodayTimestamp();
+    const recordId = report.id;
+    const updatedRecordsIdObj = await appendRecordIdInProduction(timestamp, recordId, productionId);
 
     res.status(200).json({
-      newReportId: report.id,
-      allReportIds: production.reportIds,
+      reportId: report.id,
+      timestamp,
+      updatedRecordsIdObj
     });
 
   } catch (error) {
@@ -50,5 +44,42 @@ const postHandler = async (req, res) => {
     res.status(500).json({ error: error });
   }
 };
+
+
+
+// =================================> Dependent Functions
+// inserts the record id into the production document
+async function appendRecordIdInProduction(timestamp, recordId, productionId) {
+
+   // ==========> FIRST
+  // get the production document and select the recordsIdObj from prisma
+  const getRsp = await prisma.production.findFirst({
+    where: {
+      id: productionId,
+    },
+    select: {
+      reportIdsObj: true,
+    },
+  });
+
+  const reportIdsObj = getRsp.reportIdsObj;
+  reportIdsObj[timestamp] = recordId;
+
+
+  // ==========> SECOND
+  // post the recordIdObj into the production document
+  const postRsp = await prisma.production.update({
+    where: {
+      id: productionId,
+    },
+    data: {
+      reportIdsObj: reportIdsObj,
+    },
+  });
+
+  const updatedRecordsIdObj = postRsp.reportIdsObj;
+
+  return updatedRecordsIdObj;
+}
 
 export default requireAuth(postHandler);
