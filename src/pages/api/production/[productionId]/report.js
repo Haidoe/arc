@@ -4,6 +4,7 @@
 
 import { requireAuth } from "@clerk/nextjs/dist/api";
 import { prisma } from "~/server/db";
+import { getTodayTimestamp } from "~/helper/getTodayTimestamp";
 
 // handles pages/api/production/[id]/report
 const postHandler = async (req, res) => {
@@ -30,7 +31,7 @@ const postHandler = async (req, res) => {
     // using prisma append the report id into the Production document
     const timestamp = getTodayTimestamp();
     const recordId = report.id;
-    const updatedRecordsIdObj = await appendRecordIdInProduction(timestamp, recordId);
+    const updatedRecordsIdObj = await appendRecordIdInProduction(timestamp, recordId, productionId);
 
     res.status(200).json({
       reportId: report.id,
@@ -48,7 +49,7 @@ const postHandler = async (req, res) => {
 
 // =================================> Dependent Functions
 // inserts the record id into the production document
-async function appendRecordIdInProduction(timestamp, recordId) {
+async function appendRecordIdInProduction(timestamp, recordId, productionId) {
 
    // ==========> FIRST
   // get the production document and select the recordsIdObj from prisma
@@ -57,12 +58,12 @@ async function appendRecordIdInProduction(timestamp, recordId) {
       id: productionId,
     },
     select: {
-      recordsIdObj: true,
+      reportIdsObj: true,
     },
   });
 
-  const recordsIdObj = getRsp.recordsIdObj;
-  recordsIdObj[timestamp] = recordId;
+  const reportIdsObj = getRsp.reportIdsObj;
+  reportIdsObj[timestamp] = recordId;
 
 
   // ==========> SECOND
@@ -72,11 +73,11 @@ async function appendRecordIdInProduction(timestamp, recordId) {
       id: productionId,
     },
     data: {
-      recordsIdObj: recordsIdObj,
+      reportIdsObj: reportIdsObj,
     },
   });
 
-  const updatedRecordsIdObj = postRsp.recordsIdObj;
+  const updatedRecordsIdObj = postRsp.reportIdsObj;
 
   return updatedRecordsIdObj;
 }
