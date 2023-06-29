@@ -21,6 +21,7 @@ const getHandler = async (req, res) => {
             shotScene: {
               select: {
                 number: true,
+                pagePortion: true,
               },
             },
             notShotScene: {
@@ -34,19 +35,38 @@ const getHandler = async (req, res) => {
       },
     });
 
-    const combinedShotScenes = notShotScene.report.reduce((acc, report) => {
-      acc.push(...report.shotScene.map((scene) => scene.number));
+    //map scenes to the scene progress array
+    const sceneProgressArray = notShotScene.scenes.map((expected, index) => ({
+      number: index + 1,
+      expected: expected,
+      completed: 0,
+    }));
+
+    //add the completed page portion to the scene progress array
+    notShotScene.report.forEach((report) => {
+      report.shotScene.forEach((shotScene) => {
+        sceneProgressArray[shotScene.number - 1].completed +=
+          shotScene.pagePortion;
+      });
+    });
+
+    //loop through the report and add the not shot scene to the new array
+    const combineNotShotScene = notShotScene.report.reduce((acc, report) => {
+      acc.push(...report.notShotScene);
       return acc;
     }, []);
 
-    const filteredNotShotScene = notShotScene.report
-      .flatMap((report) => report.notShotScene)
-      .filter((scene) => !combinedShotScenes.includes(scene.number));
+    //filter the not shot scene array to remove the scene that expected === completed
+    const filteredNotShotScene = combineNotShotScene.filter(
+      (scene) =>
+        sceneProgressArray[scene.number - 1].expected !==
+        sceneProgressArray[scene.number - 1].completed
+    );
 
     return res.status(200).json({
-      productionId: notShotScene.id,
-      // report: notShotScene.report,
-      filteredNotShotScene: filteredNotShotScene,
+      // sceneProgressArray,
+      // combineNotShotScene,
+      filteredNotShotScene,
     });
   } catch (error) {
     console.log(error);
