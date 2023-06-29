@@ -23,6 +23,8 @@ const getHandler = async (req, res) => {
       },
     });
 
+    console.log(rsp)
+
     const todayTimestamp = getTodayTimestamp();
 
     if (!rsp.reportIdsObj || !rsp.reportIdsObj[todayTimestamp]) {

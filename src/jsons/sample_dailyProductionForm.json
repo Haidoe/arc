@@ -126,16 +126,30 @@
       ]
     }
   ],
-  "actualSchedule": [
-    {
-      "name": "Scene1",
-      "schedule": 10,
-      "actual": 8
+  "actualSchedule": {
+    "firstUnitInput" : {
+      "schedule": 5,
+      "actual": 4
     },
-    {
-      "name": "Scene2",
-      "schedule": 12,
-      "actual": 12
+    "secondUnitInput": {
+      "schedule": 5,
+      "actual": 4
+    },
+    "prep": {
+      "schedule": 5,
+      "actual": 4
+    },
+    "travel": {
+      "schedule": 5,
+      "actual": 4
+    },
+    "idle": {
+      "schedule": 5,
+      "actual": 4
+    },
+    "holiday": {
+      "schedule": 5,
+      "actual": 4
     }
-  ]
+  }
 }
