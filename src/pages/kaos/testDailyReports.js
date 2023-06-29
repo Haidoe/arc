@@ -9,6 +9,9 @@ let productionId = "648fe91b5a6933035f1b9ab2";
 const CREATE_REPORT_API = `/api/production/${productionId}/report`;
 const GET_TODAY_REPORT_ID_API = `/api/production/${productionId}/today-report-id`;
 
+// Get Report INFO
+const REPORT_ID = "649cf18089e11ffb6703ff83";
+
 const TestDailyReports = () => {
   
   // Production Id Validation Pending
@@ -83,6 +86,17 @@ const TestDailyReports = () => {
   };
 
 
+  // ====================> GET Report Info <====================
+  const getReportInfo = async () => {
+
+    const GET_REPORT_INFO_API = `/api/production/${productionId}/report/${REPORT_ID}`;
+    const resp = await fetch(GET_REPORT_INFO_API);
+    const respJson = await resp.json();
+    console.log(respJson);
+  
+  };
+
+
   return (
     <div>
       <div>
@@ -96,6 +110,12 @@ const TestDailyReports = () => {
         className="m-4 rounded-lg border border-slate-800 bg-gray-500 px-4 py-2 hover:bg-gray-600"
       >
         Create or Update a Daily Production Report
+      </button>
+      <button
+        onClick={getReportInfo}
+        className="m-4 rounded-lg border border-slate-800 bg-gray-500 px-4 py-2 hover:bg-gray-600"
+      >
+        Get Report Info
       </button>
     </div>
   );
