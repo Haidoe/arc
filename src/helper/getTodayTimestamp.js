@@ -1,4 +1,4 @@
-// this function returns the timestamp of today at 00:00:00
+// this function returns the timestamp (in seconds) of today at 00:00:00
 export const getTodayTimestamp = () => {
     const today = new Date();
     const todayTimestamp = new Date(
@@ -6,8 +6,7 @@ export const getTodayTimestamp = () => {
         today.getMonth(),
         today.getDate()
     ).getTime();
-    console.log(todayTimestamp)
-    return todayTimestamp;
+    return todayTimestamp / 1000;
 }
 
 // export it now
