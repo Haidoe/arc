@@ -61,4 +61,39 @@ async function getReportIdsObj(productionId) {
   return rsp.reportIdsObj;
 }
 
-export default requireAuth(postHandler);
+
+const getHandler = async (req, res) => {
+  try {
+    if (req.method !== "GET") {
+      return res.status(405).json({ error: "Method not allowed" });
+    }
+
+    const { reportId } = req.query;
+
+    // get report document from prisma
+    const rsp = await prisma.productionReport.findFirstOrThrow({
+      where: {
+        id: reportId,
+      },
+    });
+
+   return res.status(200).json(rsp);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error });
+  }
+}
+
+// handle GET and POST requests
+async function handler(req, res) {
+  if (req.method === "GET") {
+    return getHandler(req, res);
+  } else if (req.method === "POST") {
+    return postHandler(req, res);
+  } else {
+    return res.status(405).json({ error: "Method not allowed" });
+  }  
+}
+
+export default requireAuth(handler);
