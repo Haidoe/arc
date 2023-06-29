@@ -149,15 +149,16 @@ type Scenes {
   casts String[]
   location String
   dayOrNight String
-  pages Pages
+  // pages Pages
+  pagePortion Int?
   Location String
 }
 
-type Pages {
-  total Int
-  portion Int
-  completed Int
-}
+
+// type Pages {
+//   portion Int
+//   completed Int
+// }
 
 
 // dynamic type 
