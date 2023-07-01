@@ -1,5 +1,7 @@
 import { type AppType } from "next/app";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Provider } from "react-redux";
+import store from "~/redux/store";
 import Head from "next/head";
 import { Ubuntu } from "next/font/google";
 
@@ -27,7 +29,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         }
       `}</style>
 
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </ClerkProvider>
   );
 };
