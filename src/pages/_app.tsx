@@ -1,5 +1,7 @@
 import { type AppType } from "next/app";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Provider } from "react-redux";
+import store from "../redux/store";
 import Head from "next/head";
 
 import { api } from "~/utils/api";
@@ -14,7 +16,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </ClerkProvider>
   );
 };
