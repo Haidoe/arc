@@ -11,7 +11,7 @@ const PrefetchUser: NextPage<{ userId: string | null }> = ({ userId }) => {
       <Head>
         <title>Kaos 🌚 | Dummy Page</title>
         <meta name="description" content="💭 Delete me later" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
 
       <nav className="bg-gray-800">

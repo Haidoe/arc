@@ -20,7 +20,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       <Head>
         <title>Arc 🎬 </title>
         <meta name="description" content="🎬 🎬" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
 
       <style jsx global>{`
