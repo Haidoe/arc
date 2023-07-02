@@ -3,6 +3,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+// import logo
+import Image from 'next/image'
+import Logo from "~/assets/Logo.svg";
+
 // define headers on different pages
 const headersOnPages = {
   "/": [
@@ -95,8 +99,8 @@ const Header = () => {
         <div className="hidden items-center md:flex">
           {/* Logo */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+          <Image
+            src={Logo}
             alt="Logo"
             className="h-12 w-12"
           />
@@ -123,11 +127,18 @@ const Header = () => {
         </div>
       </div>
 
-      {/* For Mobile */}
+      {/* For Mobile Landing Page */}
+
+
+
+
+
+      {/* For Mobile Rest of the pages */}
       <div className="flex h-16 items-center justify-center md:hidden">
         {/* Mobile Header */}
         <p className="text-2xl font-bold">ARC</p>
       </div>
+
     </header>
   );
 };
