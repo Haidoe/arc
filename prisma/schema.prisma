@@ -25,7 +25,8 @@ model User {
 model Production {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
   directors   Director[]
-  
+  title String?
+  imageUrl String?
   producer   User?      @relation(fields: [producerId], references: [externalId])
   producerId String?
 
@@ -41,6 +42,7 @@ model Production {
   updated DateTime @updatedAt
   report ProductionReport[]
   reportIdsObj Json?
+
 }
 
 type Director {
