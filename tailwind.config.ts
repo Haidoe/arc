@@ -24,9 +24,9 @@ export default {
           dark: "#CE5673",
         },
         contrast: {
-          dark: "#333",
-          base: "#595959",
-          light: "#818181",
+          light: "#AAAAAA",
+          base: "#2B2B2B",
+          dark: "#565656"
         },
       },
       fontSize: {

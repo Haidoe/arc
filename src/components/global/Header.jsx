@@ -1,18 +1,21 @@
-// create header component in next.js app
-// import Link from next.js
+// import modules from next.js
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+// import components
+import HeaderMobileLanding from "~/components/global/HeaderMobileLanding.jsx";
+
 // import logo
-import Image from 'next/image'
 import Logo from "~/assets/Logo.svg";
 
 // define headers on different pages
-const headersOnPages = {
+const linksOnHeader = {
   "/": [
     {
       name: "Film Production",
       path: "#filmProduction",
+      disabled: true,
     },
     {
       name: "Features",
@@ -90,38 +93,39 @@ const Header = () => {
   const router = useRouter();
   const { pathname } = router;
 
-  const headerLinks = headersOnPages[pathname] || [];
+  const headerLinks = linksOnHeader[pathname] || [];
 
   return (
     <header>
       {/* For Desktop */}
-      <div className="hidden items-center justify-between bg-gray-200 px-4 py-3 md:flex">
-        <div className="hidden items-center md:flex">
+      <div className="hidden items-center justify-between bg-base px-4 py-3 sm:flex">
+        <div className="hidden items-center sm:flex">
           {/* Logo */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <Image
-            src={Logo}
-            alt="Logo"
-            className="h-12 w-12"
-          />
+          <Image src={Logo} alt="Logo" className="h-14 w-14" />
         </div>
-        <div className="hidden items-center md:flex">
+        <div className="hidden items-center sm:flex">
           {/* Header Links */}
 
           {headerLinks.map((header, index) => (
             <Link
               href={header.path}
               key={index}
-              className={ header.disabled ? "text-gray-800 hover:text-blue-500 px-2 pointer-events-none" : "text-gray-800 hover:text-blue-500 px-2"}
+              className={
+                header.disabled
+                  ? "pointer-events-none px-2 text-contrast-light"
+                  : "px-2 text-contrast-dark hover:text-tertiary-base"
+              }
             >
               {header.name}
             </Link>
           ))}
 
           {/* Divider */}
-          <div className="mx-4 h-6 w-px bg-gray-500"></div>
+          <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
           {/* Sign In Button */}
-          <button className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
+          {/* todo height 48 width 88 */}
+          <button className="rounded-md bg-primary-light px-4 py-2 text-white hover:bg-primary-base">
             Sign In
           </button>
         </div>
@@ -129,20 +133,22 @@ const Header = () => {
 
       {/* For Mobile Landing Page */}
 
-
-
-
-
-      {/* For Mobile Rest of the pages */}
-      <div className="flex h-16 items-center justify-center md:hidden">
-        {/* Mobile Header */}
-        <p className="text-2xl font-bold">ARC</p>
-      </div>
-
+      {pathname === "/" ? (
+        <div className="sm:hidden">
+          <HeaderMobileLanding landingLinks={headerLinks} />
+        </div>
+      ) : (
+        { /* For Mobile Rest of the pages */ }
+        (
+          <div className="flex h-16 items-center justify-center sm:hidden">
+            {/* Mobile Header */}
+            <p className="text-2xl font-bold">ARC</p>
+          </div>
+        )
+      )}  
     </header>
   );
 };
-
 
 // export header component
 export default Header;
