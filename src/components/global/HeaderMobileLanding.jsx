@@ -3,10 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 // import logo
-import Logo from "~/assets/Logo.svg";
-import LogoMobile from "~/assets/LogoMobile.svg";
-import hamburger from "~/assets/hamburger.svg";
-import crossClose from "~/assets/crossClose.svg";
+import Logo from "~/assets/icons/Logo.svg";
+import LogoMobile from "~/assets/icons/LogoMobile.svg";
+import hamburger from "~/assets/icons/Hamburger.svg";
+import crossClose from "~/assets/icons/CrossClose.svg";
 
 const HeaderMobileLanding = ({ landingLinks }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);

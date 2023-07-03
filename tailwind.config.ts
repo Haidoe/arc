@@ -12,6 +12,7 @@ export default {
           light: "#6A6AC6",
           base: "#8181F0",
           dark: "#4F4F96",
+          trans: "rgba(133, 133, 219, 0.30)",
         },
         secondary: {
           light: "#4CD0E4",
