@@ -1,6 +1,6 @@
 import React from "react";
 import TextInputField from "~/components/TextInputField";
-import AddIcon from "~/assets/icons/Add.svg";
+import { AddIcon } from "~/assets/icons/AddIcon.svg";
 
 const testComponent = () => {
   const isError = true;
