@@ -1,3 +1,7 @@
+// import Header component
+import Header from '~/components/global/Header';
+
+
 // Test the api for daily reports
 
 import { useEffect, useState } from "react";
@@ -99,6 +103,7 @@ const TestDailyReports = () => {
 
   return (
     <div>
+      <Header />
       <div>
         <h1 className="text-2xl font-bold">For Production Id: {productionId}</h1>
       </div>

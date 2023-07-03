@@ -28,7 +28,8 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    "**/*.js"
-  ],
+    "**/*.js",
+    "**/*.jsx"
+, "src/components/global/HeaderMobileLanding.jsx", "src/components/global/Header.jsx"  ],
   "exclude": ["node_modules"]
 }
