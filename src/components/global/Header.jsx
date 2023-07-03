@@ -87,6 +87,14 @@ const linksOnHeader = {
   ],
 };
 
+
+const mobileHeaders = {
+  "/production": "Production",
+  "/productionReport": "Production Report",
+  "/dashboard": "Dashboard",
+  "/kaos/testDailyReports": "Production Report",
+}
+
 // read route and show header depending on route
 const Header = () => {
   // get route
@@ -121,13 +129,16 @@ const Header = () => {
             </Link>
           ))}
 
-          {/* Divider */}
-          <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
-          {/* Sign In Button */}
-          {/* todo height 48 width 88 */}
-          <button className="rounded-md bg-primary-light px-4 py-2 text-white hover:bg-primary-base">
-            Sign In
-          </button>
+          {/* Show Divider and Sign in only for Landing Page */}
+          {pathname === "/" && (<div>
+            {/* Divider */}
+            <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
+            {/* Sign In Button */}
+            {/* todo height 48 width 88 */}
+            <button className="rounded-md bg-primary-light px-4 py-2 text-white hover:bg-primary-base">
+              Sign In
+            </button>
+          </div>)}
         </div>
       </div>
 
@@ -138,14 +149,13 @@ const Header = () => {
           <HeaderMobileLanding landingLinks={headerLinks} />
         </div>
       ) : (
-        { /* For Mobile Rest of the pages */ }
-        (
-          <div className="flex h-16 items-center justify-center sm:hidden">
-            {/* Mobile Header */}
-            <p className="text-2xl font-bold">ARC</p>
-          </div>
-        )
-      )}  
+        <div className="flex h-14 bg-primary-light items-center justify-center sm:hidden">
+          {/* Mobile Header */}
+            <p className="text-base font-bold text-arc">
+              {mobileHeaders[pathname]}
+          </p>
+        </div>
+      )}
     </header>
   );
 };
