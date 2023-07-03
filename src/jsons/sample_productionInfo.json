@@ -1,24 +1,10 @@
 [
   {
     "title": "Arc in the Making",
-    "directors": [
-      {
-        "name": "Steven Spielberg",
-        "title": "Director"
-      },
-      {
-        "name": "Mike",
-        "title": "Assistant Director 1"
-      },
-      {
-        "name": "John",
-        "title": "Assistant Director 2"
-      },
-      {
-        "name": "Jane",
-        "title": "Assistant Director 3"
-      }
-    ],
+    "director": "Steven Spielberg",
+    "firstAssistantDirector": "Jane Doe",
+    "secondAssistantDirector": "John Doe",
+    "productionCoordinator": "Jill Doe",
     "description": "After a series of events, the lives of a security operative and an assassin become inextricably linked. Eve is a bored, whip-smart security services operative whose desk-bound job doesn't fulfill her fantasies of being a spy. Villanelle is a talented killer, who clings to the luxuries her violent job affords her.",
     "locations": [],
     "duration": {
