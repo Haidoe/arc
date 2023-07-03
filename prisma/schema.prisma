@@ -24,7 +24,9 @@ model User {
 
 model Production {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
-  directors   Director[]
+  firstAssistantDirector String?
+  secondAssistantDirector String?
+  productionCoordinator String?
   title String?
   imageUrl String?
   producer   User?      @relation(fields: [producerId], references: [externalId])
@@ -42,11 +44,6 @@ model Production {
   report ProductionReport[]
   reportIdsObj Json?
 
-}
-
-type Director {
-  name  String
-  title String
 }
 
 type Location {
