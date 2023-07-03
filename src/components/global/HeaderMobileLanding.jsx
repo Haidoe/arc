@@ -6,6 +6,7 @@ import Image from "next/image";
 import Logo from "~/assets/Logo.svg";
 import LogoMobile from "~/assets/LogoMobile.svg";
 import hamburger from "~/assets/hamburger.svg";
+import crossClose from "~/assets/crossClose.svg";
 
 const HeaderMobileLanding = ({ landingLinks }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -50,8 +51,8 @@ const HeaderMobileLanding = ({ landingLinks }) => {
                     onClick={closeMenu}
                   >
                     <Image
-                      src={hamburger}
-                      alt="hamburger"
+                      src={crossClose}
+                      alt="crossClose"
                       className="h-6 w-6"
                     />
                   </button>
@@ -70,7 +71,7 @@ const HeaderMobileLanding = ({ landingLinks }) => {
               ))}
               {/* Sign in button */}
               <div className="px-4 py-4">
-                <button className="rounded-md bg-primary-light px-4 py-2 text-base hover:bg-primary-dark">
+                <button className="rounded-md bg-primary-light px-4 py-2 text-arc hover:bg-primary-dark">
                   Sign In
                 </button>
               </div>
