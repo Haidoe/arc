@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import HeaderMobileLanding from "~/components/global/HeaderMobileLanding.jsx";
 
 // import logo
-import Logo from "~/assets/Logo.svg";
+import Logo from "~/assets/icons/Logo.svg";
 
 // define headers on different pages
 const linksOnHeader = {
@@ -151,8 +151,8 @@ const Header = () => {
       ) : (
         <div className="flex h-14 bg-primary-light items-center justify-center sm:hidden">
           {/* Mobile Header */}
-            <p className="text-base font-bold text-arc">
-              {mobileHeaders[pathname]}
+          <p className="text-base font-bold text-arc">
+            {mobileHeaders[pathname]}
           </p>
         </div>
       )}
