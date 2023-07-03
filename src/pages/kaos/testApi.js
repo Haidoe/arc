@@ -17,7 +17,6 @@ const testApi = () => {
 
   return (
     <div>
-      <InputText />
       <button
         onClick={handleClick}
         className="m-4 rounded-lg border border-slate-800 bg-gray-500 px-4 py-2 hover:bg-gray-600"

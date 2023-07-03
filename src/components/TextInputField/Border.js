@@ -1,4 +1,4 @@
-const Border = ({ label, name, value, onChange }) => {
+const Border = ({ label, name, value, onChange, isError }) => {
   return (
     <div>
       <div className="relative h-12 w-full min-w-[160px]">
@@ -9,10 +9,14 @@ const Border = ({ label, name, value, onChange }) => {
           id={name}
           type="text"
           placeholder=" "
-          className="text-input-border-input peer"
+          className={`text-input-border-input peer ${
+            isError ? "input-error" : ""
+          }`}
         />
         <label
-          className="before:content[' '] after:content[' '] text-input-border-label"
+          className={`before:content[' '] after:content[' '] text-input-border-label ${
+            isError ? "label-error" : ""
+          }`}
           htmlFor={name}
         >
           {label}
