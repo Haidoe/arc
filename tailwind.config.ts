@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        base: "#FDFDFA",
+        arc: "#FDFDFA",
         error: "#CB3F3F",
         highlight: "#EDE67E",
         primary: {
