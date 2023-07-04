@@ -2,11 +2,11 @@ import type { FC, ReactNode } from "react";
 import Header from "../global/Header";
 import Footer from "../global/Footer";
 
-type PageLayoutProp = { children: ReactNode };
+type PageLayoutProp = { children: ReactNode; hideHeader?: boolean };
 
-const MainPageLayout: FC<PageLayoutProp> = ({ children }) => (
+const LandingPageLayout: FC<PageLayoutProp> = ({ children }) => (
   <>
-    <div className="flex min-h-screen flex-col bg-base">
+    <div className="bg-base flex min-h-screen flex-col">
       <Header />
 
       <main className="flex flex-1 flex-col">{children}</main>
@@ -16,4 +16,4 @@ const MainPageLayout: FC<PageLayoutProp> = ({ children }) => (
   </>
 );
 
-export default MainPageLayout;
+export default LandingPageLayout;

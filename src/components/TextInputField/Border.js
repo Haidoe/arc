@@ -1,7 +1,7 @@
-const Border = ({ label, name, value, onChange, isError }) => {
+const Border = ({ label, name, value, onChange, isError, className }) => {
   return (
     <div>
-      <div className="relative h-12 w-full min-w-[160px]">
+      <div className={`relative h-12 w-full min-w-[160px] ${className ?? ""}`}>
         <input
           value={value}
           onChange={onChange}
