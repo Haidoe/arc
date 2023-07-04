@@ -7,6 +7,8 @@ export default {
       colors: {
         arc: "#FDFDFA",
         error: "#CB3F3F",
+        errorDark: "#8A2323",
+        errorLight: "#D47474",
         highlight: "#EDE67E",
         primary: {
           light: "#6A6AC6",
@@ -27,7 +29,7 @@ export default {
         contrast: {
           light: "#AAAAAA",
           base: "#2B2B2B",
-          dark: "#565656"
+          dark: "#565656",
         },
       },
       fontSize: {

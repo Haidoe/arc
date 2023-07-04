@@ -33,4 +33,8 @@
   .underline-label-error {
     @apply text-red-500 after:border-red-500 peer-placeholder-shown:text-red-500  peer-focus:text-red-500 peer-focus:after:border-red-500 peer-disabled:peer-placeholder-shown:text-red-500;
   }
+
+  .button {
+    @apply inline-flex cursor-pointer items-center justify-center rounded-[5px] p-4 text-[12px] transition-all  disabled:cursor-not-allowed disabled:opacity-50;
+  }
 }
