@@ -10,6 +10,8 @@ const TextInputField = ({ inputType, ...others }) => {
       return <Underline {...others} />;
     case "BorderWithIcon":
       return <BorderWithIcon {...others} />;
+    default:
+      return <Border {...others} />;
   }
 };
 
