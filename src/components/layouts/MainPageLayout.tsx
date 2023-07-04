@@ -5,7 +5,7 @@ type PageLayoutProp = { children: ReactNode };
 
 const MainPageLayout: FC<PageLayoutProp> = ({ children }) => (
   <>
-    <div className="flex min-h-screen flex-col bg-base">
+    <div className="bg-base flex min-h-screen flex-col">
       <Header />
 
       <main className="flex flex-1 flex-col">{children}</main>
