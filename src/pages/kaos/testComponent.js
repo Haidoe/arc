@@ -34,9 +34,9 @@ const testComponent = () => {
           isError={isError}
         />
       </div>
-      <div className=" flex flex-col gap-2 ">
-        <Button buttonType={`Primary`} onClick={handleClick} className="w-12">
-          Edit{" "}
+      <div className="flex flex-col gap-2 ">
+        <Button buttonType={`Primary`} onClick={handleClick}>
+          Edit
         </Button>
         <Button buttonType={`Secondary`} onClick={handleClick}>
           Edit
