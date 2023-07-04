@@ -30,10 +30,15 @@ const testComponent = () => {
           isError={isError}
         />
       </div>
-      <div className="flex gap-2">
-        <Button buttonType={`Primary`} label="I am a button" />
+      <div className=" flex flex-col gap-2 ">
+        <Button buttonType={`Primary`} label="I am a button" className="w-12" />
         <Button buttonType={`Secondary`} label="I am a button" />
         <Button buttonType={`Delete`} label="I am a button" />
+        <Button
+          buttonType={`PrimaryWithIcon`}
+          label="Waiting for Icon"
+          icon={AddIcon}
+        />
       </div>
     </div>
   );

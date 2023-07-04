@@ -1,6 +1,7 @@
 import Primary from "./Primary";
 import Secondary from "./Secondary";
 import Delete from "./Delete";
+import PrimaryWithIcon from "./PrimaryWithIcon";
 
 const Button = ({ buttonType, ...others }) => {
   switch (buttonType) {
@@ -10,6 +11,10 @@ const Button = ({ buttonType, ...others }) => {
       return <Secondary {...others} />;
     case "Delete":
       return <Delete {...others} />;
+    case "PrimaryWithIcon":
+      return <PrimaryWithIcon {...others} />;
+    default: 
+      return <Primary {...others} />;
   }
 };
 
