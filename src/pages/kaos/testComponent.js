@@ -6,6 +6,10 @@ import Button from "~/components/Button";
 const testComponent = () => {
   const isError = true;
 
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
   return (
     <div className="w-100 m-4 flex flex-col gap-4">
       Text input field
@@ -31,14 +35,23 @@ const testComponent = () => {
         />
       </div>
       <div className=" flex flex-col gap-2 ">
-        <Button buttonType={`Primary`} label="I am a button" className="w-12" />
-        <Button buttonType={`Secondary`} label="I am a button" />
-        <Button buttonType={`Delete`} label="I am a button" />
+        <Button buttonType={`Primary`} onClick={handleClick} className="w-12">
+          Edit{" "}
+        </Button>
+        <Button buttonType={`Secondary`} onClick={handleClick}>
+          Edit
+        </Button>
+        <Button buttonType={`Delete`} onClick={handleClick}>
+          Edit
+        </Button>
         <Button
           buttonType={`PrimaryWithIcon`}
           label="Waiting for Icon"
           icon={AddIcon}
-        />
+          onClick={handleClick}
+        >
+          Edit
+        </Button>
       </div>
     </div>
   );
