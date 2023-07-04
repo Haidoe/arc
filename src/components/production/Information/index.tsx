@@ -2,6 +2,7 @@ import ListItem from "./ListItem";
 import DefaultAvatar from "~/components/global/DefaultAvatar";
 import type { ProductionWithProducer } from "~/types/types";
 import ListItemWithDatetime from "./ListItemWithDatetime";
+import Button from "~/components/Button";
 
 type ProductionInformationProps = {
   data: ProductionWithProducer | null;
@@ -13,7 +14,7 @@ const ProductionInformation = (props: ProductionInformationProps) => {
   const { data } = props;
 
   return (
-    <div className="px-[24px]">
+    <div className="mb-12 px-[24px]">
       <ul className="pb-4">
         <li className="flex gap-4 border-b-[1.5px] border-primary-light py-[20px]">
           <div className="basis-[94px]">
@@ -54,6 +55,12 @@ const ProductionInformation = (props: ProductionInformationProps) => {
           isLast
         />
       </ul>
+
+      <div className="item-center flex justify-center">
+        <Button buttonType="Secondary" className="px-4 py-2 text-base">
+          Edit
+        </Button>
+      </div>
     </div>
   );
 };
