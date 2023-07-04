@@ -1,19 +1,23 @@
 type ListItemProps = {
   title: string;
-  content: string | null;
+  children: string | null;
   isLast?: boolean;
+  theme?: "primary" | null;
 };
 
-const ListItem = ({ title, content, isLast }: ListItemProps) => {
+const ListItem = ({ title, children, theme, isLast }: ListItemProps) => {
+  const borderColor =
+    theme === "primary" ? "border-arc" : "border-primary-light";
+
   return (
     <li
       className={`flex gap-4 py-[20px]  ${
-        isLast ? "" : "border-b-[1.5px] border-primary-light"
+        isLast ? "" : `${borderColor} border-b-[1.5px]`
       }`}
     >
       <div className="basis-[94px] font-bold">{title}</div>
 
-      <p className="flex flex-1">{content ?? "-"}</p>
+      <p className="flex flex-1">{children ?? "-"}</p>
     </li>
   );
 };
