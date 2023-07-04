@@ -24,8 +24,8 @@ const Home: NextPage = () => {
   return (
     <MainPageLayout>
       <div className="flex flex-1">
-        <aside className="basis-[300px] text-contrast-base md:basis-[384px]">
-          <Sidebar data={data} />
+        <aside className="flex  flex-col md:basis-[384px]">
+          <Sidebar data={data} theme="primary" />
         </aside>
 
         <div className="flex-grow bg-tertiary-light">Hello world</div>
