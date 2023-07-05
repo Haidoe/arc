@@ -10,6 +10,7 @@ export default {
         errorDark: "#8A2323",
         errorLight: "#D47474",
         highlight: "#EDE67E",
+        hyperlink: "#3178F1",
         primary: {
           light: "#6A6AC6",
           base: "#8181F0",

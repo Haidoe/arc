@@ -3,6 +3,7 @@ import TextInputField from "~/components/TextInputField";
 import { AddIcon } from "~/assets/icons/AddIcon.svg";
 import Button from "~/components/Button";
 import TextArea from "~/components/TextArea";
+import TimeInputField from "~/components/TimeInputField";
 
 const testComponent = () => {
   const isError = true;
@@ -57,6 +58,9 @@ const testComponent = () => {
       <div>
         {/* //use resize-none / resize-x /resize-y to disable resize */}
         <TextArea name="myTextarea" placeholder="Hey" className="h-48 w-96" />
+      </div>
+      <div>
+        <TimeInputField name="myTimeInput" />
       </div>
     </div>
   );
