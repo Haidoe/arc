@@ -35,6 +35,13 @@
   }
 
   .button {
-    @apply inline-flex max-w-fit cursor-pointer items-center justify-center rounded-[5px] p-4 text-[12px] transition-all  disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex max-w-fit cursor-pointer items-center justify-center rounded-[5px] p-4 text-[12px] transition-all disabled:cursor-not-allowed  disabled:opacity-50 lg:text-[16px];
   }
+}
+
+/*Change color of clock icon */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(67%) sepia(1%) saturate(0%) hue-rotate(156deg) brightness(102%)
+    contrast(87%);
+  padding-inline-start: 0px;
 }
