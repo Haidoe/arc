@@ -5,42 +5,25 @@ import favicon from "/public/favicon.svg";
 import LogoOffWhite from "~/assets/icons/LogoOffWhite.svg";
 import { api } from "~/utils/api";
 import Button from "~/components/Button";
-const homePageImageUrl = "/HomePageImage.svg";
-import { Ubuntu } from "next/font/google";
-
-const ubuntu = Ubuntu({
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-});
+const homePageImageUrl = "/images/home-page/home-page-image.svg";
 
 const Home = () => {
   const { data, isLoading } = api.example.foo.useQuery();
 
   if (isLoading) return <LoadingPage />;
 
-  const isProduction = false;
+  const isProduction = true;
 
   return (
     <MainPageLayout>
       {/* --------------------------------------------------------- */}
-      {/* FONT */}
-      <style jsx global>{`
-        html {
-          font-family: ${ubuntu.style.fontFamily};
-        }
-      `}</style>
-      {/* FONT */}
-      {/* --------------------------------------------------------- */}
-
-      {/* --------------------------------------------------------- */}
       {/* MAIN CONTENT */}
 
-      <div className="h-screen w-full lg:grid lg:grid-cols-2">
+      <div className="flex flex-1 lg:grid lg:grid-cols-2">
         {/* --------------------------------------------------------- */}
         {/* LEFT COLUMN */}
         <div
-          className=" hidden bg-cover bg-center bg-no-repeat text-center lg:flex lg:flex-col lg:items-center lg:align-top"
+          className="hidden bg-cover bg-center bg-no-repeat text-center lg:flex lg:flex-col lg:items-center lg:align-top"
           style={{
             backgroundImage: `url(${homePageImageUrl})`,
             backgroundRepeat: "no-repeat",
@@ -113,6 +96,9 @@ const Home = () => {
               </p>
             </div>
           </div>
+
+          {/* --------------------------------------------------------- */}
+
           {/* Create New Production */}
           <p className={`mt-4 lg:mt-6 ${isProduction ? "" : "hidden"}`}>Or</p>
           <Button
