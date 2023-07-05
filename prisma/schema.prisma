@@ -18,38 +18,33 @@ model User {
   name        String?
   company     String?
   title       String?
+  productionIds String[]
   productions Production[]
 }
 
 model Production {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
-  directors   Director[]
-  producers   User?      @relation(fields: [producerId], references: [externalId])
-  producerId  String
-  description String
-  locations   Location[]
+  director    String?
+  firstAssistantDirector String?
+  secondAssistantDirector String?
+  productionCoordinator String?
+  title String?
+  imageUrl String?
+  producer   User?      @relation(fields: [producerId], references: [externalId])
+  producerId String?
+  description String?
+  locations   String[]
   crews       Crew[]
   scenes      Int[]
-
+  duration    Duration?
+  totalHours  Int?
+  scriptSupervisor String?
+  dataWrangler     String?
   created DateTime @default(now())
   updated DateTime @updatedAt
-
   report ProductionReport[]
-}
+  reportIdsObj Json?
 
-model ProductionReport {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  
-  Production   Production? @relation(fields: [productionId], references: [id])
-  productionId String?     @db.ObjectId
-
-  created    DateTime    @default(now())
-  updated    DateTime    @updatedAt
-}
-
-type Director {
-  name  String
-  title String
 }
 
 type Location {
@@ -81,3 +76,136 @@ model Example {
   created DateTime? @default(now())
   updated DateTime? @updatedAt
 }
+
+
+
+
+// =====================> Model and Type for Production Report <=====================
+
+
+model ProductionReport {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  // optional fields
+  Production   Production? @relation(fields: [productionId], references: [id])
+  productionId String?     @db.ObjectId
+  created    DateTime    @default(now())
+  updated    DateTime    @updatedAt
+
+
+  // form fields - Type 1 -> input only
+  startDate DateTime?
+  scheduleForDay scheduleForDay // made json instead of type because dynamic type
+  notShotScene NotShotScene[]
+  
+  shotScene Scenes[]
+  castTimeLog CastTimeLog[]
+  extras Extras[]  
+
+  // form fields - Type 2 -> Mixed
+  rolls Rolls[]
+  actualSchedule ActualSchedule
+}
+
+type NotShotScene {
+  number Int
+  description String
+}
+
+type Rolls {
+  scriptSupervisor String
+  dataWrangler String
+  entries RollEntries[]
+}
+
+type RollEntries {
+  name String
+  previously Int
+  today Int
+  toDate Int
+}
+
+
+type Extras {
+  qty Int
+  name String
+  notes String
+  schedule ExtraSchedule
+}
+
+type ExtraSchedule {
+  in DateTime
+  out DateTime
+  meal DateTime
+  rate Int
+  rateType String
+}
+
+
+
+type Scenes {
+  number Int
+  set String
+  casts String[]
+  location String
+  dayOrNight String
+  // pages Pages
+  pagePortion Int?
+  Location String
+}
+
+
+// type Pages {
+//   portion Int
+//   completed Int
+// }
+
+
+// dynamic type 
+type scheduleForDay {
+  breakfastFrom DateTime?
+  breakfastTo DateTime?
+  crewCallFrom DateTime?
+  crewCallTo DateTime?
+  shootingCallFrom DateTime?
+  shootingCallTo DateTime?
+  lunchFrom DateTime?
+  lunchTo DateTime?
+}
+
+
+type CastTimeLog {
+  cast String
+  character String
+  status String
+  workSchedule WorkScheduleObject
+  meals mealsObject 
+}
+
+
+type mealsObject {
+  lunchIn DateTime?
+  lunchOut DateTime?
+  secondMealIn DateTime?
+  secondMealOut DateTime?
+}
+type WorkScheduleObject {
+    muReport DateTime?
+    onSet DateTime?
+    setWrap DateTime?
+    setDismiss DateTime?
+  }
+
+type ActualSchedule  {
+  firstUnitInput ActualScheduleInput?
+  secondUnitInput ActualScheduleInput
+  prep ActualScheduleInput?
+  travel ActualScheduleInput?
+  idle ActualScheduleInput?
+  holiday ActualScheduleInput?
+}
+
+type ActualScheduleInput {
+  schedule Int?
+  actual Int?
+}
+

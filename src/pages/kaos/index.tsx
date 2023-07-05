@@ -1,33 +1,36 @@
 import { type NextPage } from "next";
-import Link from "next/link";
-
-import { LoadingPage } from "~/components/Loading";
-
-import { api } from "~/utils/api";
+import { useEffect, useState } from "react";
+import MainPageLayout from "~/components/layouts/MainPageLayout";
+import Sidebar from "~/components/production/Information";
+import { getProductionInfoById } from "~/service/production";
+import type { ProductionWithProducer } from "~/types/types";
 
 const Home: NextPage = () => {
-  const { data, isLoading, isError, error } = api.example.bar.useQuery();
+  const [data, setData] = useState<ProductionWithProducer | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
 
-  if (isLoading) return <LoadingPage />;
+  useEffect(() => {
+    getProductionInfoById("648fe91b5a6933035f1b9ab2")
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch((error: unknown) => {
+        setError(error as Error);
+      });
+  }, []);
 
   return (
-    <>
-      <main className="flex h-screen w-full flex-col items-center justify-between">
-        <div className="flex flex-1 flex-col items-center justify-center px-4 text-center lg:px-0 xl:w-1/2">
-          <h1 className="mb-4 inline-block bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 bg-clip-text text-4xl font-bold uppercase text-transparent">
-            Sample of private API Route
-          </h1>
+    <MainPageLayout>
+      <div className="flex flex-1">
+        <aside className="flex  flex-col md:basis-[384px]">
+          <Sidebar data={data} theme="primary" />
+        </aside>
 
-          {isError ? error.message : <p>Data from MongoDB : {data?.content}</p>}
-
-          {isError && (
-            <Link href="/sign-in" className="bg-slate-800 p-4 text-white">
-              Go to Login page
-            </Link>
-          )}
-        </div>
-      </main>
-    </>
+        <div className="flex-grow bg-tertiary-light">Hello world</div>
+      </div>
+    </MainPageLayout>
   );
 };
 
