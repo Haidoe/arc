@@ -41,7 +41,11 @@
 
 /*Change color of clock icon */
 input[type="time"]::-webkit-calendar-picker-indicator {
-  filter: invert(67%) sepia(1%) saturate(0%) hue-rotate(156deg) brightness(102%)
-    contrast(87%);
-  padding-inline-start: 0px;
+  /* filter: invert(67%) sepia(1%) saturate(0%) hue-rotate(156deg) brightness(102%)
+    contrast(87%); */
+  /* padding-inline-start: 0px; */
+  /* position: relative; */
+  /* opacity: 0;
+  inset: 0px; */
+  display: none;
 }
