@@ -64,14 +64,14 @@ const SignInPage = () => {
               <a href="#">{`Don't have an account? Create one`}</a>
 
               <div className="mt-12 flex justify-center">
-                <Button
-                  buttonType="Secondary"
-                  className="w-full max-w-[290px] px-4 py-[10px]"
-                >
-                  <SignInButton mode="modal">
+                <SignInButton mode="modal">
+                  <Button
+                    buttonType="Secondary"
+                    className="w-full max-w-[290px] px-4 py-[10px]"
+                  >
                     <span className=" text-base"> Sign in with Google </span>
-                  </SignInButton>
-                </Button>
+                  </Button>
+                </SignInButton>
               </div>
             </div>
           </section>
