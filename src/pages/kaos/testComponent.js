@@ -4,12 +4,23 @@ import { AddIcon } from "~/assets/icons/AddIcon.svg";
 import Button from "~/components/Button";
 import TextArea from "~/components/TextArea";
 import TimeInputField from "~/components/TimeInputField";
+import RadioInputField from "~/components/RadioInputField";
+import { useState } from "react";
 
 const testComponent = () => {
   const isError = true;
 
   const handleClick = () => {
     console.log("clicked");
+  };
+
+  //Toggle**************************************
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  const handleToggleChange = (newEnabled) => {
+    setIsEnabled(newEnabled);
+    console.log("Toggle:", newEnabled);
   };
 
   return (
@@ -61,6 +72,9 @@ const testComponent = () => {
       </div>
       <div>
         <TimeInputField name="myTimeInput" />
+      </div>
+      <div>
+        <RadioInputField enabled={isEnabled} onChange={handleToggleChange} />
       </div>
     </div>
   );
