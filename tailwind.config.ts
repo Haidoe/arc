@@ -1,4 +1,5 @@
 import { type Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -45,6 +46,10 @@ export default {
       boxShadow: {
         "3xl": "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
       },
+    },
+    screens: {
+      xs: "391px",
+      ...defaultTheme.screens,
     },
   },
   plugins: [],
