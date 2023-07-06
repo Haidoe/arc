@@ -1,7 +1,7 @@
 //This api is used to get the scene info of a production
 
 // add helpers
-import { requireAuth } from "@clerk/nextjs/dist/api";
+import { requireAuth } from "@clerk/nextjs/api";
 import { prisma } from "~/server/db";
 
 // let productionId = "648fe91b5a6933035f1b9ab2";

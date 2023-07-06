@@ -1,4 +1,4 @@
-import { requireAuth } from "@clerk/nextjs/dist/api";
+import { requireAuth } from "@clerk/nextjs/api";
 import { prisma } from "~/server/db";
 
 const getHandler = async (req, res) => {

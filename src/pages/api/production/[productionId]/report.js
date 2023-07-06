@@ -2,7 +2,7 @@
 // -> creates a new report for a production into mongoDB using prismas client
 // -> append the report id into the production document
 
-import { requireAuth } from "@clerk/nextjs/dist/api";
+import { requireAuth } from "@clerk/nextjs/api";
 import { prisma } from "~/server/db";
 import { getTodayTimestamp } from "~/helper/getTodayTimestamp";
 
