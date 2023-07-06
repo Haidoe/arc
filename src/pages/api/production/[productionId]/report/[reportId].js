@@ -2,7 +2,7 @@
 // -> updates and existing report in the Production Document
 // -> gets the repodsIdsObj from the Production Document
 
-import { requireAuth } from "@clerk/nextjs/dist/api";
+import { requireAuth } from "@clerk/nextjs/api";
 import { prisma } from "~/server/db";
 import getTodayTimestamp from "~/helper/getTodayTimestamp.js";
 

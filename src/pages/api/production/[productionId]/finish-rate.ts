@@ -1,4 +1,4 @@
-import { requireAuth } from "@clerk/nextjs/dist/api";
+import { requireAuth } from "@clerk/nextjs/api";
 import { getAuth } from "@clerk/nextjs/server";
 import type { ProductionReport } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";

@@ -2,7 +2,7 @@
 
 // add helpers
 import getTodayTimestamp from "~/helper/getTodayTimestamp.js";
-import { requireAuth } from "@clerk/nextjs/dist/api";
+import { requireAuth } from "@clerk/nextjs/api";
 import { prisma } from "~/server/db";
 
 // handles /api/production/[id]/today-report-id
