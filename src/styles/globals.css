@@ -18,6 +18,10 @@
     @apply pointer-events-none absolute left-3 top-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-contrast-light transition-all after:absolute after:-bottom-0 after:-left-3 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-primary-dark after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-contrast-light peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-contrast-light peer-focus:after:scale-x-100 peer-focus:after:border-primary-dark peer-focus:after:pb-6 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-contrast-light;
   }
 
+  .text-input-borderless-input {
+    @apply h-full w-full text-[16px] font-normal text-contrast-base outline outline-0 transition-all disabled:border-0 disabled:bg-contrast-base;
+  }
+
   .input-error {
     @apply border border-red-500 text-red-500 placeholder-shown:border-red-500 placeholder-shown:border-t-red-500 focus:border-red-500 focus:border-t-transparent;
   }
