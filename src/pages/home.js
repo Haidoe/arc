@@ -1,18 +1,66 @@
+import Image from "next/image";
+import { useUser } from "@clerk/nextjs";
+import { useEffect, useState } from "react";
 import { LoadingPage } from "~/components/Loading";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
-import Image from "next/image";
+import Button from "~/components/Button";
 import favicon from "/public/favicon.svg";
 import LogoOffWhite from "~/assets/icons/LogoOffWhite.svg";
-import { api } from "~/utils/api";
-import Button from "~/components/Button";
+import { loadDemoProductionInfo } from "~/helper/loadDemoProductionInfo";
+import Link from "next/link";
+
 const homePageImageUrl = "/images/home-page/home-page-image.svg";
 
 const Home = () => {
-  const { data, isLoading } = api.example.foo.useQuery();
+  const [isProduction, setIsProduction] = useState(false);
+  const [productionIds, setProductionIds] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const user = useUser();
+
+  useEffect(() => {
+    if (user && user.user && user.user.id && isLoading) {
+      getProductionInfo();
+    }
+  }, [user, isLoading]);
+
+  const getProductionInfo = async () => {
+    try {
+      const response = await fetch(
+        `/api/user/productions?userId=${user.user.id}`
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        const productionInfo = data.productionInfo;
+        // console.log("productionInfo:", productionInfo);
+        // console.log(productionInfo.length);
+        if (productionInfo.length > 0) {
+          setIsProduction(true);
+          setProductionIds(productionInfo);
+        }
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
+      }
+    } catch (error) {
+      setIsLoading(false);
+    }
+  };
 
   if (isLoading) return <LoadingPage />;
 
-  const isProduction = true;
+  //TODO: handle click on production button
+  //redirect to production page with productionId
+  const handleClick = (productionID) => {
+    alert(productionID);
+    // /production/[productionId]/report
+  };
+
+  //NOTE: this function is used to load the demo production info to the database
+  const handleDemoClick = async () => {
+    await loadDemoProductionInfo();
+    getProductionInfo();
+  };
 
   return (
     <MainPageLayout>
@@ -66,12 +114,16 @@ const Home = () => {
               id="production_items"
               className="mt-4 flex w-full flex-col gap-3 lg:mt-6 lg:gap-4"
             >
-              <Button
-                buttonType={"Secondary"}
-                className="w-full max-w-full border lg:text-[16px]"
-              >
-                Production 1
-              </Button>
+              {/* //map through productionIds and create a button for each one  */}
+              {productionIds.map((production) => (
+                <Link
+                  key={production.id}
+                  href={`/production/${production.id}/report`}
+                  className="button w-full max-w-[420px] self-center border-2 border-primary-dark bg-white text-primary-dark hover:shadow-lg active:bg-primary-light active:text-white lg:text-[16px]"
+                >
+                  {production.title}{" "}
+                </Link>
+              ))}
             </div>
           </div>
 
@@ -101,9 +153,11 @@ const Home = () => {
 
           {/* Create New Production */}
           <p className={`mt-4 lg:mt-6 ${isProduction ? "" : "hidden"}`}>Or</p>
+
           <Button
             buttonType={"Primary"}
             className="mt-4 self-center lg:mt-6 lg:text-[16px]"
+            onClick={handleDemoClick}
           >
             New Production
           </Button>

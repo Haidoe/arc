@@ -2,15 +2,11 @@ import { requireAuth } from "@clerk/nextjs/api";
 import { getAuth } from "@clerk/nextjs/server";
 import { prisma } from "~/server/db";
 
+//This api is used to add production info to a production of a user
 const handler = async (req, res) => {
-  
   const { userId } = getAuth(req);
 
   const { productionInfo } = req.body;
-
-  // return res.status(200).json({
-  //   productionInfo: productionInfo[0],
-  // });
 
   try {
     const production = await prisma.production.create({
