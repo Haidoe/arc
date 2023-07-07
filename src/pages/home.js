@@ -7,6 +7,7 @@ import Button from "~/components/Button";
 import favicon from "/public/favicon.svg";
 import LogoOffWhite from "~/assets/icons/LogoOffWhite.svg";
 import { loadDemoProductionInfo } from "~/helper/loadDemoProductionInfo";
+import Link from "next/link";
 
 const homePageImageUrl = "/images/home-page/home-page-image.svg";
 
@@ -52,6 +53,7 @@ const Home = () => {
   //redirect to production page with productionId
   const handleClick = (productionID) => {
     alert(productionID);
+    // /production/[productionId]/report
   };
 
   //NOTE: this function is used to load the demo production info to the database
@@ -114,14 +116,13 @@ const Home = () => {
             >
               {/* //map through productionIds and create a button for each one  */}
               {productionIds.map((production) => (
-                <Button
+                <Link
                   key={production.id}
-                  buttonType={"Secondary"}
-                  className="w-full max-w-[420px] self-center border lg:text-[16px]"
-                  onClick={() => handleClick(production.id)}
+                  href={`/production/${production.id}/report`}
+                  className="button w-full max-w-[420px] self-center border-2 border-primary-dark bg-white text-primary-dark hover:shadow-lg active:bg-primary-light active:text-white lg:text-[16px]"
                 >
-                  {production.title}
-                </Button>
+                  {production.title}{" "}
+                </Link>
               ))}
             </div>
           </div>
