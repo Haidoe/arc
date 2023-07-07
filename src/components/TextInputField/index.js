@@ -1,6 +1,7 @@
 import Border from "./Border";
 import Underline from "./Underline";
 import BorderWithIcon from "./BorderWithIcon";
+import Borderless from "./Borderless";
 
 const TextInputField = ({ inputType, ...others }) => {
   switch (inputType) {
@@ -11,7 +12,7 @@ const TextInputField = ({ inputType, ...others }) => {
     case "BorderWithIcon":
       return <BorderWithIcon {...others} />;
     default:
-      return <Border {...others} />;
+      return <Borderless {...others} />;
   }
 };
 

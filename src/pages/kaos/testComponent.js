@@ -31,6 +31,9 @@ const testComponent = () => {
         <TextInputField inputType={`Border`} label="Label Me" />
       </div>
       <div>
+        <TextInputField inputType={`Border`} />
+      </div>
+      <div>
         <TextInputField
           inputType={`BorderWithIcon`}
           label="Waiting for Icon"
@@ -48,6 +51,8 @@ const testComponent = () => {
           isError={isError}
         />
       </div>
+      <div>Borderless</div>
+      <TextInputField />
       <div className="flex flex-col gap-2 ">
         <Button buttonType={`Primary`} onClick={handleClick}>
           Edit
