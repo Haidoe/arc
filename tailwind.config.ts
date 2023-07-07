@@ -6,6 +6,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        backgroundArc: "#E3E3E3",
+        // ? change to foregroundArc
         arc: "#FDFDFA",
         error: "#CB3F3F",
         errorDark: "#8A2323",
