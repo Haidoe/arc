@@ -2,7 +2,6 @@
 
 // add helpers
 import getTodayTimestamp from "~/helper/getTodayTimestamp.js";
-import { requireAuth } from "@clerk/nextjs/api";
 import { prisma } from "~/server/db";
 
 // handles /api/production/[id]/today-report-id
@@ -23,8 +22,6 @@ const getHandler = async (req, res) => {
       },
     });
 
-    console.log(rsp)
-
     const todayTimestamp = getTodayTimestamp();
 
     if (!rsp.reportIdsObj || !rsp.reportIdsObj[todayTimestamp]) {
@@ -41,4 +38,4 @@ const getHandler = async (req, res) => {
   }
 };
 
-export default requireAuth(getHandler);
+export default getHandler;

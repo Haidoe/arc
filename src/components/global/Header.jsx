@@ -102,8 +102,8 @@ const Header = () => {
   const router = useRouter();
   const { pathname, asPath } = router;
 
-  console.log(router)
-  console.log(pathname);
+  // console.log(router)
+  // console.log(pathname);
 
   const headerLinks = linksOnHeader[pathname] || [];
 
@@ -137,7 +137,7 @@ const Header = () => {
                 ${
                   header.path === asPath
                     ? "border-tertiary-base text-tertiary-base"
-                    : "text-contrast-dark hover:border-tertiary-base hover:text-tertiary-base border-transparent"
+                    : "border-transparent text-contrast-dark hover:border-tertiary-base hover:text-tertiary-base"
                 }
 
                 inline-flex items-center border-b-2 px-2`}
