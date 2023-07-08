@@ -62,7 +62,7 @@ async function appendRecordIdInProduction(timestamp, recordId, productionId) {
     },
   });
 
-  const reportIdsObj = getRsp.reportIdsObj;
+  const reportIdsObj = getRsp.reportIdsObj ?? {};
   reportIdsObj[timestamp] = recordId;
 
   // ==========> SECOND

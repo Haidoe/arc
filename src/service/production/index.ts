@@ -1,10 +1,13 @@
 import type { ProductionWithProducer } from "~/types/types";
 import type { ProductionReport } from "@prisma/client";
+import getURL from "~/helper/helper";
 
 export const getProductionInfoById = async (
   productionId: string
 ): Promise<ProductionWithProducer> => {
-  const response = await fetch(`/api/production/${productionId}`);
+  const url = getURL(`/api/production/${productionId}`);
+
+  const response = await fetch(url);
 
   if (!response.ok) {
     throw new Error(response.statusText);
@@ -19,11 +22,9 @@ export const getProductionReportById = async (
   productionId: string,
   reportId: string
 ): Promise<ProductionReport> => {
-  const response = await fetch(
-    `${
-      process.env.HOME_URL ?? ""
-    }/api/production/${productionId}/report/${reportId}`
-  );
+  const url = getURL(`/api/production/${productionId}/report/${reportId}`);
+
+  const response = await fetch(url);
 
   if (!response.ok) {
     throw new Error(response.statusText);
