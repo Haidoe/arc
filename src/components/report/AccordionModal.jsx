@@ -28,6 +28,7 @@ const AccordionModal = ({ title, children, defaultOpen }) => {
           title={title}
           defaultOpen={true}
           readOnlyState={false}
+          insideModal={true}
         >
           {children}
         </Accordion>

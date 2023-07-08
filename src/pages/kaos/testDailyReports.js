@@ -109,7 +109,6 @@ const TestDailyReports = () => {
                 <div className="flex-1">
                   <TextInputField
                     label="Email"
-                    inputType="Border"
                     className="flex-1"
                   />
                 </div>

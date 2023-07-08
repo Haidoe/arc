@@ -12,6 +12,7 @@ const Accordion = ({
   defaultOpen,
   readOnlyState,
   panelClick,
+  insideModal,
 }) => {
   // handle readOnlyState of accordion
   const handlePanelClick = (event) => {
@@ -23,7 +24,7 @@ const Accordion = ({
 
   return (
     <div className="w-full">
-      <div className="mx-auto w-full rounded-2xl">
+      <div className={`mx-auto w-full rounded-2xl ${insideModal ? "report-modal" : ""}`}>
         <Disclosure defaultOpen={defaultOpen}>
           {({ open }) => (
             <>

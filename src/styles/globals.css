@@ -41,6 +41,10 @@
   .button {
     @apply inline-flex max-w-fit cursor-pointer items-center justify-center rounded-[5px] p-4 text-[12px] transition-all disabled:cursor-not-allowed  disabled:opacity-50 lg:text-[16px];
   }
+
+  .report-modal .text-input-borderless-input {
+    @apply h-full w-full rounded-t-[4px] border-b border-primary-dark bg-primary-trans px-3 pb-1 pt-4 font-sans text-[16px] font-normal text-contrast-dark outline outline-0 transition-all placeholder-shown:border-primary-dark focus:border-primary-dark focus:outline-0 disabled:border-0 disabled:bg-contrast-base;
+  }
 }
 
 /*Change color of clock icon */
