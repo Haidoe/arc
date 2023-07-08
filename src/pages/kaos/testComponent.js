@@ -5,7 +5,7 @@ import Button from "~/components/Button";
 import TextArea from "~/components/TextArea";
 import TimeInputField from "~/components/TimeInputField";
 import RadioInputField from "~/components/RadioInputField";
-import Accordion from "~/components/report/Accordion";
+import AccordionModal from "~/components/report/AccordionModal";
 import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
 import { useState } from "react";
 
@@ -28,7 +28,11 @@ const testComponent = () => {
   return (
     <div className="w-100 m-4 flex flex-col gap-4">
       Text input field
-      <ScheduleOfTheDayForm />
+      <div className="bg-slate-400 p-4">
+        <AccordionModal title={"Schedule for the day"} defaultOpen={true}>
+          <ScheduleOfTheDayForm />
+        </AccordionModal>
+      </div>
       <div>
         <TextInputField inputType={`Border`} label="Label Me" />
       </div>
@@ -83,19 +87,6 @@ const testComponent = () => {
       </div>
       <div>
         <RadioInputField enabled={isEnabled} onChange={handleToggleChange} />
-      </div>
-      <div>
-        <Accordion title={"Schedule for the day"} defaultOpen={true}>
-          <div className="flex space-x-4">
-            <div className="flex-1">
-              <TextInputField
-                label="Email"
-                inputType="Border"
-                className="flex-1"
-              />
-            </div>
-          </div>
-        </Accordion>
       </div>
     </div>
   );
