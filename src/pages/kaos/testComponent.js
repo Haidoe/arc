@@ -6,6 +6,7 @@ import TextArea from "~/components/TextArea";
 import TimeInputField from "~/components/TimeInputField";
 import RadioInputField from "~/components/RadioInputField";
 import Accordion from "~/components/report/Accordion";
+import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
 import { useState } from "react";
 
 const testComponent = () => {
@@ -27,6 +28,7 @@ const testComponent = () => {
   return (
     <div className="w-100 m-4 flex flex-col gap-4">
       Text input field
+      <ScheduleOfTheDayForm />
       <div>
         <TextInputField inputType={`Border`} label="Label Me" />
       </div>
