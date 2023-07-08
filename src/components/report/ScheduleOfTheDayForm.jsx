@@ -7,7 +7,7 @@ const ScheduleOfTheDayForm = ({ className }) => {
       <div className="flex justify-between border-b border-primary-base pb-3">
         <p className="font-bold text-tertiary-dark">Tue Jun 27, 2023</p>
       </div>
-      <div className="pt-3 grid grid-cols-3 gap-4 font-bold text-contrast-base">
+      <div className="pt-3 grid grid-cols-3 gap-4 font-bold text-contrast-dark">
         <div></div>
         <p>Start</p>
         <p>End</p>
