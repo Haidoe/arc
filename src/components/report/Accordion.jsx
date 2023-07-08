@@ -24,7 +24,7 @@ const Accordion = ({
 
   return (
     <div className="w-full">
-      <div className={`mx-auto w-full rounded-2xl ${insideModal ? "report-modal" : ""}`}>
+      <div className={`mx-auto w-full rounded-2xl ${insideModal ? "report-modal " : ""}`}>
         <Disclosure defaultOpen={defaultOpen}>
           {({ open }) => (
             <>

@@ -1,10 +1,12 @@
+import type { NextPage, GetServerSideProps } from "next";
+import { clerkClient, getAuth } from "@clerk/nextjs/server";
 import { SignInButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Button from "~/components/Button";
 import TextInputField from "~/components/TextInputField";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
 
-const SignInPage = () => {
+const SignInPage: NextPage = () => {
   return (
     <MainPageLayout hideHeader>
       <div className="relative flex min-w-[320px] flex-1 overflow-hidden bg-arc">
@@ -87,6 +89,28 @@ const SignInPage = () => {
       </div>
     </MainPageLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { userId } = getAuth(ctx.req);
+
+  const user = userId ? await clerkClient.users.getUser(userId) : undefined;
+
+  //Redirect to home if user is already logged in
+  if (user) {
+    return {
+      redirect: {
+        destination: "/home",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      userId: userId ? userId : null,
+    },
+  };
 };
 
 export default SignInPage;
