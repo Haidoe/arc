@@ -22,7 +22,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
         </aside>
 
         <div className="grid flex-grow grid-cols-2 gap-4 px-4">
-          <AccordionModal title="Schedule Of The Day" defaultOpen={true}>
+          <AccordionModal title="Schedule Of The Day" defaultOpen={true} modalWidth={50}>
             <ScheduleOfTheDayForm />
           </AccordionModal>
           <AccordionModal title="Actual Schedule" defaultOpen={true}>
