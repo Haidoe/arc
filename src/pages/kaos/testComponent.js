@@ -5,7 +5,9 @@ import Button from "~/components/Button";
 import TextArea from "~/components/TextArea";
 import TimeInputField from "~/components/TimeInputField";
 import RadioInputField from "~/components/RadioInputField";
-import Accordion from "~/components/report/Accordion";
+import AccordionModal from "~/components/report/AccordionModal";
+import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
+import ActualScheduleForm from "~/components/report/ActualScheduleForm";
 import { useState } from "react";
 
 const testComponent = () => {
@@ -27,8 +29,19 @@ const testComponent = () => {
   return (
     <div className="w-100 m-4 flex flex-col gap-4">
       Text input field
+      <div className="flex flex-col gap-4 bg-slate-400 p-4">
+        <AccordionModal title={"Schedule for the day"} defaultOpen={true}>
+          <ScheduleOfTheDayForm />
+        </AccordionModal>
+        <AccordionModal title={"Actual Schedule"} defaultOpen={true}>
+          <ActualScheduleForm />
+        </AccordionModal>
+      </div>
       <div>
         <TextInputField inputType={`Border`} label="Label Me" />
+      </div>
+      <div>
+        <TextInputField inputType={`Border`} />
       </div>
       <div>
         <TextInputField
@@ -48,6 +61,8 @@ const testComponent = () => {
           isError={isError}
         />
       </div>
+      <div>Borderless</div>
+      <TextInputField />
       <div className="flex flex-col gap-2 ">
         <Button buttonType={`Primary`} onClick={handleClick}>
           Edit
@@ -76,19 +91,6 @@ const testComponent = () => {
       </div>
       <div>
         <RadioInputField enabled={isEnabled} onChange={handleToggleChange} />
-      </div>
-      <div>
-        <Accordion title={"Schedule for the day"} defaultOpen={true}>
-          <div className="flex space-x-4">
-            <div className="flex-1">
-              <TextInputField
-                label="Email"
-                inputType="Border"
-                className="flex-1"
-              />
-            </div>
-          </div>
-        </Accordion>
       </div>
     </div>
   );
