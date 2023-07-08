@@ -103,7 +103,7 @@ const Home = () => {
           {/* isProduction true */}
           <div
             id="production"
-            className={`mt-8 w-full rounded-[5px] bg-primary-base/30 px-[20px] py-8 lg:mt-[15%] lg:py-10 ${
+            className={`mt-8 flex w-full flex-col items-center rounded-[5px] bg-primary-base/30 px-[20px] py-8 lg:py-10 ${
               isProduction ? "" : "hidden"
             }`}
           >

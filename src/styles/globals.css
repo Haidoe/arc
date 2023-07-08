@@ -43,17 +43,11 @@
   }
 
   .report-modal .text-input-borderless-input {
-    @apply h-full w-full rounded-t-[4px] border-b border-primary-dark bg-primary-trans px-3 pb-1 pt-4 font-sans text-[16px] font-normal text-contrast-dark outline outline-0 transition-all placeholder-shown:border-primary-dark focus:border-primary-dark focus:outline-0 disabled:border-0 disabled:bg-contrast-base;
+    @apply h-full w-full rounded-t-[4px] border-b border-primary-dark bg-primary-trans px-3 pb-1 font-sans text-[16px] font-normal text-contrast-dark outline outline-0 transition-all placeholder-shown:border-primary-dark focus:border-primary-dark focus:outline-0 disabled:border-0 disabled:bg-contrast-base;
   }
 }
 
 /*Change color of clock icon */
 input[type="time"]::-webkit-calendar-picker-indicator {
-  /* filter: invert(67%) sepia(1%) saturate(0%) hue-rotate(156deg) brightness(102%)
-    contrast(87%); */
-  /* padding-inline-start: 0px; */
-  /* position: relative; */
-  /* opacity: 0;
-  inset: 0px; */
   display: none;
 }
