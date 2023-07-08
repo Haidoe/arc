@@ -61,12 +61,29 @@ const linksOnHeader = {
     },
     {
       name: "Production Report",
-      path: "#",
+      path: "/production/[productionId]/report",
       disabled: false,
     },
     {
       name: "Dashboard",
-      path: "/dashboard",
+      path: "/production/[productionId]/dashboard",
+      disabled: false,
+    },
+  ],
+  "/production/[productionId]/dashboard": [
+    {
+      name: "Production",
+      path: "/home",
+      disabled: false,
+    },
+    {
+      name: "Production Report",
+      path: "/production/[productionId]/report",
+      disabled: false,
+    },
+    {
+      name: "Dashboard",
+      path: "/production/[productionId]/dashboard",
       disabled: false,
     },
   ],
@@ -96,11 +113,21 @@ const mobileHeaders = {
   "/kaos/testDailyReports": "Production Report",
 };
 
+// pattern is a string
+// dynamicPath is an object -> key being the dynamic path and value being the value of the dynamic path
+const patternToUrl = (pattern, dynamicPath) => {
+  let url = pattern;
+  for (const [key, value] of Object.entries(dynamicPath)) {
+    url = url.replace(`[${key}]`, value);
+  }
+  return url;
+};
+
 // read route and show header depending on route
 const Header = () => {
   // get route
   const router = useRouter();
-  const { pathname, asPath } = router;
+  const { pathname, asPath, query } = router;
 
   // console.log(router)
   // console.log(pathname);
@@ -128,7 +155,7 @@ const Header = () => {
           <div className="links-wrapper flex space-x-2">
             {headerLinks.map((header, index) => (
               <Link
-                href={header.path}
+                href={patternToUrl(header.path, query)}
                 key={index}
                 className={`${
                   header.disabled
@@ -137,7 +164,7 @@ const Header = () => {
                 } 
                 
                 ${
-                  header.path === asPath
+                  header.path === asPath || header.path === pathname
                     ? "border-tertiary-base text-tertiary-base"
                     : "border-transparent text-contrast-dark hover:border-tertiary-base hover:text-tertiary-base"
                 }
