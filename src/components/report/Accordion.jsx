@@ -6,7 +6,21 @@ import Chevron from "~/assets/icons/Chevron.svg";
 // title: string
 // children: JSX.Element
 
-const Accordion = ({ title, children, defaultOpen }) => {
+const Accordion = ({
+  title,
+  children,
+  defaultOpen,
+  readOnlyState,
+  panelClick,
+}) => {
+  // handle readOnlyState of accordion
+  const handlePanelClick = (event) => {
+    if (readOnlyState) {
+      event.stopPropagation();
+      panelClick();
+    }
+  };
+
   return (
     <div className="w-full">
       <div className="mx-auto w-full rounded-2xl">
@@ -27,8 +41,15 @@ const Accordion = ({ title, children, defaultOpen }) => {
                   />
                 </div>
               </Disclosure.Button>
-              <Disclosure.Panel className="bg-arc px-4 pb-4 pt-4 text-sm text-gray-500">
-                {children || "Accordion Content"}
+              <Disclosure.Panel
+                onClick={handlePanelClick}
+                className={`bg-arc px-4 pb-4 pt-4 text-sm text-gray-500`}
+              >
+                <div
+                  className={`${readOnlyState ? "pointer-events-none" : ""}`}
+                >
+                  {children || "Accordion Content"}
+                </div>
               </Disclosure.Panel>
             </>
           )}
