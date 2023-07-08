@@ -16,35 +16,35 @@ const linksOnHeader = {
   "/": [
     {
       name: "Film Production",
-      path: "#filmProduction",
-      disabled: true,
+      path: "/#filmProduction",
+      disabled: false,
     },
     {
       name: "Features",
-      path: "#features",
+      path: "/#features",
     },
     {
       name: "About",
-      path: "#about",
+      path: "/#about",
     },
     {
       name: "Team",
-      path: "#team",
+      path: "/#team",
     },
     {
       name: "Contact",
-      path: "#contact",
+      path: "/#contact",
     },
   ],
-  "/production": [
+  "/home": [
     {
       name: "Production",
-      path: "/production",
+      path: "/home",
       disabled: false,
     },
     {
       name: "Production Report",
-      path: "/productionReport",
+      path: "#",
       disabled: true,
     },
     {
@@ -53,15 +53,15 @@ const linksOnHeader = {
       disabled: true,
     },
   ],
-  "/productionReport": [
+  "/production/[productionId]/report": [
     {
       name: "Production",
-      path: "/production",
+      path: "/home",
       disabled: false,
     },
     {
       name: "Production Report",
-      path: "/productionReport",
+      path: "#",
       disabled: false,
     },
     {
@@ -100,9 +100,14 @@ const mobileHeaders = {
 const Header = () => {
   // get route
   const router = useRouter();
-  const { pathname } = router;
+  const { pathname, asPath } = router;
+
+  // console.log(router)
+  // console.log(pathname);
 
   const headerLinks = linksOnHeader[pathname] || [];
+
+  console.log(">>", headerLinks, pathname);
 
   return (
     <header>
@@ -111,54 +116,70 @@ const Header = () => {
         <div className="hidden items-center sm:flex">
           {/* Logo */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <Image src={Logo} alt="Logo" className="h-14 w-14" />
+          <div>
+            <Image src={Logo} alt="Logo" className="sr-only h-14 w-14" />
+          </div>
+          <div className="not-sr-only">
+            <Image src={Logo} alt="Logo" className="h-14 w-14" />
+          </div>
         </div>
-        <div className="hidden items-center sm:flex">
+        <div className="hidden items-center justify-around sm:flex">
           {/* Header Links */}
+          <div className="links-wrapper flex space-x-2">
+            {headerLinks.map((header, index) => (
+              <Link
+                href={header.path}
+                key={index}
+                className={`${
+                  header.disabled
+                    ? "pointer-events-none text-contrast-light"
+                    : ""
+                } 
+                
+                ${
+                  header.path === asPath
+                    ? "border-tertiary-base text-tertiary-base"
+                    : "border-transparent text-contrast-dark hover:border-tertiary-base hover:text-tertiary-base"
+                }
 
-          {headerLinks.map((header, index) => (
-            <Link
-              href={header.path}
-              key={index}
-              className={
-                header.disabled
-                  ? "pointer-events-none px-2 text-contrast-light"
-                  : "px-2 text-contrast-dark hover:text-tertiary-base"
-              }
-            >
-              {header.name}
-            </Link>
-          ))}
+                inline-flex items-center border-b-2 px-2`}
+              >
+                {header.name}
+              </Link>
+            ))}
+          </div>
 
           {/* Show Divider and Sign in only for Landing Page */}
-          {pathname === "/" && (
-            <div>
-              {/* Divider */}
-              <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
-              {/* Sign In Button */}
-              {/* todo height 48 width 88 */}
-              <SignedOut>
-                <Link href="/sign-in">
-                  <Button className=" px-4 py-2 text-base hover:bg-primary-base">
-                    Sign In
-                  </Button>
-                </Link>
-              </SignedOut>
+          {
+            <>
+              <div className="divider-wrapper">
+                <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
+              </div>
+              <div className="registration-btns-wrapper">
+                {/* Sign In Button */}
+                {/* todo height 48 width 88 */}
+                <SignedOut>
+                  <Link href="/sign-in">
+                    <Button className=" px-4 py-2 text-base hover:bg-primary-base">
+                      Sign In
+                    </Button>
+                  </Link>
+                </SignedOut>
 
-              <SignedIn>
-                <SignOutButton>
-                  <Button className=" px-4 py-2 text-base hover:bg-primary-base">
-                    Sign Out
-                  </Button>
-                </SignOutButton>
-              </SignedIn>
-            </div>
-          )}
+                <SignedIn>
+                  <SignOutButton>
+                    <Button className=" px-4 py-2 text-base hover:bg-primary-base">
+                      Sign Out
+                    </Button>
+                  </SignOutButton>
+                </SignedIn>
+              </div>
+            </>
+          }
         </div>
       </div>
 
       {/* For Mobile Landing Page */}
-
       {pathname === "/" ? (
         <div className="sm:hidden">
           <HeaderMobileLanding landingLinks={headerLinks} />

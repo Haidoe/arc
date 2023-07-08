@@ -3,3 +3,11 @@ export const validateEmail = (email: string) => {
 
   return emailRegex.test(email);
 };
+
+const IS_SERVER = typeof window === "undefined";
+
+export default function getURL(path: string) {
+  const baseURL = IS_SERVER ? process.env.ARC_BASE_URL : window.location.origin;
+
+  return new URL(path, baseURL).toString();
+}

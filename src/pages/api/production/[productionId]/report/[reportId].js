@@ -2,14 +2,12 @@
 // -> updates and existing report in the Production Document
 // -> gets the repodsIdsObj from the Production Document
 
-import { requireAuth } from "@clerk/nextjs/dist/api";
 import { prisma } from "~/server/db";
 import getTodayTimestamp from "~/helper/getTodayTimestamp.js";
 
 // handles pages/api/production/[id]/report
 const postHandler = async (req, res) => {
   try {
-
     // validate
     if (req.method !== "POST") {
       return res.status(405).json({ error: "Method not allowed" });
@@ -18,7 +16,6 @@ const postHandler = async (req, res) => {
     // prepare payload
     const { productionId, reportId } = req.query;
     const dailyReport = req.body.dailyReport;
-
 
     // using prisma update an exiisting daily report
     const updateReportRsp = await prisma.productionReport.update({
@@ -36,15 +33,14 @@ const postHandler = async (req, res) => {
     res.status(200).json({
       reportId: updateReportRsp.id,
       timestamp: getTodayTimestamp(),
-      updatedRecordsIdObj: reportIdsObj
+      updatedRecordsIdObj: reportIdsObj,
+      report: updateReportRsp,
     });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error });
   }
 };
-
-
 
 // ====================> GET Report Ids Obj <====================
 
@@ -61,7 +57,6 @@ async function getReportIdsObj(productionId) {
   return rsp.reportIdsObj;
 }
 
-
 const getHandler = async (req, res) => {
   try {
     if (req.method !== "GET") {
@@ -77,13 +72,12 @@ const getHandler = async (req, res) => {
       },
     });
 
-   return res.status(200).json(rsp);
-
+    return res.status(200).json(rsp);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error });
   }
-}
+};
 
 // handle GET and POST requests
 async function handler(req, res) {
@@ -93,7 +87,7 @@ async function handler(req, res) {
     return postHandler(req, res);
   } else {
     return res.status(405).json({ error: "Method not allowed" });
-  }  
+  }
 }
 
-export default requireAuth(handler);
+export default handler;

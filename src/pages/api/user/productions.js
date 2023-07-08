@@ -1,5 +1,9 @@
-import { requireAuth } from "@clerk/nextjs/dist/api";
+import { requireAuth } from "@clerk/nextjs/api";
 import { prisma } from "~/server/db";
+
+//This api is used to get the production info of a user
+//It returns an array of production info with productionId and productionTitle
+//handles api/user/productions
 
 const getHandler = async (req, res) => {
   const { userId } = req.query;
@@ -15,13 +19,22 @@ const getHandler = async (req, res) => {
     where: {
       externalId: userId,
     },
+    include: {
+      productions: {
+        select: {
+          id: true,
+          title: true,
+        },
+      },
+    },
   });
 
   res.status(200).json({
-    productionIds: user.productionIds,
+    productionInfo: user.productions,
   });
 };
 
+//Push productionId to productionIds[]
 const postHandler = async (req, res) => {
   const { userId, productionId } = req.body;
 
