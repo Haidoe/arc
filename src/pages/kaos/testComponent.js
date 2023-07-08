@@ -7,6 +7,7 @@ import TimeInputField from "~/components/TimeInputField";
 import RadioInputField from "~/components/RadioInputField";
 import AccordionModal from "~/components/report/AccordionModal";
 import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
+import ActualScheduleForm from "~/components/report/ActualScheduleForm";
 import { useState } from "react";
 
 const testComponent = () => {
@@ -28,9 +29,12 @@ const testComponent = () => {
   return (
     <div className="w-100 m-4 flex flex-col gap-4">
       Text input field
-      <div className="bg-slate-400 p-4">
+      <div className="flex flex-col gap-4 bg-slate-400 p-4">
         <AccordionModal title={"Schedule for the day"} defaultOpen={true}>
           <ScheduleOfTheDayForm />
+        </AccordionModal>
+        <AccordionModal title={"Actual Schedule"} defaultOpen={true}>
+          <ActualScheduleForm />
         </AccordionModal>
       </div>
       <div>
