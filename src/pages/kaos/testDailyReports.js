@@ -2,7 +2,7 @@
 import Header from "~/components/global/Header";
 import AccordionModal from "~/components/report/AccordionModal.jsx";
 import TextInputField from "~/components/TextInputField";
-import Accordion from "~/components/report/Accordion";
+import TimeInputField from "~/components/TimeInputField";
 
 // Test the api for daily reports
 
@@ -118,6 +118,9 @@ const TestDailyReports = () => {
                     inputType="Border"
                     className="flex-1"
                   />
+                </div>
+                <div className="flex-1">
+                  <TimeInputField name="myTimeInput" />
                 </div>
               </div>
             </AccordionModal>
