@@ -1,0 +1,44 @@
+{
+  "startDate": null,
+  "scheduleForDay": {
+    "breakfastFrom": null,
+    "breakfastTo": null,
+    "crewCallFrom": null,
+    "crewCallTo": null,
+    "shootingCallFrom": null,
+    "shootingCallTo": null,
+    "lunchFrom": null,
+    "lunchTo": null
+  },
+  "notShotScene": [],
+  "shotScene": [],
+  "castTimeLog": [],
+  "extras": [],
+  "rolls": [],
+  "actualSchedule": {
+    "firstUnitInput": {
+      "schedule": null,
+      "actual": null
+    },
+    "secondUnitInput": {
+      "schedule": null,
+      "actual": null
+    },
+    "prep": {
+      "schedule": null,
+      "actual": null
+    },
+    "travel": {
+      "schedule": null,
+      "actual": null
+    },
+    "idle": {
+      "schedule": null,
+      "actual": null
+    },
+    "holiday": {
+      "schedule": null,
+      "actual": null
+    }
+  }
+}
