@@ -2,7 +2,6 @@
 // -> creates a new report for a production into mongoDB using prismas client
 // -> append the report id into the production document
 
-import { requireAuth } from "@clerk/nextjs/api";
 import { prisma } from "~/server/db";
 import { getTodayTimestamp } from "~/helper/getTodayTimestamp";
 
@@ -31,27 +30,28 @@ const postHandler = async (req, res) => {
     // using prisma append the report id into the Production document
     const timestamp = getTodayTimestamp();
     const recordId = report.id;
-    const updatedRecordsIdObj = await appendRecordIdInProduction(timestamp, recordId, productionId);
+    const updatedRecordsIdObj = await appendRecordIdInProduction(
+      timestamp,
+      recordId,
+      productionId
+    );
 
     res.status(200).json({
       reportId: report.id,
       timestamp,
-      updatedRecordsIdObj
+      updatedRecordsIdObj,
+      report,
     });
-
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error });
   }
 };
 
-
-
 // =================================> Dependent Functions
 // inserts the record id into the production document
 async function appendRecordIdInProduction(timestamp, recordId, productionId) {
-
-   // ==========> FIRST
+  // ==========> FIRST
   // get the production document and select the recordsIdObj from prisma
   const getRsp = await prisma.production.findFirst({
     where: {
@@ -64,7 +64,6 @@ async function appendRecordIdInProduction(timestamp, recordId, productionId) {
 
   const reportIdsObj = getRsp.reportIdsObj;
   reportIdsObj[timestamp] = recordId;
-
 
   // ==========> SECOND
   // post the recordIdObj into the production document
@@ -82,4 +81,4 @@ async function appendRecordIdInProduction(timestamp, recordId, productionId) {
   return updatedRecordsIdObj;
 }
 
-export default requireAuth(postHandler);
+export default postHandler;
