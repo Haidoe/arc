@@ -1,10 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./features/CounterSlice";
+import productionReportReducer from "./features/ProductionReportSlice";
 
 const store = configureStore({
   reducer: {
-    // Add your reducers here
-    counter: counterReducer,
+    productionReport: productionReportReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 });
