@@ -36,15 +36,15 @@ const linksOnHeader = {
       path: "/#contact",
     },
   ],
-  "/production": [
+  "/home": [
     {
       name: "Production",
-      path: "/production",
+      path: "/home",
       disabled: false,
     },
     {
       name: "Production Report",
-      path: "/productionReport",
+      path: "#",
       disabled: true,
     },
     {
@@ -53,15 +53,15 @@ const linksOnHeader = {
       disabled: true,
     },
   ],
-  "/productionReport": [
+  "/production/[productionId]/report": [
     {
       name: "Production",
-      path: "/production",
+      path: "/home",
       disabled: false,
     },
     {
       name: "Production Report",
-      path: "/productionReport",
+      path: "#",
       disabled: false,
     },
     {
@@ -107,6 +107,8 @@ const Header = () => {
 
   const headerLinks = linksOnHeader[pathname] || [];
 
+  console.log(">>", headerLinks, pathname);
+
   return (
     <header>
       {/* For Desktop */}
@@ -148,7 +150,7 @@ const Header = () => {
           </div>
 
           {/* Show Divider and Sign in only for Landing Page */}
-          {pathname === "/" && (
+          {
             <>
               <div className="divider-wrapper">
                 <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
@@ -173,7 +175,7 @@ const Header = () => {
                 </SignedIn>
               </div>
             </>
-          )}
+          }
         </div>
       </div>
 
