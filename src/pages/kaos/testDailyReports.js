@@ -1,7 +1,8 @@
 // import Header component
 import Header from "~/components/global/Header";
-import Accordion from "~/components/report/Accordion.jsx";
+import AccordionModal from "~/components/report/AccordionModal.jsx";
 import TextInputField from "~/components/TextInputField";
+import TimeInputField from "~/components/TimeInputField";
 
 // Test the api for daily reports
 
@@ -103,12 +104,11 @@ const TestDailyReports = () => {
         <div className="test-accordion-section mb-5 flex">
           <h2 className="flex-1 text-xl font-bold">Accordion Section</h2>
           <div className="flex-1 px-4">
-            <Accordion title={"Schedule for the day"} defaultOpen={true}>
+            <AccordionModal title={"Schedule for the day"} defaultOpen={true} readOnlyState={true}>
               <div className="flex space-x-4">
                 <div className="flex-1">
                   <TextInputField
                     label="Email"
-                    inputType="Border"
                     className="flex-1"
                   />
                 </div>
@@ -119,10 +119,13 @@ const TestDailyReports = () => {
                     className="flex-1"
                   />
                 </div>
+                <div className="flex-1">
+                  <TimeInputField name="myTimeInput" />
+                </div>
               </div>
-            </Accordion>
+            </AccordionModal>
           </div>
-        </div>
+          </div>
 
         {/* section to test the daily production reports api */}
         <div className="test-api-section mb-5">
