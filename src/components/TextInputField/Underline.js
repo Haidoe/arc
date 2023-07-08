@@ -1,4 +1,4 @@
-const Underline = ({ label, name, value, onChange, isError }) => {
+const Underline = ({ label, name, value, onChange, isError, className }) => {
   return (
     <div className="relative h-12 w-full min-w-[160px]">
       <input
@@ -10,7 +10,7 @@ const Underline = ({ label, name, value, onChange, isError }) => {
         placeholder=" "
         className={`text-input-underline-input peer ${
           isError ? "underline-input-error" : ""
-        }`}
+        } ${className}`}
       />
       <label
         className={`before:content[' '] after:content[' '] text-input-underline-label ${

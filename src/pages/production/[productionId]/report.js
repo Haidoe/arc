@@ -9,6 +9,7 @@ import {
 
 import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
 import ActualScheduleForm from "~/components/report/ActualScheduleForm";
+import NotShotSceneForm from "~/components/report/NotShotSceneForm";
 import AccordionModal from "~/components/report/AccordionModal";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
@@ -28,6 +29,10 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           <AccordionModal title="Actual Schedule" defaultOpen={true}>
             <ActualScheduleForm />
           </AccordionModal>
+          <AccordionModal title="Not Shot Scene" defaultOpen={true}>
+            <NotShotSceneForm />
+          </AccordionModal>
+
           <div className="bg-primary-light"> Form here </div>
           <div className="bg-primary-light"> Form here </div>
           <div className="bg-primary-light"> Form here </div>
