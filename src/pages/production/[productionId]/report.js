@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Sidebar from "~/components/production/Information";
 import { getProductionInfoById } from "~/service/production";
+import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
+import AccordionModal from "~/components/report/AccordionModal";
 
 const ProductionReportPage = () => {
   const [data, setData] = useState(null);
@@ -26,6 +28,9 @@ const ProductionReportPage = () => {
         </aside>
 
         <div className="grid flex-grow grid-cols-2 gap-4 px-4">
+          <AccordionModal title="Schedule Of The Day" defaultOpen={true}>
+            <ScheduleOfTheDayForm />
+          </AccordionModal>
           <div className="bg-primary-light"> Form here </div>
           <div className="bg-primary-light"> Form here </div>
           <div className="bg-primary-light"> Form here </div>

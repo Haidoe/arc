@@ -11,8 +11,10 @@ const Home: NextPage = () => {
   const [data, setData] = useState<ProductionWithProducer | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(true);
 
+
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+  
   function closeModal() {
     setIsOpen(false);
   }
