@@ -10,13 +10,21 @@ import {
 import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
 import ActualScheduleForm from "~/components/report/ActualScheduleForm";
 import AccordionModal from "~/components/report/AccordionModal";
+import { useDispatch } from "react-redux";
+import { setProductionReport } from "~/redux/features/ProductionReportSlice";
+import { useEffect } from "react";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
-  console.log("PROOOOOPS", productionInfo, report);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    //Puting the report data in redux store
+    dispatch(setProductionReport(report));
+  }, []);
 
   return (
     <MainPageLayout>
-      <div className="flex flex-1  bg-backgroundArc pt-8">
+      <div className="flex  flex-1 bg-backgroundArc pt-8">
         <aside className="flex  flex-col bg-arc md:basis-[384px]">
           <Sidebar data={productionInfo} />
         </aside>
@@ -25,9 +33,11 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           <AccordionModal title="Schedule Of The Day" defaultOpen={true}>
             <ScheduleOfTheDayForm />
           </AccordionModal>
+
           <AccordionModal title="Actual Schedule" defaultOpen={true}>
             <ActualScheduleForm />
           </AccordionModal>
+
           <div className="bg-primary-light"> Form here </div>
           <div className="bg-primary-light"> Form here </div>
           <div className="bg-primary-light"> Form here </div>
@@ -39,29 +49,41 @@ const ProductionReportPage = ({ productionInfo, report }) => {
 };
 
 export const getServerSideProps = async (ctx) => {
-  const { todayReportId } = await getTodayReportId(ctx.query.productionId);
+  try {
+    const productionInfo = await getProductionInfoById(ctx.query.productionId);
 
-  let result = null;
+    const { todayReportId } = await getTodayReportId(ctx.query.productionId);
 
-  if (!todayReportId) {
-    const response = await createDailyProductionReport(ctx.query.productionId);
+    let result = null;
 
-    result = response.report;
-  } else {
-    result = await getProductionReportById(
-      ctx.query.productionId,
-      todayReportId
-    );
+    if (!todayReportId) {
+      const response = await createDailyProductionReport(
+        ctx.query.productionId
+      );
+
+      result = response.report;
+    } else {
+      result = await getProductionReportById(
+        ctx.query.productionId,
+        todayReportId
+      );
+    }
+
+    return {
+      props: {
+        report: result,
+        productionInfo,
+      },
+    };
+  } catch (error) {
+    //Redirect if the productionId is not valid
+    return {
+      redirect: {
+        destination: "/home",
+        permanent: false,
+      },
+    };
   }
-
-  const productionInfo = await getProductionInfoById(ctx.query.productionId);
-
-  return {
-    props: {
-      report: result,
-      productionInfo,
-    },
-  };
 };
 
 export default ProductionReportPage;
