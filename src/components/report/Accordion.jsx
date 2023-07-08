@@ -28,7 +28,7 @@ const Accordion = ({
         <Disclosure defaultOpen={defaultOpen}>
           {({ open }) => (
             <>
-              <Disclosure.Button className="flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left  font-medium text-arc hover:bg-primary-base focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75">
+              <Disclosure.Button className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left  font-medium text-arc hover:bg-primary-base focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 ${insideModal ? "pointer-events-none" : ""} `}>
                 <span>{title || "Accordion Title"}</span>
 
                 <div className="items-center sm:flex">
