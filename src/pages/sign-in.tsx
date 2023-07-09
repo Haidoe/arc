@@ -5,10 +5,15 @@ import Image from "next/image";
 import Button from "~/components/Button";
 import TextInputField from "~/components/TextInputField";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
+import Head from "next/head";
 
 const SignInPage: NextPage = () => {
   return (
     <MainPageLayout hideHeader>
+      <Head>
+        <title>Sign in - Arc </title>
+      </Head>
+
       <div className="relative flex min-w-[320px] flex-1 overflow-hidden bg-arc">
         <div className="relative hidden flex-[35] lg:block">
           <Image
