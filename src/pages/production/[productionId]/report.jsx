@@ -13,8 +13,10 @@ import NotShotSceneForm from "~/components/report/NotShotSceneForm";
 import AccordionModal from "~/components/report/AccordionModal";
 import { useDispatch } from "react-redux";
 import { setProductionReport } from "~/redux/features/ProductionReportSlice";
+
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import RollsForm from "~/components/report/RollsForm";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
       <div
         className={` flex flex-1 bg-backgroundArc pt-8 transition-all ${pageContainerClasses}`}
       >
-        <aside className="relative  flex flex-col bg-arc md:basis-[384px]">
+        <aside className="relative  flex flex-shrink-0 flex-col bg-arc md:basis-[384px]">
           <Sidebar data={productionInfo} isContentVisible={!isExpanded} />
 
           <button
@@ -54,7 +56,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </button>
         </aside>
 
-        <div className="grid flex-grow grid-cols-2 gap-4 px-16">
+        <div className="g grid flex-grow grid-cols-2 gap-4 px-16">
           <AccordionModal
             title="Schedule Of The Day"
             defaultOpen={true}
@@ -69,12 +71,17 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           >
             <ActualScheduleForm />
           </AccordionModal>
+
           <AccordionModal
             title="Not Shot Scene"
             defaultOpen={true}
             modalWidth={50}
           >
             <NotShotSceneForm />
+          </AccordionModal>
+
+          <AccordionModal title="Rolls" defaultOpen={true} modalWidth={50}>
+            <RollsForm />
           </AccordionModal>
         </div>
       </div>
