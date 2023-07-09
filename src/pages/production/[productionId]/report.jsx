@@ -13,24 +13,48 @@ import NotShotSceneForm from "~/components/report/NotShotSceneForm";
 import AccordionModal from "~/components/report/AccordionModal";
 import { useDispatch } from "react-redux";
 import { setProductionReport } from "~/redux/features/ProductionReportSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Head from "next/head";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
+  const [isExpanded, setIsExpanded] = useState(true);
 
   useEffect(() => {
     //Puting the report data in redux store
     dispatch(setProductionReport(report));
   }, []);
 
+  const pageContainerClasses = isExpanded
+    ? ""
+    : "ml-[-334px] w-[calc(100vw+334px)]";
+
   return (
     <MainPageLayout>
-      <div className="flex  flex-1 bg-backgroundArc pt-8">
-        <aside className="flex  flex-col bg-arc md:basis-[384px]">
-          <Sidebar data={productionInfo} />
+      <Head>
+        <title>{productionInfo.title} | Arc </title>
+      </Head>
+
+      <div
+        className={` flex flex-1 bg-backgroundArc pt-8 transition-all ${pageContainerClasses}`}
+      >
+        <aside className="relative  flex flex-col bg-arc md:basis-[384px]">
+          <Sidebar data={productionInfo} isContentVisible={!isExpanded} />
+
+          <button
+            className="absolute right-[-.75rem] top-[8px] h-[28px] w-[28px] rounded-full bg-arc text-primary-dark shadow-3xl"
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            {isExpanded ? `<` : `>`}
+            <span className="sr-only">
+              {isExpanded
+                ? `Minimize Production Info Sidebar`
+                : `Expand Production Info Sidebar`}
+            </span>
+          </button>
         </aside>
 
-        <div className="grid flex-grow grid-cols-2 gap-4 px-4">
+        <div className="grid flex-grow grid-cols-2 gap-4 px-16">
           <AccordionModal
             title="Schedule Of The Day"
             defaultOpen={true}
@@ -52,11 +76,6 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           >
             <NotShotSceneForm />
           </AccordionModal>
-
-          <div className="bg-primary-light"> Form here </div>
-          <div className="bg-primary-light"> Form here </div>
-          <div className="bg-primary-light"> Form here </div>
-          <div className="bg-primary-light"> Form here </div>
         </div>
       </div>
     </MainPageLayout>
