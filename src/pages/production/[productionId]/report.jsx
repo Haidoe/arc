@@ -14,6 +14,7 @@ import AccordionModal from "~/components/report/AccordionModal";
 import { useDispatch } from "react-redux";
 import { setProductionReport } from "~/redux/features/ProductionReportSlice";
 import { useEffect } from "react";
+import RollsForm from "~/components/report/RollsForm";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
@@ -51,6 +52,13 @@ const ProductionReportPage = ({ productionInfo, report }) => {
             modalWidth={50}
           >
             <NotShotSceneForm />
+          </AccordionModal>
+          <AccordionModal
+            title="Rolls"
+            defaultOpen={true}
+            modalWidth={50}
+          >
+            <RollsForm />
           </AccordionModal>
 
           <div className="bg-primary-light"> Form here </div>
