@@ -7,6 +7,7 @@ import Button from "~/components/Button";
 type ProductionInformationProps = {
   data: ProductionWithProducer | null;
   theme?: "primary" | null;
+  isContentVisible?: boolean;
 };
 
 const ProductionInformation = (props: ProductionInformationProps) => {
@@ -21,15 +22,15 @@ const ProductionInformation = (props: ProductionInformationProps) => {
 
   return (
     <div className={`flex-grow  px-[24px] pb-12 ${wrapperClass ?? ""}`}>
-      <ul className="pb-4">
+      <ul className={`pb-4 ${props.isContentVisible ? "invisible" : ""}`}>
         <li className={`flex gap-4 border-b-[1.5px]  py-[20px] ${borderColor}`}>
           <div className="basis-[94px]">
             <DefaultAvatar theme="primary" />
           </div>
 
-          <p className="flex flex-1 items-center text-lg font-bold">
+          <h2 className="flex flex-1 items-center text-lg font-bold">
             {data.title}
-          </p>
+          </h2>
         </li>
 
         <ListItem theme={props.theme} title="Description">
