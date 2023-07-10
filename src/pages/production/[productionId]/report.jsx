@@ -1,5 +1,9 @@
-import MainPageLayout from "~/components/layouts/MainPageLayout";
-import Sidebar from "~/components/production/Information";
+// react and redux
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setProductionReport } from "~/redux/features/ProductionReportSlice";
+
+// services
 import createDailyProductionReport from "~/service/production/createDailyProductionReport";
 import getTodayReportId from "~/service/production/getTodayReportId";
 import {
@@ -7,16 +11,16 @@ import {
   getProductionReportById,
 } from "~/service/production";
 
+// components
+import Head from "next/head";
+import MainPageLayout from "~/components/layouts/MainPageLayout";
+import Sidebar from "~/components/production/Information";
 import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
 import ActualScheduleForm from "~/components/report/ActualScheduleForm";
 import NotShotSceneForm from "~/components/report/NotShotSceneForm";
 import AccordionModal from "~/components/report/AccordionModal";
-import { useDispatch } from "react-redux";
-import { setProductionReport } from "~/redux/features/ProductionReportSlice";
-
-import { useEffect, useState } from "react";
-import Head from "next/head";
 import RollsForm from "~/components/report/RollsForm";
+import CastTimeLogForm from "~/components/report/CastTimeLogForm";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
@@ -56,33 +60,41 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </button>
         </aside>
 
-        <div className="g grid flex-grow grid-cols-2 gap-4 px-16">
-          <AccordionModal
-            title="Schedule Of The Day"
-            defaultOpen={true}
-            modalWidth={50}
-          >
-            <ScheduleOfTheDayForm />
-          </AccordionModal>
-          <AccordionModal
-            title="Actual Schedule"
-            defaultOpen={true}
-            modalWidth={50}
-          >
-            <ActualScheduleForm />
-          </AccordionModal>
+        <div>
+          <div className="g grid flex-grow grid-cols-2 gap-4 px-16">
+            <AccordionModal
+              title="Schedule Of The Day"
+              defaultOpen={true}
+              modalWidth={50}
+            >
+              <ScheduleOfTheDayForm />
+            </AccordionModal>
+            <AccordionModal
+              title="Actual Schedule"
+              defaultOpen={true}
+              modalWidth={50}
+            >
+              <ActualScheduleForm />
+            </AccordionModal>
 
-          <AccordionModal
-            title="Not Shot Scene"
-            defaultOpen={true}
-            modalWidth={50}
-          >
-            <NotShotSceneForm />
-          </AccordionModal>
+            <AccordionModal
+              title="Not Shot Scene"
+              defaultOpen={true}
+              modalWidth={50}
+            >
+              <NotShotSceneForm />
+            </AccordionModal>
 
-          <AccordionModal title="Rolls" defaultOpen={true} modalWidth={50}>
-            <RollsForm />
-          </AccordionModal>
+            <AccordionModal title="Rolls" defaultOpen={true} modalWidth={50}>
+              <RollsForm />
+            </AccordionModal>
+          </div>
+          {/* Span 2 Grid */}
+          <div>
+            <div className="g grid flex-grow grid-cols-1 gap-4 px-16">
+              <CastTimeLogForm />
+            </div>
+          </div>
         </div>
       </div>
     </MainPageLayout>
