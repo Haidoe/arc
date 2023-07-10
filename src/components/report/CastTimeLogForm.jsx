@@ -1,35 +1,50 @@
-// redux
+// react imports
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Image from "next/image";
 
 // components
 import Button from "~/components/Button";
 import TimeInputField from "~/components/TimeInputField";
+import Delete from "~/assets/icons/Delete.svg";
+
+// import edit and delete modals
+import AccordionCrudModalAdd from "~/components/report/AccordionCrudModalAdd";
+import AccordionCrudModalDelete from "~/components/report/AccordionCrudModalDelete";
 
 // helper
 import { ISOToTimeString } from "~/helper/timeInputParser";
 
 // CastTimeLog component form
 const CastTimeLogForm = () => {
+  // to show or hide the add modal
+  const [showAddModal, setShowAddModal] = useState(false);
+
+  // to show or hide the delete modal
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  // selected index
+  const [selectedIndex, setSelectedIndex] = useState(undefined);
+
   const castTimeLogInfo = useSelector(
     (state) => state.productionReport.data.castTimeLog
   );
 
-  console.log(castTimeLogInfo);
-
   const dispatch = useDispatch();
 
-  const updateCastTimeLogArray = (index, object) => {
-    const updatedArray = [...castTimeLogInfo];
-    updatedArray[index] = object;
-    // todo
-    // dispatch(updateCastTimeLog(updatedArray)); // Dispatch the action to update the state
-  };
+  // const updateCastTimeLogArray = (index, object) => {
+  //   const updatedArray = [...castTimeLogInfo];
+  //   updatedArray[index] = object;
+  //   // todo
+  //   // dispatch(updateCastTimeLog(updatedArray)); // Dispatch the action to update the state
+  // };
 
-  const deleteCastTimeLogRow = (index) => {
-    const updatedArray = castTimeLogInfo.filter((item, i) => i !== index);
-    // todo
-    // dispatch(updateCastTimeLog(updatedArray)); // Dispatch the action to update the state
-  };
+  // const deleteCastTimeLogRow = (index) => {
+  //   const updatedArray = castTimeLogInfo.filter((item, i) => i !== index);
+  //   console.log(updatedArray);
+  //   // todo
+  //   // dispatch(updateCastTimeLog(updatedArray)); // Dispatch the action to update the state
+  // };
 
   const CastTimeLogInfo = [
     {
@@ -68,35 +83,75 @@ const CastTimeLogForm = () => {
     },
   ];
 
-  const people = [
-    {
-      name: "Lindsay Walton",
-      title: "Front-end Developer",
-      email: "lindsay.walton@example.com",
-      role: "Member",
-    },
-    {
-      name: "Lindsay Walton",
-      title: "Front-end Developer",
-      email: "lindsay.walton@example.com",
-      role: "Member",
-    },
-    {
-      name: "Lindsay Walton",
-      title: "Front-end Developer",
-      email: "lindsay.walton@example.com",
-      role: "Member",
-    },
-    {
-      name: "Lindsay Walton",
-      title: "Front-end Developer",
-      email: "lindsay.walton@example.com",
-      role: "Member",
-    },
-  ];
+  // ================================> Form event functions
+  function addClickHandler() {
+    setSelectedIndex(undefined);
+    setShowAddModal(true);
+  }
+
+  function rowClickHandler(event, idx) {
+    event.preventDefault();
+    // delete condition
+    if (event.target.className.includes("icon-delete-row")) {
+      setSelectedIndex(idx);
+      setShowDeleteModal(true);
+    } else {
+      // edit condition
+      setSelectedIndex(idx);
+      setShowAddModal(true);
+    }
+  }
+
+  // ================================> Modal event functions
+  function OnUpdateHandler(idx, action, data) {
+    if (action == "add") {
+      // on add
+      const extendedArray = [...castTimeLogInfo];
+      extendedArray.push(data);
+
+      console.log(extendedArray);
+    } else if (action == "update") {
+      // on update`
+      const updatedArray = [...castTimeLogInfo];
+      updatedArray[idx] = data;
+
+      console.log(updatedArray);
+    } else {
+      // on cancel
+      console.log("cancel");
+    }
+  }
+
+  // on modal close set selected index to undefined
+
+  function deleteConfirmationHandler(idx, action) {
+    if (action == "delete") {
+      const updatedArray = castTimeLogInfo.filter((item, i) => i !== idx);
+      console.log(updatedArray);
+    } else {
+      // cancel
+      setSelectedIndex(undefined);
+      setShowDeleteModal(false);
+    }
+  }
 
   return (
     <>
+      {showAddModal && (
+        <AccordionCrudModalAdd
+          type="castTimeLog"
+          onUpdateRow={OnUpdateHandler}
+          selectedIndex={selectedIndex}
+        />
+      )}
+
+      {showDeleteModal && (
+        <AccordionCrudModalDelete
+          onDeleteConfirmation={deleteConfirmationHandler}
+          selectedIndex={selectedIndex}
+        />
+      )}
+
       {
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="mt-8 flow-root">
@@ -152,7 +207,7 @@ const CastTimeLogForm = () => {
                   {CastTimeLogInfo?.length > 0 && (
                     <tbody className="divide-y divide-gray-200">
                       {CastTimeLogInfo.map((row, idx) => (
-                        <tr key={idx}>
+                        <tr key={idx} onClick={(e) => rowClickHandler(e, idx)}>
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                             {idx + 1}
                           </td>
@@ -221,12 +276,14 @@ const CastTimeLogForm = () => {
                             </div>
                           </td>
                           <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                            <a
-                              href="#"
-                              className="text-indigo-600 hover:text-indigo-900"
-                            >
-                              X<span className="sr-only"> Delete Cast Number {idx + 1}</span>
-                            </a>
+                            <Image
+                              className={`icon-delete-row hover:cursor-pointer`}
+                              src={Delete}
+                              alt="Delete icon"
+                            />
+                            <span className="sr-only">
+                              Delete Cast Number {idx + 1}
+                            </span>
                           </td>
                         </tr>
                       ))}
@@ -245,7 +302,11 @@ const CastTimeLogForm = () => {
                 )}
                 {/* Button to Create New Line */}
                 <div className="mt-2 flex justify-end gap-4 border-primary-base pt-4">
-                  <Button buttonType="Secondary" className="px-2 py-1">
+                  <Button
+                    onClick={addClickHandler}
+                    buttonType="Secondary"
+                    className="px-2 py-1"
+                  >
                     Create New Line
                   </Button>
                 </div>
