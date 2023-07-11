@@ -21,6 +21,8 @@ import NotShotSceneForm from "~/components/report/NotShotSceneForm";
 import AccordionModal from "~/components/report/AccordionModal";
 import RollsForm from "~/components/report/RollsForm";
 import CastTimeLogForm from "~/components/report/CastTimeLogForm";
+import Accordion from "~/components/report/Accordion";
+import ScenesShotForm from "~/components/report/ScenesShotForm";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
@@ -93,6 +95,10 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           <div>
             <div className="g grid flex-grow grid-cols-1 gap-4 px-16">
               <CastTimeLogForm />
+
+              <Accordion title="Scenes Shot" defaultOpen>
+                <ScenesShotForm />
+              </Accordion>
             </div>
           </div>
         </div>
