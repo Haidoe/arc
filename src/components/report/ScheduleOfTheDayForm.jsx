@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 import TimeInputField from "../TimeInputField";
-import { useRef, useEffect } from "react";
-import dayjs from "dayjs";
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
-dayjs.extend(localizedFormat);
-dayjs.extend(utc);
-dayjs.extend(timezone);
-import localizedFormat from "dayjs/plugin/localizedFormat";
+// import { useRef, useEffect } from "react";
+// import dayjs from "dayjs";
+// import timezone from "dayjs/plugin/timezone";
+// import utc from "dayjs/plugin/utc";
+// dayjs.extend(localizedFormat);
+// dayjs.extend(utc);
+// dayjs.extend(timezone);
+// import localizedFormat from "dayjs/plugin/localizedFormat";
 
 const ScheduleOfTheDayForm = ({ className }) => {
 
@@ -21,8 +21,8 @@ const ScheduleOfTheDayForm = ({ className }) => {
   // }, [])
 
 
-  const date = dayjs(datetime).tz("America/Vancouver").format("ll");
-  const time = dayjs(datetime).tz("America/Vancouver").format("LT");
+  // const date = dayjs(datetime).tz("America/Vancouver").format("ll");
+  // const time = dayjs(datetime).tz("America/Vancouver").format("LT");
   // console.log(breakfastFromRef.current)
 
   // const breakFastFromInitialValue = breakfastFromRef.current
