@@ -1,51 +1,55 @@
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import TimeInputField from "../TimeInputField";
-// import { useRef, useEffect } from "react";
-// import dayjs from "dayjs";
-// import timezone from "dayjs/plugin/timezone";
-// import utc from "dayjs/plugin/utc";
-// dayjs.extend(localizedFormat);
-// dayjs.extend(utc);
-// dayjs.extend(timezone);
-// import localizedFormat from "dayjs/plugin/localizedFormat";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("America/Vancouver");
 
 const ScheduleOfTheDayForm = ({ className }) => {
+  const report = useSelector((state) => state.productionReport);
+  const breakfastFrom = report?.data?.scheduleForDay?.breakfastFrom || null;
+  console.log("breakfast from: " + breakfastFrom);
 
-  const scheduleForDay = useSelector(state => state.productionReport)
-  console.log(scheduleForDay);
+  const convertTimeToISO = (timeString) => {
+    const date = dayjs(timeString).tz("America/Vancouver").format("ll");
+    const time = dayjs(timeString).tz("America/Vancouver").format("HH:mm");
+    console.log("date: " + date);
+    console.log("time: " + time);
+    return { date, time };
+  };
 
-  // const breakfastFromRef = useRef(null)
-
-  // useEffect(() => {
-  //   breakfastFromRef.current = scheduleForDay.breakfastFrom
-  // }, [])
-
-
-  // const date = dayjs(datetime).tz("America/Vancouver").format("ll");
-  // const time = dayjs(datetime).tz("America/Vancouver").format("LT");
-  // console.log(breakfastFromRef.current)
-
-  // const breakFastFromInitialValue = breakfastFromRef.current
-  // console.log(breakFastFromInitialValue)
-
-  // const timeIn = timeStringToISO(breakFastFromInitialValue)
+  const breakfastFromRef = useRef(
+    convertTimeToISO(breakfastFrom).time
+  );
+  console.log("After conversion: " + breakfastFromRef.current);
 
 
-  // const breakFastFromInitialValue = breakfastFromRef.current
-  // console.log(breakFastFromInitialValue)
+  const handleBreakfastTimeChange = (newTime) => {
+    breakfastFromRef.current = newTime;
+  };
 
   return (
-    <form action="" className={` text-contrast-dark text-base ${className}`}>
+    <form action="" className={`text-contrast-dark text-base ${className}`}>
       <div className="flex justify-between border-b border-primary-base pb-2">
-        <p className="font-bold text-base text-tertiary-dark">Tue Jun 27, 2023</p>
+        <p className="font-bold text-base text-tertiary-dark">
+          Tue Jun 27, 2023
+        </p>
       </div>
       <div className="pt-2 grid grid-cols-3 grid-rows-5 gap-4 gap-y-2">
         <div></div>
         <p className="font-bold">Start</p>
         <p className="font-bold">End</p>
 
-        <p className="font-bold ">Breakfast</p>
-        <TimeInputField label="breakfastFrom" />
+        <p className="font-bold">Breakfast</p>
+        <TimeInputField
+          label="breakfastFrom"
+          value={breakfastFromRef.current}
+          onChange={handleBreakfastTimeChange}
+        />
         <TimeInputField label="breakfastTo" />
 
         <p className="font-bold">Crew Call</p>
@@ -60,10 +64,8 @@ const ScheduleOfTheDayForm = ({ className }) => {
         <TimeInputField label="Time In" />
         <TimeInputField label="Time Out" />
       </div>
-
     </form>
-  )
-}
+  );
+};
 
-
-export default ScheduleOfTheDayForm
+export default ScheduleOfTheDayForm;
