@@ -23,6 +23,7 @@ import RollsForm from "~/components/report/RollsForm";
 import CastTimeLogForm from "~/components/report/CastTimeLogForm";
 import Accordion from "~/components/report/Accordion";
 import ScenesShotForm from "~/components/report/ScenesShotForm";
+import SampleForm from "~/components/report/SampleForm";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
       <div
         className={` flex flex-1 bg-backgroundArc pt-8 transition-all ${pageContainerClasses}`}
       >
-        <aside className="relative  flex flex-shrink-0 flex-col bg-arc md:basis-[384px]">
+        {/* <aside className="relative  flex flex-shrink-0 flex-col bg-arc md:basis-[384px]">
           <Sidebar data={productionInfo} isContentVisible={!isExpanded} />
 
           <button
@@ -61,10 +62,12 @@ const ProductionReportPage = ({ productionInfo, report }) => {
                 : `Expand Production Info Sidebar`}
             </span>
           </button>
-        </aside>
+        </aside> */}
 
         <div>
           <div className="g grid flex-grow grid-cols-2 gap-4 px-16">
+            <SampleForm />
+
             <AccordionModal
               title="Schedule Of The Day"
               defaultOpen={true}

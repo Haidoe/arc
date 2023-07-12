@@ -1,4 +1,11 @@
-import type { ProductionReport } from "@prisma/client";
+import type {
+  Rolls,
+  ProductionReport,
+  Extras,
+  CastTimeLog,
+  Scenes,
+  scheduleForDay,
+} from "@prisma/client";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 type ProductionReportReduxProp = {
@@ -6,7 +13,49 @@ type ProductionReportReduxProp = {
 };
 
 const initialState = {
-  data: {} as ProductionReport,
+  data: {
+    scheduleForDay: {
+      breakfastFrom: null,
+      breakfastTo: null,
+      crewCallFrom: null,
+      crewCallTo: null,
+      shootingCallFrom: null,
+      shootingCallTo: null,
+      lunchFrom: null,
+      lunchTo: null,
+    },
+    startDate: null,
+    actualSchedule: {
+      firstUnitInput: {
+        schedule: null,
+        actual: null,
+      },
+      secondUnitInput: {
+        schedule: null,
+        actual: null,
+      },
+      prep: {
+        schedule: null,
+        actual: null,
+      },
+      travel: {
+        schedule: null,
+        actual: null,
+      },
+      idle: {
+        schedule: null,
+        actual: null,
+      },
+      holiday: {
+        schedule: null,
+        actual: null,
+      },
+    },
+    rolls: Array<Rolls>(),
+    extras: Array<Extras>(),
+    castTimeLog: Array<CastTimeLog>(),
+    shotScene: Array<Scenes>(),
+  } as ProductionReport,
 } as ProductionReportReduxProp;
 
 export const productionReport = createSlice({
@@ -19,9 +68,18 @@ export const productionReport = createSlice({
         ...action.payload,
       };
     },
+    updateScheduleForDay: (state, action: PayloadAction<scheduleForDay>) => {
+      state.data = {
+        ...state.data,
+        scheduleForDay: {
+          ...action.payload,
+        },
+      };
+    },
   },
 });
 
-export const { setProductionReport } = productionReport.actions;
+export const { setProductionReport, updateScheduleForDay } =
+  productionReport.actions;
 
 export default productionReport.reducer;
