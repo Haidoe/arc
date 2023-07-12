@@ -43,6 +43,7 @@ model Production {
   created DateTime @default(now())
   updated DateTime @updatedAt
   report ProductionReport[]
+  casts Cast[]
   reportIdsObj Json?
 
 }
@@ -209,3 +210,7 @@ type ActualScheduleInput {
   actual Int?
 }
 
+type Cast {
+  name String?
+  character String?
+}
