@@ -31,6 +31,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
   useEffect(() => {
     //Puting the report data in redux store
     dispatch(setProductionReport(report));
+    // console.log(report);
   }, []);
 
   const pageContainerClasses = isExpanded
