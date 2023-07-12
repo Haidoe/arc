@@ -22,6 +22,8 @@ import AccordionModal from "~/components/report/AccordionModal";
 import AccordionCrud from "~/components/report/AccordionCrud";
 import RollsForm from "~/components/report/RollsForm";
 import CastTimeLogForm from "~/components/report/CastTimeLogForm";
+import Accordion from "~/components/report/Accordion";
+import ScenesShotForm from "~/components/report/ScenesShotForm";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
@@ -99,6 +101,9 @@ const ProductionReportPage = ({ productionInfo, report }) => {
                 <CastTimeLogForm />
               </AccordionCrud>
 
+              <Accordion title="Scenes Shot" defaultOpen>
+                <ScenesShotForm />
+              </Accordion>
             </div>
           </div>
         </div>
