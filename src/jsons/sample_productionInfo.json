@@ -11,6 +11,32 @@
       "startDate": "2023-07-01T00:00:00.000+00:00",
       "estimatedFinishDate": "2023-07-23T00:00:00.000+00:00"
     },
+    "casts": [
+      {
+        "name": "Javier Bardem",
+        "character": "Ethan Sullivan"
+      },
+      {
+        "name": "Michael Fassbender",
+        "character": "Nathan Cooper"
+      },
+      {
+        "name": "Tom Hardy",
+        "character": "Oliver Thompson"
+      },
+      {
+        "name": "Jake Gyllenhaal",
+        "character": "Ryan Anderson"
+      },
+      {
+        "name": "Mark Ruffalo",
+        "character": "Maxwell Davis"
+      },
+      {
+        "name": "Christian Bale",
+        "character": "Jacob Evans"
+      }
+    ],
     "crews": [
       {
         "name": "Emmanuel Lubezki",
