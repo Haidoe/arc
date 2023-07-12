@@ -1,7 +1,39 @@
+import { useSelector } from "react-redux";
 import TimeInputField from "../TimeInputField";
-
+import { useRef, useEffect } from "react";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(localizedFormat);
+dayjs.extend(utc);
+dayjs.extend(timezone);
+import localizedFormat from "dayjs/plugin/localizedFormat";
 
 const ScheduleOfTheDayForm = ({ className }) => {
+
+  const scheduleForDay = useSelector(state => state.productionReport)
+  console.log(scheduleForDay);
+
+  // const breakfastFromRef = useRef(null)
+
+  // useEffect(() => {
+  //   breakfastFromRef.current = scheduleForDay.breakfastFrom
+  // }, [])
+
+
+  const date = dayjs(datetime).tz("America/Vancouver").format("ll");
+  const time = dayjs(datetime).tz("America/Vancouver").format("LT");
+  // console.log(breakfastFromRef.current)
+
+  // const breakFastFromInitialValue = breakfastFromRef.current
+  // console.log(breakFastFromInitialValue)
+
+  // const timeIn = timeStringToISO(breakFastFromInitialValue)
+
+
+  // const breakFastFromInitialValue = breakfastFromRef.current
+  // console.log(breakFastFromInitialValue)
+
   return (
     <form action="" className={` text-contrast-dark text-base ${className}`}>
       <div className="flex justify-between border-b border-primary-base pb-2">
@@ -13,8 +45,8 @@ const ScheduleOfTheDayForm = ({ className }) => {
         <p className="font-bold">End</p>
 
         <p className="font-bold ">Breakfast</p>
-        <TimeInputField label="Time In" />
-        <TimeInputField label="Time Out" />
+        <TimeInputField label="breakfastFrom" />
+        <TimeInputField label="breakfastTo" />
 
         <p className="font-bold">Crew Call</p>
         <TimeInputField label="Time In" />
