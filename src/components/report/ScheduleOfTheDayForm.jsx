@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import TimeInputField from "../TimeInputField";
+// import convertToISO from "~/helper/convertToISO";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
@@ -14,7 +15,7 @@ const ScheduleOfTheDayForm = ({ className }) => {
   const breakfastFrom = report?.data?.scheduleForDay?.breakfastFrom || null;
   console.log("breakfast from: " + breakfastFrom);
 
-  const convertTimeToISO = (timeString) => {
+  const convertToISO = (timeString) => {
     const date = dayjs(timeString).tz("America/Vancouver").format("ll");
     const time = dayjs(timeString).tz("America/Vancouver").format("HH:mm");
     console.log("date: " + date);
@@ -22,14 +23,53 @@ const ScheduleOfTheDayForm = ({ className }) => {
     return { date, time };
   };
 
-  const breakfastFromRef = useRef(
-    convertTimeToISO(breakfastFrom).time
+  // const breakfastFromRef = useRef(
+  //   convertToISO(breakfastFrom).time
+  // );
+
+  // console.log("After conversion: " + breakfastFromRef.current);
+
+  // useEffect(() => {
+  //   breakfastFromRef.current = breakfastFromRef.current;
+  // }, []);
+
+  // const handleBreakfastTimeChange = (e) => {
+  //   breakfastFromRef.current = e.target.value;
+  //   console.log("breakfastFromRef.current: " + breakfastFromRef.current);
+  // };
+
+  // const breakfastFromRef = useRef(null);
+  // const [breakfastFromValue, setBreakfastFromValue] = useState(
+  //   convertToISO(breakfastFrom).time
+  // );
+
+  // console.log("After conversion: " + breakfastFromValue);
+
+  // useEffect(() => {
+  //   breakfastFromRef.current = breakfastFromValue;
+  // }, [breakfastFromValue]);
+
+  // const handleBreakfastTimeChange = (e) => {
+  //   const newTime = e.target.value;
+  //   setBreakfastFromValue(newTime);
+  //   console.log("breakfastFromRef.current: " + newTime);
+  // };
+
+  const breakfastFromRef = useRef(null);
+  const [breakfastFromValue, setBreakfastFromValue] = useState(
+    convertToISO(breakfastFrom).time
   );
-  console.log("After conversion: " + breakfastFromRef.current);
 
+  console.log("After conversion: " + breakfastFromValue);
 
-  const handleBreakfastTimeChange = (newTime) => {
-    breakfastFromRef.current = newTime;
+  useEffect(() => {
+    setBreakfastFromValue(convertToISO(breakfastFrom).time);
+  }, [breakfastFrom]);
+
+  const handleBreakfastTimeChange = (e) => {
+    const newTime = e.target.value;
+    setBreakfastFromValue(newTime);
+    console.log("breakfastFromValue: " + newTime);
   };
 
   return (
@@ -46,8 +86,8 @@ const ScheduleOfTheDayForm = ({ className }) => {
 
         <p className="font-bold">Breakfast</p>
         <TimeInputField
-          label="breakfastFrom"
-          value={breakfastFromRef.current}
+          name="breakfastFrom"
+          value={breakfastFromValue}
           onChange={handleBreakfastTimeChange}
         />
         <TimeInputField label="breakfastTo" />
