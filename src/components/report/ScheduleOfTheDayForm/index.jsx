@@ -4,13 +4,13 @@ import { useSelector } from "react-redux";
 import TimeInputField from "../../TimeInputField";
 import { datetimeToTime } from "~/helper/time";
 import ScheduleOfTheDayModal from "./ScheduleOfTheDayModal";
-import AccordionModal from "../AccordionModal";
 
 const ScheduleOfTheDayForm = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   //manage data from redux
   const data = useSelector((state) => state.productionReport.data);
+
   const scheduleForDay = data.scheduleForDay;
   const timeKeys = ["breakfastFrom", "breakfastTo", "crewCallFrom", "crewCallTo", "shootingCallFrom", "shootingCallTo", "lunchFrom", "lunchTo"];
   const scheduleTimes = {};

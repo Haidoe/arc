@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 //Modal
 import Modal from "~/components/Modal";
 import TimeInputField from "~/components/TimeInputField";
+import Accordion from "../Accordion";
+
 
 //Helper
 import { datetimeToTime, timeToDatetime } from "~/helper/time";
 
 //Redux
 import { updateScheduleForDay } from "~/redux/features/ProductionReportSlice";
-import Accordion from "../Accordion";
 
 //Components
 const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
@@ -46,6 +47,7 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
     day: "numeric"
   });
 
+  //handle redux update
   const handleReduxUpdate = () => {
     //This is to check if they are any changes in the input field
     if (breakfastFromRef.current?.value || breakfastToRef.current?.value || crewCallFromRef.current?.value || crewCallToRef.current?.value || shootingCallFromRef.current?.value || shootingCallToRef.current?.value || lunchFromRef.current?.value || lunchToRef.current?.value) {
@@ -62,7 +64,9 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
       };
 
       //Updating the redux
+      console.log("Before dispatching" + scheduleForDay)
       dispatch(updateScheduleForDay(scheduleForDay));
+      console.log("After dispatching" + scheduleForDay)
     }
 
     onClose();
@@ -119,7 +123,8 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
                 defaultValue={lunchTo} />
             </div>
           </div>
-        </Accordion></div>
+        </Accordion>
+      </div>
 
 
     </Modal>
