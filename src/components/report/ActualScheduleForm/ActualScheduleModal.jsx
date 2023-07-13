@@ -15,58 +15,71 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
 
   //For default value of the input field
   const actualSchedule = data.actualSchedule;
-
   const getValueOrDefault = (obj, property) => obj[property] ? obj[property] : ' ';
-
   const firstUnitSchedule = getValueOrDefault(actualSchedule.firstUnitInput, 'schedule');
-  console.log(firstUnitSchedule)
+  const firstUnitActual = getValueOrDefault(actualSchedule.firstUnitInput, 'actual');
+  const secondUnitSchedule = getValueOrDefault(actualSchedule.secondUnitInput, 'schedule');
+  const secondUnitActual = getValueOrDefault(actualSchedule.secondUnitInput, 'actual');
+  const prepSchedule = getValueOrDefault(actualSchedule.prep, 'schedule');
+  const prepActual = getValueOrDefault(actualSchedule.prep, 'actual');
+  const travelSchedule = getValueOrDefault(actualSchedule.travel, 'schedule');
+  const travelActual = getValueOrDefault(actualSchedule.travel, 'actual');
+  const idleSchedule = getValueOrDefault(actualSchedule.idle, 'schedule');
+  const idleActual = getValueOrDefault(actualSchedule.idle, 'actual');
+  const holidaySchedule = getValueOrDefault(actualSchedule.holiday, 'schedule');
+  const holidayActual = getValueOrDefault(actualSchedule.holiday, 'actual');
 
-
-  // const firstUnitActual = getValueOrDefault(actualSchedule.firstUnitInput, 'actual');
-  // const secondUnitSchedule = getValueOrDefault(actualSchedule.secondUnitInput, 'schedule');
-  // const secondUnitActual = getValueOrDefault(actualSchedule.secondUnitInput, 'actual');
-  // const prepSchedule = getValueOrDefault(actualSchedule.prep, 'schedule');
-  // const prepActual = getValueOrDefault(actualSchedule.prep, 'actual');
-  // const travelSchedule = getValueOrDefault(actualSchedule.travel, 'schedule');
-  // const travelActual = getValueOrDefault(actualSchedule.travel, 'actual');
-  // const idleSchedule = getValueOrDefault(actualSchedule.idle, 'schedule');
-  // const idleActual = getValueOrDefault(actualSchedule.idle, 'actual');
-  // const holidaySchedule = getValueOrDefault(actualSchedule.holiday, 'schedule');
-  // const holidayActual = getValueOrDefault(actualSchedule.holiday, 'actual');
-
+  //For ref
   const firstUnitScheduleRef = useRef(firstUnitSchedule);
-
-
-  // const firstUnitActualRef = useRef(firstUnitActual);
-  // const secondUnitScheduleRef = useRef(secondUnitSchedule);
-  // const secondUnitActualRef = useRef(secondUnitActual);
-  // const prepScheduleRef = useRef(prepSchedule);
-  // const prepActualRef = useRef(prepActual);
-  // const travelScheduleRef = useRef(travelSchedule);
-  // const travelActualRef = useRef(travelActual);
-  // const idleScheduleRef = useRef(idleSchedule);
-  // const idleActualRef = useRef(idleActual);
-  // const holidayScheduleRef = useRef(holidaySchedule);
-  // const holidayActualRef = useRef(holidayActual);
+  const firstUnitActualRef = useRef(firstUnitActual);
+  const secondUnitScheduleRef = useRef(secondUnitSchedule);
+  const secondUnitActualRef = useRef(secondUnitActual);
+  const prepScheduleRef = useRef(prepSchedule);
+  const prepActualRef = useRef(prepActual);
+  const travelScheduleRef = useRef(travelSchedule);
+  const travelActualRef = useRef(travelActual);
+  const idleScheduleRef = useRef(idleSchedule);
+  const idleActualRef = useRef(idleActual);
+  const holidayScheduleRef = useRef(holidaySchedule);
+  const holidayActualRef = useRef(holidayActual);
 
 
 
   //handle redux update
   const handleReduxUpdate = () => {
-    if (firstUnitScheduleRef.current?.value) {
 
-      let actualSchedule = {
-        ...data.actualSchedule,
-        firstUnitInput: {
-          schedule: firstUnitScheduleRef.current?.value,
-        }
+    let actualSchedule = {
+      ...data.actualSchedule,
+      firstUnitInput: {
+        schedule: firstUnitScheduleRef.current?.value,
+        actual: firstUnitActualRef.current?.value
+      },
+      secondUnitInput: {
+        schedule: secondUnitScheduleRef.current?.value,
+        actual: secondUnitActualRef.current?.value
+      },
+      prep: {
+        schedule: prepScheduleRef.current?.value,
+        actual: prepActualRef.current?.value
+      },
+      travel: {
+        schedule: travelScheduleRef.current?.value,
+        actual: travelActualRef.current?.value
+      },
+      idle: {
+        schedule: idleScheduleRef.current?.value,
+        actual: idleActualRef.current?.value
+      },
+      holiday: {
+        schedule: holidayScheduleRef.current?.value,
+        actual: holidayActualRef.current?.value
       }
-
-      //updating the actualSchedule object
-      console.log("Before update", actualSchedule)
-      dispatch(updateActualSchedule(actualSchedule))
-      console.log("After update", actualSchedule)
     }
+
+    //updating the actualSchedule object
+    dispatch(updateActualSchedule(actualSchedule))
+
+    //closing the modal
     onClose()
   }
 
@@ -90,15 +103,15 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
               <TextInputField maxLength="8"
                 ref={firstUnitScheduleRef} defaultValue={firstUnitSchedule} />
 
-              {/* <TextInputField maxLength="8"
+              <TextInputField maxLength="8"
                 ref={firstUnitActualRef} defaultValue={firstUnitActual} />
               <p>2nd Unit</p>
               <TextInputField maxLength="8"
                 ref={secondUnitScheduleRef} defaultValue={secondUnitSchedule} />
               <TextInputField maxLength="8"
-                ref={secondUnitActualRef} defaultValue={secondUnitActual} /> */}
+                ref={secondUnitActualRef} defaultValue={secondUnitActual} />
 
-              {/* <p>Prep</p>
+              <p>Prep</p>
               <TextInputField maxLength="8"
                 ref={prepScheduleRef} defaultValue={prepSchedule} />
               <TextInputField maxLength="8"
@@ -118,9 +131,6 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
                 ref={holidayScheduleRef} defaultValue={holidaySchedule} />
               <TextInputField maxLength="8"
                 ref={holidayActualRef} defaultValue={holidayActual} />
-              <p>Total</p>
-              <TextInputField maxLength="8" readOnly={true} defaultValue={totalSchedule} />
-              <TextInputField maxLength="8" readOnly={true} defaultValue={totalActual} /> */}
             </div>
           </div>
         </Accordion>

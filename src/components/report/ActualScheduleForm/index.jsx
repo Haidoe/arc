@@ -12,7 +12,7 @@ const ActualScheduleForm = ({ className }) => {
 
   const actualSchedule = data.actualSchedule;
 
-  const getValueOrDefault = (obj, property) => obj[property] ? obj[property] : ' ';
+  const getValueOrDefault = (obj, property) => obj[property] ? obj[property] : '';
 
   const firstUnitSchedule = getValueOrDefault(actualSchedule.firstUnitInput, 'schedule');
   const firstUnitActual = getValueOrDefault(actualSchedule.firstUnitInput, 'actual');
@@ -28,10 +28,9 @@ const ActualScheduleForm = ({ className }) => {
   const holidayActual = getValueOrDefault(actualSchedule.holiday, 'actual');
 
 
-  //compute total schedule and actual
-  const totalSchedule = firstUnitSchedule + secondUnitSchedule + prepSchedule + travelSchedule + idleSchedule + holidaySchedule;
-  const totalActual = firstUnitActual + secondUnitActual + prepActual + travelActual + idleActual + holidayActual;
-
+  //compute total schedule and actual for the summary and parse to number before adding
+  const totalSchedule = Number(firstUnitSchedule) + Number(secondUnitSchedule) + Number(prepSchedule) + Number(travelSchedule) + Number(idleSchedule) + Number(holidaySchedule);
+  const totalActual = Number(firstUnitActual) + Number(secondUnitActual) + Number(prepActual) + Number(travelActual) + Number(idleActual) + Number(holidayActual);
 
   return (
     <>
@@ -44,28 +43,70 @@ const ActualScheduleForm = ({ className }) => {
           </div>
           <div className="grid grid-cols-3 grid-rows-7 gap-4 gap-y-2 pt-2">
             <p>1st Unit</p>
-            <TextInputField maxLength="8" label="firstUnitSchedule" value={firstUnitSchedule} />
-            <TextInputField maxLength="8" label="firstUnitActual" value={firstUnitActual} />
+            <TextInputField
+              maxLength="8"
+              label="firstUnitSchedule"
+              //if the value is empty, display 0 instead
+              value={firstUnitSchedule === '' ? '0' : firstUnitSchedule} />
+            <TextInputField
+              maxLength="8"
+              label="firstUnitActual"
+              value={firstUnitActual === '' ? '0' : firstUnitActual} />
             <p>2nd Unit</p>
-            <TextInputField maxLength="8" label="secondUnitSchedule" value={secondUnitSchedule} />
-            <TextInputField maxLength="8" label="secondUnitActual" value={secondUnitActual} />
-
+            <TextInputField
+              maxLength="8"
+              label="secondUnitSchedule"
+              value={secondUnitSchedule === '' ? '0' : secondUnitSchedule} />
+            <TextInputField
+              maxLength="8"
+              label="secondUnitActual"
+              value={secondUnitActual === '' ? '0' : secondUnitActual} />
             <p>Prep</p>
-            <TextInputField maxLength="8" label="prepSchedule" value={prepSchedule} />
-            <TextInputField maxLength="8" label="prepActual" value={prepActual} />
+            <TextInputField
+              maxLength="8"
+              label="prepSchedule"
+              value={prepSchedule === '' ? '0' : prepSchedule} />
+            <TextInputField
+              maxLength="8"
+              label="prepActual"
+              value={prepActual === '' ? '0' : prepActual} />
             <p>Travel</p>
-            <TextInputField maxLength="8" label="travelSchedule" value={travelSchedule} />
-            <TextInputField maxLength="8" label="travelActual" value={travelActual} />
+            <TextInputField
+              maxLength="8"
+              label="travelSchedule"
+              value={travelSchedule === '' ? '0' : travelSchedule} />
+            <TextInputField
+              maxLength="8"
+              label="travelActual"
+              value={travelActual === '' ? '0' : travelActual} />
             <p>Idle</p>
 
-            <TextInputField maxLength="8" label="idleSchedule" value={idleSchedule} />
-            <TextInputField maxLength="8" label="idleActual" value={idleActual} />
+            <TextInputField
+              maxLength="8"
+              label="idleSchedule"
+              value={idleSchedule === '' ? '0' : idleSchedule} />
+            <TextInputField
+              maxLength="8"
+              label="idleActual"
+              value={idleActual === '' ? '0' : idleActual} />
             <p>Holiday</p>
-            <TextInputField maxLength="8" label="holidaySchedule" value={holidaySchedule} />
-            <TextInputField maxLength="8" label="holidayActual" value={holidayActual} />
+            <TextInputField
+              maxLength="8"
+              label="holidaySchedule"
+              value={holidaySchedule === '' ? '0' : holidaySchedule} />
+            <TextInputField
+              maxLength="8"
+              label="holidayActual"
+              value={holidayActual === '' ? '0' : holidayActual} />
             <p>Total</p>
-            <TextInputField maxLength="8" label="totalSchedule" value={totalSchedule} />
-            <TextInputField maxLength="8" label="totalActual" value={totalActual} />
+            <TextInputField
+              maxLength="8"
+              label="totalSchedule"
+              value={totalSchedule === '' ? '0' : totalSchedule} />
+            <TextInputField
+              maxLength="8"
+              label="totalActual"
+              value={totalActual === '' ? '0' : totalActual} />
 
           </div>
         </div>
