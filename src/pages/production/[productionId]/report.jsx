@@ -23,6 +23,7 @@ import RollsForm from "~/components/report/RollsForm";
 import CastTimeLogForm from "~/components/report/CastTimeLogForm";
 import Accordion from "~/components/report/Accordion";
 import ScenesShotForm from "~/components/report/ScenesShotForm";
+import SampleForm from "~/components/report/SampleForm";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
