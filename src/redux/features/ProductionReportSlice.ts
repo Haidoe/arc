@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type {
-  Rolls,
   ProductionReport,
   Extras,
   CastTimeLog,
   Scenes,
   scheduleForDay,
   ActualSchedule,
+  Rolls,
 } from "@prisma/client";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
