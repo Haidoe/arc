@@ -90,7 +90,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
 
               {/* Accordion Crud */}
               <AccordionCrud title={"Cast Time Log Schedule"} defaultOpen={true} >
-                <CastTimeLogForm />
+                <CastTimeLogForm productionInfo={productionInfo} />
               </AccordionCrud>
 
               <Accordion title="Scenes Shot" defaultOpen>
