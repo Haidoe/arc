@@ -53,7 +53,32 @@ const initialState = {
         actual: null,
       },
     },
-    rolls: {},
+    rolls: {
+      scriptSupervisor: null,
+      dataWrangler: null,
+      entries: {
+        aCam: {
+          previously: null,
+          today: null,
+          toDate: null,
+        },
+        bCam: {
+          previously: null,
+          today: null,
+          toDate: null,
+        },
+        cCam: {
+          previously: null,
+          today: null,
+          toDate: null,
+        },
+        aSound: {
+          previously: null,
+          today: null,
+          toDate: null,
+        },
+      },
+    },
     extras: Array<Extras>(),
     castTimeLog: Array<CastTimeLog>(),
     shotScene: Array<Scenes>(),
@@ -79,10 +104,17 @@ export const productionReport = createSlice({
       };
     },
     updateActualSchedule: (state, action: PayloadAction<ActualSchedule>) => {
-      console.log("Updating actualSchedule", action.payload);
       state.data = {
         ...state.data,
         actualSchedule: {
+          ...action.payload,
+        },
+      };
+    },
+    updateRolls: (state, action: PayloadAction<Rolls>) => {
+      state.data = {
+        ...state.data,
+        rolls: {
           ...action.payload,
         },
       };
@@ -94,6 +126,7 @@ export const {
   setProductionReport,
   updateScheduleForDay,
   updateActualSchedule,
+  updateRolls,
 } = productionReport.actions;
 
 export default productionReport.reducer;

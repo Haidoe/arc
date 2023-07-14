@@ -79,6 +79,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
               <NotShotSceneForm />
             </AccordionModal>
 
+            <RollsForm />
             {/* <AccordionModal title="Rolls" defaultOpen={true} modalWidth={50}>
               <RollsForm />
             </AccordionModal> */}
