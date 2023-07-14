@@ -14,7 +14,28 @@
   "shotScene": [],
   "castTimeLog": [],
   "extras": [],
-  "rolls": [],
+  "rolls": {
+    "ACam": {
+      "previously": null,
+      "today": null,
+      "toDate": null
+    },
+    "BCam": {
+      "previously": null,
+      "today": null,
+      "toDate": null
+    },
+    "CCam": {
+      "previously": null,
+      "today": null,
+      "toDate": null
+    },
+    "ASound": {
+      "previously": null,
+      "today": null,
+      "toDate": null
+    }
+  },
   "actualSchedule": {
     "firstUnitInput": {
       "schedule": null,

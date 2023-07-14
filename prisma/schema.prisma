@@ -112,17 +112,36 @@ type NotShotScene {
   description String
 }
 
+// type Rolls {
+//   scriptSupervisor String
+//   dataWrangler String
+//   entries RollEntries[]
+// }
+
+// type RollEntries {
+//   name String
+//   previously Int
+//   today Int
+//   toDate Int
+// }
+
 type Rolls {
   scriptSupervisor String
   dataWrangler String
-  entries RollEntries[]
+  entries Entries
 }
 
-type RollEntries {
-  name String
-  previously Int
-  today Int
-  toDate Int
+type Entries {
+aCam EntriesInput?
+bCam EntriesInput?
+cCam EntriesInput?
+aSound EntriesInput?
+}
+
+type EntriesInput {
+previously Int
+today Int
+toDate Int
 }
 
 
@@ -140,8 +159,6 @@ type ExtraSchedule {
   rate Int
   rateType String
 }
-
-
 
 type Scenes {
   number Int
@@ -198,7 +215,7 @@ type WorkScheduleObject {
 
 type ActualSchedule  {
   firstUnitInput ActualScheduleInput?
-  secondUnitInput ActualScheduleInput
+  secondUnitInput ActualScheduleInput?
   prep ActualScheduleInput?
   travel ActualScheduleInput?
   idle ActualScheduleInput?
