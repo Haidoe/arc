@@ -128,7 +128,7 @@ type NotShotScene {
 type Rolls {
   scriptSupervisor String?
   dataWrangler String?
-  entries Entries
+  entries Entries?
 }
 
 type Entries {
