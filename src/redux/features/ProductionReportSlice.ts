@@ -87,6 +87,15 @@ export const productionReport = createSlice({
         },
       };
     },
+    updateCastTimeLog: (state, action: PayloadAction<Array<CastTimeLog>>) => { 
+      console.log("Updating castTimeLog", action.payload);
+
+      state.data = {
+        ...state.data,
+        castTimeLog: action.payload
+      };
+
+    }
   },
 });
 
@@ -94,6 +103,7 @@ export const {
   setProductionReport,
   updateScheduleForDay,
   updateActualSchedule,
+  updateCastTimeLog
 } = productionReport.actions;
 
 export default productionReport.reducer;

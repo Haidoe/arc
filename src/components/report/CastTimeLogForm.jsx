@@ -16,7 +16,7 @@ import AccordionCrudModalDelete from "~/components/report/AccordionCrudModalDele
 import { ISOToTimeString } from "~/helper/timeInputParser";
 
 // CastTimeLog component form
-const CastTimeLogForm = () => {
+const CastTimeLogForm = ({ productionInfo }) => {
   // to show or hide the add modal
   const [showAddModal, setShowAddModal] = useState(false);
 
@@ -29,59 +29,6 @@ const CastTimeLogForm = () => {
   const castTimeLogInfo = useSelector(
     (state) => state.productionReport.data.castTimeLog
   );
-
-  const dispatch = useDispatch();
-
-  // const updateCastTimeLogArray = (index, object) => {
-  //   const updatedArray = [...castTimeLogInfo];
-  //   updatedArray[index] = object;
-  //   // todo
-  //   // dispatch(updateCastTimeLog(updatedArray)); // Dispatch the action to update the state
-  // };
-
-  // const deleteCastTimeLogRow = (index) => {
-  //   const updatedArray = castTimeLogInfo.filter((item, i) => i !== index);
-  //   console.log(updatedArray);
-  //   // todo
-  //   // dispatch(updateCastTimeLog(updatedArray)); // Dispatch the action to update the state
-  // };
-
-  const CastTimeLogInfo = [
-    {
-      cast: "Actor1",
-      character: "Character1",
-      status: "Status1",
-      workSchedule: {
-        muReport: "2023-07-01T07:00:00.000Z",
-        onSet: "2023-07-01T12:00:00.000Z",
-        setWrap: "2023-07-04T19:00:00.000Z",
-        setDismiss: "2023-07-04T20:00:00.000Z",
-      },
-      meals: {
-        lunchIn: "2023-07-02T09:00:00.000Z",
-        lunchOut: "2023-07-02T10:00:00.000Z",
-        secondMealIn: "2023-07-04T20:00:00.000Z",
-        secondMealOut: "2023-07-04T21:00:00.000Z",
-      },
-    },
-    {
-      cast: "Actor2",
-      character: "Character2",
-      status: "Status2",
-      workSchedule: {
-        muReport: "2023-07-01T07:00:00.000Z",
-        onSet: "2023-07-01T12:30:00.000Z",
-        setWrap: "2023-07-04T19:30:00.000Z",
-        setDismiss: "2023-07-04T20:30:00.000Z",
-      },
-      meals: {
-        lunchIn: "2023-07-02T09:30:00.000Z",
-        lunchOut: "2023-07-02T10:30:00.000Z",
-        secondMealIn: "2023-07-04T20:30:00.000Z",
-        secondMealOut: "2023-07-04T21:30:00.000Z",
-      },
-    },
-  ];
 
   // ================================> Form event functions
   function addClickHandler() {
@@ -103,36 +50,25 @@ const CastTimeLogForm = () => {
   }
 
   // ================================> Modal event functions
-  function OnUpdateHandler(idx, action, data) {
-    if (action == "add") {
-      // on add
-      const extendedArray = [...castTimeLogInfo];
-      extendedArray.push(data);
 
-      console.log(extendedArray);
-    } else if (action == "update") {
-      // on update`
-      const updatedArray = [...castTimeLogInfo];
-      updatedArray[idx] = data;
-
-      console.log(updatedArray);
-    } else {
-      // on cancel
-      console.log("cancel");
-    }
+  function hideAddModal() {
+    console.log("hide modal hit");
+    setSelectedIndex(undefined);
+    setShowAddModal(false);
   }
 
   // on modal close set selected index to undefined
 
   function deleteConfirmationHandler(idx, action) {
-    if (action == "delete") {
-      const updatedArray = castTimeLogInfo.filter((item, i) => i !== idx);
-      console.log(updatedArray);
-    } else {
-      // cancel
-      setSelectedIndex(undefined);
-      setShowDeleteModal(false);
-    }
+    alert("Pending Delete Confirmation Modal");
+    // if (action == "delete") {
+    //   const updatedArray = castTimeLogInfo.filter((item, i) => i !== idx);
+    //   console.log(updatedArray);
+    // } else {
+    //   // cancel
+    //   setSelectedIndex(undefined);
+    //   setShowDeleteModal(false);
+    // }
   }
 
   return (
@@ -140,8 +76,10 @@ const CastTimeLogForm = () => {
       {showAddModal && (
         <AccordionCrudModalAdd
           type="castTimeLog"
-          onUpdateRow={OnUpdateHandler}
+          modalWidth={90}
+          hideAddModal={hideAddModal}
           selectedIndex={selectedIndex}
+          productionInfo={productionInfo}
         />
       )}
 
@@ -204,9 +142,9 @@ const CastTimeLogForm = () => {
                       </th>
                     </tr>
                   </thead>
-                  {CastTimeLogInfo?.length > 0 && (
+                  {castTimeLogInfo?.length > 0 && (
                     <tbody className="divide-y divide-gray-200">
-                      {CastTimeLogInfo.map((row, idx) => (
+                      {castTimeLogInfo.map((row, idx) => (
                         <tr key={idx} onClick={(e) => rowClickHandler(e, idx)}>
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                             {idx + 1}
