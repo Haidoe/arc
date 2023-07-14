@@ -1,5 +1,6 @@
 // timeString to ISO 8601 time format
 function timeStringToISO(timeString) {
+  if (timeString === "") return "";
   // Create a new Date object and set the time
   const date = new Date();
   date.setHours(Number(timeString.substr(0, 2)));
@@ -15,6 +16,7 @@ function timeStringToISO(timeString) {
 // ISO 8601 time format to timeString
 function ISOToTimeString(utcDateString) {
 
+  if (utcDateString === "") return "";
   // Create a new Date object from the UTC date string
   const date = new Date(utcDateString);
 
