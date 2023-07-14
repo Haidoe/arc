@@ -15,22 +15,22 @@
   "castTimeLog": [],
   "extras": [],
   "rolls": {
-    "ACam": {
+    "aCam": {
       "previously": null,
       "today": null,
       "toDate": null
     },
-    "BCam": {
+    "bCam": {
       "previously": null,
       "today": null,
       "toDate": null
     },
-    "CCam": {
+    "cCam": {
       "previously": null,
       "today": null,
       "toDate": null
     },
-    "ASound": {
+    "aSound": {
       "previously": null,
       "today": null,
       "toDate": null
