@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type {
   Rolls,
   ProductionReport,
@@ -5,6 +6,7 @@ import type {
   CastTimeLog,
   Scenes,
   scheduleForDay,
+  ActualSchedule,
 } from "@prisma/client";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
@@ -76,10 +78,22 @@ export const productionReport = createSlice({
         },
       };
     },
+    updateActualSchedule: (state, action: PayloadAction<ActualSchedule>) => {
+      console.log("Updating actualSchedule", action.payload);
+      state.data = {
+        ...state.data,
+        actualSchedule: {
+          ...action.payload,
+        },
+      };
+    },
   },
 });
 
-export const { setProductionReport, updateScheduleForDay } =
-  productionReport.actions;
+export const {
+  setProductionReport,
+  updateScheduleForDay,
+  updateActualSchedule,
+} = productionReport.actions;
 
 export default productionReport.reducer;
