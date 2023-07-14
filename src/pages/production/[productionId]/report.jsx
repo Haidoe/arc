@@ -32,6 +32,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
   useEffect(() => {
     //Puting the report data in redux store
     dispatch(setProductionReport(report));
+    // console.log(report);
   }, []);
 
   const pageContainerClasses = isExpanded
@@ -47,7 +48,8 @@ const ProductionReportPage = ({ productionInfo, report }) => {
       <div
         className={` flex flex-1 bg-backgroundArc pt-8 transition-all ${pageContainerClasses}`}
       >
-        <aside className="relative  flex flex-shrink-0 flex-col bg-arc md:basis-[384px]">
+
+        {/* <aside className="relative  flex flex-shrink-0 flex-col bg-arc md:basis-[384px]">
           <Sidebar data={productionInfo} isContentVisible={!isExpanded} />
 
           <button
@@ -61,24 +63,14 @@ const ProductionReportPage = ({ productionInfo, report }) => {
                 : `Expand Production Info Sidebar`}
             </span>
           </button>
-        </aside>
+        </aside> */}
 
         <div>
           <div className="g grid flex-grow grid-cols-2 gap-4 px-16">
-            <AccordionModal
-              title="Schedule Of The Day"
-              defaultOpen={true}
-              modalWidth={50}
-            >
-              <ScheduleOfTheDayForm />
-            </AccordionModal>
-            <AccordionModal
-              title="Actual Schedule"
-              defaultOpen={true}
-              modalWidth={50}
-            >
-              <ActualScheduleForm />
-            </AccordionModal>
+            <ScheduleOfTheDayForm />
+
+            <ActualScheduleForm />
+
 
             <AccordionModal
               title="Not Shot Scene"
@@ -108,7 +100,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </div>
         </div>
       </div>
-    </MainPageLayout>
+    </MainPageLayout >
   );
 };
 

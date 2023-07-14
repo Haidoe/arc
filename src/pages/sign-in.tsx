@@ -3,7 +3,7 @@ import { clerkClient, getAuth } from "@clerk/nextjs/server";
 import { SignInButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Button from "~/components/Button";
-import TextInputField from "~/components/TextInputField";
+import TextInputField from "~/components/TextInputField/NonRefBorderedTextField";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Head from "next/head";
 
@@ -49,9 +49,9 @@ const SignInPage: NextPage = () => {
               action="#"
               className="flex w-full max-w-[450px] flex-col gap-6 sm:gap-8"
             >
-              <TextInputField label="Email" inputType="Border" />
+              <TextInputField label="Email" />
 
-              <TextInputField label="Password" inputType="Border" />
+              <TextInputField label="Password" />
 
               <div className="flex justify-center">
                 <Button
