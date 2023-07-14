@@ -15,25 +15,29 @@
   "castTimeLog": [],
   "extras": [],
   "rolls": {
-    "aCam": {
-      "previously": null,
-      "today": null,
-      "toDate": null
-    },
-    "bCam": {
-      "previously": null,
-      "today": null,
-      "toDate": null
-    },
-    "cCam": {
-      "previously": null,
-      "today": null,
-      "toDate": null
-    },
-    "aSound": {
-      "previously": null,
-      "today": null,
-      "toDate": null
+    "scriptSupervisor": null,
+    "dataWrangler": null,
+    "entries": {
+      "aCam": {
+        "previously": null,
+        "today": null,
+        "toDate": null
+      },
+      "bCam": {
+        "previously": null,
+        "today": null,
+        "toDate": null
+      },
+      "cCam": {
+        "previously": null,
+        "today": null,
+        "toDate": null
+      },
+      "aSound": {
+        "previously": null,
+        "today": null,
+        "toDate": null
+      }
     }
   },
   "actualSchedule": {

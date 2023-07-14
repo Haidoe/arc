@@ -104,21 +104,19 @@
       }
     }
   ],
-  "rolls": [
-    {
-      "scriptSupervisor": "Supervisor1",
-      "dataWrangler": "Wrangler1",
-      "entries": [
-        {
-          "aCam": {
-            "previously": 10,
-            "today": 5,
-            "toDate": 15
-          }
+  "rolls": {
+    "scriptSupervisor": "Supervisor1",
+    "dataWrangler": "Wrangler1",
+    "entries": [
+      {
+        "aCam": {
+          "previously": 10,
+          "today": 5,
+          "toDate": 15
         }
-      ]
-    }
-  ],
+      }
+    ]
+  },
   "actualSchedule": {
     "firstUnitInput": {
       "schedule": 5,

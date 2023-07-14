@@ -103,7 +103,7 @@ model ProductionReport {
   extras Extras[]  
 
   // form fields - Type 2 -> Mixed
-  rolls Rolls[]
+  rolls Rolls
   actualSchedule ActualSchedule
 }
 
