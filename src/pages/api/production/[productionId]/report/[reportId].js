@@ -17,6 +17,9 @@ const postHandler = async (req, res) => {
     const { productionId, reportId } = req.query;
     const dailyReport = req.body.dailyReport;
 
+    //Prisma does not allow to update id and id property must be removed
+    delete dailyReport.id;
+
     // using prisma update an exiisting daily report
     const updateReportRsp = await prisma.productionReport.update({
       where: {
