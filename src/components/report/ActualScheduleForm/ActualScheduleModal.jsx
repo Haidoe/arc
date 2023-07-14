@@ -15,7 +15,7 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
 
   //For default value of the input field
   const actualSchedule = data.actualSchedule;
-  const getValueOrDefault = (obj, property) => obj[property] ? obj[property] : ' ';
+  const getValueOrDefault = (obj, property) => obj[property] ? obj[property] : '';
   const firstUnitSchedule = getValueOrDefault(actualSchedule.firstUnitInput, 'schedule');
   const firstUnitActual = getValueOrDefault(actualSchedule.firstUnitInput, 'actual');
   const secondUnitSchedule = getValueOrDefault(actualSchedule.secondUnitInput, 'schedule');
@@ -101,36 +101,36 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
             <div className="grid grid-cols-3 grid-rows-7 gap-4 gap-y-2 pt-2">
               <p>1st Unit</p>
               <TextInputField maxLength="8"
-                ref={firstUnitScheduleRef} defaultValue={firstUnitSchedule} />
+                ref={firstUnitScheduleRef} defaultValue={firstUnitSchedule === '' ? '0' : firstUnitSchedule} />
 
               <TextInputField maxLength="8"
-                ref={firstUnitActualRef} defaultValue={firstUnitActual} />
+                ref={firstUnitActualRef} defaultValue={firstUnitActual === '' ? '0' : firstUnitActual} />
               <p>2nd Unit</p>
               <TextInputField maxLength="8"
-                ref={secondUnitScheduleRef} defaultValue={secondUnitSchedule} />
+                ref={secondUnitScheduleRef} defaultValue={secondUnitSchedule === '' ? '0' : secondUnitSchedule} />
               <TextInputField maxLength="8"
-                ref={secondUnitActualRef} defaultValue={secondUnitActual} />
+                ref={secondUnitActualRef} defaultValue={secondUnitActual === '' ? '0' : secondUnitActual} />
 
               <p>Prep</p>
               <TextInputField maxLength="8"
-                ref={prepScheduleRef} defaultValue={prepSchedule} />
+                ref={prepScheduleRef} defaultValue={prepSchedule === '' ? '0' : prepSchedule} />
               <TextInputField maxLength="8"
-                ref={prepActualRef} defaultValue={prepActual} />
+                ref={prepActualRef} defaultValue={prepActual === '' ? '0' : prepActual} />
               <p>Travel</p>
               <TextInputField maxLength="8"
-                ref={travelScheduleRef} defaultValue={travelSchedule} />
+                ref={travelScheduleRef} defaultValue={travelSchedule === '' ? '0' : travelSchedule} />
               <TextInputField maxLength="8"
-                ref={travelActualRef} defaultValue={travelActual} />
+                ref={travelActualRef} defaultValue={travelActual === '' ? '0' : travelActual} />
               <p>Idle</p>
               <TextInputField maxLength="8"
-                ref={idleScheduleRef} defaultValue={idleSchedule} />
+                ref={idleScheduleRef} defaultValue={idleSchedule === '' ? '0' : idleSchedule} />
               <TextInputField maxLength="8"
-                ref={idleActualRef} defaultValue={idleActual} />
+                ref={idleActualRef} defaultValue={idleActual === '' ? '0' : idleActual} />
               <p>Holiday</p>
               <TextInputField maxLength="8"
-                ref={holidayScheduleRef} defaultValue={holidaySchedule} />
+                ref={holidayScheduleRef} defaultValue={holidaySchedule === '' ? '0' : holidaySchedule} />
               <TextInputField maxLength="8"
-                ref={holidayActualRef} defaultValue={holidayActual} />
+                ref={holidayActualRef} defaultValue={holidayActual === '' ? '0' : holidayActual} />
             </div>
           </div>
         </Accordion>
