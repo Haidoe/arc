@@ -139,9 +139,9 @@ aSound EntriesInput?
 }
 
 type EntriesInput {
-previously Int
-today Int
-toDate Int
+previously Int?
+today Int?
+toDate Int?
 }
 
 
