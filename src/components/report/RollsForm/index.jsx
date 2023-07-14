@@ -1,5 +1,5 @@
 import React from 'react'
-import TextInputField from '../TextInputField'
+import TextInputField from '~/components/TextInputField'
 
 const RollsForm = () => {
   return (
@@ -17,8 +17,8 @@ const RollsForm = () => {
         <div className="grid col-span-2"></div>
         <div className="font-bold">A Cam</div>
         <div className="font-bold">B Cam</div>
+        <div className="font-bold">C Cam</div>
         <div className="font-bold">A Sound</div>
-        <div className="font-bold">B Sound</div>
         <div className="grid col-span-2 font-bold">Previously</div>
         <TextInputField maxLength="8" />
         <TextInputField maxLength="8" />
