@@ -103,7 +103,7 @@ model ProductionReport {
   extras Extras[]  
 
   // form fields - Type 2 -> Mixed
-  rolls Rolls[]
+  rolls Rolls
   actualSchedule ActualSchedule
 }
 
@@ -126,9 +126,9 @@ type NotShotScene {
 // }
 
 type Rolls {
-  scriptSupervisor String
-  dataWrangler String
-  entries Entries
+  scriptSupervisor String?
+  dataWrangler String?
+  entries Entries?
 }
 
 type Entries {
@@ -139,9 +139,9 @@ aSound EntriesInput?
 }
 
 type EntriesInput {
-previously Int
-today Int
-toDate Int
+previously Int?
+today Int?
+toDate Int?
 }
 
 

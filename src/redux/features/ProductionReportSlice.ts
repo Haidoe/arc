@@ -53,7 +53,7 @@ const initialState = {
         actual: null,
       },
     },
-    rolls: Array<Rolls>(),
+    rolls: {},
     extras: Array<Extras>(),
     castTimeLog: Array<CastTimeLog>(),
     shotScene: Array<Scenes>(),
