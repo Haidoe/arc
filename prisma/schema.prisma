@@ -126,9 +126,9 @@ type NotShotScene {
 // }
 
 type Rolls {
-  scriptSupervisor String
-  dataWrangler String
-  entries Entries
+  scriptSupervisor String?
+  dataWrangler String?
+  entries Entries?
 }
 
 type Entries {
