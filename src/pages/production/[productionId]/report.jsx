@@ -17,13 +17,10 @@ import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Sidebar from "~/components/production/Information";
 import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
 import ActualScheduleForm from "~/components/report/ActualScheduleForm";
-import NotShotSceneForm from "~/components/report/NotShotSceneForm";
-import AccordionModal from "~/components/report/AccordionModal";
 import AccordionCrud from "~/components/report/AccordionCrud";
 import RollsForm from "~/components/report/RollsForm";
 import CastTimeLogForm from "~/components/report/CastTimeLogForm";
-import Accordion from "~/components/report/Accordion";
-import ScenesShotForm from "~/components/report/ScenesShotForm";
+import ScenesShotForm from "~/components/report/ScenesShotForm.jsx";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
@@ -77,16 +74,18 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </div>
           {/* Span 2 Grid */}
           <div>
-            <div className="g grid flex-grow grid-cols-1 gap-4 px-16">
+            <div className="mt-4 g grid flex-grow grid-cols-1 gap-4 px-16">
 
-              {/* Accordion Crud */}
+              {/* Cast Time Log Form */}
               <AccordionCrud title={"Cast Time Log Schedule"} defaultOpen={true} >
                 <CastTimeLogForm productionInfo={productionInfo} />
               </AccordionCrud>
 
-              <Accordion title="Scenes Shot" defaultOpen>
-                <ScenesShotForm />
-              </Accordion>
+              {/* Scenes Shot Form */}
+              <AccordionCrud title={"Scenes Shot Form"} defaultOpen={true} >
+                <ScenesShotForm productionInfo={productionInfo} />
+              </AccordionCrud>
+
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import Chevron from "~/assets/icons/Chevron.svg";
 
 // import upserts
 import CastTimeLogUpsert from "~/components/report/CastTimeLogUpsert";
+import ScenesShotUpsert from "~/components/report/SceneShotUpsert";
 
 const AccordionCrudModalAdd = ({
   title,
@@ -67,6 +68,13 @@ const AccordionCrudModalAdd = ({
                         {/* Conditionally rendering upserts */}
                         {type == "castTimeLog" && (
                           <CastTimeLogUpsert
+                            closeModal={closeModal}
+                            idx={selectedIndex}
+                            productionInfo={productionInfo}
+                          />
+                        )}
+                        {type == "shotScene" && (
+                          <ScenesShotUpsert
                             closeModal={closeModal}
                             idx={selectedIndex}
                             productionInfo={productionInfo}
