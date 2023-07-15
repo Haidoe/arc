@@ -48,8 +48,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
       <div
         className={` flex flex-1 bg-backgroundArc pt-8 transition-all ${pageContainerClasses}`}
       >
-
-        {/* <aside className="relative  flex flex-shrink-0 flex-col bg-arc md:basis-[384px]">
+        <aside className="relative  flex flex-shrink-0 flex-col bg-arc md:basis-[384px]">
           <Sidebar data={productionInfo} isContentVisible={!isExpanded} />
 
           <button
@@ -63,7 +62,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
                 : `Expand Production Info Sidebar`}
             </span>
           </button>
-        </aside> */}
+        </aside>
 
         <div>
           <div className="g grid flex-grow grid-cols-2 gap-4 px-16">
@@ -71,15 +70,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
 
             <ActualScheduleForm />
 
-
-            <AccordionModal
-              title="Not Shot Scene"
-              defaultOpen={true}
-              modalWidth={50}
-            >
-              <NotShotSceneForm />
-            </AccordionModal>
-
+            <RollsForm />
             {/* <AccordionModal title="Rolls" defaultOpen={true} modalWidth={50}>
               <RollsForm />
             </AccordionModal> */}
@@ -100,7 +91,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </div>
         </div>
       </div>
-    </MainPageLayout >
+    </MainPageLayout>
   );
 };
 

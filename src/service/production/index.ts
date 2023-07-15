@@ -34,3 +34,29 @@ export const getProductionReportById = async (
 
   return report;
 };
+
+export const updateProductionReportById = async (data: ProductionReport) => {
+  if (!data.id || !data.productionId) {
+    throw new Error("Invalid data");
+  }
+
+  const url = getURL(`/api/production/${data.productionId}/report/${data.id}`);
+
+  const config = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ dailyReport: data }),
+  };
+
+  const response = await fetch(url, config);
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  const report = (await response.json()) as Promise<ProductionReport>;
+
+  return report;
+};
