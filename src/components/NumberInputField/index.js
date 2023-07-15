@@ -5,7 +5,7 @@ import Borderless from "./Borderless";
 import { forwardRef } from "react";
 
 // eslint-disable-next-line react/display-name
-const TextInputField = forwardRef(({ inputType, ...others }, ref) => {
+const NumberInputField = forwardRef(({ inputType, ...others }, ref) => {
   switch (inputType) {
     case "Border":
       return <Border {...others} ref={ref} />;
@@ -18,4 +18,4 @@ const TextInputField = forwardRef(({ inputType, ...others }, ref) => {
   }
 });
 
-export default TextInputField;
+export default NumberInputField;
