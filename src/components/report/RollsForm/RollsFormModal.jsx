@@ -1,19 +1,19 @@
-import React from 'react'
-import { useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from "react";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 //Components
-import Modal from '~/components/Modal'
+import Modal from "~/components/Modal";
 import Accordion from "../Accordion";
-import TextInputField from '~/components/TextInputField'
+import TextInputField from "~/components/TextInputField";
 
 //redux
-import { updateRolls } from '~/redux/features/ProductionReportSlice';
+import { updateRolls } from "~/redux/features/ProductionReportSlice";
+import { updateProductionReportById } from "~/service/production";
 
 const RollsFormModal = ({ isOpen, onClose }) => {
-
-  const dispatch = useDispatch()
-  const data = useSelector((state) => state.productionReport.data)
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.productionReport.data);
 
   //For default value of the input field
   const rolls = data.rolls;
@@ -67,85 +67,129 @@ const RollsFormModal = ({ isOpen, onClose }) => {
 
   //for redux update
   const handleReduxUpdate = () => {
-
     let rolls = {
       ...data.rolls,
       scriptSupervisor: scriptSupervisorRef.current.value,
       dataWrangler: dataWranglerRef.current.value,
       entries: {
         aCam: {
-          previously: aCamPreviouslyRef.current.value,
-          today: aCamTodayRef.current.value
+          previously: parseInt(aCamPreviouslyRef.current.value ?? 0),
+          today: parseInt(aCamTodayRef.current.value ?? 0),
         },
         bCam: {
-          previously: bCamPreviouslyRef.current.value,
-          today: bCamTodayRef.current.value
+          previously: parseInt(bCamPreviouslyRef.current.value ?? 0),
+          today: parseInt(bCamTodayRef.current.value ?? 0),
         },
         cCam: {
-          previously: cCamPreviouslyRef.current.value,
-          today: cCamTodayRef.current.value
+          previously: parseInt(cCamPreviouslyRef.current.value ?? 0),
+          today: parseInt(cCamTodayRef.current.value ?? 0),
         },
         aSound: {
-          previously: aSoundPreviouslyRef.current.value,
-          today: aSoundTodayRef.current.value
-        }
-      }
-    }
+          previously: parseInt(aSoundPreviouslyRef.current.value ?? 0),
+          today: parseInt(aSoundTodayRef.current.value ?? 0),
+        },
+      },
+    };
 
-    dispatch(updateRolls(rolls))
+    dispatch(updateRolls(rolls));
 
-    onClose()
-  }
+    updateProductionReportById({
+      ...data,
+      rolls,
+    });
 
+    onClose();
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={handleReduxUpdate}>
-      <div className="w-[50vw] mx-[-25vw]">
+      <div className="mx-[-25vw] w-[50vw]">
         <Accordion
           title="Rolls"
           defaultOpen={true}
           readOnlyState={false}
           insideModal={true}
         >
-          <form action="" className={`text-contrast-dark text-base font-normal `} >
-            <div className="pb-2 border-b border-primary-base">
+          <form
+            action=""
+            className={`text-base font-normal text-contrast-dark `}
+          >
+            <div className="border-b border-primary-base pb-2">
               <div className="grid grid-cols-6 grid-rows-2 gap-4 gap-y-2">
-                <div className="grid col-span-2">Script Supervisor</div>
-                <TextInputField className="grid col-span-4 font-bold" ref={scriptSupervisorRef} defaultValue={scriptSupervisor} />
-                <div className="grid col-span-2">Data Wrangler</div>
-                <TextInputField className="grid col-span-4 font-bold" ref={dataWranglerRef} defaultValue={dataWrangler} />
+                <div className="col-span-2 grid">Script Supervisor</div>
+                <TextInputField
+                  className="col-span-4 grid font-bold"
+                  ref={scriptSupervisorRef}
+                  defaultValue={scriptSupervisor}
+                />
+                <div className="col-span-2 grid">Data Wrangler</div>
+                <TextInputField
+                  className="col-span-4 grid font-bold"
+                  ref={dataWranglerRef}
+                  defaultValue={dataWrangler}
+                />
               </div>
             </div>
 
             <div className="grid grid-cols-6 grid-rows-4 gap-4 gap-y-2 pt-2">
-              <div className="grid col-span-2"></div>
+              <div className="col-span-2 grid"></div>
               <div className="font-bold">A Cam</div>
               <div className="font-bold">B Cam</div>
               <div className="font-bold">C Cam</div>
               <div className="font-bold">A Sound</div>
-              <div className="grid col-span-2 font-bold">Previously</div>
-              <TextInputField maxLength="3" ref={aCamPreviouslyRef} defaultValue={aCamPreviously} />
-              <TextInputField maxLength="3" ref={bCamPreviouslyRef} defaultValue={bCamPreviously} />
-              <TextInputField maxLength="3" ref={cCamPreviouslyRef} defaultValue={cCamPreviously} />
-              <TextInputField maxLength="3" ref={aSoundPreviouslyRef} defaultValue={aSoundPreviously} />
-              <div className="grid col-span-2 font-bold">Today</div>
-              <TextInputField maxLength="3" ref={aCamTodayRef} defaultValue={aCamToday} />
-              <TextInputField maxLength="3" ref={bCamTodayRef} defaultValue={bCamToday} />
-              <TextInputField maxLength="3" ref={cCamTodayRef} defaultValue={cCamToday} />
-              <TextInputField maxLength="3" ref={aSoundTodayRef} defaultValue={aSoundToday} />
-              <div className="grid col-span-2 font-bold">To Date</div>
+              <div className="col-span-2 grid font-bold">Previously</div>
+              <TextInputField
+                maxLength="3"
+                ref={aCamPreviouslyRef}
+                defaultValue={aCamPreviously}
+              />
+              <TextInputField
+                maxLength="3"
+                ref={bCamPreviouslyRef}
+                defaultValue={bCamPreviously}
+              />
+              <TextInputField
+                maxLength="3"
+                ref={cCamPreviouslyRef}
+                defaultValue={cCamPreviously}
+              />
+              <TextInputField
+                maxLength="3"
+                ref={aSoundPreviouslyRef}
+                defaultValue={aSoundPreviously}
+              />
+              <div className="col-span-2 grid font-bold">Today</div>
+              <TextInputField
+                maxLength="3"
+                ref={aCamTodayRef}
+                defaultValue={aCamToday}
+              />
+              <TextInputField
+                maxLength="3"
+                ref={bCamTodayRef}
+                defaultValue={bCamToday}
+              />
+              <TextInputField
+                maxLength="3"
+                ref={cCamTodayRef}
+                defaultValue={cCamToday}
+              />
+              <TextInputField
+                maxLength="3"
+                ref={aSoundTodayRef}
+                defaultValue={aSoundToday}
+              />
+              <div className="col-span-2 grid font-bold">To Date</div>
               <div className="font-bold">{aCamToDate}</div>
               <div className="font-bold">{bCamToDate}</div>
               <div className="font-bold">{cCamToDate}</div>
               <div className="font-bold">{aSoundToDate}</div>
             </div>
-
-          </form >
-
+          </form>
         </Accordion>
       </div>
     </Modal>
-  )
-}
+  );
+};
 
-export default RollsFormModal
+export default RollsFormModal;
