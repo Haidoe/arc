@@ -13,7 +13,7 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
       <Dialog open={isOpen} onClose={onClose} className="relative z-50">
         {/* The backdrop, rendered as a fixed sibling to the panel container */}
         <div
-          className="bg-[rgba(43, 43, 43, 0.70)]/7 fixed inset-0 backdrop-blur-[5px]"
+          className="fixed inset-0 bg-slate-500  bg-opacity-75 backdrop-blur-[8px]"
           aria-hidden="true"
         />
 
