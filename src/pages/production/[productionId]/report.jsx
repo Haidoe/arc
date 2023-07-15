@@ -61,32 +61,25 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </button>
         </aside>
 
-        <div>
-          <div className="g grid flex-grow grid-cols-2 gap-4 px-16">
+        <div className="grid flex-1 grid-cols-2 content-start gap-4 px-8 pb-8">
+          <div className="col-span-full">
             <ScheduleOfTheDayForm />
-
-            <ActualScheduleForm />
-
-            <RollsForm />
-            {/* <AccordionModal title="Rolls" defaultOpen={true} modalWidth={50}>
-              <RollsForm />
-            </AccordionModal> */}
           </div>
-          {/* Span 2 Grid */}
-          <div>
-            <div className="mt-4 g grid flex-grow grid-cols-1 gap-4 px-16">
 
-              {/* Cast Time Log Form */}
-              <AccordionCrud title={"Cast Time Log Schedule"} defaultOpen={true} >
-                <CastTimeLogForm productionInfo={productionInfo} />
-              </AccordionCrud>
+          <ActualScheduleForm />
 
-              {/* Scenes Shot Form */}
-              <AccordionCrud title={"Scenes Shot Form"} defaultOpen={true} >
-                <ScenesShotForm productionInfo={productionInfo} />
-              </AccordionCrud>
+          <RollsForm />
 
-            </div>
+          <div className="col-span-full">
+            <AccordionCrud title={"Cast Time Log Schedule"} defaultOpen={true}>
+              <CastTimeLogForm productionInfo={productionInfo} />
+            </AccordionCrud>
+          </div>
+
+          <div className="col-span-full">
+            <AccordionCrud title={"Scenes Shot Form"} defaultOpen={true}>
+              <ScenesShotForm productionInfo={productionInfo} />
+            </AccordionCrud>
           </div>
         </div>
       </div>
