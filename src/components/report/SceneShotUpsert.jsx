@@ -7,31 +7,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateShotScene } from "~/redux/features/ProductionReportSlice";
 import TextInputField from "../TextInputField";
 import NumberInputField from "../NumberInputField";
+import { updateProductionReportById } from "~/service/production";
 
 // status drop down
-const dayOrNightArray = [{name: "D"},{ name: "N"}];
+const dayOrNightArray = [{ name: "D" }, { name: "N" }];
 
 // handles add or update to in the modal
 const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
   // =======================> Resources
 
   const dispatch = useDispatch();
-  
+  const data = useSelector((state) => state.productionReport.data);
   const scenesShot = useSelector(
     (state) => state.productionReport.data.shotScene
   );
 
   const isUpdate = idx !== undefined ? true : false;
   const allScenesArray = productionInfo.scenes;
-  
+
   const allScenes = allScenesArray.map((item, idx) => {
     return {
       name: idx + 1,
-      page: item
+      page: item,
     };
   });
-
-  console.log(scenesShot[idx])
 
   // =======================> Initial Values
 
@@ -54,7 +53,9 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
   const casts_iv = isUpdate ? scenesShot[idx].casts.join(",") : "";
 
   // day or night
-  const dayOrNight_iv = isUpdate ? {name: scenesShot[idx].dayOrNight} : dayOrNightArray[0];
+  const dayOrNight_iv = isUpdate
+    ? { name: scenesShot[idx].dayOrNight }
+    : dayOrNightArray[0];
 
   // // pages
   // const pages_iv = isUpdate ? scenesShot[idx].pages : 0;
@@ -69,7 +70,6 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
   // set selected number
   const [selectedNumber, setSelectedNumber] = useState(allScenes[numberIdx]);
 
-
   // day or night drop down
   const [selectedDayOrNight, setSelectedDayOrNight] = useState(dayOrNight_iv);
 
@@ -78,7 +78,7 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
   const set = useRef(set_iv);
   const location = useRef(location_iv);
   const casts = useRef(casts_iv);
-  
+
   const pagesShot = useRef(pagesShot_iv);
   const pagesToday = useRef(pagesToday_iv);
 
@@ -88,20 +88,16 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
   function onUpdateHandler() {
     // prepare row
 
-    console.log("update handler");
-
     const row = {
       number: selectedNumber.name,
       set: set.current.value,
       location: location.current.value,
       casts: casts.current.value.split(","),
       dayOrNight: selectedDayOrNight.name,
-      pages: selectedNumber.page,
-      pagesShot: pagesShot.current.value,
-      pagesToday: pagesToday.current.value,
+      pages: parseInt(selectedNumber.page),
+      pagesShot: parseInt(pagesShot.current.value),
+      pagesToday: parseInt(pagesToday.current.value),
     };
-
-
 
     const allRows = [...scenesShot];
 
@@ -109,20 +105,23 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
 
     // pass to redux
     dispatch(updateShotScene(allRows));
+
+    updateProductionReportById({
+      ...data,
+      shotScene: allRows,
+    });
   }
 
   function onAddHandler() {
-    console.log("add handler");
-
     const row = {
       number: selectedNumber.name,
       set: set.current.value,
       location: location.current.value,
       casts: casts.current.value.split(","),
       dayOrNight: selectedDayOrNight.name,
-      pages: selectedNumber.page,
-      pagesShot: pagesShot.current.value,
-      pagesToday: pagesToday.current.value,
+      pages: parseInt(selectedNumber.page),
+      pagesShot: parseInt(pagesShot.current.value),
+      pagesToday: parseInt(pagesToday.current.value),
     };
 
     const allRows = [...scenesShot, row];
@@ -130,6 +129,10 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
     // pass to redux
     dispatch(updateShotScene(allRows));
 
+    updateProductionReportById({
+      ...data,
+      shotScene: allRows,
+    });
   }
 
   // modal handlers
@@ -143,10 +146,6 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
       closeModal();
     }
   }
-
-  // console.log(allScenesArray)
-  // console.log(selectedNumber)
-
 
   return (
     <>
@@ -210,7 +209,6 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
                 <tbody className="divide-y divide-gray-200">
                   <tr>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-
                       {/* TODO Drop Down of Scene Number */}
                       <DropDown
                         width="small"
@@ -222,16 +220,16 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       {/* TODO Set Name */}
                       <TextInputField
-                        className="px-2 py-2 border border-gray-500 rounded-sm"
+                        className="rounded-sm border border-gray-500 px-2 py-2"
                         label="Set Name"
                         defaultValue={set_iv}
                         ref={set}
                       />
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {/* TODO Location */}
+                      {/* TODO Location */}
                       <TextInputField
-                        className="px-2 py-2 border border-gray-500 rounded-sm"
+                        className="rounded-sm border border-gray-500 px-2 py-2"
                         label="Location"
                         defaultValue={location_iv}
                         ref={location}
@@ -240,7 +238,7 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       {/* TODO Cast */}
                       <TextInputField
-                        className="px-2 py-2 border border-gray-500 rounded-sm"
+                        className="rounded-sm border border-gray-500 px-2 py-2"
                         label="Cast"
                         defaultValue={casts_iv}
                         ref={casts}
@@ -264,7 +262,7 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       {/* TODO Page Shot */}
                       <NumberInputField
-                        className="px-2 py-2 border border-gray-500 rounded-sm"
+                        className="rounded-sm border border-gray-500 px-2 py-2"
                         label="Page Shot"
                         defaultValue={pagesShot_iv}
                         ref={pagesShot}
@@ -274,7 +272,7 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       {/* TODO Page Today */}
                       <NumberInputField
-                        className="px-2 py-2 border border-gray-500 rounded-sm"
+                        className="rounded-sm border border-gray-500 px-2 py-2"
                         label="Page Today"
                         defaultValue={pagesToday_iv}
                         ref={pagesToday}
