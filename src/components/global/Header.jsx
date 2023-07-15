@@ -143,12 +143,17 @@ const Header = () => {
         <div className="hidden items-center sm:flex">
           {/* Logo */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <div>
-            <Image src={Logo} alt="Logo" className="sr-only h-14 w-14" />
-          </div>
-          <div className="not-sr-only">
-            <Image src={Logo} alt="Logo" className="h-14 w-14" />
-          </div>
+          <Link href="/">
+            <div>
+              <Image src={Logo} alt="Logo" className="sr-only h-14 w-14" />
+            </div>
+          </Link>
+
+          <Link href="/">
+            <div className="not-sr-only">
+              <Image src={Logo} alt="Logo" className="h-14 w-14" />
+            </div>
+          </Link>
         </div>
         <div className="hidden items-center justify-around sm:flex">
           {/* Header Links */}
