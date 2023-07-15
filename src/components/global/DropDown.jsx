@@ -5,7 +5,7 @@ import Chevron from "~/assets/icons/ChevronGray.svg";
 
 export default function DropDown({ people, selected, setSelected, width }) {
 
-  const widthClass = width == "small"? "w-[5rem]" : "";
+  const widthClass = width == "small"? "w-[5.5rem]" : "";
 
   return (
     <div className={widthClass}>
@@ -54,7 +54,7 @@ export default function DropDown({ people, selected, setSelected, width }) {
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
                           <Image
                             className={`${
-                              open ? "rotate-180 transform" : ""
+                              open ? "rotate-90 transform" : ""
                             } h-6 w-6 text-arc`}
                             aria-hidden="true"
                             src={Chevron}

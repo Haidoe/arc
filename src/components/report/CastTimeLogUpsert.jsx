@@ -171,6 +171,11 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
     }
   }
 
+  console.log(allCast);
+  console.log(selectedCast);
+  
+
+
   return (
     <>
       <div className="px-4 sm:px-6 lg:px-8">

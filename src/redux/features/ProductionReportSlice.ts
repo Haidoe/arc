@@ -113,12 +113,17 @@ export const productionReport = createSlice({
     },
     updateCastTimeLog: (state, action: PayloadAction<Array<CastTimeLog>>) => { 
       console.log("Updating castTimeLog", action.payload);
-
       state.data = {
         ...state.data,
         castTimeLog: action.payload
       };
-
+    },
+    updateShotScene: (state, action: PayloadAction<Array<Scenes>>) => { 
+      console.log("Updating shot scenes", action.payload);
+      state.data = {
+        ...state.data,
+        shotScene: action.payload
+      };
     },
     updateRolls: (state, action: PayloadAction<Rolls>) => {
       state.data = {
@@ -137,6 +142,7 @@ export const {
   updateActualSchedule,
   updateCastTimeLog,
   updateRolls,
+  updateShotScene,
 } = productionReport.actions;
 
 export default productionReport.reducer;
