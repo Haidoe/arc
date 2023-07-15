@@ -19,6 +19,7 @@ import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
 import ActualScheduleForm from "~/components/report/ActualScheduleForm";
 import NotShotSceneForm from "~/components/report/NotShotSceneForm";
 import AccordionModal from "~/components/report/AccordionModal";
+import AccordionCrud from "~/components/report/AccordionCrud";
 import RollsForm from "~/components/report/RollsForm";
 import CastTimeLogForm from "~/components/report/CastTimeLogForm";
 import Accordion from "~/components/report/Accordion";
@@ -77,7 +78,11 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           {/* Span 2 Grid */}
           <div>
             <div className="g grid flex-grow grid-cols-1 gap-4 px-16">
-              <CastTimeLogForm />
+
+              {/* Accordion Crud */}
+              <AccordionCrud title={"Cast Time Log Schedule"} defaultOpen={true} >
+                <CastTimeLogForm productionInfo={productionInfo} />
+              </AccordionCrud>
 
               <Accordion title="Scenes Shot" defaultOpen>
                 <ScenesShotForm />

@@ -1,6 +1,6 @@
+import { useState } from "react";
 import Modal from "~/components/Modal";
 import Accordion from "~/components/report/Accordion";
-import { useState } from "react";
 
 // by default the modal is closed and readOnlyState is true
 
