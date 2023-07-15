@@ -9,6 +9,7 @@ import { ISOToTimeString, timeStringToISO } from "~/helper/timeInputParser";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { updateCastTimeLog } from "~/redux/features/ProductionReportSlice";
+import { updateProductionReportById } from "~/service/production";
 
 // status drop down
 const status = [
@@ -27,14 +28,12 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
   // =======================> Resources
 
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.productionReport.data);
   const castTimeLog = useSelector(
     (state) => state.productionReport.data.castTimeLog
   );
   const isUpdate = idx !== undefined ? true : false;
   const allCast = productionInfo.casts;
-
-  console.log(idx);
-  console.log(castTimeLog[idx]);
 
   // =======================> Initial Values
 
@@ -93,8 +92,6 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
 
   // workSchedule
   const workSchedule_muReport = useRef(workSchedule_muReport_iv);
-  console.log(workSchedule_muReport_iv);
-  console.log(workSchedule_muReport);
   const workSchedule_onSet = useRef(workSchedule_onSet_iv);
   const workSchedule_setWrap = useRef(workSchedule_setWrap_iv);
   const workSchedule_setDismiss = useRef(workSchedule_setDismiss_iv);
@@ -114,25 +111,46 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
       character: selectedCast.character,
       status: selectedStatus.name,
       workSchedule: {
-        muReport: timeStringToISO(workSchedule_muReport.current.value),
-        onSet: timeStringToISO(workSchedule_onSet.current.value),
-        setWrap: timeStringToISO(workSchedule_setWrap.current.value),
-        setDismiss: timeStringToISO(workSchedule_setDismiss.current.value),
+        muReport: workSchedule_muReport.current.value
+          ? timeStringToISO(workSchedule_muReport.current.value)
+          : null,
+        onSet: workSchedule_onSet.current.value
+          ? timeStringToISO(workSchedule_onSet.current.value)
+          : null,
+        setWrap: workSchedule_setWrap.current.value
+          ? timeStringToISO(workSchedule_setWrap.current.value)
+          : null,
+        setDismiss: workSchedule_setDismiss.current.value
+          ? timeStringToISO(workSchedule_setDismiss.current.value)
+          : null,
       },
       meals: {
-        lunchIn: timeStringToISO(meals_lunchIn.current.value),
-        lunchOut: timeStringToISO(meals_lunchOut.current.value),
-        secondMealIn: timeStringToISO(meals_secondMealIn.current.value),
-        secondMealOut: timeStringToISO(meals_secondMealOut.current.value),
+        lunchIn: meals_lunchIn.current.value
+          ? timeStringToISO(meals_lunchIn.current.value)
+          : null,
+        lunchOut: meals_lunchOut.current.value
+          ? timeStringToISO(meals_lunchOut.current.value)
+          : null,
+        secondMealIn: meals_secondMealIn.current.value
+          ? timeStringToISO(meals_secondMealIn.current.value)
+          : null,
+        secondMealOut: meals_secondMealOut.current.value
+          ? timeStringToISO(meals_secondMealOut.current.value)
+          : null,
       },
     };
 
     const allRows = [...castTimeLog];
 
     allRows[idx] = row;
-    
+
     // pass to redux
     dispatch(updateCastTimeLog(allRows));
+
+    updateProductionReportById({
+      ...data,
+      castTimeLog: allRows,
+    });
   }
 
   function onAddHandler() {
@@ -141,22 +159,44 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
       character: selectedCast.character,
       status: selectedStatus.name,
       workSchedule: {
-        muReport: timeStringToISO(workSchedule_muReport.current.value),
-        onSet: timeStringToISO(workSchedule_onSet.current.value),
-        setWrap: timeStringToISO(workSchedule_setWrap.current.value),
-        setDismiss: timeStringToISO(workSchedule_setDismiss.current.value),
+        muReport: workSchedule_muReport.current.value
+          ? timeStringToISO(workSchedule_muReport.current.value)
+          : null,
+        onSet: workSchedule_onSet.current.value
+          ? timeStringToISO(workSchedule_onSet.current.value)
+          : null,
+        setWrap: workSchedule_setWrap.current.value
+          ? timeStringToISO(workSchedule_setWrap.current.value)
+          : null,
+        setDismiss: workSchedule_setDismiss.current.value
+          ? timeStringToISO(workSchedule_setDismiss.current.value)
+          : null,
       },
       meals: {
-        lunchIn: timeStringToISO(meals_lunchIn.current.value),
-        lunchOut: timeStringToISO(meals_lunchOut.current.value),
-        secondMealIn: timeStringToISO(meals_secondMealIn.current.value),
-        secondMealOut: timeStringToISO(meals_secondMealOut.current.value),
+        lunchIn: meals_lunchIn.current.value
+          ? timeStringToISO(meals_lunchIn.current.value)
+          : null,
+        lunchOut: meals_lunchOut.current.value
+          ? timeStringToISO(meals_lunchOut.current.value)
+          : null,
+        secondMealIn: meals_secondMealIn.current.value
+          ? timeStringToISO(meals_secondMealIn.current.value)
+          : null,
+        secondMealOut: meals_secondMealOut.current.value
+          ? timeStringToISO(meals_secondMealOut.current.value)
+          : null,
       },
     };
 
     const allRows = [...castTimeLog, row];
+
     // pass to redux
     dispatch(updateCastTimeLog(allRows));
+
+    updateProductionReportById({
+      ...data,
+      castTimeLog: allRows,
+    });
   }
 
   // modal handlers
@@ -170,11 +210,6 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
       closeModal();
     }
   }
-
-  console.log(allCast);
-  console.log(selectedCast);
-  
-
 
   return (
     <>
@@ -228,7 +263,7 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
                       />
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {selectedCast.character}
+                      {selectedCast?.character ?? ""}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       <DropDown
