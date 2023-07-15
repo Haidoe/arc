@@ -11,7 +11,6 @@ function timeStringToISO(timeString) {
   // Convert the date to UTC format
   const utcDateString = date.toISOString();
 
-  console.log(utcDateString)
   return utcDateString;
 }
 
@@ -48,7 +47,6 @@ function hoursMinutesFormat(timeString) {
   const hours24Format = hours.toString().padStart(2, '0');
   const hoursMinutesFormat = `${hours24Format}:${minutes.toString().padStart(2, '0')}`;
 
-  console.log(hoursMinutesFormat);
   return hoursMinutesFormat;
 }
 

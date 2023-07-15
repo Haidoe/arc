@@ -19,6 +19,8 @@ const AccordionCrudModalAdd = ({
     hideAddModal();
   }
 
+  console.log(selectedIndex)
+
   const modalWidthObj = {
     50: "w-[50vw] mx-[-25vw]",
     75: "w-[75vw] mx-[-37.5vw]",

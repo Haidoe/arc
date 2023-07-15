@@ -33,6 +33,9 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
   const isUpdate = idx !== undefined ? true : false;
   const allCast = productionInfo.casts;
 
+  console.log(idx);
+  console.log(castTimeLog[idx]);
+
   // =======================> Initial Values
 
   function getCastIdx(castName) {
@@ -55,6 +58,7 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
   const workSchedule_muReport_iv = isUpdate
     ? ISOToTimeString(castTimeLog[idx].workSchedule.muReport)
     : ISOToTimeString("");
+
   const workSchedule_onSet_iv = isUpdate
     ? ISOToTimeString(castTimeLog[idx].workSchedule.onSet)
     : ISOToTimeString("");
@@ -89,6 +93,8 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
 
   // workSchedule
   const workSchedule_muReport = useRef(workSchedule_muReport_iv);
+  console.log(workSchedule_muReport_iv);
+  console.log(workSchedule_muReport);
   const workSchedule_onSet = useRef(workSchedule_onSet_iv);
   const workSchedule_setWrap = useRef(workSchedule_setWrap_iv);
   const workSchedule_setDismiss = useRef(workSchedule_setDismiss_iv);
@@ -103,8 +109,6 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
 
   // data handlers
   function onUpdateHandler() {
-    alert("update cast time log info now", idx);
-
     const row = {
       cast: selectedCast.name,
       character: selectedCast.character,
@@ -124,9 +128,11 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
     };
 
     const allRows = [...castTimeLog];
-    allRows[idx] = row;
 
-    console.log(allRows);
+    allRows[idx] = row;
+    
+    // pass to redux
+    dispatch(updateCastTimeLog(allRows));
   }
 
   function onAddHandler() {
@@ -158,15 +164,17 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
     if (isUpdate) {
       // to update
       onUpdateHandler();
+      closeModal();
     } else {
       onAddHandler();
+      closeModal();
     }
   }
 
   return (
     <>
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="mt-8">
+        <div className="">
           <div className="-mx-4 -my-2 min-h-[200px] overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
               <table className="min-w-full divide-y divide-gray-300">
@@ -229,18 +237,22 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
                       <div className="flex gap-1">
                         <TimeInputField
                           label="MU Report"
+                          defaultValue={workSchedule_muReport_iv}
                           ref={workSchedule_muReport}
                         />
                         <TimeInputField
                           label="On Set"
+                          defaultValue={workSchedule_onSet_iv}
                           ref={workSchedule_onSet}
                         />
                         <TimeInputField
                           label="Set Wrap"
+                          defaultValue={workSchedule_setWrap_iv}
                           ref={workSchedule_setWrap}
                         />
                         <TimeInputField
                           label="Set Dismiss"
+                          defaultValue={workSchedule_setDismiss_iv}
                           ref={workSchedule_setDismiss}
                         />
                       </div>
@@ -248,17 +260,24 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       {/* {row.meals} */}
                       <div className="flex gap-1">
-                        <TimeInputField label="Lunch In" ref={meals_lunchIn} />
+                        <TimeInputField
+                          label="Lunch In"
+                          defaultValue={meals_lunchIn_iv}
+                          ref={meals_lunchIn}
+                        />
                         <TimeInputField
                           label="Lunch Out"
+                          defaultValue={meals_lunchOut_iv}
                           ref={meals_lunchOut}
                         />
                         <TimeInputField
                           label="Second Meal In"
+                          defaultValue={meals_secondMealIn_iv}
                           ref={meals_secondMealIn}
                         />
                         <TimeInputField
                           label="Second Meal Out"
+                          defaultValue={meals_secondMealOut_iv}
                           ref={meals_secondMealOut}
                         />
                       </div>
