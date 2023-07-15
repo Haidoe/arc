@@ -57,7 +57,7 @@ export default requireAuth(async function handler(
           const totalActual =
             firstInputActual + secondInputActual + prepActual + idleActual;
 
-          return (totalActual / totalSchedule) * 100;
+          return totalSchedule > 0 ? (totalActual / totalSchedule) * 100 : 0;
         }
 
         return 0;
