@@ -1,6 +1,7 @@
 // react imports
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { updateCastTimeLog } from "~/redux/features/ProductionReportSlice";
 import Image from "next/image";
 
 // components
@@ -10,7 +11,8 @@ import Delete from "~/assets/icons/Delete.svg";
 
 // import edit and delete modals
 import AccordionCrudModalAdd from "~/components/report/AccordionCrudModalAdd";
-import AccordionCrudModalDelete from "~/components/report/AccordionCrudModalDelete";
+// import AccordionCrudModalDelete from "~/components/report/AccordionCrudModalDelete";
+import ConfirmationModal  from "~/components/global/ConfirmationModal";
 
 // helper
 import { ISOToTimeString } from "~/helper/timeInputParser";
@@ -26,6 +28,7 @@ const CastTimeLogForm = ({ productionInfo }) => {
   // selected index
   const [selectedIndex, setSelectedIndex] = useState(undefined);
 
+  const dispatch = useDispatch();
   const castTimeLogInfo = useSelector(
     (state) => state.productionReport.data.castTimeLog
   );
@@ -59,16 +62,11 @@ const CastTimeLogForm = ({ productionInfo }) => {
 
   // on modal close set selected index to undefined
 
-  function deleteConfirmationHandler(idx, action) {
-    alert("Pending Delete Confirmation Modal");
-    // if (action == "delete") {
-    //   const updatedArray = castTimeLogInfo.filter((item, i) => i !== idx);
-    //   console.log(updatedArray);
-    // } else {
-    //   // cancel
-    //   setSelectedIndex(undefined);
-    //   setShowDeleteModal(false);
-    // }
+  function deleteConfirmationHandler() {
+    const updatedRows = castTimeLogInfo.filter((item, i) => i !== selectedIndex);
+    dispatch(updateCastTimeLog(updatedRows));
+    setSelectedIndex(undefined);
+    setShowDeleteModal(false);
   }
 
   return (
@@ -84,9 +82,10 @@ const CastTimeLogForm = ({ productionInfo }) => {
       )}
 
       {showDeleteModal && (
-        <AccordionCrudModalDelete
-          onDeleteConfirmation={deleteConfirmationHandler}
-          selectedIndex={selectedIndex}
+        <ConfirmationModal
+          heading="Delete Confirmation"
+          message="Are you sure you want to delete?"
+          actionHandler={(selectedIndex) => deleteConfirmationHandler(selectedIndex)}
         />
       )}
 
@@ -136,7 +135,7 @@ const CastTimeLogForm = ({ productionInfo }) => {
                       </th>
                       <th
                         scope="col"
-                        className="relative py-3.5 pl-3 pr-4 sm:pr-0"
+                        className="relative min-w-[60px] py-3.5 pl-3 pr-4 sm:pr-0 text-gray-900"
                       >
                         <span className="sr-only">Delete</span>
                       </th>
