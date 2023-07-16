@@ -44,83 +44,96 @@ const ActualScheduleForm = ({ className }) => {
           <div className="grid grid-cols-3 grid-rows-7 gap-4 gap-y-2 pt-2">
             <p>1st Unit</p>
             <TextInputField
+              placeholder="0"
               key={`firstUnitSchedule-${firstUnitSchedule ?? 0}`}
               maxLength="8"
               label="firstUnitSchedule"
               //if the value is empty, display 0 instead
-              defaultValue={firstUnitSchedule === '' ? '0' : firstUnitSchedule} />
+              defaultValue={firstUnitSchedule} />
             <TextInputField
+              placeholder="0"
               key={`firstUnitActual-${firstUnitActual ?? 0}`}
               maxLength="8"
               label="firstUnitActual"
-              defaultValue={firstUnitActual === '' ? '0' : firstUnitActual} />
+              defaultValue={firstUnitActual} />
             <p>2nd Unit</p>
             <TextInputField
+              placeholder="0"
               key={`secondUnitSchedule-${secondUnitSchedule ?? 0}`}
               maxLength="8"
               label="secondUnitSchedule"
-              defaultValue={secondUnitSchedule === '' ? '0' : secondUnitSchedule} />
+              defaultValue={secondUnitSchedule} />
             <TextInputField
+              placeholder="0"
               key={`secondUnitActual-${secondUnitActual ?? 0}`}
               maxLength="8"
               label="secondUnitActual"
-              defaultValue={secondUnitActual === '' ? '0' : secondUnitActual} />
+              defaultValue={secondUnitActual} />
             <p>Prep</p>
             <TextInputField
+              placeholder="0"
               key={`prepSchedule-${prepSchedule ?? 0}`}
               maxLength="8"
               label="prepSchedule"
-              defaultValue={prepSchedule === '' ? '0' : prepSchedule} />
+              defaultValue={prepSchedule} />
             <TextInputField
+              placeholder="0"
               key={`prepActual-${prepActual ?? 0}`}
               maxLength="8"
               label="prepActual"
-              defaultValue={prepActual === '' ? '0' : prepActual} />
+              defaultValue={prepActual} />
             <p>Travel</p>
             <TextInputField
+              placeholder="0"
               key={`travelSchedule-${travelSchedule ?? 0}`}
               maxLength="8"
               label="travelSchedule"
-              defaultValue={travelSchedule === '' ? '0' : travelSchedule} />
+              defaultValue={travelSchedule} />
             <TextInputField
+              placeholder="0"
               key={`travelActual-${travelActual ?? 0}`}
               maxLength="8"
               label="travelActual"
-              defaultValue={travelActual === '' ? '0' : travelActual} />
+              defaultValue={travelActual} />
             <p>Idle</p>
             <TextInputField
+              placeholder="0"
               key={`idleSchedule-${idleSchedule ?? 0}`}
               maxLength="8"
               label="idleSchedule"
-              defaultValue={idleSchedule === '' ? '0' : idleSchedule} />
+              defaultValue={idleSchedule} />
             <TextInputField
+              placeholder="0"
               key={`idleActual-${idleActual ?? 0}`}
               maxLength="8"
               label="idleActual"
-              defaultValue={idleActual === '' ? '0' : idleActual} />
+              defaultValue={idleActual} />
             <p>Holiday</p>
             <TextInputField
+              placeholder="0"
               key={`holidaySchedule-${holidaySchedule ?? 0}`}
               maxLength="8"
               label="holidaySchedule"
-              defaultValue={holidaySchedule === '' ? '0' : holidaySchedule} />
+              defaultValue={holidaySchedule} />
             <TextInputField
+              placeholder="0"
               key={`holidayActual-${holidayActual ?? 0}`}
               maxLength="8"
               label="holidayActual"
-              defaultValue={holidayActual === '' ? '0' : holidayActual} />
+              defaultValue={holidayActual} />
             <p>Total</p>
             <TextInputField
+              placeholder="0"
               key={`totalSchedule-${totalSchedule ?? 0}`}
               maxLength="8"
               label="totalSchedule"
-              defaultValue={totalSchedule === '' ? '0' : totalSchedule} />
+              defaultValue={totalSchedule} />
             <TextInputField
+              placeholder="0"
               key={`totalActual-${totalActual ?? 0}`}
               maxLength="8"
               label="totalActual"
-              defaultValue={totalActual === '' ? '0' : totalActual} />
-
+              defaultValue={totalActual} />
           </div>
         </div>
       </Accordion>

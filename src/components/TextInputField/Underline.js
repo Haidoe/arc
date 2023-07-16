@@ -2,7 +2,19 @@ import React, { forwardRef } from "react";
 
 // eslint-disable-next-line react/display-name
 const Underline = forwardRef(
-  ({ label, name, value, onChange, isError, className, defaultValue }, ref) => {
+  (
+    {
+      label,
+      name,
+      value,
+      onChange,
+      isError,
+      className,
+      defaultValue,
+      placeholder,
+    },
+    ref
+  ) => {
     return (
       <div className="relative h-12 w-full min-w-[160px]">
         <input
@@ -11,7 +23,7 @@ const Underline = forwardRef(
           name={name}
           id={name}
           type="text"
-          placeholder=" "
+          placeholder={placeholder}
           className={`text-input-underline-input peer text-sm text-contrast-dark ${
             isError ? "underline-input-error" : ""
           } ${className}`}

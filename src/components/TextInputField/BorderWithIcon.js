@@ -4,7 +4,17 @@ import React, { forwardRef } from "react";
 // eslint-disable-next-line react/display-name
 const BorderWithIcon = forwardRef(
   (
-    { label, name, value, onChange, icon, isError, className, defaultValue },
+    {
+      label,
+      name,
+      value,
+      onChange,
+      icon,
+      isError,
+      className,
+      defaultValue,
+      placeholder,
+    },
     ref
   ) => {
     return (
@@ -18,7 +28,7 @@ const BorderWithIcon = forwardRef(
           name={name}
           id={name}
           type="text"
-          placeholder=" "
+          placeholder={placeholder}
           className={`text-input-border-input peer text-sm text-contrast-dark ${
             isError ? "input-error" : ""
           } ${className}`}
