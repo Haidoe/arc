@@ -20,6 +20,16 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       <Head>
         <title>Arc 🎬 </title>
         <meta name="description" content="🎬 🎬" />
+
+        <meta
+          name="description"
+          content="ARC app revolutionizes the tedious process of inputting detailed information for everyday film production, streamlining and simplifying the workflow. It ensures efficiency, accuracy, and real-time updates while offering data visualization for better insights."
+        />
+
+        <meta
+          name="keywords"
+          content="Arc, arc, ARC, ARC app, arc app, arc, arc reporting, arc form, production report form, langara college, wmdd"
+        />
         <link rel="icon" href="/favicon.svg" />
       </Head>
 
