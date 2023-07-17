@@ -9,7 +9,7 @@ const NonRefBorderedTextField = (props) => {
         name={props.name}
         id={props.name}
         type="text"
-        placeholder=" "
+        placeholder={props.placeholder}
         className={`text-input-border-input peer text-sm text-contrast-dark ${
           props.isError ? "input-error" : ""
         }`}

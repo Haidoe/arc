@@ -50,54 +50,75 @@ const RollsForm = ({ }) => {
           <div className="pb-2 border-b border-primary-base">
             <div className="grid grid-cols-6 grid-rows-2 gap-4 gap-y-2">
               <div className="grid col-span-2">Script Supervisor</div>
-              <TextInputField className="grid col-span-4 font-bold" value={scriptSupervisor} />
+              <TextInputField className="grid col-span-4" placeholder="Name" value={scriptSupervisor} />
               <div className="grid col-span-2">Data Wrangler</div>
-              <TextInputField className="grid col-span-4 font-bold" value={dataWrangler} />
+              <TextInputField className="grid col-span-4" placeholder="Name" value={dataWrangler} />
             </div>
           </div>
 
-          <div className="grid grid-cols-6 grid-rows-4 gap-4 gap-y-2 pt-2">
+          <div className=" grid grid-cols-6 grid-rows-4 gap-4 gap-y-2 pt-2">
             <div className="grid col-span-2"></div>
             <div className="font-bold">A Cam</div>
             <div className="font-bold">B Cam</div>
             <div className="font-bold">C Cam</div>
             <div className="font-bold">A Sound</div>
             <div className="grid col-span-2 font-bold">Previously</div>
-            <TextInputField key={`aCamPreviously-${aCamPreviously ?? 0}`} maxLength="3" defaultValue={aCamPreviously} />
-            <TextInputField key={`bCamPreviously-${bCamPreviously ?? 0}`} maxLength="3" defaultValue={bCamPreviously} />
-            <TextInputField key={`cCamPreviously-${cCamPreviously ?? 0}`} maxLength="3" defaultValue={cCamPreviously} />
-            <TextInputField key={`aSoundPreviously-${aSoundPreviously ?? 0}`} maxLength="3" defaultValue={aSoundPreviously} />
+            <TextInputField
+              placeholder="0"
+              key={`aCamPreviously-${aCamPreviously ?? 0}`}
+              maxLength="3"
+              defaultValue={aCamPreviously} />
+            <TextInputField
+              placeholder="0"
+              key={`bCamPreviously-${bCamPreviously ?? 0}`}
+              maxLength="3"
+              defaultValue={bCamPreviously} />
+            <TextInputField
+              placeholder="0"
+              key={`cCamPreviously-${cCamPreviously ?? 0}`}
+              maxLength="3"
+              defaultValue={cCamPreviously} />
+            <TextInputField
+              placeholder="0"
+              key={`aSoundPreviously-${aSoundPreviously ?? 0}`}
+              maxLength="3"
+              defaultValue={aSoundPreviously} />
             <div className="grid col-span-2 font-bold">Today</div>
             <TextInputField
+              placeholder="0"
               key={`aCamToday-${aCamToday ?? 0}`}
               maxLength="3" defaultValue={aCamToday} />
             <TextInputField
+              placeholder="0"
               key={`bCamToday-${bCamToday ?? 0}`}
               maxLength="3" defaultValue={bCamToday} />
             <TextInputField
+              placeholder="0"
               key={`cCamToday-${cCamToday ?? 0}`}
               maxLength="3" defaultValue={cCamToday} />
             <TextInputField
+              placeholder="0"
               key={`aSoundToday-${aSoundToday ?? 0}`}
               maxLength="3" defaultValue={aSoundToday} />
 
             <div className="grid col-span-2 font-bold">To Date</div>
             <TextInputField
-
+              placeholder="0"
               key={`aCamToDate-${aCamToDate ?? 0}`}
               maxLength="3" defaultValue={aCamToDate} />
             <TextInputField
+              placeholder="0"
               key={`bCamToDate-${bCamToDate ?? 0}`}
               maxLength="3" defaultValue={bCamToDate} />
             <TextInputField
+              placeholder="0"
               key={`cCamToDate-${cCamToDate ?? 0}`}
               maxLength="3" defaultValue={cCamToDate} />
             <TextInputField
+              placeholder="0"
               key={`aSoundToDate-${aSoundToDate ?? 0}`}
               maxLength="3" defaultValue={aSoundToDate} />
-
           </div>
-
         </div >
       </Accordion>
 

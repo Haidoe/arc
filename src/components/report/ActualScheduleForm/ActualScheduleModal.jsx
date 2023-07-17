@@ -16,8 +16,10 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
 
   //For default value of the input field
   const actualSchedule = data.actualSchedule;
+
   const getValueOrDefault = (obj, property) =>
     obj[property] ? obj[property] : "";
+
   const firstUnitSchedule = getValueOrDefault(
     actualSchedule.firstUnitInput,
     "schedule"
@@ -117,75 +119,83 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
             <div className="grid-rows-7 grid grid-cols-3 gap-4 gap-y-2 pt-2">
               <p>1st Unit</p>
               <TextInputField
+                placeholder="0"
                 maxLength="8"
                 ref={firstUnitScheduleRef}
                 defaultValue={
-                  firstUnitSchedule === "" ? "0" : firstUnitSchedule
+                  firstUnitSchedule
                 }
               />
 
               <TextInputField
+                placeholder="0"
                 maxLength="8"
                 ref={firstUnitActualRef}
-                defaultValue={firstUnitActual === "" ? "0" : firstUnitActual}
+                defaultValue={firstUnitActual}
               />
               <p>2nd Unit</p>
               <TextInputField
+                placeholder="0"
                 maxLength="8"
                 ref={secondUnitScheduleRef}
-                defaultValue={
-                  secondUnitSchedule === "" ? "0" : secondUnitSchedule
-                }
+                defaultValue={secondUnitSchedule}
               />
               <TextInputField
+                placeholder="0"
                 maxLength="8"
                 ref={secondUnitActualRef}
-                defaultValue={secondUnitActual === "" ? "0" : secondUnitActual}
+                defaultValue={secondUnitActual}
               />
 
               <p>Prep</p>
               <TextInputField
+                placeholder="0"
                 maxLength="8"
                 ref={prepScheduleRef}
-                defaultValue={prepSchedule === "" ? "0" : prepSchedule}
+                defaultValue={prepSchedule}
               />
               <TextInputField
+                placeholder="0"
                 maxLength="8"
                 ref={prepActualRef}
-                defaultValue={prepActual === "" ? "0" : prepActual}
+                defaultValue={prepActual}
               />
               <p>Travel</p>
               <TextInputField
+                placeholder="0"
                 maxLength="8"
                 ref={travelScheduleRef}
-                defaultValue={travelSchedule === "" ? "0" : travelSchedule}
+                defaultValue={travelSchedule}
               />
               <TextInputField
+                placeholder="0"
                 maxLength="8"
                 ref={travelActualRef}
-                defaultValue={travelActual === "" ? "0" : travelActual}
+                defaultValue={travelActual}
               />
               <p>Idle</p>
               <TextInputField
+                placeholder="0"
                 maxLength="8"
                 ref={idleScheduleRef}
-                defaultValue={idleSchedule === "" ? "0" : idleSchedule}
+                defaultValue={idleSchedule}
               />
               <TextInputField
+                placeholder="0"
                 maxLength="8"
                 ref={idleActualRef}
-                defaultValue={idleActual === "" ? "0" : idleActual}
+                defaultValue={idleActual}
               />
               <p>Holiday</p>
               <TextInputField
                 maxLength="8"
                 ref={holidayScheduleRef}
-                defaultValue={holidaySchedule === "" ? "0" : holidaySchedule}
+                defaultValue={holidaySchedule}
               />
               <TextInputField
                 maxLength="8"
                 ref={holidayActualRef}
-                defaultValue={holidayActual === "" ? "0" : holidayActual}
+                defaultValue={holidayActual}
               />
             </div>
           </div>

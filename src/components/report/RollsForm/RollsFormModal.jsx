@@ -118,20 +118,22 @@ const RollsFormModal = ({ isOpen, onClose }) => {
               <div className="grid grid-cols-6 grid-rows-2 gap-4 gap-y-2">
                 <div className="col-span-2 grid">Script Supervisor</div>
                 <TextInputField
-                  className="col-span-4 grid font-bold"
+                  placeholder="Name"
+                  className="col-span-4 grid"
                   ref={scriptSupervisorRef}
                   defaultValue={scriptSupervisor}
                 />
                 <div className="col-span-2 grid">Data Wrangler</div>
                 <TextInputField
-                  className="col-span-4 grid font-bold"
+                  placeholder="Name"
+                  className="col-span-4 grid"
                   ref={dataWranglerRef}
                   defaultValue={dataWrangler}
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-6 grid-rows-4 gap-4 gap-y-2 pt-2">
+            <div className="grid grid-cols-6 grid-rows-3 gap-4 gap-y-2 pt-2">
               <div className="col-span-2 grid"></div>
               <div className="font-bold">A Cam</div>
               <div className="font-bold">B Cam</div>
@@ -139,51 +141,54 @@ const RollsFormModal = ({ isOpen, onClose }) => {
               <div className="font-bold">A Sound</div>
               <div className="col-span-2 grid font-bold">Previously</div>
               <TextInputField
+                placeholder="0"
                 maxLength="3"
                 ref={aCamPreviouslyRef}
                 defaultValue={aCamPreviously}
               />
               <TextInputField
+                placeholder="0"
                 maxLength="3"
                 ref={bCamPreviouslyRef}
                 defaultValue={bCamPreviously}
               />
               <TextInputField
+                placeholder="0"
                 maxLength="3"
                 ref={cCamPreviouslyRef}
                 defaultValue={cCamPreviously}
               />
               <TextInputField
+                placeholder="0"
                 maxLength="3"
                 ref={aSoundPreviouslyRef}
                 defaultValue={aSoundPreviously}
               />
               <div className="col-span-2 grid font-bold">Today</div>
               <TextInputField
+                placeholder="0"
                 maxLength="3"
                 ref={aCamTodayRef}
                 defaultValue={aCamToday}
               />
               <TextInputField
+                placeholder="0"
                 maxLength="3"
                 ref={bCamTodayRef}
                 defaultValue={bCamToday}
               />
               <TextInputField
+                placeholder="0"
                 maxLength="3"
                 ref={cCamTodayRef}
                 defaultValue={cCamToday}
               />
               <TextInputField
+                placeholder="0"
                 maxLength="3"
                 ref={aSoundTodayRef}
                 defaultValue={aSoundToday}
               />
-              <div className="col-span-2 grid font-bold">To Date</div>
-              <div className="font-bold">{aCamToDate}</div>
-              <div className="font-bold">{bCamToDate}</div>
-              <div className="font-bold">{cCamToDate}</div>
-              <div className="font-bold">{aSoundToDate}</div>
             </div>
           </form>
         </Accordion>
