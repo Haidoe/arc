@@ -24,12 +24,12 @@ const NotShotForm = ({}) => {
     {
       date: "2023-07-02T22:00:00.000Z",
       time: "2023-07-02T22:00:00.000Z",
-      reason: "Actor got injured"
+      reason: "Actor injured"
     },
     {
       date: "2023-07-02T22:00:00.000Z",
       time: "2023-07-02T22:00:00.000Z",
-      reason: "Thunderstorm and equipment got damaged"
+      reason: "Equipment lost"
     }
   ]
 
