@@ -211,10 +211,12 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
     }
   }
 
+  const modalHeightClass = " h-[300px]";
+
   return (
     <>
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="">
+        <div className={modalHeightClass}>
           <div className="-mx-4 -my-2 min-h-[200px] overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
               <table className="min-w-full divide-y divide-gray-300">
@@ -328,7 +330,7 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
             </div>
           </div>
           {/* Action Buttons */}
-          <div className="mt-2 flex justify-end gap-4 border-primary-base pt-4">
+          <div className="mt-8 flex justify-end gap-4 border-primary-base pt-4">
             {/* Button to cancel */}
             <Button
               buttonType="Secondary"
