@@ -14,6 +14,7 @@ const BorderWithIcon = forwardRef(
       className,
       defaultValue,
       placeholder,
+      tabIndex,
     },
     ref
   ) => {
@@ -28,6 +29,7 @@ const BorderWithIcon = forwardRef(
           name={name}
           id={name}
           type="text"
+          tabIndex={tabIndex}
           placeholder={placeholder}
           className={`text-input-border-input peer text-sm text-contrast-dark ${
             isError ? "input-error" : ""

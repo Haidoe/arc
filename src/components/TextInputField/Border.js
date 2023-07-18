@@ -12,6 +12,7 @@ const Border = forwardRef(
       className,
       defaultValue,
       placeholder,
+      tabIndex,
     },
     ref
   ) => {
@@ -22,6 +23,7 @@ const Border = forwardRef(
           onChange={onChange}
           name={name}
           id={name}
+          tabIndex={tabIndex}
           type="text"
           placeholder={placeholder}
           className={`text-input-border-input peer text-sm text-contrast-dark ${
