@@ -64,21 +64,23 @@ const ProductionReportPage = ({ productionInfo, report }) => {
         </aside>
 
         <div className="grid flex-1 grid-cols-2 content-start gap-4 px-8 pb-8">
-          {/* <div className="col-span-full">
-            
-          </div> */}
+          <div className="bg-white ">
+            <ScheduleOfTheDayForm />
+          </div>
 
-          <ScheduleOfTheDayForm />
+          <div className="bg-white ">
+            <ActualScheduleForm />
+          </div>
 
-          <ActualScheduleForm />
-
-          <div>
+          <div className="bg-white ">
             <AccordionCrud title={"Not Shot Form"} defaultOpen={true}>
               <NotShotForm />
             </AccordionCrud>
           </div>
 
-          <RollsForm />
+          <div className="bg-white ">
+            <RollsForm />
+          </div>
 
           <div className="col-span-full">
             <AccordionCrud title={"Cast Time Log Schedule"} defaultOpen={true}>
@@ -91,7 +93,6 @@ const ProductionReportPage = ({ productionInfo, report }) => {
               <ScenesShotForm productionInfo={productionInfo} />
             </AccordionCrud>
           </div>
-
 
           <div className="col-span-full">
             <AccordionCrud title={"Extras Cast Form"} defaultOpen={true}>
