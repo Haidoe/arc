@@ -28,17 +28,17 @@ const Accordion = ({
         <Disclosure defaultOpen={defaultOpen}>
           {({ open }) => (
             <>
-              <Disclosure.Button className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left  font-medium text-arc hover:bg-primary-base focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 ${insideModal ? "pointer-events-none" : ""} `}>
+              <Disclosure.Button className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left  font-medium text-arc hover:bg-primary-base focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 ${insideModal ? "pointer-events-none" : "pointer-events-none"} `}>
                 <span>{title || "Accordion Title"}</span>
 
                 <div className="items-center sm:flex">
                   {/* Logo */}
-                  <Image
+                  {/* <Image
                     className={`${open ? "rotate-180 transform" : ""
                       } h-6 w-6 text-arc`}
                     src={Chevron}
                     alt="Logo"
-                  />
+                  /> */}
                 </div>
               </Disclosure.Button>
               <Disclosure.Panel

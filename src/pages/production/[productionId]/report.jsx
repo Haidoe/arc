@@ -18,6 +18,7 @@ import Sidebar from "~/components/production/Information";
 import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
 import ActualScheduleForm from "~/components/report/ActualScheduleForm";
 import AccordionCrud from "~/components/report/AccordionCrud";
+import Accordion from "~/components/report/Accordion";
 import RollsForm from "~/components/report/RollsForm";
 import CastTimeLogForm from "~/components/report/CastTimeLogForm";
 import ScenesShotForm from "~/components/report/ScenesShotForm.jsx";
@@ -73,9 +74,9 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </div>
 
           <div className="bg-arc ">
-            <AccordionCrud title={"Not Shot Form"} defaultOpen={true}>
+            <Accordion title={"Not Shot Form"} defaultOpen={true}>
               <NotShotForm />
-            </AccordionCrud>
+            </Accordion>
           </div>
 
           <div className="bg-arc ">
