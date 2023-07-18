@@ -49,9 +49,9 @@ const SignInPage: NextPage = () => {
               action="#"
               className="flex w-full max-w-[450px] flex-col gap-6 sm:gap-8"
             >
-              <TextInputField label="Email" />
+              <TextInputField label="Email" placeholder="Enter your email" />
 
-              <TextInputField label="Password" />
+              <TextInputField label="Password" placeholder="Enter your password" />
 
               <div className="flex justify-center">
                 <Button
