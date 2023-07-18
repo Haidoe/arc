@@ -21,6 +21,8 @@ import AccordionCrud from "~/components/report/AccordionCrud";
 import RollsForm from "~/components/report/RollsForm";
 import CastTimeLogForm from "~/components/report/CastTimeLogForm";
 import ScenesShotForm from "~/components/report/ScenesShotForm.jsx";
+import NotShotForm from "~/components/report/NotShotForm.jsx";
+import ExtrasCastForm from "~/components/report/ExtrasCastForm.jsx";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
@@ -62,11 +64,19 @@ const ProductionReportPage = ({ productionInfo, report }) => {
         </aside>
 
         <div className="grid flex-1 grid-cols-2 content-start gap-4 px-8 pb-8">
-          <div className="col-span-full">
-            <ScheduleOfTheDayForm />
-          </div>
+          {/* <div className="col-span-full">
+            
+          </div> */}
+
+          <ScheduleOfTheDayForm />
 
           <ActualScheduleForm />
+
+          <div>
+            <AccordionCrud title={"Not Shot Form"} defaultOpen={true}>
+              <NotShotForm />
+            </AccordionCrud>
+          </div>
 
           <RollsForm />
 
@@ -79,6 +89,13 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           <div className="col-span-full">
             <AccordionCrud title={"Scenes Shot Form"} defaultOpen={true}>
               <ScenesShotForm productionInfo={productionInfo} />
+            </AccordionCrud>
+          </div>
+
+
+          <div className="col-span-full">
+            <AccordionCrud title={"Extras Cast Form"} defaultOpen={true}>
+              <ExtrasCastForm />
             </AccordionCrud>
           </div>
         </div>

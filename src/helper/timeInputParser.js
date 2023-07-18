@@ -33,6 +33,22 @@ function ISOToTimeString(utcDateString) {
 
 }
 
+function ISOToDateVancouverString(utcDateString) {
+  if (utcDateString === "") return "";
+  
+  const date = new Date(utcDateString);
+  
+  // Convert to local date in Vancouver timezone
+  const vancouverDateString = date.toLocaleString("en-US", {
+    timeZone: "America/Vancouver",
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  });
+  
+  return vancouverDateString;
+}
+
 function hoursMinutesFormat(timeString) {
   const timeParts = timeString.split(':');
   let hours = parseInt(timeParts[0], 10);
@@ -52,4 +68,4 @@ function hoursMinutesFormat(timeString) {
 
 
 
-export { timeStringToISO, ISOToTimeString };
+export { timeStringToISO, ISOToTimeString, ISOToDateVancouverString };
