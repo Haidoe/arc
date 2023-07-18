@@ -19,7 +19,7 @@
   }
 
   .text-input-borderless-input {
-    @apply h-full w-full text-[16px] font-normal text-contrast-base outline outline-0 transition-all disabled:border-0 disabled:bg-contrast-base;
+    @apply h-full w-full bg-arc text-[16px] font-normal text-contrast-base outline outline-0 transition-all disabled:border-0 disabled:bg-contrast-base;
   }
 
   .input-error {
@@ -49,6 +49,10 @@
   .report-modal .time-input {
     @apply w-full px-3 pb-1 pt-2 text-[16px];
   }
+
+  /* .underline-form {
+    @apply w-full rounded-sm border-b border-primary-trans px-2 focus:bg-primary-trans;
+  } */
 }
 
 /*Change color of clock icon */

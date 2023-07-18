@@ -105,7 +105,7 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} onClose={handleReduxUpdate}>
       <div className="mx-[-25vw] w-[50vw]">
         <Accordion
-          title="Schedule of the Day"
+          title="Actual Schedule"
           defaultOpen={true}
           readOnlyState={false}
           insideModal={true}
@@ -188,11 +188,15 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
               />
               <p>Holiday</p>
               <TextInputField
+                placeholder="0"
+
                 maxLength="8"
                 ref={holidayScheduleRef}
                 defaultValue={holidaySchedule}
               />
               <TextInputField
+                placeholder="0"
+
                 maxLength="8"
                 ref={holidayActualRef}
                 defaultValue={holidayActual}

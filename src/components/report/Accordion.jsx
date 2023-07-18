@@ -34,9 +34,8 @@ const Accordion = ({
                 <div className="items-center sm:flex">
                   {/* Logo */}
                   <Image
-                    className={`${
-                      open ? "rotate-180 transform" : ""
-                    } h-6 w-6 text-arc`}
+                    className={`${open ? "rotate-180 transform" : ""
+                      } h-6 w-6 text-arc`}
                     src={Chevron}
                     alt="Logo"
                   />
@@ -44,7 +43,7 @@ const Accordion = ({
               </Disclosure.Button>
               <Disclosure.Panel
                 onClick={handlePanelClick}
-                className={`bg-arc px-4 pb-4 pt-4 text-sm text-gray-500`}
+                className={`bg-arc p-4 text-sm text-contrast-dark`}
               >
                 <div
                   className={`${readOnlyState ? "pointer-events-none" : ""}`}
