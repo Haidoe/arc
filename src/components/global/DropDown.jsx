@@ -14,12 +14,10 @@ export default function DropDown({ people, selected, setSelected, width, isReadO
             <span className="block truncate">{selected?.name ?? ""}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <Image
-                className={`${
-                  open ? "rotate-180 transform" : ""
-                } h-6 w-6 text-arc`}
+                className={`${"rotate-180 transform"} h-6 w-6 text-arc`}
                 aria-hidden="true"
                 src={Chevron}
-                alt="Logo"
+                alt="chevron down"
               />
             </span>
           </Listbox.Button>
@@ -29,13 +27,13 @@ export default function DropDown({ people, selected, setSelected, width, isReadO
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-arc py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               {people.map((person, personIdx) => (
                 <Listbox.Option
                   key={personIdx}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? "bg-amber-100 text-amber-900" : "text-gray-900"
+                    `relative cursor-default select-none py-2 pl-4 pr-4 ${
+                      active ? "bg-primary-trans text-contrast-dark" : "text-contrast-dark"
                     }`
                   }
                   value={person}
@@ -49,12 +47,10 @@ export default function DropDown({ people, selected, setSelected, width, isReadO
                       >
                         {person.name}
                       </span>
-                      {selected ? (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                      {false ? (
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                           <Image
-                            className={`${
-                              open ? "rotate-90 transform" : ""
-                            } h-6 w-6 text-arc`}
+                            className={`${"rotate-90 transform"} h-6 w-6 text-arc`}
                             aria-hidden="true"
                             src={Chevron}
                             alt="Logo"
