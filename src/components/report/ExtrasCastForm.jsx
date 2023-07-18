@@ -83,9 +83,9 @@ const ExtrasCastForm = ({}) => {
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        className="relative min-w-[60px] py-3.5 pl-3 pr-4 sm:pr-0 text-gray-900"
                       >
-                        Rate
+                        <span className="sr-only">Delete</span>
                       </th>
                     </tr>
                   </thead>

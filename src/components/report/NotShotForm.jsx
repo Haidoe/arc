@@ -67,6 +67,12 @@ const NotShotForm = ({}) => {
                       >
                         Reason
                       </th>
+                      <th
+                        scope="col"
+                        className="relative min-w-[60px] py-3.5 pl-3 pr-4 sm:pr-0 text-gray-900"
+                      >
+                        <span className="sr-only">Delete</span>
+                      </th>
                     </tr>
                   </thead>
                   {notShotInfo?.length > 0 && (
