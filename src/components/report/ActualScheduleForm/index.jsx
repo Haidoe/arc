@@ -34,9 +34,9 @@ const ActualScheduleForm = ({ className }) => {
 
   return (
     <>
-      <Accordion title="Actual Schedule" defaultOpen={true} className={`text-contrast-dark text-base ${className}`}>
+      <Accordion title="Actual Schedule" defaultOpen={true} className={`text-contrast-dark ${className}`}>
         <div onClick={() => setIsOpen(true)}>
-          <div className="grid grid-cols-3 gap-4  font-bold pb-2 border-b border-primary-base">
+          <div className="grid grid-cols-3 gap-4 font-bold pb-2 border-b border-primary-base">
             <p>Title</p>
             <p>Schedule</p>
             <p>Actual</p>
@@ -47,26 +47,29 @@ const ActualScheduleForm = ({ className }) => {
               placeholder="0"
               key={`firstUnitSchedule-${firstUnitSchedule ?? 0}`}
               maxLength="8"
-              label="firstUnitSchedule"
-              //if the value is empty, display 0 instead
+              className="underline-form"
               defaultValue={firstUnitSchedule} />
+
             <TextInputField
               placeholder="0"
               key={`firstUnitActual-${firstUnitActual ?? 0}`}
               maxLength="8"
               label="firstUnitActual"
+              className="underline-form"
               defaultValue={firstUnitActual} />
             <p>2nd Unit</p>
             <TextInputField
               placeholder="0"
               key={`secondUnitSchedule-${secondUnitSchedule ?? 0}`}
               maxLength="8"
+              className="underline-form"
               label="secondUnitSchedule"
               defaultValue={secondUnitSchedule} />
             <TextInputField
               placeholder="0"
               key={`secondUnitActual-${secondUnitActual ?? 0}`}
               maxLength="8"
+              className="underline-form"
               label="secondUnitActual"
               defaultValue={secondUnitActual} />
             <p>Prep</p>
@@ -74,12 +77,14 @@ const ActualScheduleForm = ({ className }) => {
               placeholder="0"
               key={`prepSchedule-${prepSchedule ?? 0}`}
               maxLength="8"
+              className="underline-form"
               label="prepSchedule"
               defaultValue={prepSchedule} />
             <TextInputField
               placeholder="0"
               key={`prepActual-${prepActual ?? 0}`}
               maxLength="8"
+              className="underline-form"
               label="prepActual"
               defaultValue={prepActual} />
             <p>Travel</p>
@@ -87,12 +92,14 @@ const ActualScheduleForm = ({ className }) => {
               placeholder="0"
               key={`travelSchedule-${travelSchedule ?? 0}`}
               maxLength="8"
+              className="underline-form"
               label="travelSchedule"
               defaultValue={travelSchedule} />
             <TextInputField
               placeholder="0"
               key={`travelActual-${travelActual ?? 0}`}
               maxLength="8"
+              className="underline-form"
               label="travelActual"
               defaultValue={travelActual} />
             <p>Idle</p>
@@ -100,12 +107,14 @@ const ActualScheduleForm = ({ className }) => {
               placeholder="0"
               key={`idleSchedule-${idleSchedule ?? 0}`}
               maxLength="8"
+              className="underline-form"
               label="idleSchedule"
               defaultValue={idleSchedule} />
             <TextInputField
               placeholder="0"
               key={`idleActual-${idleActual ?? 0}`}
               maxLength="8"
+              className="underline-form"
               label="idleActual"
               defaultValue={idleActual} />
             <p>Holiday</p>
@@ -113,12 +122,14 @@ const ActualScheduleForm = ({ className }) => {
               placeholder="0"
               key={`holidaySchedule-${holidaySchedule ?? 0}`}
               maxLength="8"
+              className="underline-form"
               label="holidaySchedule"
               defaultValue={holidaySchedule} />
             <TextInputField
               placeholder="0"
               key={`holidayActual-${holidayActual ?? 0}`}
               maxLength="8"
+              className="underline-form"
               label="holidayActual"
               defaultValue={holidayActual} />
             <p>Total</p>

@@ -15,6 +15,7 @@ const Home = () => {
   const [isProduction, setIsProduction] = useState(false);
   const [productionIds, setProductionIds] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isProjectLoading, setIsProjectLoading] = useState(false);
   const user = useUser();
 
   useEffect(() => {
@@ -58,8 +59,10 @@ const Home = () => {
 
   //NOTE: this function is used to load the demo production info to the database
   const handleDemoClick = async () => {
+    setIsProjectLoading(true);
     await loadDemoProductionInfo();
     getProductionInfo();
+    setIsProjectLoading(false);
   };
 
   return (
@@ -156,10 +159,11 @@ const Home = () => {
 
           <Button
             buttonType={"Primary"}
-            className="mt-4 self-center lg:mt-6 lg:text-[16px]"
+            className="mt-4 self-center px-12 lg:mt-6 lg:text-[16px]"
             onClick={handleDemoClick}
+            disabled={isProjectLoading}
           >
-            New Production
+            {isProjectLoading ? "Loading..." : "New Production"}
           </Button>
         </div>
       </div>

@@ -46,23 +46,27 @@ const RollsForm = ({ }) => {
   return (
     <>
       <Accordion title="Rolls" defaultOpen={true}>
-        <div onClick={() => setIsOpen(true)} action="" className={`text-contrast-dark text-base font-normal `} >
+        <div onClick={() => setIsOpen(true)} action="" className={` text-contrast-dark`} >
           <div className="pb-2 border-b border-primary-base">
             <div className="grid grid-cols-6 grid-rows-2 gap-4 gap-y-2">
-              <div className="grid col-span-2">Script Supervisor</div>
+              <p className="grid col-span-2">Script Supervisor</p>
               <TextInputField className="grid col-span-4" placeholder="Name" value={scriptSupervisor} />
-              <div className="grid col-span-2">Data Wrangler</div>
+              <p className="grid col-span-2">Data Wrangler</p>
               <TextInputField className="grid col-span-4" placeholder="Name" value={dataWrangler} />
             </div>
           </div>
 
-          <div className=" grid grid-cols-6 grid-rows-4 gap-4 gap-y-2 pt-2">
+          <div className=" text-contrast-dark grid grid-cols-6 grid-rows-4 gap-4 gap-y-2 pt-2">
             <div className="grid col-span-2"></div>
-            <div className="font-bold">A Cam</div>
+            {/* <div className="font-bold">A Cam</div>
             <div className="font-bold">B Cam</div>
             <div className="font-bold">C Cam</div>
-            <div className="font-bold">A Sound</div>
-            <div className="grid col-span-2 font-bold">Previously</div>
+            <div className="font-bold">A Sound</div> */}
+            <p className="font-bold">A Cam</p>
+            <p className="font-bold">B Cam</p>
+            <p className="font-bold">C Cam</p>
+            <p className="font-bold">A Sound</p>
+            <p className="grid col-span-2 font-bold">Previously</p>
             <TextInputField
               placeholder="0"
               key={`aCamPreviously-${aCamPreviously ?? 0}`}
@@ -83,7 +87,7 @@ const RollsForm = ({ }) => {
               key={`aSoundPreviously-${aSoundPreviously ?? 0}`}
               maxLength="3"
               defaultValue={aSoundPreviously} />
-            <div className="grid col-span-2 font-bold">Today</div>
+            <p className="grid col-span-2 font-bold">Today</p>
             <TextInputField
               placeholder="0"
               key={`aCamToday-${aCamToday ?? 0}`}
@@ -101,7 +105,7 @@ const RollsForm = ({ }) => {
               key={`aSoundToday-${aSoundToday ?? 0}`}
               maxLength="3" defaultValue={aSoundToday} />
 
-            <div className="grid col-span-2 font-bold">To Date</div>
+            <p className="grid col-span-2 font-bold">To Date</p>
             <TextInputField
               placeholder="0"
               key={`aCamToDate-${aCamToDate ?? 0}`}
