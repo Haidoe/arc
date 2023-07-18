@@ -37,13 +37,14 @@ const ActualScheduleForm = ({ className }) => {
       <Accordion title="Actual Schedule" defaultOpen={true} className={`text-contrast-dark ${className}`}>
         <div onClick={() => setIsOpen(true)}>
           <div className="grid grid-cols-3 gap-4 font-bold pb-2 border-b border-primary-base">
-            <p>Title</p>
-            <p>Schedule</p>
-            <p>Actual</p>
+            <p tabIndex="-1">Title</p>
+            <p tabIndex="-1">Schedule</p>
+            <p tabIndex="-1">Actual</p>
           </div>
           <div className="grid grid-cols-3 grid-rows-7 gap-4 gap-y-2 pt-2">
             <p>1st Unit</p>
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`firstUnitSchedule-${firstUnitSchedule ?? 0}`}
               maxLength="8"
@@ -51,6 +52,7 @@ const ActualScheduleForm = ({ className }) => {
               defaultValue={firstUnitSchedule} />
 
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`firstUnitActual-${firstUnitActual ?? 0}`}
               maxLength="8"
@@ -59,6 +61,7 @@ const ActualScheduleForm = ({ className }) => {
               defaultValue={firstUnitActual} />
             <p>2nd Unit</p>
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`secondUnitSchedule-${secondUnitSchedule ?? 0}`}
               maxLength="8"
@@ -66,6 +69,7 @@ const ActualScheduleForm = ({ className }) => {
               label="secondUnitSchedule"
               defaultValue={secondUnitSchedule} />
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`secondUnitActual-${secondUnitActual ?? 0}`}
               maxLength="8"
@@ -74,6 +78,7 @@ const ActualScheduleForm = ({ className }) => {
               defaultValue={secondUnitActual} />
             <p>Prep</p>
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`prepSchedule-${prepSchedule ?? 0}`}
               maxLength="8"
@@ -81,6 +86,7 @@ const ActualScheduleForm = ({ className }) => {
               label="prepSchedule"
               defaultValue={prepSchedule} />
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`prepActual-${prepActual ?? 0}`}
               maxLength="8"
@@ -89,6 +95,7 @@ const ActualScheduleForm = ({ className }) => {
               defaultValue={prepActual} />
             <p>Travel</p>
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`travelSchedule-${travelSchedule ?? 0}`}
               maxLength="8"
@@ -96,6 +103,7 @@ const ActualScheduleForm = ({ className }) => {
               label="travelSchedule"
               defaultValue={travelSchedule} />
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`travelActual-${travelActual ?? 0}`}
               maxLength="8"
@@ -104,6 +112,7 @@ const ActualScheduleForm = ({ className }) => {
               defaultValue={travelActual} />
             <p>Idle</p>
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`idleSchedule-${idleSchedule ?? 0}`}
               maxLength="8"
@@ -111,6 +120,7 @@ const ActualScheduleForm = ({ className }) => {
               label="idleSchedule"
               defaultValue={idleSchedule} />
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`idleActual-${idleActual ?? 0}`}
               maxLength="8"
@@ -119,6 +129,7 @@ const ActualScheduleForm = ({ className }) => {
               defaultValue={idleActual} />
             <p>Holiday</p>
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`holidaySchedule-${holidaySchedule ?? 0}`}
               maxLength="8"
@@ -126,6 +137,7 @@ const ActualScheduleForm = ({ className }) => {
               label="holidaySchedule"
               defaultValue={holidaySchedule} />
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`holidayActual-${holidayActual ?? 0}`}
               maxLength="8"
@@ -134,12 +146,14 @@ const ActualScheduleForm = ({ className }) => {
               defaultValue={holidayActual} />
             <p>Total</p>
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`totalSchedule-${totalSchedule ?? 0}`}
               maxLength="8"
               label="totalSchedule"
               defaultValue={totalSchedule} />
             <TextInputField
+              tabIndex="-1"
               placeholder="0"
               key={`totalActual-${totalActual ?? 0}`}
               maxLength="8"

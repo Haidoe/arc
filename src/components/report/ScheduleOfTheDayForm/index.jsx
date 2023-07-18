@@ -47,32 +47,40 @@ const ScheduleOfTheDayForm = ({ className }) => {
             <p className="font-bold">End</p>
             <p className="font-bold">Breakfast</p>
             <TimeInputField
+              tabIndex="-1"
               key={`breakfastFrom-${breakfastFrom ?? 0}`}
               label="breakfastFrom"
               defaultValue={breakfastFrom}
             />
             <TimeInputField
+              tabIndex="-1"
               key={`breakfastTo-${breakfastTo ?? 0}`}
               label="breakfastTo" defaultValue={breakfastTo} />
             <p className="font-bold">Crew Call</p>
             <TimeInputField
+              tabIndex="-1"
               key={`crewCallFrom-${crewCallFrom ?? 0}`}
               label="crewCallForm" defaultValue={crewCallFrom} />
             <TimeInputField
+              tabIndex="-1"
               key={`crewCallTo-${crewCallTo ?? 0}`}
               label="crewCallTo" defaultValue={crewCallTo} />
             <p className="font-bold">Shooting Call</p>
             <TimeInputField
+              tabIndex="-1"
               key={`shootingCallFrom-${shootingCallFrom ?? 0}`}
               label="shootingCallFrom" defaultValue={shootingCallFrom} />
             <TimeInputField
+              tabIndex="-1"
               key={`shootingCallTo-${shootingCallTo ?? 0}`}
               label="shootingCallTo" defaultValue={shootingCallTo} />
             <p className="font-bold">Lunch</p>
             <TimeInputField
+              tabIndex="-1"
               key={`lunchFrom-${lunchFrom ?? 0}`}
               label="lunchFrom" defaultValue={lunchFrom} />
             <TimeInputField
+              tabIndex="-1"
               key={`lunchTo-${lunchTo ?? 0}`}
               label="lunchTo" defaultValue={lunchTo} />
           </div>
