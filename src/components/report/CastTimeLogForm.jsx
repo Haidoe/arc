@@ -85,6 +85,7 @@ const CastTimeLogForm = ({ productionInfo }) => {
         <ConfirmationModal
           heading="Delete Confirmation"
           message="Are you sure you want to delete?"
+          cancelHandler={() => setShowDeleteModal(false)}
           actionHandler={(selectedIndex) => deleteConfirmationHandler(selectedIndex)}
         />
       )}

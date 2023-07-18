@@ -58,7 +58,8 @@ const ScenesShotForm = ({ productionInfo }) => {
 
   function deleteConfirmationHandler() {
     const updatedRows = shotSceneInfo.filter((item, i) => i !== selectedIndex);
-    dispatch(updateShotScene(updatedRows));
+    console.log(updatedRows)
+    // dispatch(updateShotScene(updatedRows));
     setSelectedIndex(undefined);
     setShowDeleteModal(false);
   }
@@ -79,6 +80,7 @@ const ScenesShotForm = ({ productionInfo }) => {
         <ConfirmationModal
           heading="Delete Confirmation"
           message="Are you sure you want to delete?"
+          cancelHandler={() => setShowDeleteModal(false)}
           actionHandler={(selectedIndex) => deleteConfirmationHandler(selectedIndex)}
         />
       )}
