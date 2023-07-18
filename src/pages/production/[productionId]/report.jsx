@@ -64,21 +64,21 @@ const ProductionReportPage = ({ productionInfo, report }) => {
         </aside>
 
         <div className="grid flex-1 grid-cols-2 content-start gap-4 px-8 pb-8">
-          <div className="bg-white ">
+          <div className="bg-arc ">
             <ScheduleOfTheDayForm />
           </div>
 
-          <div className="bg-white ">
+          <div className="bg-arc ">
             <ActualScheduleForm />
           </div>
 
-          <div className="bg-white ">
+          <div className="bg-arc ">
             <AccordionCrud title={"Not Shot Form"} defaultOpen={true}>
               <NotShotForm />
             </AccordionCrud>
           </div>
 
-          <div className="bg-white ">
+          <div className="bg-arc ">
             <RollsForm />
           </div>
 
