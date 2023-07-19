@@ -8,10 +8,15 @@ import BudgetStatusChart from "~/components/dashboard/BudgetStatusChart";
 // components
 import ActiveActors from "~/components/dashboard/ActiveActors";
 import ActiveExtras from "~/components/dashboard/ActiveExtras";
+import Head from "next/head";
 
 const ProductionReportPage = ({ productionInfo }) => {
   return (
     <MainPageLayout>
+      <Head>
+        <title> {productionInfo.title} | Dashboard | Arc </title>
+      </Head>
+
       <div className="flex flex-1 bg-backgroundArc">
         <aside className="hidden flex-shrink-0 flex-col bg-arc sm:flex sm:basis-[384px]">
           <Sidebar data={productionInfo} theme="primary" />
