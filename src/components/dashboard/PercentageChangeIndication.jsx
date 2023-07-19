@@ -1,9 +1,25 @@
-// import image for icon
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Arrow_increase from "~/assets/icons/Arrow_increase.svg";
 import Arrow_decrease from "~/assets/icons/Arrow_decrease.svg";
 
-const PercentageChangeIndication = ({change }) => {
+const PercentageChangeIndication = ({ change }) => {
+  const [displayChange, setDisplayChange] = useState(0);
+
+  useEffect(() => {
+    const incrementChange = setInterval(() => {
+      setDisplayChange((prevChange) => {
+        if (prevChange < change) {
+          return prevChange + 1;
+        } else {
+          clearInterval(incrementChange);
+          return change;
+        }
+      });
+    }, 10);
+
+    return () => clearInterval(incrementChange);
+  }, [change]);
 
   const changeType = change > 0 ? "increase" : "decrease";
 
@@ -29,7 +45,7 @@ const PercentageChangeIndication = ({change }) => {
         <Image
           src={Arrow_decrease}
           alt="decrease"
-            className="
+          className="
             -ml-1 mr-0.5 h-3 w-3 flex-shrink-0 self-center text-red-500 rotate-[270deg] transform"
           aria-hidden="true"
         />
@@ -40,7 +56,7 @@ const PercentageChangeIndication = ({change }) => {
         {changeType === "increase" ? "Increased" : "Decreased"} by{" "}
       </span>
 
-      {Math.abs(change) + "%"}
+      {Math.abs(displayChange) + "%"}
     </div>
   );
 };
