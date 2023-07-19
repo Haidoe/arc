@@ -18,28 +18,50 @@ const getHandler = async (req, res) => {
       include: {
         report: {
           select: {
-            shotScene: {
-              select: {
-                number: true,
-                pagePortion: true,
-              },
-            },
+            shotScene: true,
           },
         },
       },
     });
 
-    const sceneProgressArray = scenesProgress.scenes.map((expected, index) => ({
-      // number: index + 1,
-      expected: expected,
-      completed: 0,
-    }));
+    // return res.status(200).json({
+    //   scenesProgress,
 
-    scenesProgress.report.forEach((report) => {
-      report.shotScene.forEach((shotScene) => {
-        sceneProgressArray[shotScene.number - 1].completed +=
-          shotScene.pagePortion;
-      });
+    // });
+
+    //make an array of objects with the scene number and the expected and completed page portions
+
+    // const sceneProgressArray = scenesProgress.scenes.map((expected, index) => ({
+    //   // number: index + 1,
+    //   expected: expected,
+    //   completed: 0,
+    // }));
+
+    // scenesProgress.report.forEach((report) => {
+    //   report.shotScene.forEach((shotScene) => {
+    //     sceneProgressArray[shotScene.number - 1].completed +=
+    //       shotScene.pagesToday;
+    //   });
+    // });
+
+    const sceneProgressArray = scenesProgress.scenes.map((expected, index) => {
+      const completed = scenesProgress.report.reduce((total, report) => {
+        const shotScene = report.shotScene.find(
+          (shot) => shot.number === index + 1
+        );
+        if (shotScene) {
+          return total + shotScene.pagesToday;
+        }
+        return total;
+      }, 0);
+
+      const remaining = expected - completed;
+
+      return {
+        expected: expected,
+        completed: completed,
+        remaining: remaining,
+      };
     });
 
     return res.status(200).json({
