@@ -50,7 +50,7 @@ const BudgetStatusChart = ({ details }) => {
           return "transparent";
         },
         borderWidth: 0,
-        cutout: "70%",
+        cutout: "60%",
         borderRadius: 50,
       },
     ],
@@ -61,6 +61,9 @@ const BudgetStatusChart = ({ details }) => {
       legend: {
         display: false,
       },
+    },
+    layout: {
+      padding: 8,
     },
   };
 
