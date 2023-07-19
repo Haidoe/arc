@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import LoadingSpinner, { LoadingPage } from "~/components/Loading";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -20,7 +21,15 @@ ChartJS.register(
   Legend
 );
 
+const LoadingDiv = () => (
+  <div className="flex flex-col items-center justify-center">
+    <LoadingSpinner size={40} />
+    <span className="text-primary-light">Retrieving data...</span>
+  </div>
+);
+
 const SceneChart = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [sceneProgressArray, setSceneProgressArray] = useState([]);
   const [chartData, setChartData] = useState({
     labels: [],
@@ -49,6 +58,8 @@ const SceneChart = () => {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -127,9 +138,14 @@ const SceneChart = () => {
 
   return (
     <div className="bg-arc rounded p-8">
-      <div className="m-auto h-[25vh] w-full rounded pb-4 md:col-span-2 lg:h-[40vh]">
+      <div className="m-auto h-[25vh] w-full rounded pb-4 lg:h-[40vh]">
         <p className="font-bold text-lg text-primary-base">Scenes Shot Chart</p>
-        <Bar data={chartData} options={chartOptions} />
+        {isLoading ? (
+          <LoadingDiv />
+        ) : (
+          <Bar data={chartData} options={chartOptions} />
+        )}
+
       </div>
     </div>
   );
