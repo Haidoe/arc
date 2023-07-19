@@ -1,8 +1,11 @@
 import { requireAuth } from "@clerk/nextjs/api";
 import { getAuth } from "@clerk/nextjs/server";
 import type { ProductionReport } from "@prisma/client";
+import dayjs from "dayjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "~/server/db";
+
+const WORKING_HOURS_PER_DAY = 12;
 
 //used requireAuth to make sure the user is logged in
 export default requireAuth(async function handler(
@@ -36,37 +39,41 @@ export default requireAuth(async function handler(
         if (report.actualSchedule !== null) {
           const firstInputSchedule =
             report.actualSchedule?.firstUnitInput?.schedule ?? 0;
-          const secondInputSchedule =
-            report.actualSchedule?.secondUnitInput?.schedule ?? 0;
+          const travelSchedule = report.actualSchedule?.travel?.schedule ?? 0;
           const prepSchedule = report.actualSchedule?.prep?.schedule ?? 0;
           const idleSchedule = report.actualSchedule?.idle?.schedule ?? 0;
 
           const totalSchedule =
-            firstInputSchedule +
-            secondInputSchedule +
-            prepSchedule +
-            idleSchedule;
+            firstInputSchedule + prepSchedule + idleSchedule + travelSchedule;
 
-          const firstInputActual =
-            report.actualSchedule?.firstUnitInput?.actual ?? 0;
-          const secondInputActual =
-            report.actualSchedule?.secondUnitInput?.actual ?? 0;
-          const prepActual = report.actualSchedule?.prep?.actual ?? 0;
-          const idleActual = report.actualSchedule?.idle?.actual ?? 0;
-
-          const totalActual =
-            firstInputActual + secondInputActual + prepActual + idleActual;
-
-          return totalSchedule > 0 ? (totalActual / totalSchedule) * 100 : 0;
+          return totalSchedule;
         }
 
         return 0;
       }
     );
 
-    const rate = reports.reduce((a, b) => a + b, 0) / reports.length;
+    const reportsComputed: number[] = reports.map((report: number) => {
+      return (report / WORKING_HOURS_PER_DAY) * 100;
+    });
 
-    res.json({ rate: Math.round(rate) });
+    const startDate = result.duration?.startDate ?? null;
+    const estimatedFinishDate = result.duration?.estimatedFinishDate ?? null;
+    const totalDays = dayjs(estimatedFinishDate).diff(dayjs(startDate), "day");
+    const rate = (result.report.length / totalDays) * 100;
+
+    const finishRateAvg =
+      reportsComputed.reduce((a, b) => a + b, 0) / reportsComputed.length;
+
+    const finishRateAvg2Decimals = parseFloat(finishRateAvg.toFixed(2));
+
+    res.json({
+      startDate,
+      estimatedFinishDate,
+      totalDays,
+      projectProgress: parseFloat(rate.toFixed(2)),
+      finishRateAvg: finishRateAvg2Decimals,
+    });
   } catch (error) {
     res.status(400).json({ message: "Invalid Parameters" });
   }
