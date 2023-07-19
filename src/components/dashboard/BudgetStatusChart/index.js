@@ -67,14 +67,14 @@ const BudgetStatusContent = () => {
         {isLoading ? (
           <LoadingDiv />
         ) : (
-          <div className="min-w-[150px] max-w-[200px] p-4">
+          <div className="min-w-[150px] max-w-[200px]">
             <BudgetStatusChart details={data} />
           </div>
         )}
       </div>
 
       {data?.finishRateAvg ? (
-        <p className="mt-8 text-center text-xs text-black">
+        <p className="mt-4 text-center text-xs text-black">
           {getStatusMessage(data.finishRateAvg)}
         </p>
       ) : (

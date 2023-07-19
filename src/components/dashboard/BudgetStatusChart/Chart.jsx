@@ -62,6 +62,9 @@ const BudgetStatusChart = ({ details }) => {
         display: false,
       },
     },
+    layout: {
+      padding: 8,
+    },
   };
 
   const backgroundCircle = {
