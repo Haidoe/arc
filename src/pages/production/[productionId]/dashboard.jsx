@@ -2,6 +2,7 @@ import DropDown from "~/components/global/DropDown";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Sidebar from "~/components/production/Information";
 import { getProductionInfoById } from "~/service/production";
+import SceneChart from "~/components/dashboard/SceneChart";
 
 // components
 import ActiveActors from "~/components/dashboard/ActiveActors";
@@ -23,7 +24,7 @@ const ProductionReportPage = ({ productionInfo }) => {
               {/* drop down */}
               <div>
                 <DropDown
-                  people={[{name: "Today"}]}
+                  people={[{ name: "Today" }]}
                   selected={{ name: "Today" }}
                   isReadOnly={true}
                 />
@@ -44,7 +45,9 @@ const ProductionReportPage = ({ productionInfo }) => {
           </div>
           <div className="col-span-full sm:col-span-1 mx-4 my-2">Budget Status Card</div>
           <div className="col-span-full sm:col-span-1 mx-4 my-2">Unfinished Scenes Card</div>
-          <div className="col-span-full mx-4 my-2">Scenes Card</div>
+          <div className="col-span-full mx-4 my-2">
+            <SceneChart />
+          </div>
         </div>
       </div>
     </MainPageLayout>
