@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import BudgetStatusChart from "./Chart";
 import { useRouter } from "next/router";
 import { getProductionFinishRate } from "~/service/dashboard";
-import LoadingSpinner, { LoadingPage } from "~/components/Loading";
+import LoadingSpinner from "~/components/Loading";
 
 const STATUS = {
   good: "The shooting is on track to finish on time.",
@@ -50,13 +50,11 @@ const BudgetStatusContent = () => {
     fetchData();
   }, []);
 
-  console.log("DATA >> ", data);
-
   return (
     <div className="flex flex-col gap-4 rounded-[5px] bg-arc p-8 ">
       <h2 className="flex items-end justify-between text-lg font-bold text-primary-base">
         Budget Status
-        {data ? (
+        {data?.totalHours ? (
           <span className="text-sm font-normal text-black">
             {data.totalHours}/{data.totalDays * 12} hours
           </span>
@@ -69,13 +67,13 @@ const BudgetStatusContent = () => {
         {isLoading ? (
           <LoadingDiv />
         ) : (
-          <div className="min-w-[150px] max-w-[200px]  ">
+          <div className="min-w-[150px] max-w-[200px] p-4">
             <BudgetStatusChart details={data} />
           </div>
         )}
       </div>
 
-      {data ? (
+      {data?.finishRateAvg ? (
         <p className="mt-8 text-center text-xs text-black">
           {getStatusMessage(data.finishRateAvg)}
         </p>

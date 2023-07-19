@@ -50,7 +50,7 @@ const BudgetStatusChart = ({ details }) => {
           return "transparent";
         },
         borderWidth: 0,
-        cutout: "70%",
+        cutout: "60%",
         borderRadius: 50,
       },
     ],
