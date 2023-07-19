@@ -53,14 +53,7 @@ const BudgetStatusContent = () => {
   return (
     <div className="flex flex-col gap-4 rounded-[5px] bg-arc p-8 ">
       <h2 className="flex items-end justify-between text-lg font-bold text-primary-base">
-        Budget Status
-        {data?.totalHours ? (
-          <span className="text-sm font-normal text-black">
-            {data.totalHours}/{data.totalDays * 12} hours
-          </span>
-        ) : (
-          ""
-        )}
+        Production Progress Chart
       </h2>
 
       <div className="mt-4 flex justify-center">
