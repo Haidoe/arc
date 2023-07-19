@@ -6,6 +6,7 @@ import SceneChart from "~/components/dashboard/SceneChart";
 
 // components
 import ActiveActors from "~/components/dashboard/ActiveActors";
+import ActiveExtras from "~/components/dashboard/ActiveExtras";
 
 const ProductionReportPage = ({ productionInfo }) => {
   return (
@@ -36,7 +37,9 @@ const ProductionReportPage = ({ productionInfo }) => {
           <div className="col-span-full sm:col-span-1 mx-4 my-2">
             <ActiveActors />
           </div>
-          <div className="col-span-full sm:col-span-1 mx-4 my-2">Active Extras Card</div>
+          <div className="col-span-full sm:col-span-1 mx-4 my-2">
+          <ActiveExtras />
+          </div>
           <div className="col-span-full mt-6">
             <h2 className="mx-4 text-2xl font-bold text-primary-dark">
               General Reports
