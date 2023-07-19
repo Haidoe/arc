@@ -138,8 +138,8 @@ const SceneChart = () => {
 
   return (
     <div className="bg-arc rounded p-8">
-      <div className="m-auto h-[25vh] w-full rounded pb-4 lg:h-[40vh]">
-        <p className="font-bold text-lg text-primary-base">Scenes Shot Chart</p>
+      <p className="font-bold text-lg text-primary-base">Scenes Shot Chart</p>
+      <div className="flex justify-center m-auto h-[25vh] w-full rounded pb-4 lg:h-[40vh]">
         {isLoading ? (
           <LoadingDiv />
         ) : (
