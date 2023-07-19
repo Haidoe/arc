@@ -4,6 +4,9 @@ import Sidebar from "~/components/production/Information";
 import { getProductionInfoById } from "~/service/production";
 import SceneChart from "~/components/dashboard/SceneChart";
 
+// components
+import ActiveActors from "~/components/dashboard/ActiveActors";
+
 const ProductionReportPage = ({ productionInfo }) => {
   return (
     <MainPageLayout>
@@ -30,7 +33,9 @@ const ProductionReportPage = ({ productionInfo }) => {
 
             <hr className="my-2 border-b border-contrast-light" />
           </div>
-          <div className="col-span-full sm:col-span-1 mx-4 my-2">Active Actors Card</div>
+          <div className="col-span-full sm:col-span-1 mx-4 my-2">
+            <ActiveActors />
+          </div>
           <div className="col-span-full sm:col-span-1 mx-4 my-2">Active Extras Card</div>
           <div className="col-span-full mt-6">
             <h2 className="mx-4 text-2xl font-bold text-primary-dark">
