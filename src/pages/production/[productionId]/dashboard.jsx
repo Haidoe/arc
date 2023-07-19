@@ -5,6 +5,10 @@ import { getProductionInfoById } from "~/service/production";
 import SceneChart from "~/components/dashboard/SceneChart";
 import BudgetStatusChart from "~/components/dashboard/BudgetStatusChart";
 
+// components
+import ActiveActors from "~/components/dashboard/ActiveActors";
+import ActiveExtras from "~/components/dashboard/ActiveExtras";
+
 const ProductionReportPage = ({ productionInfo }) => {
   return (
     <MainPageLayout>
@@ -33,11 +37,11 @@ const ProductionReportPage = ({ productionInfo }) => {
           </div>
 
           <div className="col-span-full mx-4 my-2 sm:col-span-1">
-            Active Actors Card
+            <ActiveActors />
           </div>
 
           <div className="col-span-full mx-4 my-2 sm:col-span-1">
-            Active Extras Card
+            <ActiveExtras />
           </div>
 
           <div className="col-span-full mt-6">
