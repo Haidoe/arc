@@ -3,6 +3,7 @@ import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Sidebar from "~/components/production/Information";
 import { getProductionInfoById } from "~/service/production";
 import SceneChart from "~/components/dashboard/SceneChart";
+import BudgetStatusChart from "~/components/dashboard/BudgetStatusChart";
 
 // components
 import ActiveActors from "~/components/dashboard/ActiveActors";
@@ -34,20 +35,30 @@ const ProductionReportPage = ({ productionInfo }) => {
 
             <hr className="my-2 border-b border-contrast-light" />
           </div>
-          <div className="col-span-full sm:col-span-1 mx-4 my-2">
+
+          <div className="col-span-full mx-4 my-2 sm:col-span-1">
             <ActiveActors />
           </div>
-          <div className="col-span-full sm:col-span-1 mx-4 my-2">
-          <ActiveExtras />
+
+          <div className="col-span-full mx-4 my-2 sm:col-span-1">
+            <ActiveExtras />
           </div>
+
           <div className="col-span-full mt-6">
             <h2 className="mx-4 text-2xl font-bold text-primary-dark">
               General Reports
             </h2>
             <hr className="my-2 border-b border-contrast-light" />
           </div>
-          <div className="col-span-full sm:col-span-1 mx-4 my-2">Budget Status Card</div>
-          <div className="col-span-full sm:col-span-1 mx-4 my-2">Unfinished Scenes Card</div>
+
+          <div className="mx-4 my-2 sm:col-span-1">
+            <BudgetStatusChart />
+          </div>
+
+          <div className="mx-4 my-2 sm:col-span-1">
+            <BudgetStatusChart />
+          </div>
+
           <div className="col-span-full mx-4 my-2">
             <SceneChart />
           </div>
