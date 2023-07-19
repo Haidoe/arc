@@ -53,13 +53,19 @@ export default requireAuth(async function handler(
       }
     );
 
-    const reportsComputed: number[] = reports.map((report: number) => {
+    const totalHours = reports.reduce((a, b) => a + b, 0);
+
+    //Removing with no valid reports
+    const reportsFiltered = reports.filter((report: number) => report !== 0);
+
+    const reportsComputed: number[] = reportsFiltered.map((report: number) => {
       return (report / WORKING_HOURS_PER_DAY) * 100;
     });
 
     const startDate = result.duration?.startDate ?? null;
     const estimatedFinishDate = result.duration?.estimatedFinishDate ?? null;
     const totalDays = dayjs(estimatedFinishDate).diff(dayjs(startDate), "day");
+
     const rate = (result.report.length / totalDays) * 100;
 
     const finishRateAvg =
@@ -68,11 +74,13 @@ export default requireAuth(async function handler(
     const finishRateAvg2Decimals = parseFloat(finishRateAvg.toFixed(2));
 
     res.json({
+      reports,
       startDate,
       estimatedFinishDate,
       totalDays,
       projectProgress: parseFloat(rate.toFixed(2)),
       finishRateAvg: finishRateAvg2Decimals,
+      totalHours,
     });
   } catch (error) {
     res.status(400).json({ message: "Invalid Parameters" });
