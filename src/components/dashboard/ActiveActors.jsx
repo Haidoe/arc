@@ -54,7 +54,7 @@ const ActiveActors = ({}) => {
   return (
     <>
       {
-        <div className="items-bottom flex min-h-[90px] flex-1 flex-row gap-4 rounded bg-arc px-4 py-4 text-primary-light">
+        <div className="items-bottom flex min-h-[90px] flex-1 flex-row gap-4 rounded bg-arc px-4 py-6 text-primary-light">
           {/* Display Information */}
           <div className="basis-5/8 flex w-60 flex-grow flex-col">
             <div>
