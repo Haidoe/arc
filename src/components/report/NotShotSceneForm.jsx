@@ -23,8 +23,10 @@ const NotShotSceneForm = ({ className }) => {
           className="grid w-full col-span-2" maxLength="50"
           defaultValue={sss} />
       </div>
-      <div className="flex justify-end gap-4 mt-2 pt-4 border-t border-primary-base">
-        <Button buttonType="Secondary" className="px-2 py-1" >Create New Line</Button>
+      <div className="flex justify-end gap-4 mt-2 pt-4 border-t border-primary-light">
+        <Button buttonType="Secondary" className="px-4 py-[15px]" >
+          <div className="text-center border-primary-light text-sm font-bold">Create New Line</div>
+        </Button>
       </div>
     </form >
   )

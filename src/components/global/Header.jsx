@@ -107,9 +107,9 @@ const linksOnHeader = {
 };
 
 const mobileHeaders = {
-  "/production": "Production",
-  "/productionReport": "Production Report",
-  "/dashboard": "Dashboard",
+  "/home": "Production",
+  "/production/[productionId]/report": "Production Report",
+  "/production/[productionId]/dashboard": "Dashboard",
   "/kaos/testDailyReports": "Production Report",
 };
 
@@ -170,8 +170,8 @@ const Header = () => {
                 
                 ${
                   header.path === asPath || header.path === pathname
-                    ? "border-tertiary-base text-tertiary-base"
-                    : "border-transparent text-contrast-dark hover:border-tertiary-base hover:text-tertiary-base"
+                    ? "border-tertiary-light text-tertiary-light"
+                    : "border-transparent text-contrast-dark hover:border-tertiary-light hover:text-tertiary-light"
                 }
 
                 inline-flex items-center border-b-2 px-2`}

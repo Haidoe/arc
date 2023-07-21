@@ -14,6 +14,8 @@ const dayOrNightArray = [{ name: "D" }, { name: "N" }];
 
 // handles add or update to in the modal
 const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
+  const formRef = useRef(null);
+
   // =======================> Resources
 
   const dispatch = useDispatch();
@@ -147,144 +149,157 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
     }
   }
 
+  function triggerSaveHandleModal() {
+    // Trigger the form validation
+    const isFormValid = formRef.current.reportValidity();
+    if (isFormValid) {
+      saveModalHandler();
+    }
+  }
+
   const modalHeightClass = " h-[300px]";
 
   return (
     <>
       <div>
         <div className={modalHeightClass}>
-          <div className="min-h-[200px] overflow-x-auto">
-            <div className="inline-block min-w-full align-middle">
-              <table className="min-w-full divide-y divide-primary-base text-base font-bold text-contrast-dark">
-                <thead>
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-3 pb-3.5 text-left "
-                    >
-                      Scene No.
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 pb-3.5 text-left "
-                    >
-                      Set
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 pb-3.5 text-left "
-                    >
-                      Location
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 pb-3.5 text-left "
-                    >
-                      Cast
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 pb-3.5 text-left "
-                    >
-                      D/N
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 pb-3.5 text-left "
-                    >
-                      Pages
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 pb-3.5 text-left "
-                    >
-                      Pages Shot
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 pb-3.5 text-left "
-                    >
-                      Pages Today
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 text-base text-contrast-dark">
-                  <tr>
-                    <td className="whitespace-nowrap px-3 py-4 ">
-                      {/* TODO Drop Down of Scene Number */}
-                      <DropDown
-                        width="small"
-                        people={allScenes}
-                        selected={selectedNumber}
-                        setSelected={setSelectedNumber}
-                      />
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 ">
-                      {/* TODO Set Name */}
-                      <TextInputField
-                        className="rounded-sm border border-gray-500 px-2 py-2"
-                        label="Set Name"
-                        defaultValue={set_iv}
-                        ref={set}
-                      />
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 ">
-                      {/* TODO Location */}
-                      <TextInputField
-                        className="rounded-sm border border-gray-500 px-2 py-2"
-                        label="Location"
-                        defaultValue={location_iv}
-                        ref={location}
-                      />
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 ">
-                      {/* TODO Cast */}
-                      <TextInputField
-                        className="rounded-sm border border-gray-500 px-2 py-2"
-                        label="Cast"
-                        defaultValue={casts_iv}
-                        ref={casts}
-                      />
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 ">
-                      {/* TODO D/N */}
-                      <DropDown
-                        width="small"
-                        people={dayOrNightArray}
-                        selected={selectedDayOrNight}
-                        setSelected={setSelectedDayOrNight}
-                      />
-                    </td>
+          <form ref={formRef}>
+            <div className="min-h-[200px] overflow-x-auto">
+              <div className="inline-block min-w-full align-middle">
+                <table className="min-w-full divide-y divide-primary-base text-base font-bold text-contrast-dark">
+                  <thead>
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-3 pb-3.5 text-left "
+                      >
+                        Scene No.
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-3 pb-3.5 text-left "
+                      >
+                        Set
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-3 pb-3.5 text-left "
+                      >
+                        Location
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-3 pb-3.5 text-left "
+                      >
+                        Cast
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-3 pb-3.5 text-left "
+                      >
+                        D/N
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-3 pb-3.5 text-left "
+                      >
+                        Pages
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-3 pb-3.5 text-left "
+                      >
+                        Pages Shot
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-3 pb-3.5 text-left "
+                      >
+                        Pages Today
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 text-base text-contrast-dark">
+                    <tr>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        {/* TODO Drop Down of Scene Number */}
+                        <DropDown
+                          width="small"
+                          people={allScenes}
+                          selected={selectedNumber}
+                          setSelected={setSelectedNumber}
+                        />
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        {/* TODO Set Name */}
+                        <TextInputField
+                          className="rounded-sm border border-gray-500 px-2 py-2"
+                          label="Set Name"
+                          defaultValue={set_iv}
+                          required={true}
+                          ref={set}
+                        />
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        {/* TODO Location */}
+                        <TextInputField
+                          className="rounded-sm border border-gray-500 px-2 py-2"
+                          label="Location"
+                          defaultValue={location_iv}
+                          required={true}
+                          ref={location}
+                        />
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        {/* TODO Cast */}
+                        <TextInputField
+                          className="rounded-sm border border-gray-500 px-2 py-2"
+                          label="Cast"
+                          defaultValue={casts_iv}
+                          required={true}
+                          ref={casts}
+                        />
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        {/* TODO D/N */}
+                        <DropDown
+                          width="small"
+                          people={dayOrNightArray}
+                          selected={selectedDayOrNight}
+                          setSelected={setSelectedDayOrNight}
+                        />
+                      </td>
 
-                    <td className="whitespace-nowrap px-3 py-4 ">
-                      {/* TODO Pages */}
-                      {selectedNumber.page}
-                    </td>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        {/* TODO Pages */}
+                        {selectedNumber.page}
+                      </td>
 
-                    <td className="whitespace-nowrap px-3 py-4 ">
-                      {/* TODO Page Shot */}
-                      <NumberInputField
-                        className="rounded-sm border border-gray-500 px-2 py-2"
-                        label="Page Shot"
-                        defaultValue={pagesShot_iv}
-                        ref={pagesShot}
-                      />
-                    </td>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        {/* TODO Page Shot */}
+                        <NumberInputField
+                          className="rounded-sm border border-gray-500 px-2 py-2"
+                          label="Page Shot"
+                          defaultValue={pagesShot_iv}
+                          ref={pagesShot}
+                        />
+                      </td>
 
-                    <td className="whitespace-nowrap px-3 py-4 ">
-                      {/* TODO Page Today */}
-                      <NumberInputField
-                        className="rounded-sm border border-gray-500 px-2 py-2"
-                        label="Page Today"
-                        defaultValue={pagesToday_iv}
-                        ref={pagesToday}
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        {/* TODO Page Today */}
+                        <NumberInputField
+                          className="rounded-sm border border-gray-500 px-2 py-2"
+                          label="Page Today"
+                          defaultValue={pagesToday_iv}
+                          ref={pagesToday}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+          </form>
           {/* Action Buttons */}
           <div className="mt-8 flex justify-end gap-4 border-primary-base pt-4">
             {/* Button to cancel */}
@@ -299,7 +314,7 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
             <Button
               buttonType="Secondary"
               className="px-2 py-1"
-              onClick={saveModalHandler}
+              onClick={triggerSaveHandleModal}
             >
               {isUpdate ? "Update" : "Add"}
             </Button>
