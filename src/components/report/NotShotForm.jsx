@@ -128,12 +128,12 @@ const NotShotForm = ({}) => {
               </div>
             </div>
             {/* Button to Create New Line */}
-            <div className="mt-2 flex justify-end gap-4 border-primary-base pt-4">
+            <div className="mt-2 flex justify-end gap-4 border-primary-light pt-4">
               <Button
                 buttonType="Secondary"
-                className="px-2 py-1"
+                className="px-4 py-[15px]"
               >
-                Create New Line
+                <div className="text-center border-primary-light text-sm font-bold">Create New Line</div>
               </Button>
             </div>
           </div>
