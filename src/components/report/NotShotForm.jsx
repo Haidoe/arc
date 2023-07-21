@@ -13,8 +13,8 @@ import TimeInputField from "~/components/TimeInputField";
 import { ISOToDateVancouverString, ISOToTimeString } from "~/helper/timeInputParser.js";
 
 // NotShotForm Dummy component form
-const NotShotForm = ({}) => {
- 
+const NotShotForm = ({ }) => {
+
   const notShotInfo = [
     {
       date: "2023-07-02T22:00:00.000Z",
@@ -36,71 +36,71 @@ const NotShotForm = ({}) => {
   return (
     <>
       {
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div>
           <div className="flow-root">
-            <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                <table className="min-w-full divide-y divide-gray-300">
-                  <thead>
+            <div className="overflow-x-auto">
+              <div className="inline-block min-w-full align-middle">
+                <table className="min-w-full divide-y divide-primary-base">
+                  <thead className="text-base font-bold text-contrast-dark">
                     <tr>
                       <th
                         scope="col"
-                        className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                        className="pb-3.5 pl-4 pr-3 text-left sm:pl-0"
                       >
                         Scene No.
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        className="px-3 pb-3.5 text-left "
                       >
-                          Date
+                        Date
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        className="px-3 pb-3.5 text-left "
                       >
                         Time
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        className="px-3 pb-3.5 text-left "
                       >
                         Reason
                       </th>
                       <th
                         scope="col"
-                        className="relative min-w-[60px] py-3.5 pl-3 pr-4 sm:pr-0 text-gray-900"
+                        className="relative min-w-[60px] py-3.5 pl-3 pr-4 sm:pr-0"
                       >
                         <span className="sr-only">Delete</span>
                       </th>
                     </tr>
                   </thead>
                   {notShotInfo?.length > 0 && (
-                    <tbody className="divide-y divide-gray-200">
+                    <tbody className="divide-y text-base text-contrast-dark divide-gray-200">
                       {notShotInfo.map((row, idx) => (
                         <tr key={idx}>
-                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                            
+                          <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium sm:pl-0">
+
                             {/* From drop down from Production Scenes Array */}
                             {idx + 1}
 
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <td className="whitespace-nowrap px-3 py-4 ">
                             {ISOToDateVancouverString(row.date)}
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                           
+                          <td className="whitespace-nowrap px-3 py-4 ">
+
 
                             <TimeInputField
-                                label="not shot time"
-                                isReadyOnly={true}
-                                value={ISOToTimeString(row.time)}
-                              />
+                              label="not shot time"
+                              isReadyOnly={true}
+                              value={ISOToTimeString(row.time)}
+                            />
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <td className="whitespace-nowrap px-3 py-4 ">
                             {row.reason}
                           </td>
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right  font-medium sm:pr-0">
                             <Image
                               className={`icon-delete-row hover:cursor-pointer`}
                               src={Delete}
@@ -119,7 +119,7 @@ const NotShotForm = ({}) => {
                 {notShotInfo?.length == 0 && (
                   <div className="mt-4 flex flex-col items-center gap-4 border-primary-base pt-4">
                     <div>
-                      <p className="text-sm text-gray-500">
+                      <p className="">
                         No not shot scenes infromation found.
                       </p>
                     </div>

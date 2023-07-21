@@ -26,7 +26,7 @@ const Border = forwardRef(
           tabIndex={tabIndex}
           type="text"
           placeholder={placeholder}
-          className={`text-input-border-input peer text-sm text-contrast-dark ${
+          className={`text-input-border-input peer text-contrast-dark ${
             isError ? "input-error" : ""
           }`}
           ref={ref}

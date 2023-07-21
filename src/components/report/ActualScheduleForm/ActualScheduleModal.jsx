@@ -111,13 +111,13 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
           insideModal={true}
         >
           <div>
-            <div className="grid grid-cols-3 gap-4  border-b border-primary-base pb-2 font-bold">
+            <div className="grid grid-cols-3 gap-4 text-contrast-dark text-base border-b border-primary-base pb-2 font-bold">
               <p>Title</p>
               <p>Schedule</p>
               <p>Actual</p>
             </div>
-            <div className="grid-rows-7 grid grid-cols-3 gap-4 gap-y-2 pt-2">
-              <p>1st Unit</p>
+            <div className="grid-rows-7 grid text-contrast-dark font-bold text-base grid-cols-3 gap-4 gap-y-4 pt-2">
+              <p >1st Unit</p>
               <TextInputField
                 placeholder="0"
                 maxLength="8"
