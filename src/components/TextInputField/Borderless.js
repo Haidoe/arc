@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 // eslint-disable-next-line react/display-name
 const Borderless = forwardRef(
   (
-    { name, value, onChange, className, defaultValue, placeholder, tabIndex },
+    { name, value, onChange, className, defaultValue, placeholder, tabIndex, required = false },
     ref
   ) => {
     return (
@@ -18,6 +18,7 @@ const Borderless = forwardRef(
         className={`text-input-borderless-input peer text-sm text-contrast-dark ${className}`}
         ref={ref}
         defaultValue={defaultValue}
+        required={required}
       />
     );
   }
