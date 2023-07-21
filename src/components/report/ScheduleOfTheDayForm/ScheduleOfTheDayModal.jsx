@@ -76,38 +76,56 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
   //handle redux update
   const handleReduxUpdate = () => {
     //This is to check if they are any changes in the input field
-    if (
-      breakfastFromRef.current?.value ||
-      breakfastToRef.current?.value ||
-      crewCallFromRef.current?.value ||
-      crewCallToRef.current?.value ||
-      shootingCallFromRef.current?.value ||
-      shootingCallToRef.current?.value ||
-      lunchFromRef.current?.value ||
-      lunchToRef.current?.value
-    ) {
-      let scheduleForDay = {
-        ...data.scheduleForDay,
-        breakfastFrom: timeToDatetime(breakfastFromRef.current.value),
-        breakfastTo: timeToDatetime(breakfastToRef.current.value),
-        crewCallFrom: timeToDatetime(crewCallFromRef.current.value),
-        crewCallTo: timeToDatetime(crewCallToRef.current.value),
-        shootingCallFrom: timeToDatetime(shootingCallFromRef.current.value),
-        shootingCallTo: timeToDatetime(shootingCallToRef.current.value),
-        lunchFrom: timeToDatetime(lunchFromRef.current.value),
-        lunchTo: timeToDatetime(lunchToRef.current.value),
-      };
 
-      //Updating the redux
-      console.log("Before dispatching" + scheduleForDay);
-      dispatch(updateScheduleForDay(scheduleForDay));
-      console.log("After dispatching" + scheduleForDay);
+    let scheduleForDay = {
+      ...data.scheduleForDay,
+      //check first if current value is empty if it is then use the default value
+      //if not then use the current value and call the timeToDatetime function to convert it to datetime
 
-      updateProductionReportById({
-        ...data,
-        scheduleForDay,
-      });
-    }
+      breakfastFrom:
+        breakfastFromRef.current.value === ""
+          ? null
+          : timeToDatetime(breakfastFromRef.current.value),
+      breakfastTo:
+        breakfastToRef.current.value === ""
+          ? null
+          : timeToDatetime(breakfastToRef.current.value),
+      crewCallFrom:
+        crewCallFromRef.current.value === ""
+          ? null
+          : timeToDatetime(crewCallFromRef.current.value),
+      crewCallTo:
+        crewCallToRef.current.value === ""
+          ? null
+          : timeToDatetime(crewCallToRef.current.value),
+      shootingCallFrom:
+        shootingCallFromRef.current.value === ""
+          ? null
+          : timeToDatetime(shootingCallFromRef.current.value),
+      shootingCallTo:
+        shootingCallToRef.current.value === ""
+          ? null
+          : timeToDatetime(shootingCallToRef.current.value),
+      lunchFrom:
+        lunchFromRef.current.value === ""
+          ? null
+          : timeToDatetime(lunchFromRef.current.value),
+      lunchTo:
+        lunchToRef.current.value === ""
+          ? null
+          : timeToDatetime(lunchToRef.current.value),
+    };
+
+    //Updating the redux
+    console.log("Before dispatching" + scheduleForDay);
+    dispatch(updateScheduleForDay(scheduleForDay));
+    console.log("After dispatching" + scheduleForDay);
+
+    updateProductionReportById({
+      ...data,
+      scheduleForDay,
+    });
+
 
     onClose();
   };
