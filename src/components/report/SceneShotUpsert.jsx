@@ -166,8 +166,8 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
           <form ref={formRef}>
             <div className="min-h-[200px] overflow-x-auto">
               <div className="inline-block min-w-full align-middle">
-                <table className="min-w-full divide-y divide-primary-base text-base font-bold text-contrast-dark">
-                  <thead>
+                <table className="min-w-full divide-y divide-primary-base text-base text-contrast-dark">
+                  <thead className=" font-bold">
                     <tr>
                       <th
                         scope="col"
