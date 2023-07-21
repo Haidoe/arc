@@ -11,7 +11,7 @@ const SignInPage: NextPage = () => {
   return (
     <MainPageLayout hideHeader>
       <Head>
-        <title>Sign in - Arc </title>
+        <title>Sign in | Arc </title>
       </Head>
 
       <div className="relative flex min-w-[320px] flex-1 overflow-hidden bg-arc">
@@ -49,9 +49,9 @@ const SignInPage: NextPage = () => {
               action="#"
               className="flex w-full max-w-[450px] flex-col gap-6 sm:gap-8"
             >
-              <TextInputField label="Email" />
+              <TextInputField label="Email" placeholder=" " />
 
-              <TextInputField label="Password" />
+              <TextInputField label="Password" placeholder=" " />
 
               <div className="flex justify-center">
                 <Button
