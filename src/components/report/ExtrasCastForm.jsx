@@ -15,7 +15,7 @@ import {
 } from "~/helper/timeInputParser.js";
 
 // ExtrasCastForm Dummy component form
-const ExtrasCastForm = ({}) => {
+const ExtrasCastForm = ({ }) => {
   const extrasCastInfo = [
     {
       qty: 3,
@@ -44,67 +44,67 @@ const ExtrasCastForm = ({}) => {
   return (
     <>
       {
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div>
           <div className="flow-root">
-            <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                <table className="min-w-full divide-y divide-gray-300">
+            <div className="overflow-x-auto">
+              <div className="inline-block min-w-full align-middle">
+                <table className="min-w-full divide-y text-base text-contrast-dark divide-primary-base">
                   <thead>
                     <tr>
                       <th
                         scope="col"
-                        className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                        className="pb-3.5 pl-4 pr-3 text-left sm:pl-0"
                       >
                         Quantity
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        className="px-3 pb-3.5 text-left "
                       >
                         Description
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        className="px-3 pb-3.5 text-left "
                       >
                         Notes
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        className="px-3 pb-3.5 text-left "
                       >
                         Schedule
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        className="px-3 pb-3.5 text-left "
                       >
                         Rate
                       </th>
                       <th
                         scope="col"
-                        className="relative min-w-[60px] py-3.5 pl-3 pr-4 sm:pr-0 text-gray-900"
+                        className="relative min-w-[60px] pb-3.5 pl-3 pr-4 sm:pr-0 text-contrast-dark"
                       >
                         <span className="sr-only">Delete</span>
                       </th>
                     </tr>
                   </thead>
                   {extrasCastInfo?.length > 0 && (
-                    <tbody className="divide-y divide-gray-200">
+                    <tbody className="divide-y divide-gray-200 text-base  text-contrast-dark">
                       {extrasCastInfo.map((row, idx) => (
                         <tr key={idx}>
-                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                          <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium  sm:pl-0">
                             {/* From drop down from Production Scenes Array */}
                             {row.qty}
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <td className="whitespace-nowrap px-3 py-4 ">
                             {row.name}
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <td className="whitespace-nowrap px-3 py-4 ">
                             {row.notes}
                           </td>
 
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <td className="whitespace-nowrap px-3 py-4 ">
                             <div className="flex gap-1">
                               <TimeInputField
                                 label="schedule in"
@@ -124,11 +124,11 @@ const ExtrasCastForm = ({}) => {
                             </div>
                           </td>
 
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <td className="whitespace-nowrap px-3 py-4 ">
                             ${row.schedule.rate}
                           </td>
 
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right font-medium sm:pr-0">
                             <Image
                               className={`icon-delete-row hover:cursor-pointer`}
                               src={Delete}
@@ -147,7 +147,7 @@ const ExtrasCastForm = ({}) => {
                 {extrasCastInfo?.length == 0 && (
                   <div className="mt-4 flex flex-col items-center gap-4 border-primary-base pt-4">
                     <div>
-                      <p className="text-sm text-gray-500">
+                      <p className="">
                         No not shot scenes infromation found.
                       </p>
                     </div>

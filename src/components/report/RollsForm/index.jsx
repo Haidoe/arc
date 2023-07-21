@@ -46,17 +46,17 @@ const RollsForm = ({ }) => {
   return (
     <>
       <Accordion title="Rolls" defaultOpen={true}>
-        <div onClick={() => setIsOpen(true)} action="" className={` text-contrast-dark`} >
-          <div className="pb-2 border-b border-primary-base">
-            <div className="grid grid-cols-6 grid-rows-2 gap-4 gap-y-2">
+        <div onClick={() => setIsOpen(true)} action="" className={` text-contrast-dark text-base font-bold`} >
+          <div className="pb-2 border-b  border-primary-base">
+            <div className="grid text-base text-bold grid-cols-6 grid-rows-2 gap-4 gap-y-2">
               <p tabIndex="-1" className="grid col-span-2">Script Supervisor</p>
-              <TextInputField tabIndex="-1" className="grid col-span-4" placeholder="Name" value={scriptSupervisor} />
-              <p tabIndex="-1" className="grid col-span-2">Data Wrangler</p>
-              <TextInputField tabIndex="-1" className="grid col-span-4" placeholder="Name" value={dataWrangler} />
+              <TextInputField tabIndex="-1" className="grid col-span-4" placeholder="Please input the name." value={scriptSupervisor} />
+              <p tabIndex="-1" className=" grid col-span-2">Data Wrangler</p>
+              <TextInputField tabIndex="-1" className="grid col-span-4" placeholder="Please input the name." value={dataWrangler} />
             </div>
           </div>
 
-          <div className=" text-contrast-dark grid grid-cols-6 grid-rows-4 gap-4 gap-y-2 pt-2">
+          <div className=" text-contrast-dark grid grid-cols-6 grid-rows-4 gap-4 gap-y-4 pt-2">
             <div className="grid col-span-2"></div>
             <p tabIndex="-1" className="font-bold">A Cam</p>
             <p tabIndex="-1" className="font-bold">B Cam</p>

@@ -215,40 +215,40 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
 
   return (
     <>
-      <div className="px-4 sm:px-6 lg:px-8">
+      <div className="">
         <div className={modalHeightClass}>
-          <div className="-mx-4 -my-2 min-h-[200px] overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-              <table className="min-w-full divide-y divide-gray-300">
+          <div className="min-h-[200px] overflow-x-auto">
+            <div className="inline-block min-w-full align-middle">
+              <table className="min-w-full divide-y divide-primary-base text-base text-contrast-dark font-bold">
                 <thead>
                   <tr>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 pb-3.5 text-left "
                     >
                       Cast
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 pb-3.5 text-left "
                     >
                       Character
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 pb-3.5 text-left "
                     >
                       Status
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 pb-3.5 text-left "
                     >
                       Work Schedule
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 pb-3.5 text-left "
                     >
                       Meals
                     </th>
@@ -256,7 +256,7 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   <tr>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <td className="whitespace-nowrap px-3 py-4 ">
                       {/* row cast */}
                       <DropDown
                         people={allCast}
@@ -264,10 +264,10 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
                         setSelected={setSelectedCast}
                       />
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <td className="whitespace-nowrap px-3 py-4 ">
                       {selectedCast?.character ?? ""}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <td className="whitespace-nowrap px-3 py-4 ">
                       <DropDown
                         width="small"
                         people={status}
@@ -275,7 +275,7 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
                         setSelected={setSelectedStatus}
                       />
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <td className="whitespace-nowrap px-3 py-4 ">
                       <div className="flex gap-1">
                         <TimeInputField
                           label="MU Report"
@@ -299,7 +299,7 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
                         />
                       </div>
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <td className="whitespace-nowrap px-3 py-4 ">
                       {/* {row.meals} */}
                       <div className="flex gap-1">
                         <TimeInputField
