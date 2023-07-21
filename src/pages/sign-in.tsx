@@ -51,7 +51,11 @@ const SignInPage: NextPage = () => {
             >
               <TextInputField label="Email" placeholder=" " />
 
-              <TextInputField label="Password" placeholder=" " />
+              <TextInputField
+                label="Password"
+                placeholder=" "
+                type="password"
+              />
 
               <div className="flex justify-center">
                 <Button

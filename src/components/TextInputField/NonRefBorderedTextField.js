@@ -8,7 +8,7 @@ const NonRefBorderedTextField = (props) => {
         onChange={props.onChange}
         name={props.name}
         id={props.name}
-        type="text"
+        type={props.type ?? "text"}
         placeholder={props.placeholder}
         className={`text-input-border-input peer text-sm text-contrast-dark ${
           props.isError ? "input-error" : ""
