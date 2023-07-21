@@ -8,6 +8,10 @@ import LogoMobile from "~/assets/icons/LogoMobile.svg";
 import hamburger from "~/assets/icons/Hamburger.svg";
 import crossClose from "~/assets/icons/CrossClose.svg";
 
+// import logo
+import { SignOutButton, SignedIn, SignedOut } from "@clerk/clerk-react";
+import Button from "../Button";
+
 const HeaderMobileLanding = ({ landingLinks }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -71,9 +75,29 @@ const HeaderMobileLanding = ({ landingLinks }) => {
               ))}
               {/* Sign in button */}
               <div className="px-4 py-4">
-                <button className="rounded-md bg-primary-light px-4 py-2 text-arc hover:bg-primary-dark">
+                {/* <button className="rounded-md bg-primary-light px-4 py-2 text-arc hover:bg-primary-dark">
                   Sign In
-                </button>
+                </button> */}
+
+<div className="registration-btns-wrapper">
+                {/* Sign In Button */}
+                {/* todo height 48 width 88 */}
+                <SignedOut>
+                  <Link href="/sign-in">
+                    <Button className=" px-4 py-2 text-base hover:bg-primary-base">
+                      Sign In
+                    </Button>
+                  </Link>
+                </SignedOut>
+
+                <SignedIn>
+                  <SignOutButton>
+                    <Button className=" px-4 py-2 text-base hover:bg-primary-base">
+                      Sign Out
+                    </Button>
+                  </SignOutButton>
+                </SignedIn>
+              </div>
               </div>
             </div>
           </div>
