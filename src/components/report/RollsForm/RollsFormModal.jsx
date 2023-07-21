@@ -109,6 +109,7 @@ const RollsFormModal = ({ isOpen, onClose }) => {
           defaultOpen={true}
           readOnlyState={false}
           insideModal={true}
+          onClose={handleReduxUpdate}
         >
           <form
             action=""
