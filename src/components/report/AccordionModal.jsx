@@ -34,10 +34,13 @@ const AccordionModal = ({ title, children, defaultOpen, modalWidth }) => {
       <Modal isOpen={isOpen} onClose={closeModal}>
         <div className={modalWidthClass}>
           <Accordion
-            title={title}
+            title={"dafadfdasf"}
             defaultOpen={true}
             readOnlyState={false}
+            onClose={true}
             insideModal={true}
+            tita={"nuts"}
+            
           >
             {children}
           </Accordion>
@@ -46,9 +49,11 @@ const AccordionModal = ({ title, children, defaultOpen, modalWidth }) => {
 
       {/* Accordion without Modal */}
       <Accordion
-        title={title}
+        title={"dafafads"}
         defaultOpen={defaultOpen}
         readOnlyState={true}
+        onClose={true}
+        tita={"nuts"}
         panelClick={handleAccordionPanelClick}
       >
         {children}

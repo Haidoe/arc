@@ -120,6 +120,7 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
           defaultOpen={true}
           readOnlyState={false}
           insideModal={true}
+          onClose={handleReduxUpdate}
         >
           <div>
             <div className="flex justify-between border-b border-primary-base pb-2 text-base font-bold text-contrast-dark">

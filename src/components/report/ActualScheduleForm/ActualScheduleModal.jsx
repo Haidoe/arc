@@ -109,6 +109,7 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
           defaultOpen={true}
           readOnlyState={false}
           insideModal={true}
+          onClose={handleReduxUpdate}
         >
           <div>
             <div className="grid grid-cols-3 gap-4 text-contrast-dark text-base border-b border-primary-base pb-2 font-bold">
