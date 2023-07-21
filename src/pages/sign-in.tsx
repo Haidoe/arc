@@ -64,11 +64,16 @@ const SignInPage: NextPage = () => {
             </form>
 
             <div className="meta mt-8 flex flex-col items-center gap-4 text-primary-dark xs:mt-12 xs:gap-5">
-              <a href="#">Forgot Password?</a>
+              <a href="#" className="underline">
+                Forgot Password?
+              </a>
 
               <span className="text-black">or</span>
 
-              <a href="#">{`Don't have an account? Create one`}</a>
+              <span>
+                {`Don't have an account? `}
+                <a href="#" className="underline">{`Create one`}</a>
+              </span>
 
               <div className="mt-12 flex justify-center">
                 <SignInButton mode="modal">
