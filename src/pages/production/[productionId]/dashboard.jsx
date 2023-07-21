@@ -9,6 +9,8 @@ import BudgetStatusChart from "~/components/dashboard/BudgetStatusChart";
 import ActiveActors from "~/components/dashboard/ActiveActors";
 import ActiveExtras from "~/components/dashboard/ActiveExtras";
 import Head from "next/head";
+import UnfinishhedSceneSection from "~/components/dashboard/UnfinishedSceneSection";
+import Button from "~/components/Button";
 
 const ProductionReportPage = ({ productionInfo }) => {
   return (
@@ -22,13 +24,13 @@ const ProductionReportPage = ({ productionInfo }) => {
           <Sidebar data={productionInfo} theme="primary" />
         </aside>
 
-        <div className="grid flex-1 grid-cols-2 content-start py-4">
+        <div className="grid flex-1 grid-cols-2 content-start gap-6 px-8 py-4">
           <div className="col-span-full mt-6">
-            <div className="mx-4 flex items-end justify-between">
+            <div className="flex items-end justify-between">
               <h2 className="flex-grow text-2xl font-bold text-primary-dark">
                 July 9, 2023
               </h2>
-              {/* drop down */}
+
               <div>
                 <DropDown
                   people={[{ name: "Today" }]}
@@ -41,31 +43,35 @@ const ProductionReportPage = ({ productionInfo }) => {
             <hr className="my-2 border-b border-contrast-light" />
           </div>
 
-          <div className="col-span-full mx-4 my-2 sm:col-span-1">
+          <div className="col-span-full sm:col-span-1">
             <ActiveActors />
           </div>
 
-          <div className="col-span-full mx-4 my-2 sm:col-span-1">
+          <div className="col-span-full sm:col-span-1">
             <ActiveExtras />
           </div>
 
           <div className="col-span-full mt-6">
-            <h2 className="mx-4 text-2xl font-bold text-primary-dark">
+            <h2 className="text-2xl font-bold text-primary-dark">
               General Reports
             </h2>
             <hr className="my-2 border-b border-contrast-light" />
           </div>
 
-          <div className="mx-4 my-2 sm:col-span-1">
+          <div className="sm:col-span-1">
             <BudgetStatusChart />
           </div>
 
-          <div className="mx-4 my-2 sm:col-span-1">
-            <BudgetStatusChart />
+          <div className="flex">
+            <UnfinishhedSceneSection />
           </div>
 
-          <div className="col-span-full mx-4 my-2">
+          <div className="col-span-full">
             <SceneChart />
+          </div>
+
+          <div className="col-span-full mt-8 flex justify-end">
+            <Button className="min-w-[240px] text-xs"> Download Report </Button>
           </div>
         </div>
       </div>
