@@ -15,7 +15,7 @@ const Borderless = forwardRef(
         type="text"
         placeholder={placeholder}
         tabIndex={tabIndex}
-        className={`text-input-borderless-input peer text-sm text-contrast-dark ${className}`}
+        className={`text-input-borderless-input peer text-contrast-dark ${className}`}
         ref={ref}
         defaultValue={defaultValue}
       />

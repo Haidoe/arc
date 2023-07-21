@@ -36,132 +36,145 @@ const ActualScheduleForm = ({ className }) => {
     <>
       <Accordion title="Actual Schedule" defaultOpen={true} className={`text-contrast-dark ${className}`}>
         <div onClick={() => setIsOpen(true)}>
-          <div className="grid grid-cols-3 gap-4 font-bold pb-2 border-b border-primary-base">
+          <div className="grid grid-cols-3 gap-4 text-contrast-base gap-y-4 font-bold pb-2 border-b text-base border-primary-base">
             <p tabIndex="-1">Title</p>
             <p tabIndex="-1">Schedule</p>
             <p tabIndex="-1">Actual</p>
           </div>
-          <div className="grid grid-cols-3 grid-rows-7 gap-4 gap-y-2 pt-2">
-            <p>1st Unit</p>
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`firstUnitSchedule-${firstUnitSchedule ?? 0}`}
-              maxLength="8"
-              className="underline-form"
-              defaultValue={firstUnitSchedule} />
-
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`firstUnitActual-${firstUnitActual ?? 0}`}
-              maxLength="8"
-              label="firstUnitActual"
-              className="underline-form"
-              defaultValue={firstUnitActual} />
-            <p>2nd Unit</p>
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`secondUnitSchedule-${secondUnitSchedule ?? 0}`}
-              maxLength="8"
-              className="underline-form"
-              label="secondUnitSchedule"
-              defaultValue={secondUnitSchedule} />
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`secondUnitActual-${secondUnitActual ?? 0}`}
-              maxLength="8"
-              className="underline-form"
-              label="secondUnitActual"
-              defaultValue={secondUnitActual} />
-            <p>Prep</p>
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`prepSchedule-${prepSchedule ?? 0}`}
-              maxLength="8"
-              className="underline-form"
-              label="prepSchedule"
-              defaultValue={prepSchedule} />
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`prepActual-${prepActual ?? 0}`}
-              maxLength="8"
-              className="underline-form"
-              label="prepActual"
-              defaultValue={prepActual} />
-            <p>Travel</p>
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`travelSchedule-${travelSchedule ?? 0}`}
-              maxLength="8"
-              className="underline-form"
-              label="travelSchedule"
-              defaultValue={travelSchedule} />
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`travelActual-${travelActual ?? 0}`}
-              maxLength="8"
-              className="underline-form"
-              label="travelActual"
-              defaultValue={travelActual} />
-            <p>Idle</p>
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`idleSchedule-${idleSchedule ?? 0}`}
-              maxLength="8"
-              className="underline-form"
-              label="idleSchedule"
-              defaultValue={idleSchedule} />
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`idleActual-${idleActual ?? 0}`}
-              maxLength="8"
-              className="underline-form"
-              label="idleActual"
-              defaultValue={idleActual} />
-            <p>Holiday</p>
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`holidaySchedule-${holidaySchedule ?? 0}`}
-              maxLength="8"
-              className="underline-form"
-              label="holidaySchedule"
-              defaultValue={holidaySchedule} />
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`holidayActual-${holidayActual ?? 0}`}
-              maxLength="8"
-              className="underline-form"
-              label="holidayActual"
-              defaultValue={holidayActual} />
-            <p>Total</p>
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`totalSchedule-${totalSchedule ?? 0}`}
-              maxLength="8"
-              label="totalSchedule"
-              defaultValue={totalSchedule} />
-            <TextInputField
-              tabIndex="-1"
-              placeholder="0"
-              key={`totalActual-${totalActual ?? 0}`}
-              maxLength="8"
-              label="totalActual"
-              defaultValue={totalActual} />
+          <div className="grid text-contrast-base font-bold gap-4 gap-y-4 pt-2 text-base">
+            <div className='grid grid-cols-3 gap-4'>
+              <p>1st Unit</p>
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`firstUnitSchedule-${firstUnitSchedule ?? 0}`}
+                maxLength="8"
+                className="underline-form"
+                defaultValue={firstUnitSchedule} />
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`firstUnitActual-${firstUnitActual ?? 0}`}
+                maxLength="8"
+                label="firstUnitActual"
+                className="underline-form"
+                defaultValue={firstUnitActual} />
+            </div>
+            <div className='grid grid-cols-3 gap-4'>
+              <p>2nd Unit</p>
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`secondUnitSchedule-${secondUnitSchedule ?? 0}`}
+                maxLength="8"
+                className="underline-form"
+                label="secondUnitSchedule"
+                defaultValue={secondUnitSchedule} />
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`secondUnitActual-${secondUnitActual ?? 0}`}
+                maxLength="8"
+                className="underline-form"
+                label="secondUnitActual"
+                defaultValue={secondUnitActual} />
+            </div>
+            <div className='grid grid-cols-3 gap-4'>
+              <p>Prep</p>
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`prepSchedule-${prepSchedule ?? 0}`}
+                maxLength="8"
+                className="underline-form"
+                label="prepSchedule"
+                defaultValue={prepSchedule} />
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`prepActual-${prepActual ?? 0}`}
+                maxLength="8"
+                className="underline-form"
+                label="prepActual"
+                defaultValue={prepActual} />
+            </div>
+            <div className='grid grid-cols-3 gap-4'>
+              <p>Travel</p>
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`travelSchedule-${travelSchedule ?? 0}`}
+                maxLength="8"
+                className="underline-form"
+                label="travelSchedule"
+                defaultValue={travelSchedule} />
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`travelActual-${travelActual ?? 0}`}
+                maxLength="8"
+                className="underline-form"
+                label="travelActual"
+                defaultValue={travelActual} />
+            </div>
+            <div className='grid grid-cols-3 gap-4'>
+              <p>Idle</p>
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`idleSchedule-${idleSchedule ?? 0}`}
+                maxLength="8"
+                className="underline-form"
+                label="idleSchedule"
+                defaultValue={idleSchedule} />
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`idleActual-${idleActual ?? 0}`}
+                maxLength="8"
+                className="underline-form"
+                label="idleActual"
+                defaultValue={idleActual} />
+            </div>
+            <div className='grid grid-cols-3 gap-4'>
+              <p>Holiday</p>
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`holidaySchedule-${holidaySchedule ?? 0}`}
+                maxLength="8"
+                className="underline-form"
+                label="holidaySchedule"
+                defaultValue={holidaySchedule} />
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`holidayActual-${holidayActual ?? 0}`}
+                maxLength="8"
+                className="underline-form"
+                label="holidayActual"
+                defaultValue={holidayActual} />
+            </div>
+            <div className='grid grid-cols-3 gap-4 file border-t border-primary-base py-2'>
+              <p>Total</p>
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`totalSchedule-${totalSchedule ?? 0}`}
+                maxLength="8"
+                label="totalSchedule"
+                defaultValue={totalSchedule} />
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`totalActual-${totalActual ?? 0}`}
+                maxLength="8"
+                label="totalActual"
+                defaultValue={totalActual} />
+            </div>
           </div>
         </div>
-      </Accordion>
+      </Accordion >
 
       <ActualScheduleModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>)

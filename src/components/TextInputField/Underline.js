@@ -26,7 +26,7 @@ const Underline = forwardRef(
           type="text"
           tabIndex={tabIndex}
           placeholder={placeholder}
-          className={`text-input-underline-input peer text-sm text-contrast-dark ${
+          className={`text-input-underline-input peer text-contrast-dark ${
             isError ? "underline-input-error" : ""
           } ${className}`}
           ref={ref}
