@@ -20,7 +20,7 @@ const AccordionCrudModalAdd = ({
     hideAddModal();
   }
 
-  console.log(selectedIndex)
+  console.log(selectedIndex);
 
   const modalWidthObj = {
     50: "w-[50vw] mx-[-25vw]",
@@ -29,6 +29,13 @@ const AccordionCrudModalAdd = ({
   };
 
   const modalWidthClass = modalWidthObj[modalWidth] || "";
+
+  // handle disclosure button keydown
+  function handleDisclosureKeyDown(event) {
+    if (event.key === " " || event.key === "Enter") {
+      event.preventDefault();
+    }
+  }
 
   return (
     <>
@@ -43,6 +50,7 @@ const AccordionCrudModalAdd = ({
                 {({ open }) => (
                   <>
                     <Disclosure.Button
+                      onKeyDown={handleDisclosureKeyDown}
                       className={`pointer-events-none flex w-full justify-between rounded-sm bg-primary-light px-4 py-2  text-left font-medium text-arc hover:bg-primary-base focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75`}
                     >
                       <span>

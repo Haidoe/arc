@@ -22,13 +22,29 @@ const Accordion = ({
     }
   };
 
+  // handle disclosure button keydown
+  function handleDisclosureKeyDown(event) {
+    if (event.key === " " || event.key === "Enter") {
+      event.preventDefault();
+    }
+  }
+
   return (
     <div className="w-full">
-      <div className={`mx-auto w-full rounded-2xl ${insideModal ? "report-modal " : ""}`}>
+      <div
+        className={`mx-auto w-full rounded-2xl ${
+          insideModal ? "report-modal " : ""
+        }`}
+      >
         <Disclosure defaultOpen={defaultOpen}>
           {({ open }) => (
             <>
-              <Disclosure.Button className={`flex text-[16px] w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left font-bold text-arc hover:bg-primary-base focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 ${insideModal ? "pointer-events-none" : "pointer-events-none"} `}>
+              <Disclosure.Button
+                onKeyDown={handleDisclosureKeyDown}
+                className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left text-[16px] font-bold text-arc hover:bg-primary-base focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 ${
+                  insideModal ? "pointer-events-none" : "pointer-events-none"
+                } `}
+              >
                 <span>{title || "Accordion Title"}</span>
 
                 <div className="items-center sm:flex">
