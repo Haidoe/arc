@@ -219,8 +219,8 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
         <div className={modalHeightClass}>
           <div className="min-h-[200px] overflow-x-auto">
             <div className="inline-block min-w-full align-middle">
-              <table className="min-w-full divide-y divide-primary-base text-base text-contrast-dark font-bold">
-                <thead>
+              <table className="min-w-full divide-y divide-primary-base text-base text-contrast-dark">
+                <thead className=" font-bold">
                   <tr>
                     <th
                       scope="col"
