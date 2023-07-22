@@ -66,7 +66,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </button>
         </aside>
 
-        <aside className="flex bg-arc p-4 py-2 lg:hidden">
+        <aside className="flex bg-arc p-4 py-2 shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] lg:hidden">
           <div className="flex flex-1 border-b-2 border-primary-base p-4">
             <DefaultAvatar />
 
