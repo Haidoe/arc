@@ -16,6 +16,7 @@ import ConfirmationModal from "~/components/global/ConfirmationModal";
 
 // helper
 import { ISOToTimeString } from "~/helper/timeInputParser";
+import { updateProductionReportById } from "~/service/production";
 
 // CastTimeLog component form
 const CastTimeLogForm = ({ productionInfo }) => {
@@ -29,9 +30,8 @@ const CastTimeLogForm = ({ productionInfo }) => {
   const [selectedIndex, setSelectedIndex] = useState(undefined);
 
   const dispatch = useDispatch();
-  const castTimeLogInfo = useSelector(
-    (state) => state.productionReport.data.castTimeLog
-  );
+  const data = useSelector((state) => state.productionReport.data);
+  const castTimeLogInfo = data.castTimeLog;
 
   // ================================> Form event functions
   function addClickHandler() {
@@ -66,9 +66,19 @@ const CastTimeLogForm = ({ productionInfo }) => {
     const updatedRows = castTimeLogInfo.filter(
       (item, i) => i !== selectedIndex
     );
+
     dispatch(updateCastTimeLog(updatedRows));
     setSelectedIndex(undefined);
     setShowDeleteModal(false);
+
+    try {
+      updateProductionReportById({
+        ...data,
+        castTimeLog: updatedRows,
+      });
+    } catch (error) {
+      console.log("DELETING CAST TIME LOG ERROR: ", error);
+    }
   }
 
   return (
