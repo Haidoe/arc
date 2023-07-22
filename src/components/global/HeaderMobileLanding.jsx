@@ -31,12 +31,9 @@ const HeaderMobileLanding = ({ landingLinks }) => {
         {/* Logo */}
         <Image src={LogoMobile} alt="Logo" className="h-12 w-12" />
       </div>
-      <div className="md:hidden">
+      <div className="lg:hidden">
         {/* Hamburger Menu */}
-        <button
-          className="p-2"
-          onClick={toggleMenu}
-        >
+        <button className="p-2" onClick={toggleMenu}>
           <Image src={hamburger} alt="hamburger" className="h-6 w-6" />
         </button>
       </div>
@@ -50,10 +47,7 @@ const HeaderMobileLanding = ({ landingLinks }) => {
                   <Image src={Logo} alt="Logo" className="h-16 w-16" />
                 </div>
                 <div className="close-svg flex flex-shrink-0 items-center">
-                  <button
-                    className="p-2"
-                    onClick={closeMenu}
-                  >
+                  <button className="p-2" onClick={closeMenu}>
                     <Image
                       src={crossClose}
                       alt="crossClose"
@@ -79,25 +73,25 @@ const HeaderMobileLanding = ({ landingLinks }) => {
                   Sign In
                 </button> */}
 
-<div className="registration-btns-wrapper">
-                {/* Sign In Button */}
-                {/* todo height 48 width 88 */}
-                <SignedOut>
-                  <Link href="/sign-in">
-                    <Button className=" px-4 py-2 text-base hover:bg-primary-base">
-                      Sign In
-                    </Button>
-                  </Link>
-                </SignedOut>
+                <div className="registration-btns-wrapper">
+                  {/* Sign In Button */}
+                  {/* todo height 48 width 88 */}
+                  <SignedOut>
+                    <Link href="/sign-in">
+                      <Button className=" px-4 py-2 text-base hover:bg-primary-base">
+                        Sign In
+                      </Button>
+                    </Link>
+                  </SignedOut>
 
-                <SignedIn>
-                  <SignOutButton>
-                    <Button className=" px-4 py-2 text-base hover:bg-primary-base">
-                      Sign Out
-                    </Button>
-                  </SignOutButton>
-                </SignedIn>
-              </div>
+                  <SignedIn>
+                    <SignOutButton>
+                      <Button className=" px-4 py-2 text-base hover:bg-primary-base">
+                        Sign Out
+                      </Button>
+                    </SignOutButton>
+                  </SignedIn>
+                </div>
               </div>
             </div>
           </div>
