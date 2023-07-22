@@ -4,7 +4,8 @@ import Sidebar from "~/components/production/Information";
 import { getProductionInfoById } from "~/service/production";
 import SceneChart from "~/components/dashboard/SceneChart";
 import BudgetStatusChart from "~/components/dashboard/BudgetStatusChart";
-
+import dayjs from "dayjs";
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
 // components
 import ActiveActors from "~/components/dashboard/ActiveActors";
 import ActiveExtras from "~/components/dashboard/ActiveExtras";
@@ -13,7 +14,11 @@ import UnfinishhedSceneSection from "~/components/dashboard/UnfinishedSceneSecti
 import Button from "~/components/Button";
 import DefaultAvatar from "~/components/global/DefaultAvatar";
 
+dayjs.extend(LocalizedFormat);
+
 const ProductionReportPage = ({ productionInfo }) => {
+  const today = dayjs().format("LL");
+
   return (
     <MainPageLayout>
       <Head>
@@ -43,11 +48,11 @@ const ProductionReportPage = ({ productionInfo }) => {
           </div>
         </aside>
 
-        <div className="grid flex-1 grid-cols-2 content-start gap-6 px-8 py-4">
+        <div className="grid flex-1 grid-cols-2 content-start gap-6 px-4 py-4 lg:px-8">
           <div className="col-span-full mt-6">
             <div className="flex items-end justify-between">
               <h2 className="flex-grow text-2xl font-bold text-primary-dark">
-                July 9, 2023
+                {today}
               </h2>
 
               <div>

@@ -19,11 +19,11 @@ const BudgetStatusChart = ({ details }) => {
     gradientSegment.addColorStop(0.1, "#6A6AC6");
 
     if (details.finishRateAvg <= 80) {
-      gradientSegment.addColorStop(0.5, "#50C878");
+      gradientSegment.addColorStop(0.5, "#ACEC8D");
     } else if (details.finishRateAvg <= 100) {
-      gradientSegment.addColorStop(0.5, "#E4D00A");
+      gradientSegment.addColorStop(0.5, "#EDE67E");
     } else {
-      gradientSegment.addColorStop(0.5, "#CB3F3F");
+      gradientSegment.addColorStop(0.5, "#CA3E3E");
     }
 
     return gradientSegment;

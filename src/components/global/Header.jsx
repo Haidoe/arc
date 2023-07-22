@@ -8,7 +8,12 @@ import HeaderMobileLanding from "~/components/global/HeaderMobileLanding.jsx";
 
 // import logo
 import Logo from "~/assets/icons/Logo.svg";
-import { SignOutButton, SignedIn, SignedOut } from "@clerk/clerk-react";
+import {
+  SignOutButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/clerk-react";
 import Button from "../Button";
 
 // define headers on different pages
@@ -187,6 +192,7 @@ const Header = () => {
               <div className="divider-wrapper">
                 <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
               </div>
+
               <div className="registration-btns-wrapper">
                 {/* Sign In Button */}
                 {/* todo height 48 width 88 */}
@@ -199,11 +205,12 @@ const Header = () => {
                 </SignedOut>
 
                 <SignedIn>
-                  <SignOutButton>
+                  <UserButton />
+                  {/* <SignOutButton>
                     <Button className=" px-4 py-2 text-base hover:bg-primary-base">
                       Sign Out
                     </Button>
-                  </SignOutButton>
+                  </SignOutButton> */}
                 </SignedIn>
               </div>
             </>
