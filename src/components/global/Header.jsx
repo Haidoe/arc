@@ -139,7 +139,7 @@ const Header = () => {
   return (
     <header>
       {/* For Desktop */}
-      <div className="hidden items-center justify-between bg-arc px-8 py-3 sm:flex">
+      <div className="hidden items-center justify-between bg-arc px-8 py-3 lg:flex">
         <div className="hidden items-center sm:flex">
           {/* Logo */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -213,11 +213,11 @@ const Header = () => {
 
       {/* For Mobile Landing Page */}
       {pathname === "/" ? (
-        <div className="sm:hidden">
+        <div className="lg:hidden">
           <HeaderMobileLanding landingLinks={headerLinks} />
         </div>
       ) : (
-        <div className="flex h-14 items-center justify-center bg-primary-light sm:hidden">
+        <div className="flex h-14 items-center justify-center bg-primary-light lg:hidden">
           {/* Mobile Header */}
           <p className="text-base font-bold text-arc">
             {mobileHeaders[pathname]}
