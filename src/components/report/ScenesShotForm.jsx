@@ -11,6 +11,7 @@ import Delete from "~/assets/icons/Delete.svg";
 // import edit and delete modals
 import AccordionCrudModalAdd from "~/components/report/AccordionCrudModalAdd";
 import ConfirmationModal from "~/components/global/ConfirmationModal";
+import { updateProductionReportById } from "~/service/production";
 
 // ScenesShotForm component form
 const ScenesShotForm = ({ productionInfo }) => {
@@ -24,9 +25,8 @@ const ScenesShotForm = ({ productionInfo }) => {
   const [selectedIndex, setSelectedIndex] = useState(undefined);
 
   const dispatch = useDispatch();
-  const shotSceneInfo = useSelector(
-    (state) => state.productionReport.data.shotScene
-  );
+  const data = useSelector((state) => state.productionReport.data);
+  const shotSceneInfo = data.shotScene;
 
   // ================================> Form event functions
   function addClickHandler() {
@@ -58,10 +58,18 @@ const ScenesShotForm = ({ productionInfo }) => {
 
   function deleteConfirmationHandler() {
     const updatedRows = shotSceneInfo.filter((item, i) => i !== selectedIndex);
-    console.log(updatedRows)
-    // dispatch(updateShotScene(updatedRows));
+    dispatch(updateShotScene(updatedRows));
     setSelectedIndex(undefined);
     setShowDeleteModal(false);
+
+    try {
+      updateProductionReportById({
+        ...data,
+        shotScene: updatedRows,
+      });
+    } catch (error) {
+      console.log("DELETING CAST TIME LOG ERROR: ", error);
+    }
   }
 
   return (
@@ -81,7 +89,9 @@ const ScenesShotForm = ({ productionInfo }) => {
           heading="Delete Confirmation"
           message="Are you sure you want to delete?"
           cancelHandler={() => setShowDeleteModal(false)}
-          actionHandler={(selectedIndex) => deleteConfirmationHandler(selectedIndex)}
+          actionHandler={(selectedIndex) =>
+            deleteConfirmationHandler(selectedIndex)
+          }
         />
       )}
 
@@ -90,7 +100,7 @@ const ScenesShotForm = ({ productionInfo }) => {
           <div className="flow-root">
             <div className="overflow-x-auto">
               <div className="inline-block min-w-full align-middle">
-                <table className="min-w-full divide-y divide-primary-base text-base text-fold text-contrast-dark">
+                <table className="text-fold min-w-full divide-y divide-primary-base text-base text-contrast-dark">
                   <thead>
                     <tr>
                       <th
@@ -99,51 +109,30 @@ const ScenesShotForm = ({ productionInfo }) => {
                       >
                         Scene No.
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left"
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left">
                         Set
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left"
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left">
                         Location
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left"
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left">
                         Cast
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left"
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left">
                         D/N
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left"
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left">
                         Pages
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left"
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left">
                         Pages Shot
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left"
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left">
                         Pages Today
                       </th>
                       <th
                         scope="col"
-                        className="relative min-w-[60px] pb-3.5 pl-3 pr-4 sm:pr-0 text-contrast-dark"
+                        className="relative min-w-[60px] pb-3.5 pl-3 pr-4 text-contrast-dark sm:pr-0"
                       >
                         <span className="sr-only">Delete</span>
                       </th>
@@ -154,10 +143,8 @@ const ScenesShotForm = ({ productionInfo }) => {
                       {shotSceneInfo.map((row, idx) => (
                         <tr key={idx} onClick={(e) => rowClickHandler(e, idx)}>
                           <td className="whitespace-nowrap py-4 pl-4 pr-3  font-medium sm:pl-0">
-
                             {/* From drop down from Production Scenes Array */}
                             {row.number}
-
                           </td>
                           <td className="whitespace-nowrap px-3 py-4 ">
                             {row.set}
@@ -199,9 +186,7 @@ const ScenesShotForm = ({ productionInfo }) => {
                 {shotSceneInfo?.length == 0 && (
                   <div className="mt-4 flex flex-col items-center gap-4 border-primary-base pt-4">
                     <div>
-                      <p className="">
-                        No scenes shot infromation found.
-                      </p>
+                      <p className="">No scenes shot infromation found.</p>
                     </div>
                   </div>
                 )}
@@ -214,7 +199,9 @@ const ScenesShotForm = ({ productionInfo }) => {
                 buttonType="Secondary"
                 className="px-4 py-[15px]"
               >
-                <div className="text-center border-primary-light text-sm font-bold">Create New Line</div>
+                <div className="border-primary-light text-center text-sm font-bold">
+                  Create New Line
+                </div>
               </Button>
             </div>
           </div>
