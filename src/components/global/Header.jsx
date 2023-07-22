@@ -134,12 +134,12 @@ const Header = () => {
 
   const headerLinks = linksOnHeader[pathname] || [];
 
-  console.log(">>", headerLinks, pathname);
+  // console.log(">>", headerLinks, pathname);
 
   return (
     <header>
       {/* For Desktop */}
-      <div className="bg-base hidden items-center justify-between px-8 py-3 sm:flex">
+      <div className="hidden items-center justify-between bg-arc px-8 py-3 sm:flex">
         <div className="hidden items-center sm:flex">
           {/* Logo */}
           {/* eslint-disable-next-line @next/next/no-img-element */}

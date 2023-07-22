@@ -46,9 +46,9 @@ const ProductionReportPage = ({ productionInfo, report }) => {
       </Head>
 
       <div
-        className={` flex flex-1 bg-backgroundArc pt-8 transition-all ${pageContainerClasses}`}
+        className={` flex flex-1 bg-backgroundArc transition-all ${pageContainerClasses}`}
       >
-        <aside className="relative  flex flex-shrink-0 flex-col bg-arc md:basis-[384px]">
+        <aside className="relative  hidden flex-shrink-0 flex-col bg-arc md:basis-[384px] lg:flex">
           <Sidebar data={productionInfo} isContentVisible={!isExpanded} />
 
           <button
@@ -64,22 +64,22 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </button>
         </aside>
 
-        <div className="grid flex-1 grid-cols-2 content-start gap-4 px-8 pb-8">
-          <div className="bg-arc ">
+        <div className="grid flex-1 grid-cols-2 content-start gap-4 p-4 lg:p-8">
+          <div className="col-span-full bg-arc md:col-span-1">
             <ScheduleOfTheDayForm />
           </div>
 
-          <div className="bg-arc ">
+          <div className="col-span-full bg-arc md:col-span-1">
             <ActualScheduleForm />
           </div>
 
-          <div className="bg-arc ">
+          <div className="col-span-full bg-arc md:col-span-1 ">
             <Accordion title={"Not Shot Form"} defaultOpen={true}>
               <NotShotForm />
             </Accordion>
           </div>
 
-          <div className="bg-arc ">
+          <div className="col-span-full bg-arc md:col-span-1 ">
             <RollsForm />
           </div>
 
