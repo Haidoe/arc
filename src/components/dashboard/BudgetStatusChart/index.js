@@ -31,7 +31,7 @@ const BudgetStatusContent = () => {
   const router = useRouter();
   const { productionId } = router.query;
 
-  const [data, setdata] = useState(null);
+  const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const BudgetStatusContent = () => {
       try {
         const response = await getProductionFinishRate(productionId);
 
-        setdata(response);
+        setData(response);
       } catch (error) {
         console.log("Finish rate error >> ", error);
       } finally {

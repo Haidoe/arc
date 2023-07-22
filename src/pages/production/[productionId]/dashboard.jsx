@@ -43,7 +43,7 @@ const ProductionReportPage = ({ productionInfo }) => {
           </div>
         </aside>
 
-        <div className="grid flex-1 grid-cols-2 content-start gap-6 px-8 py-4">
+        <div className="grid flex-1 grid-cols-2 content-start gap-6 px-4 py-4 lg:px-8">
           <div className="col-span-full mt-6">
             <div className="flex items-end justify-between">
               <h2 className="flex-grow text-2xl font-bold text-primary-dark">
