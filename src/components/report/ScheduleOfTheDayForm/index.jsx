@@ -32,49 +32,70 @@ const ScheduleOfTheDayForm = ({ className }) => {
     day: "numeric"
   });
 
+  //To get current time make sure to use 24 hours format
+  const currentTime = new Date().toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+
   return (
     <>
-      <Accordion title="Schedule of The Day" defaultOpen={true} className={`text-contrast-dark text-base ${className}`}>
+      <Accordion title="Schedule of The Day" defaultOpen={true} className={`text-contrast-dark font-bold text-base ${className}`}>
         <div onClick={() => setIsOpen(true)}>
           <div className="flex justify-between border-b border-primary-base pb-2">
             <p className="font-bold text-base text-tertiary-dark">
               {currentDate}
             </p>
+            <p className="font-bold text-base text-tertiary-dark">
+              {currentTime}
+            </p>
           </div>
-          <div className="pt-2 grid grid-cols-3 grid-rows-5 gap-4 gap-y-2">
-            <div></div>
-            <p className="font-bold">Start</p>
-            <p className="font-bold">End</p>
-            <p className="font-bold">Breakfast</p>
-            <TimeInputField
-              key={`breakfastFrom-${breakfastFrom ?? 0}`}
-              label="breakfastFrom"
-              defaultValue={breakfastFrom}
-            />
-            <TimeInputField
-              key={`breakfastTo-${breakfastTo ?? 0}`}
-              label="breakfastTo" defaultValue={breakfastTo} />
-            <p className="font-bold">Crew Call</p>
-            <TimeInputField
-              key={`crewCallFrom-${crewCallFrom ?? 0}`}
-              label="crewCallForm" defaultValue={crewCallFrom} />
-            <TimeInputField
-              key={`crewCallTo-${crewCallTo ?? 0}`}
-              label="crewCallTo" defaultValue={crewCallTo} />
-            <p className="font-bold">Shooting Call</p>
-            <TimeInputField
-              key={`shootingCallFrom-${shootingCallFrom ?? 0}`}
-              label="shootingCallFrom" defaultValue={shootingCallFrom} />
-            <TimeInputField
-              key={`shootingCallTo-${shootingCallTo ?? 0}`}
-              label="shootingCallTo" defaultValue={shootingCallTo} />
-            <p className="font-bold">Lunch</p>
-            <TimeInputField
-              key={`lunchFrom-${lunchFrom ?? 0}`}
-              label="lunchFrom" defaultValue={lunchFrom} />
-            <TimeInputField
-              key={`lunchTo-${lunchTo ?? 0}`}
-              label="lunchTo" defaultValue={lunchTo} />
+          <div className="pt-2 text-base text-contrast-dark ">
+            <div className="grid grid-cols-3 gap-4 pt-4 pb-2">
+              <div></div>
+              <p className="font-bold">Start</p>
+              <p className="font-bold">End</p>
+            </div>
+            <div className="grid grid-cols-3 grid-rows-4 gap-4 gap-y-3">
+              <p className="font-bold">Breakfast</p>
+              <TimeInputField
+                tabIndex="-1"
+                key={`breakfastFrom-${breakfastFrom ?? 0}`}
+                label="breakfastFrom"
+                defaultValue={breakfastFrom}
+              />
+              <TimeInputField
+                tabIndex="-1"
+                key={`breakfastTo-${breakfastTo ?? 0}`}
+                label="breakfastTo" defaultValue={breakfastTo} />
+              <p className="font-bold">Crew Call</p>
+              <TimeInputField
+                tabIndex="-1"
+                key={`crewCallFrom-${crewCallFrom ?? 0}`}
+                label="crewCallForm" defaultValue={crewCallFrom} />
+              <TimeInputField
+                tabIndex="-1"
+                key={`crewCallTo-${crewCallTo ?? 0}`}
+                label="crewCallTo" defaultValue={crewCallTo} />
+              <p className="font-bold">Shooting Call</p>
+              <TimeInputField
+                tabIndex="-1"
+                key={`shootingCallFrom-${shootingCallFrom ?? 0}`}
+                label="shootingCallFrom" defaultValue={shootingCallFrom} />
+              <TimeInputField
+                tabIndex="-1"
+                key={`shootingCallTo-${shootingCallTo ?? 0}`}
+                label="shootingCallTo" defaultValue={shootingCallTo} />
+              <p className="font-bold">Lunch</p>
+              <TimeInputField
+                tabIndex="-1"
+                key={`lunchFrom-${lunchFrom ?? 0}`}
+                label="lunchFrom" defaultValue={lunchFrom} />
+              <TimeInputField
+                tabIndex="-1"
+                key={`lunchTo-${lunchTo ?? 0}`}
+                label="lunchTo" defaultValue={lunchTo} />
+            </div>
           </div>
         </div>
       </Accordion>

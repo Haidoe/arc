@@ -25,6 +25,8 @@ const status = [
 
 // handles add or update to in the modal
 const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
+  const formRef = useRef(null);
+
   // =======================> Resources
 
   const dispatch = useDispatch();
@@ -211,124 +213,166 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
     }
   }
 
+  function triggerSaveHandleModal() {
+    // Trigger the form validation
+    const isFormValid = formRef.current.reportValidity();
+    if (isFormValid) {
+      saveModalHandler();
+    }
+  }
+
+  const modalHeightClass = " h-[300px]";
+
   return (
     <>
-      <div className="px-4 sm:px-6 lg:px-8">
-        <div className="">
-          <div className="-mx-4 -my-2 min-h-[200px] overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead>
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Cast
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Character
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Status
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Work Schedule
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Meals
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  <tr>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {/* row cast */}
-                      <DropDown
-                        people={allCast}
-                        selected={selectedCast}
-                        setSelected={setSelectedCast}
-                      />
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {selectedCast?.character ?? ""}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      <DropDown
-                        width="small"
-                        people={status}
-                        selected={selectedStatus}
-                        setSelected={setSelectedStatus}
-                      />
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      <div className="flex gap-1">
-                        <TimeInputField
-                          label="MU Report"
-                          defaultValue={workSchedule_muReport_iv}
-                          ref={workSchedule_muReport}
+      <div className="">
+        <div className={modalHeightClass}>
+          <form ref={formRef}>
+            <div className="min-h-[200px] overflow-x-auto">
+              <div className="inline-block min-w-full align-middle">
+                <table className="min-w-full divide-y divide-primary-base text-base text-contrast-dark">
+                  <thead className=" font-bold">
+                    <tr>
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
+                        Cast
+                      </th>
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
+                        Character
+                      </th>
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
+                        Status
+                      </th>
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
+                        Work Schedule
+                      </th>
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
+                        Meals
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    <tr>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        {/* row cast */}
+                        <DropDown
+                          people={allCast}
+                          selected={selectedCast}
+                          setSelected={setSelectedCast}
                         />
-                        <TimeInputField
-                          label="On Set"
-                          defaultValue={workSchedule_onSet_iv}
-                          ref={workSchedule_onSet}
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        {selectedCast?.character ?? ""}
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        <DropDown
+                          width="small"
+                          people={status}
+                          selected={selectedStatus}
+                          setSelected={setSelectedStatus}
                         />
-                        <TimeInputField
-                          label="Set Wrap"
-                          defaultValue={workSchedule_setWrap_iv}
-                          ref={workSchedule_setWrap}
-                        />
-                        <TimeInputField
-                          label="Set Dismiss"
-                          defaultValue={workSchedule_setDismiss_iv}
-                          ref={workSchedule_setDismiss}
-                        />
-                      </div>
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {/* {row.meals} */}
-                      <div className="flex gap-1">
-                        <TimeInputField
-                          label="Lunch In"
-                          defaultValue={meals_lunchIn_iv}
-                          ref={meals_lunchIn}
-                        />
-                        <TimeInputField
-                          label="Lunch Out"
-                          defaultValue={meals_lunchOut_iv}
-                          ref={meals_lunchOut}
-                        />
-                        <TimeInputField
-                          label="Second Meal In"
-                          defaultValue={meals_secondMealIn_iv}
-                          ref={meals_secondMealIn}
-                        />
-                        <TimeInputField
-                          label="Second Meal Out"
-                          defaultValue={meals_secondMealOut_iv}
-                          ref={meals_secondMealOut}
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        <div className="mb-2 mt-[-10px] flex gap-1">
+                          <div className="flex-1 text-center text-xs font-normal">
+                            MU Report
+                          </div>
+                          <div className="flex-1 text-center text-xs font-normal">
+                            On Set
+                          </div>
+                          <div className="flex-1 text-center text-xs font-normal">
+                            Set Wrap
+                          </div>
+                          <div className="flex-1 text-center text-xs font-normal">
+                            Set Dismiss
+                          </div>
+                        </div>
+                        <div className="flex gap-1">
+                          <TimeInputField
+                            containerClass="flex-1"
+                            label="MU Report"
+                            defaultValue={workSchedule_muReport_iv}
+                            ref={workSchedule_muReport}
+                            required={true}
+                          />
+                          <TimeInputField
+                            containerClass="flex-1"
+                            label="On Set"
+                            defaultValue={workSchedule_onSet_iv}
+                            ref={workSchedule_onSet}
+                            required={true}
+                          />
+                          <TimeInputField
+                            containerClass="flex-1"
+                            label="Set Wrap"
+                            defaultValue={workSchedule_setWrap_iv}
+                            ref={workSchedule_setWrap}
+                            required={true}
+                          />
+                          <TimeInputField
+                            containerClass="flex-1"
+                            label="Set Dismiss"
+                            defaultValue={workSchedule_setDismiss_iv}
+                            ref={workSchedule_setDismiss}
+                            required={true}
+                          />
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 ">
+                        <div className="mb-2 mt-[-10px] flex gap-1">
+                          <div className="flex-1 text-center text-[.9rem] font-normal">
+                            Lunch In
+                          </div>
+                          <div className="flex-1 text-center text-[.9rem] font-normal">
+                            Lunch Out
+                          </div>
+                          <div className="flex-1 text-center text-[.9rem] font-normal">
+                            Dinner In
+                          </div>
+                          <div className="flex-1 text-center text-[.9rem] font-normal">
+                            Dinner Out
+                          </div>
+                        </div>
+
+                        {/* {row.meals} */}
+                        <div className="flex gap-1">
+                          <TimeInputField
+                            containerClass="flex-1"
+                            label="Lunch In"
+                            defaultValue={meals_lunchIn_iv}
+                            ref={meals_lunchIn}
+                            required={true}
+                          />
+                          <TimeInputField
+                            containerClass="flex-1"
+                            label="Lunch Out"
+                            defaultValue={meals_lunchOut_iv}
+                            ref={meals_lunchOut}
+                            required={true}
+                          />
+                          <TimeInputField
+                            label="Second Meal In"
+                            containerClass="flex-1"
+                            defaultValue={meals_secondMealIn_iv}
+                            ref={meals_secondMealIn}
+                            required={true}
+                          />
+                          <TimeInputField
+                            containerClass="flex-1"
+                            label="Second Meal Out"
+                            defaultValue={meals_secondMealOut_iv}
+                            ref={meals_secondMealOut}
+                            required={true}
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+          </form>
           {/* Action Buttons */}
-          <div className="mt-2 flex justify-end gap-4 border-primary-base pt-4">
+          <div className="mt-8 flex justify-end gap-4 border-primary-base pt-4">
             {/* Button to cancel */}
             <Button
               buttonType="Secondary"
@@ -341,7 +385,7 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
             <Button
               buttonType="Secondary"
               className="px-2 py-1"
-              onClick={saveModalHandler}
+              onClick={triggerSaveHandleModal}
             >
               {isUpdate ? "Update" : "Add"}
             </Button>

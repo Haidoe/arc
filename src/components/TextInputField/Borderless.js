@@ -2,7 +2,10 @@ import React, { forwardRef } from "react";
 
 // eslint-disable-next-line react/display-name
 const Borderless = forwardRef(
-  ({ name, value, onChange, className, defaultValue, placeholder }, ref) => {
+  (
+    { name, value, onChange, className, defaultValue, placeholder, tabIndex, required = false },
+    ref
+  ) => {
     return (
       <input
         value={value}
@@ -11,9 +14,11 @@ const Borderless = forwardRef(
         id={name}
         type="text"
         placeholder={placeholder}
-        className={`text-input-borderless-input peer text-sm text-contrast-dark ${className}`}
+        tabIndex={tabIndex}
+        className={`text-input-borderless-input peer text-contrast-dark ${className}`}
         ref={ref}
         defaultValue={defaultValue}
+        required={required}
       />
     );
   }

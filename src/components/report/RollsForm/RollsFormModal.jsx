@@ -109,10 +109,11 @@ const RollsFormModal = ({ isOpen, onClose }) => {
           defaultOpen={true}
           readOnlyState={false}
           insideModal={true}
+          onClose={handleReduxUpdate}
         >
           <form
             action=""
-            className={`text-base font-normal text-contrast-dark `}
+            className={`text-base font-bold text-contrast-dark `}
           >
             <div className="border-b border-primary-base pb-2">
               <div className="grid grid-cols-6 grid-rows-2 gap-4 gap-y-2">

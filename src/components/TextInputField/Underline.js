@@ -12,6 +12,7 @@ const Underline = forwardRef(
       className,
       defaultValue,
       placeholder,
+      tabIndex,
     },
     ref
   ) => {
@@ -23,8 +24,9 @@ const Underline = forwardRef(
           name={name}
           id={name}
           type="text"
+          tabIndex={tabIndex}
           placeholder={placeholder}
-          className={`text-input-underline-input peer text-sm text-contrast-dark ${
+          className={`text-input-underline-input peer text-contrast-dark ${
             isError ? "underline-input-error" : ""
           } ${className}`}
           ref={ref}

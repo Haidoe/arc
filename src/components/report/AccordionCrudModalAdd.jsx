@@ -2,7 +2,7 @@
 import Modal from "~/components/Modal";
 import { Disclosure } from "@headlessui/react";
 import Image from "next/image";
-import Chevron from "~/assets/icons/Chevron.svg";
+import Cancel from "~/assets/icons/Cancel.svg";
 
 // import upserts
 import CastTimeLogUpsert from "~/components/report/CastTimeLogUpsert";
@@ -20,7 +20,7 @@ const AccordionCrudModalAdd = ({
     hideAddModal();
   }
 
-  console.log(selectedIndex)
+  console.log(selectedIndex);
 
   const modalWidthObj = {
     50: "w-[50vw] mx-[-25vw]",
@@ -29,6 +29,19 @@ const AccordionCrudModalAdd = ({
   };
 
   const modalWidthClass = modalWidthObj[modalWidth] || "";
+
+  // handle disclosure button keydown
+  function handleDisclosureKeyDown(event) {
+    if (event.key === " " || event.key === "Enter") {
+      event.preventDefault();
+    }
+  }
+
+
+  function handleDisclosureHeaderClick(event) {
+    event.preventDefault();
+  }
+  
 
   return (
     <>
@@ -43,7 +56,9 @@ const AccordionCrudModalAdd = ({
                 {({ open }) => (
                   <>
                     <Disclosure.Button
-                      className={`pointer-events-none flex w-full justify-between rounded-sm bg-primary-light px-4 py-2  text-left font-medium text-arc hover:bg-primary-base focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75`}
+                      onKeyDown={handleDisclosureKeyDown}
+                      onClick={handleDisclosureHeaderClick}
+                      className={`cursor-default flex w-full justify-between rounded-sm bg-primary-light px-4 py-2  text-left font-medium text-arc focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75`}
                     >
                       <span>
                         {title ||
@@ -53,11 +68,10 @@ const AccordionCrudModalAdd = ({
                       <div className="items-center sm:flex">
                         {/* Logo */}
                         <Image
-                          className={`${
-                            open ? "rotate-180 transform" : ""
-                          } h-6 w-6 text-arc`}
-                          src={Chevron}
-                          alt="Logo"
+                          className={`cursor-pointer mt-1 h-4 w-4 text-arc`}
+                          src={Cancel}
+                          alt="cancel modal"
+                          onClick={() => {closeModal()}}
                         />
                       </div>
                     </Disclosure.Button>

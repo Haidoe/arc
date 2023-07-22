@@ -105,19 +105,20 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} onClose={handleReduxUpdate}>
       <div className="mx-[-25vw] w-[50vw]">
         <Accordion
-          title="Schedule of the Day"
+          title="Actual Schedule"
           defaultOpen={true}
           readOnlyState={false}
           insideModal={true}
+          onClose={handleReduxUpdate}
         >
           <div>
-            <div className="grid grid-cols-3 gap-4  border-b border-primary-base pb-2 font-bold">
+            <div className="grid grid-cols-3 gap-4 text-contrast-dark text-base border-b border-primary-base pb-2 font-bold">
               <p>Title</p>
               <p>Schedule</p>
               <p>Actual</p>
             </div>
-            <div className="grid-rows-7 grid grid-cols-3 gap-4 gap-y-2 pt-2">
-              <p>1st Unit</p>
+            <div className="grid-rows-7 grid text-contrast-dark font-bold text-base grid-cols-3 gap-4 gap-y-4 pt-2">
+              <p >1st Unit</p>
               <TextInputField
                 placeholder="0"
                 maxLength="8"
@@ -188,11 +189,15 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
               />
               <p>Holiday</p>
               <TextInputField
+                placeholder="0"
+
                 maxLength="8"
                 ref={holidayScheduleRef}
                 defaultValue={holidaySchedule}
               />
               <TextInputField
+                placeholder="0"
+
                 maxLength="8"
                 ref={holidayActualRef}
                 defaultValue={holidayActual}

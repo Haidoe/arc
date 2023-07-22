@@ -17,7 +17,7 @@ function timeStringToISO(timeString) {
 // ISO 8601 time format to timeString
 function ISOToTimeString(utcDateString) {
 
-  if (utcDateString === "") return "";
+  if (utcDateString === "" || utcDateString == null) return "";
   // Create a new Date object from the UTC date string
   const date = new Date(utcDateString);
 
@@ -31,6 +31,22 @@ function ISOToTimeString(utcDateString) {
 
   return hoursMinutesFormat(vancouverTimeString);
 
+}
+
+function ISOToDateVancouverString(utcDateString) {
+  if (utcDateString === "") return "";
+  
+  const date = new Date(utcDateString);
+  
+  // Convert to local date in Vancouver timezone
+  const vancouverDateString = date.toLocaleString("en-US", {
+    timeZone: "America/Vancouver",
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  });
+  
+  return vancouverDateString;
 }
 
 function hoursMinutesFormat(timeString) {
@@ -52,4 +68,4 @@ function hoursMinutesFormat(timeString) {
 
 
 
-export { timeStringToISO, ISOToTimeString };
+export { timeStringToISO, ISOToTimeString, ISOToDateVancouverString };

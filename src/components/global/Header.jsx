@@ -8,7 +8,12 @@ import HeaderMobileLanding from "~/components/global/HeaderMobileLanding.jsx";
 
 // import logo
 import Logo from "~/assets/icons/Logo.svg";
-import { SignOutButton, SignedIn, SignedOut } from "@clerk/clerk-react";
+import {
+  SignOutButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/clerk-react";
 import Button from "../Button";
 
 // define headers on different pages
@@ -107,9 +112,9 @@ const linksOnHeader = {
 };
 
 const mobileHeaders = {
-  "/production": "Production",
-  "/productionReport": "Production Report",
-  "/dashboard": "Dashboard",
+  "/home": "Production",
+  "/production/[productionId]/report": "Production Report",
+  "/production/[productionId]/dashboard": "Dashboard",
   "/kaos/testDailyReports": "Production Report",
 };
 
@@ -134,12 +139,12 @@ const Header = () => {
 
   const headerLinks = linksOnHeader[pathname] || [];
 
-  console.log(">>", headerLinks, pathname);
+  // console.log(">>", headerLinks, pathname);
 
   return (
     <header>
       {/* For Desktop */}
-      <div className="bg-base hidden items-center justify-between px-8 py-3 sm:flex">
+      <div className="hidden items-center justify-between bg-arc px-8 py-3 lg:flex">
         <div className="hidden items-center sm:flex">
           {/* Logo */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -170,8 +175,8 @@ const Header = () => {
                 
                 ${
                   header.path === asPath || header.path === pathname
-                    ? "border-tertiary-base text-tertiary-base"
-                    : "border-transparent text-contrast-dark hover:border-tertiary-base hover:text-tertiary-base"
+                    ? "border-tertiary-light text-tertiary-light"
+                    : "border-transparent text-contrast-dark hover:border-tertiary-light hover:text-tertiary-light"
                 }
 
                 inline-flex items-center border-b-2 px-2`}
@@ -187,6 +192,7 @@ const Header = () => {
               <div className="divider-wrapper">
                 <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
               </div>
+
               <div className="registration-btns-wrapper">
                 {/* Sign In Button */}
                 {/* todo height 48 width 88 */}
@@ -199,11 +205,12 @@ const Header = () => {
                 </SignedOut>
 
                 <SignedIn>
-                  <SignOutButton>
+                  <UserButton />
+                  {/* <SignOutButton>
                     <Button className=" px-4 py-2 text-base hover:bg-primary-base">
                       Sign Out
                     </Button>
-                  </SignOutButton>
+                  </SignOutButton> */}
                 </SignedIn>
               </div>
             </>
@@ -213,11 +220,11 @@ const Header = () => {
 
       {/* For Mobile Landing Page */}
       {pathname === "/" ? (
-        <div className="sm:hidden">
+        <div className="lg:hidden">
           <HeaderMobileLanding landingLinks={headerLinks} />
         </div>
       ) : (
-        <div className="flex h-14 items-center justify-center bg-primary-light sm:hidden">
+        <div className="flex h-14 items-center justify-center bg-primary-light lg:hidden">
           {/* Mobile Header */}
           <p className="text-base font-bold text-arc">
             {mobileHeaders[pathname]}
