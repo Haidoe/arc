@@ -31,7 +31,7 @@ const AccordionCrud = ({ title, children, defaultOpen }) => {
                   {/* Logo */}
                   <Image
                     className={`${
-                      open ? "rotate-180 transform" : ""
+                      open ? "rotate-0 transform" : ""
                     } h-6 w-6 text-arc`}
                     src={Chevron}
                     alt="Logo"
