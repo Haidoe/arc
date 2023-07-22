@@ -24,6 +24,8 @@ import CastTimeLogForm from "~/components/report/CastTimeLogForm";
 import ScenesShotForm from "~/components/report/ScenesShotForm.jsx";
 import NotShotForm from "~/components/report/NotShotForm.jsx";
 import ExtrasCastForm from "~/components/report/ExtrasCastForm.jsx";
+import DefaultAvatar from "~/components/global/DefaultAvatar";
+import Button from "~/components/Button";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
@@ -46,7 +48,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
       </Head>
 
       <div
-        className={` flex flex-1 bg-backgroundArc transition-all ${pageContainerClasses}`}
+        className={` flex flex-1 flex-col bg-backgroundArc transition-all lg:flex-row ${pageContainerClasses}`}
       >
         <aside className="relative  hidden flex-shrink-0 flex-col bg-arc md:basis-[384px] lg:flex">
           <Sidebar data={productionInfo} isContentVisible={!isExpanded} />
@@ -62,6 +64,24 @@ const ProductionReportPage = ({ productionInfo, report }) => {
                 : `Expand Production Info Sidebar`}
             </span>
           </button>
+        </aside>
+
+        <aside className="flex bg-arc p-4 py-2 lg:hidden">
+          <div className="flex flex-1 border-b-2 border-primary-base p-4">
+            <DefaultAvatar />
+
+            <div className="flex flex-1 flex-col justify-between">
+              <h1 className="mt-4 text-center text-lg font-bold text-contrast-dark">
+                {productionInfo.title}
+              </h1>
+
+              <div className="flex items-end justify-end">
+                <Button buttonType="Secondary" className=" py-1 text-base">
+                  See more
+                </Button>
+              </div>
+            </div>
+          </div>
         </aside>
 
         <div className="grid flex-1 grid-cols-2 content-start gap-4 p-4 lg:p-8">
