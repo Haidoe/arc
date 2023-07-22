@@ -11,6 +11,7 @@ import ActiveExtras from "~/components/dashboard/ActiveExtras";
 import Head from "next/head";
 import UnfinishhedSceneSection from "~/components/dashboard/UnfinishedSceneSection";
 import Button from "~/components/Button";
+import DefaultAvatar from "~/components/global/DefaultAvatar";
 
 const ProductionReportPage = ({ productionInfo }) => {
   return (
@@ -19,9 +20,27 @@ const ProductionReportPage = ({ productionInfo }) => {
         <title> {productionInfo.title} | Dashboard | Arc </title>
       </Head>
 
-      <div className="flex flex-1 bg-backgroundArc">
-        <aside className="hidden flex-shrink-0 flex-col bg-arc sm:flex sm:basis-[384px]">
+      <div className="flex flex-1 flex-col bg-backgroundArc lg:flex-row">
+        <aside className="hidden flex-shrink-0 flex-col bg-arc sm:basis-[384px] lg:flex">
           <Sidebar data={productionInfo} theme="primary" />
+        </aside>
+
+        <aside className="flex bg-arc p-4 py-4 shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] lg:hidden">
+          <div className="flex flex-1 border-b-2 border-primary-base p-4">
+            <DefaultAvatar />
+
+            <div className="flex flex-1 flex-col justify-between">
+              <h1 className="mt-4 text-center text-lg font-bold text-contrast-dark">
+                {productionInfo.title}
+              </h1>
+
+              <div className="flex items-end justify-end">
+                <Button buttonType="Secondary" className=" py-1 text-base">
+                  See more
+                </Button>
+              </div>
+            </div>
+          </div>
         </aside>
 
         <div className="grid flex-1 grid-cols-2 content-start gap-6 px-8 py-4">
@@ -58,11 +77,11 @@ const ProductionReportPage = ({ productionInfo }) => {
             <hr className="my-2 border-b border-contrast-light" />
           </div>
 
-          <div className="sm:col-span-1">
+          <div className="col-span-full lg:col-span-1">
             <BudgetStatusChart />
           </div>
 
-          <div className="flex">
+          <div className="col-span-full flex lg:col-span-1">
             <UnfinishhedSceneSection />
           </div>
 

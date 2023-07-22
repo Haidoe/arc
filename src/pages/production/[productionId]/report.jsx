@@ -50,7 +50,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
       <div
         className={` flex flex-1 flex-col bg-backgroundArc transition-all lg:flex-row ${pageContainerClasses}`}
       >
-        <aside className="relative  hidden flex-shrink-0 flex-col bg-arc md:basis-[384px] lg:flex">
+        <aside className="relative hidden flex-shrink-0 flex-col bg-arc md:basis-[384px] lg:flex">
           <Sidebar data={productionInfo} isContentVisible={!isExpanded} />
 
           <button
@@ -66,7 +66,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </button>
         </aside>
 
-        <aside className="flex bg-arc p-4 py-2 shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] lg:hidden">
+        <aside className="flex bg-arc p-4 py-4 shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] lg:hidden">
           <div className="flex flex-1 border-b-2 border-primary-base p-4">
             <DefaultAvatar />
 
