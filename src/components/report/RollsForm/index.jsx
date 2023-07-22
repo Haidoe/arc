@@ -47,7 +47,7 @@ const RollsForm = ({ }) => {
     <>
       <Accordion title="Rolls" defaultOpen={true}>
         <div onClick={() => setIsOpen(true)} action="" className={` text-contrast-dark text-base font-bold`} >
-          <div className="pb-4 border-b  border-primary-base">
+          <div className="pb-2 border-b  border-primary-base">
             <div className="grid text-base text-bold grid-cols-6 grid-rows-2 gap-4 gap-y-2">
               <p tabIndex="-1" className="grid col-span-2">Script Supervisor</p>
               <TextInputField tabIndex="-1" className="grid col-span-4" placeholder="Please input the name." value={scriptSupervisor} />
@@ -56,15 +56,13 @@ const RollsForm = ({ }) => {
             </div>
           </div>
 
-          <div className=" text-contrast-dark pt-4">
-            <div className="grid grid-cols-6 grid-rows-1 gap-4 gap-y-4 pb-2">
+          <div className=" text-contrast-dark">
+            <div className="grid grid-cols-6 grid-rows-3 gap-4 py-4">
               <div className="grid col-span-2"></div>
               <p tabIndex="-1" className="font-bold">A Cam</p>
               <p tabIndex="-1" className="font-bold">B Cam</p>
               <p tabIndex="-1" className="font-bold">C Cam</p>
               <p tabIndex="-1" className="font-bold">A Sound</p>
-            </div>
-            <div className="grid grid-cols-6 grid-rows-2 gap-4 pt-2 pb-4">
               <p tabIndex="-1" className="grid col-span-2 font-bold">Previously</p>
               <TextInputField
                 tabIndex="-1"
@@ -113,8 +111,8 @@ const RollsForm = ({ }) => {
                 maxLength="3" defaultValue={aSoundToday} />
             </div>
 
-            <div className="grid grid-cols-6 grid-rows-1 gap-4 py-4 border-t border-primary-base">
-              <p className="grid col-span-2 font-bold ">To Date</p>
+            <div className="grid grid-cols-6 grid-rows-1 gap-4 pt-4 border-t border-primary-base">
+              <p className="grid col-span-2 font-bold">To Date</p>
               <TextInputField
                 tabIndex="-1"
                 placeholder="0"
