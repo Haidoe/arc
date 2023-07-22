@@ -63,7 +63,9 @@ const CastTimeLogForm = ({ productionInfo }) => {
   // on modal close set selected index to undefined
 
   function deleteConfirmationHandler() {
-    const updatedRows = castTimeLogInfo.filter((item, i) => i !== selectedIndex);
+    const updatedRows = castTimeLogInfo.filter(
+      (item, i) => i !== selectedIndex
+    );
     dispatch(updateCastTimeLog(updatedRows));
     setSelectedIndex(undefined);
     setShowDeleteModal(false);
@@ -86,7 +88,9 @@ const CastTimeLogForm = ({ productionInfo }) => {
           heading="Delete Confirmation"
           message="Are you sure you want to delete?"
           cancelHandler={() => setShowDeleteModal(false)}
-          actionHandler={(selectedIndex) => deleteConfirmationHandler(selectedIndex)}
+          actionHandler={(selectedIndex) =>
+            deleteConfirmationHandler(selectedIndex)
+          }
         />
       )}
 
@@ -95,7 +99,7 @@ const CastTimeLogForm = ({ productionInfo }) => {
           <div className="flow-root">
             <div className="overflow-x-auto">
               <div className="inline-block min-w-full align-middle">
-                <table className="min-w-full divide-y divide-primary-base text-base text-bold text-contrast-dark">
+                <table className="text-bold min-w-full divide-y divide-primary-base text-base text-contrast-dark">
                   <thead>
                     <tr>
                       <th
@@ -104,34 +108,19 @@ const CastTimeLogForm = ({ productionInfo }) => {
                       >
                         No.
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Cast
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Character
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-2 pb-3.5 text-left ">
                         Status
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Work Schedule
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Meals
                       </th>
                       <th
@@ -155,12 +144,30 @@ const CastTimeLogForm = ({ productionInfo }) => {
                           <td className="whitespace-nowrap px-3 py-4  text-contrast-dark">
                             {row.character}
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4  text-contrast-dark">
+                          <td className="whitespace-nowrap px-3 py-4 text-contrast-dark">
                             {row.status}
                           </td>
                           <td className="whitespace-nowrap px-3 py-4  text-contrast-dark">
+                            {idx == 0 && (
+                              <div className="mb-2 mt-[-10px] flex gap-1">
+                                <div className="flex-1 text-center text-[.9rem] font-normal">
+                                  MU Report
+                                </div>
+                                <div className="flex-1 text-center text-[.9rem] font-normal">
+                                  On Set
+                                </div>
+                                <div className="flex-1 text-center text-[.9rem] font-normal">
+                                  Set Wrap
+                                </div>
+                                <div className="flex-1 text-center text-[.9rem] font-normal">
+                                  Set Dismiss
+                                </div>
+                              </div>
+                            )}
+
                             <div className="flex gap-1">
                               <TimeInputField
+                                containerClass="flex-1"
                                 label="MU Report"
                                 isReadyOnly={true}
                                 value={ISOToTimeString(
@@ -168,11 +175,13 @@ const CastTimeLogForm = ({ productionInfo }) => {
                                 )}
                               />
                               <TimeInputField
+                                containerClass="flex-1"
                                 label="On Set"
                                 isReadyOnly={true}
                                 value={ISOToTimeString(row.workSchedule.onSet)}
                               />
                               <TimeInputField
+                                containerClass="flex-1"
                                 label="Set Wrap"
                                 isReadyOnly={true}
                                 value={ISOToTimeString(
@@ -180,6 +189,7 @@ const CastTimeLogForm = ({ productionInfo }) => {
                                 )}
                               />
                               <TimeInputField
+                                containerClass="flex-1"
                                 label="Set Dismiss"
                                 isReadyOnly={true}
                                 value={ISOToTimeString(
@@ -189,24 +199,45 @@ const CastTimeLogForm = ({ productionInfo }) => {
                             </div>
                           </td>
                           <td className="whitespace-nowrap px-3 py-4  text-contrast-dark">
+                            {idx == 0 && (
+                              <div className="mb-2 mt-[-10px] flex gap-1">
+                                <div className="flex-1 text-center text-[.9rem] font-normal">
+                                  Lunch In
+                                </div>
+                                <div className="flex-1 text-center text-[.9rem] font-normal">
+                                  Lunch Out
+                                </div>
+                                <div className="flex-1 text-center text-[.9rem] font-normal">
+                                  Dinner In
+                                </div>
+                                <div className="flex-1 text-center text-[.9rem] font-normal">
+                                  Dinner Out
+                                </div>
+                              </div>
+                            )}
+
                             {/* {row.meals} */}
                             <div className="flex gap-1">
                               <TimeInputField
+                                containerClass="flex-1"
                                 label="Lunch In"
                                 isReadyOnly={true}
                                 value={ISOToTimeString(row.meals.lunchIn)}
                               />
                               <TimeInputField
+                                containerClass="flex-1"
                                 label="Lunch Out"
                                 isReadyOnly={true}
                                 value={ISOToTimeString(row.meals.lunchOut)}
                               />
                               <TimeInputField
+                                containerClass="flex-1"
                                 label="Second Meal In"
                                 isReadyOnly={true}
                                 value={ISOToTimeString(row.meals.secondMealIn)}
                               />
                               <TimeInputField
+                                containerClass="flex-1"
                                 label="Second Meal Out"
                                 isReadyOnly={true}
                                 value={ISOToTimeString(row.meals.secondMealOut)}
@@ -247,7 +278,9 @@ const CastTimeLogForm = ({ productionInfo }) => {
                 buttonType="Secondary"
                 className="px-4 py-[15px]"
               >
-                <div className="text-center border-primary-light text-sm font-bold">Create New Line</div>
+                <div className="border-primary-light text-center text-sm font-bold">
+                  Create New Line
+                </div>
               </Button>
             </div>
           </div>
