@@ -96,9 +96,13 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
       location: location.current.value,
       casts: casts.current.value.split(","),
       dayOrNight: selectedDayOrNight.name,
-      pages: parseInt(selectedNumber.page),
-      pagesShot: parseInt(pagesShot.current.value),
-      pagesToday: parseInt(pagesToday.current.value),
+      pages: selectedNumber.page ? parseInt(selectedNumber.page) : 0,
+      pagesShot: pagesShot.current.value
+        ? parseInt(pagesShot.current.value)
+        : 0,
+      pagesToday: pagesToday.current.value
+        ? parseInt(pagesToday.current.value)
+        : 0,
     };
 
     const allRows = [...scenesShot];
@@ -108,10 +112,14 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
     // pass to redux
     dispatch(updateShotScene(allRows));
 
-    updateProductionReportById({
-      ...data,
-      shotScene: allRows,
-    });
+    try {
+      updateProductionReportById({
+        ...data,
+        shotScene: allRows,
+      });
+    } catch (error) {
+      console.error("Scenes Shot Update Error: ", error);
+    }
   }
 
   function onAddHandler() {
@@ -121,9 +129,13 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
       location: location.current.value,
       casts: casts.current.value.split(","),
       dayOrNight: selectedDayOrNight.name,
-      pages: parseInt(selectedNumber.page),
-      pagesShot: parseInt(pagesShot.current.value),
-      pagesToday: parseInt(pagesToday.current.value),
+      pages: selectedNumber.page ? parseInt(selectedNumber.page) : 0,
+      pagesShot: pagesShot.current.value
+        ? parseInt(pagesShot.current.value)
+        : 0,
+      pagesToday: pagesToday.current.value
+        ? parseInt(pagesToday.current.value)
+        : 0,
     };
 
     const allRows = [...scenesShot, row];
@@ -131,10 +143,14 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
     // pass to redux
     dispatch(updateShotScene(allRows));
 
-    updateProductionReportById({
-      ...data,
-      shotScene: allRows,
-    });
+    try {
+      updateProductionReportById({
+        ...data,
+        shotScene: allRows,
+      });
+    } catch (error) {
+      console.error("Scenes Shot Add Error: ", error);
+    }
   }
 
   // modal handlers
@@ -169,52 +185,28 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
                 <table className="min-w-full divide-y divide-primary-base text-base text-contrast-dark">
                   <thead className=" font-bold">
                     <tr>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Scene No.
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Set
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Location
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Cast
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         D/N
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Pages
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Pages Shot
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Pages Today
                       </th>
                     </tr>

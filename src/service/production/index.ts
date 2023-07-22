@@ -36,27 +36,33 @@ export const getProductionReportById = async (
 };
 
 export const updateProductionReportById = async (data: ProductionReport) => {
-  if (!data.id || !data.productionId) {
-    throw new Error("Invalid data");
+  try {
+    if (!data.id || !data.productionId) {
+      throw new Error("Invalid data");
+    }
+
+    const url = getURL(
+      `/api/production/${data.productionId}/report/${data.id}`
+    );
+
+    const config = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ dailyReport: data }),
+    };
+
+    const response = await fetch(url, config);
+
+    if (!response.ok) {
+      throw new Error("Invalid data");
+    }
+
+    const report = (await response.json()) as Promise<ProductionReport>;
+
+    return report;
+  } catch (error) {
+    console.log("UPDATING PRODUCTION REPORT FAILED", error);
   }
-
-  const url = getURL(`/api/production/${data.productionId}/report/${data.id}`);
-
-  const config = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ dailyReport: data }),
-  };
-
-  const response = await fetch(url, config);
-
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-
-  const report = (await response.json()) as Promise<ProductionReport>;
-
-  return report;
 };
