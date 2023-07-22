@@ -39,7 +39,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
 
   const pageContainerClasses = isExpanded
     ? ""
-    : "ml-[-334px] w-[calc(100vw+334px)]";
+    : "lg:ml-[-334px] lg:w-[calc(100vw+334px)]";
 
   return (
     <MainPageLayout>
