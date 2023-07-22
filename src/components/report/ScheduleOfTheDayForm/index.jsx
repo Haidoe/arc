@@ -1,3 +1,6 @@
+import dayjs from "dayjs";
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
+
 //react-redux
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -10,6 +13,8 @@ import ScheduleOfTheDayModal from "./ScheduleOfTheDayModal";
 //helper
 import { datetimeToTime } from "~/helper/time";
 
+dayjs.extend(LocalizedFormat);
+
 const ScheduleOfTheDayForm = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,41 +22,62 @@ const ScheduleOfTheDayForm = ({ className }) => {
   const data = useSelector((state) => state.productionReport.data);
 
   const scheduleForDay = data.scheduleForDay;
-  const timeKeys = ["breakfastFrom", "breakfastTo", "crewCallFrom", "crewCallTo", "shootingCallFrom", "shootingCallTo", "lunchFrom", "lunchTo"];
+  const timeKeys = [
+    "breakfastFrom",
+    "breakfastTo",
+    "crewCallFrom",
+    "crewCallTo",
+    "shootingCallFrom",
+    "shootingCallTo",
+    "lunchFrom",
+    "lunchTo",
+  ];
   const scheduleTimes = {};
   timeKeys.forEach((key) => {
-    scheduleTimes[key] = scheduleForDay[key] ? datetimeToTime(scheduleForDay[key]) : "";
+    scheduleTimes[key] = scheduleForDay[key]
+      ? datetimeToTime(scheduleForDay[key])
+      : "";
   });
-  const { breakfastFrom, breakfastTo, crewCallFrom, crewCallTo, shootingCallFrom, shootingCallTo, lunchFrom, lunchTo } = scheduleTimes;
+  const {
+    breakfastFrom,
+    breakfastTo,
+    crewCallFrom,
+    crewCallTo,
+    shootingCallFrom,
+    shootingCallTo,
+    lunchFrom,
+    lunchTo,
+  } = scheduleTimes;
 
   //To get current date
   const currentDate = new Date().toLocaleDateString("en-US", {
     weekday: "short",
     year: "numeric",
     month: "short",
-    day: "numeric"
+    day: "numeric",
   });
 
   //To get current time make sure to use 24 hours format
-  const currentTime = new Date().toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit"
-  });
+  const currentTime = dayjs().format("LT");
 
   return (
     <>
-      <Accordion title="Schedule of The Day" defaultOpen={true} className={`text-contrast-dark font-bold text-base ${className}`}>
+      <Accordion
+        title="Schedule of The Day"
+        defaultOpen={true}
+        className={`text-base font-bold text-contrast-dark ${className}`}
+      >
         <div onClick={() => setIsOpen(true)}>
           <div className="flex justify-between border-b border-primary-base pb-2">
-            <p className="font-bold text-base text-tertiary-dark">
+            <p className="text-base font-bold text-tertiary-dark">
               {currentDate}
             </p>
-            <p className="font-bold text-base text-tertiary-dark">
+            <p className="text-base font-bold text-tertiary-dark">
               {currentTime}
             </p>
           </div>
           <div className="pt-2 text-base text-contrast-dark ">
-            <div className="grid grid-cols-3 gap-4 pt-4 pb-2">
+            <div className="grid grid-cols-3 gap-4 pb-2 pt-4">
               <div></div>
               <p className="font-bold">Start</p>
               <p className="font-bold">End</p>
@@ -67,34 +93,48 @@ const ScheduleOfTheDayForm = ({ className }) => {
               <TimeInputField
                 tabIndex="-1"
                 key={`breakfastTo-${breakfastTo ?? 0}`}
-                label="breakfastTo" defaultValue={breakfastTo} />
+                label="breakfastTo"
+                defaultValue={breakfastTo}
+              />
               <p className="font-bold">Crew Call</p>
               <TimeInputField
                 tabIndex="-1"
                 key={`crewCallFrom-${crewCallFrom ?? 0}`}
-                label="crewCallForm" defaultValue={crewCallFrom} />
+                label="crewCallForm"
+                defaultValue={crewCallFrom}
+              />
               <TimeInputField
                 tabIndex="-1"
                 key={`crewCallTo-${crewCallTo ?? 0}`}
-                label="crewCallTo" defaultValue={crewCallTo} />
+                label="crewCallTo"
+                defaultValue={crewCallTo}
+              />
               <p className="font-bold">Shooting Call</p>
               <TimeInputField
                 tabIndex="-1"
                 key={`shootingCallFrom-${shootingCallFrom ?? 0}`}
-                label="shootingCallFrom" defaultValue={shootingCallFrom} />
+                label="shootingCallFrom"
+                defaultValue={shootingCallFrom}
+              />
               <TimeInputField
                 tabIndex="-1"
                 key={`shootingCallTo-${shootingCallTo ?? 0}`}
-                label="shootingCallTo" defaultValue={shootingCallTo} />
+                label="shootingCallTo"
+                defaultValue={shootingCallTo}
+              />
               <p className="font-bold">Lunch</p>
               <TimeInputField
                 tabIndex="-1"
                 key={`lunchFrom-${lunchFrom ?? 0}`}
-                label="lunchFrom" defaultValue={lunchFrom} />
+                label="lunchFrom"
+                defaultValue={lunchFrom}
+              />
               <TimeInputField
                 tabIndex="-1"
                 key={`lunchTo-${lunchTo ?? 0}`}
-                label="lunchTo" defaultValue={lunchTo} />
+                label="lunchTo"
+                defaultValue={lunchTo}
+              />
             </div>
           </div>
         </div>
