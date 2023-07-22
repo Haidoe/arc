@@ -3,11 +3,11 @@ import React, { forwardRef } from "react";
 
 const TimeInputField = forwardRef(
   (
-    { name, value, onChange, className, isReadyOnly, defaultValue, tabIndex },
+    { name, value, onChange, className, isReadyOnly, defaultValue, tabIndex, required = false, containerClass },
     ref
   ) => {
     return (
-      <div>
+      <div className={containerClass}>
         <input
           type="time"
           name={name}
@@ -18,6 +18,7 @@ const TimeInputField = forwardRef(
           readOnly={isReadyOnly}
           defaultValue={defaultValue}
           ref={ref}
+          required={required}
         />
       </div>
     );
