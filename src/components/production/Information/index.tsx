@@ -22,12 +22,16 @@ const ProductionInformation = (props: ProductionInformationProps) => {
   const { data } = props;
 
   const borderColor =
-    props.theme === "primary" ? "border-arc" : "border-primary-light";
+    props.theme === "primary" ? "border-arc" : "border-primary-base";
 
   const wrapperClass = props.theme && "text-arc bg-primary-light";
 
   return (
-    <div className={`flex-grow  lg:px-[24px] lg:pb-12 ${wrapperClass ?? ""}`}>
+    <div
+      className={`flex-grow text-contrast-dark lg:px-[24px] lg:pb-12 ${
+        wrapperClass ?? ""
+      }`}
+    >
       <ul className={`pb-4 ${props.isContentVisible ? "invisible" : ""}`}>
         <li className={`flex gap-4 border-b-[1.5px]  py-[20px] ${borderColor}`}>
           <div className="basis-[94px]">
@@ -35,9 +39,7 @@ const ProductionInformation = (props: ProductionInformationProps) => {
           </div>
 
           <div className="flex flex-1 flex-col  justify-center">
-            <h2
-              className={`text-lg font-bold ${isMobile ? "text-center" : ""}`}
-            >
+            <h2 className={`text-lg font-bold ${isMobile ? "text-right" : ""}`}>
               {data.title}
             </h2>
 
@@ -105,7 +107,7 @@ const ProductionInformation = (props: ProductionInformationProps) => {
         {isColapsed && (
           <Button
             buttonType={props.theme === "primary" ? "Primary" : "Secondary"}
-            className={`px-4 py-2 text-base ${
+            className={`mx-2 px-4 py-2 text-base ${
               isMobile ? "border-[1.5px] font-bold" : ""
             } ${props.theme === "primary" ? "shadow-3xl" : ""}`}
           >
@@ -116,7 +118,7 @@ const ProductionInformation = (props: ProductionInformationProps) => {
         {isColapsed && (
           <Button
             buttonType={"Secondary"}
-            className="min-w-[104px] border-[1.5px] p-4 text-base font-bold"
+            className="mx-2 min-w-[104px] border-[1.5px] p-4 text-base font-bold"
             onClick={() => setIsColapsed(!isColapsed)}
           >
             See less
