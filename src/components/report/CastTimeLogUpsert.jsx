@@ -250,7 +250,7 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200">
+                  <tbody className="divide-y divide-contrast-lighter">
                     <tr>
                       <td className="whitespace-nowrap px-3 py-4 ">
                         {/* row cast */}
@@ -372,19 +372,20 @@ const CastTimeLogUpsert = ({ idx, closeModal, productionInfo }) => {
             </div>
           </form>
           {/* Action Buttons */}
-          <div className="mt-8 flex justify-end gap-4 border-primary-base pt-4">
+          <div className="mt-8 flex justify-end gap-4 py-4">
             {/* Button to cancel */}
             <Button
               buttonType="Secondary"
-              className="px-2 py-1"
+              className="x-4 py-2 font-bold lg:px-8 lg:py-3"
               onClick={closeModal}
             >
               Cancel
             </Button>
+
             {/* Button to save modal */}
             <Button
               buttonType="Secondary"
-              className="px-2 py-1"
+              className="x-4 py-2 font-bold lg:px-8 lg:py-3"
               onClick={triggerSaveHandleModal}
             >
               {isUpdate ? "Update" : "Add"}
