@@ -66,6 +66,7 @@ const SceneChart = () => {
     fetchData();
   }, [productionId]);
 
+
   useEffect(() => {
     const labels = sceneProgressArray.map((scene, index) => `Scene ${index + 1}`);
     const completedData = sceneProgressArray.map((scene) => scene.completed);
