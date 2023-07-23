@@ -35,9 +35,9 @@ const ListItemWithDatetime = ({
       <div className="basis-[94px] font-bold">{title}</div>
 
       <p className="flex flex-1 items-start gap-4 ">
-        <span className={`rounded  p-[6px] underline`}>{date}</span>
+        <span className={`rounded  p-[6px] `}>{date}</span>
 
-        <span className={`rounded p-[6px] underline shadow-2xl`}>{time}</span>
+        <span className={`rounded p-[6px] `}>{time}</span>
       </p>
     </li>
   );
