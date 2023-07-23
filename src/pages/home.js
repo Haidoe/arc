@@ -167,7 +167,15 @@ const Home = () => {
             onClick={handleDemoClick}
             disabled={isProjectLoading}
           >
-            {isProjectLoading ? "Loading..." : "New Production"}
+            {isProjectLoading ? "Loading..." : "Create Sample Production"}
+          </Button>
+          <Button
+            buttonType={"Disabled"}
+            className="mt-4 self-center px-12 lg:mt-6"
+            onClick={handleDemoClick}
+            disabled={isProjectLoading}
+          >
+            Create New Production
           </Button>
         </div>
       </div>
