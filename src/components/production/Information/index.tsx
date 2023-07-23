@@ -1,3 +1,4 @@
+import { useState, type ReactNode } from "react";
 import ListItem from "./ListItem";
 import DefaultAvatar from "~/components/global/DefaultAvatar";
 import type { ProductionWithProducer } from "~/types/types";
@@ -8,9 +9,14 @@ type ProductionInformationProps = {
   data: ProductionWithProducer | null;
   theme?: "primary" | null;
   isContentVisible?: boolean;
+  children?: ReactNode;
+  isMobile?: boolean;
 };
 
 const ProductionInformation = (props: ProductionInformationProps) => {
+  const [isMobile] = useState(props.isMobile ?? false);
+  const [isColapsed, setIsColapsed] = useState(props.isMobile ? false : true);
+
   if (!props.data) return <aside>Production Info Data Not Found...</aside>;
 
   const { data } = props;
@@ -21,65 +27,89 @@ const ProductionInformation = (props: ProductionInformationProps) => {
   const wrapperClass = props.theme && "text-arc bg-primary-light";
 
   return (
-    <div className={`flex-grow  px-[24px] pb-12 ${wrapperClass ?? ""}`}>
+    <div className={`flex-grow  lg:px-[24px] lg:pb-12 ${wrapperClass ?? ""}`}>
       <ul className={`pb-4 ${props.isContentVisible ? "invisible" : ""}`}>
         <li className={`flex gap-4 border-b-[1.5px]  py-[20px] ${borderColor}`}>
           <div className="basis-[94px]">
             <DefaultAvatar theme="primary" />
           </div>
 
-          <h2 className="flex flex-1 items-center text-lg font-bold">
+          <h2
+            className={`flex flex-1 items-center text-lg font-bold ${
+              isMobile ? "justify-center" : ""
+            }`}
+          >
             {data.title}
           </h2>
         </li>
 
-        <ListItem theme={props.theme} title="Description">
-          {data.description}
-        </ListItem>
+        {isColapsed && (
+          <>
+            <ListItem theme={props.theme} title="Description">
+              {data.description}
+            </ListItem>
 
-        <ListItem theme={props.theme} title="Director">
-          {data.director}
-        </ListItem>
+            <ListItem theme={props.theme} title="Director">
+              {data.director}
+            </ListItem>
 
-        <ListItem theme={props.theme} title="Producer">
-          {data.producer.name}
-        </ListItem>
+            <ListItem theme={props.theme} title="Producer">
+              {data.producer.name}
+            </ListItem>
 
-        <ListItem theme={props.theme} title="1st Assistant">
-          {data.firstAssistantDirector}
-        </ListItem>
+            <ListItem theme={props.theme} title="1st Assistant">
+              {data.firstAssistantDirector}
+            </ListItem>
 
-        <ListItem theme={props.theme} title="2nd Assistant">
-          {data.secondAssistantDirector}
-        </ListItem>
+            <ListItem theme={props.theme} title="2nd Assistant">
+              {data.secondAssistantDirector}
+            </ListItem>
 
-        <ListItem theme={props.theme} title="Production Coordinator">
-          {data.productionCoordinator}
-        </ListItem>
+            <ListItem theme={props.theme} title="Production Coordinator">
+              {data.productionCoordinator}
+            </ListItem>
 
-        <ListItemWithDatetime
-          title="Date Started"
-          datetime={data.duration?.startDate ?? null}
-          theme={props.theme}
-        />
+            <ListItemWithDatetime
+              title="Date Started"
+              datetime={data.duration?.startDate ?? null}
+              theme={props.theme}
+            />
 
-        <ListItemWithDatetime
-          title="Estimated Finish"
-          datetime={data.duration?.estimatedFinishDate ?? null}
-          theme={props.theme}
-          isLast
-        />
+            <ListItemWithDatetime
+              title="Estimated Finish"
+              datetime={data.duration?.estimatedFinishDate ?? null}
+              theme={props.theme}
+              isLast
+            />
+          </>
+        )}
       </ul>
 
-      <div className="item-center flex justify-center">
-        <Button
-          buttonType={props.theme === "primary" ? "Primary" : "Secondary"}
-          className={`px-4 py-2 text-base ${
-            props.theme === "primary" ? "shadow-3xl" : ""
-          }`}
-        >
-          Edit
-        </Button>
+      <div
+        className={`item-center flex ${
+          isMobile ? "justify-end gap-4" : "justify-center"
+        }`}
+      >
+        {isColapsed && (
+          <Button
+            buttonType={props.theme === "primary" ? "Primary" : "Secondary"}
+            className={`px-4 py-2 text-base ${
+              isMobile ? "border-[1.5px] font-bold" : ""
+            } ${props.theme === "primary" ? "shadow-3xl" : ""}`}
+          >
+            Edit
+          </Button>
+        )}
+
+        {isMobile && (
+          <Button
+            buttonType={"Secondary"}
+            className="min-w-[104px] border-[1.5px] p-4 text-base font-bold"
+            onClick={() => setIsColapsed(!isColapsed)}
+          >
+            {isColapsed ? "See less" : "See more"}
+          </Button>
+        )}
       </div>
     </div>
   );
