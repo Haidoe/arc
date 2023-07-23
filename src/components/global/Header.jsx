@@ -175,8 +175,8 @@ const Header = () => {
                 
                 ${
                   header.path === asPath || header.path === pathname
-                    ? "border-tertiary-light text-tertiary-light"
-                    : "border-transparent text-contrast-dark hover:border-tertiary-light hover:text-tertiary-light"
+                    ? "border-tertiary-light text-tertiary-light font-normal"
+                    : "border-transparent text-contrast-dark font-normal hover:font-bold"
                 }
 
                 inline-flex items-center border-b-2 px-2`}
