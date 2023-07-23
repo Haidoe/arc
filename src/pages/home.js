@@ -106,11 +106,11 @@ const Home = () => {
           {/* isProduction true */}
           <div
             id="production"
-            className={`mt-8 flex w-full flex-col items-center rounded-[5px] bg-primary-base/30 px-[20px] py-8 lg:py-10 ${
+            className={`mt-8 flex w-full flex-col items-center rounded-[5px] px-[20px] py-8 lg:py-10 ${
               isProduction ? "" : "hidden"
             }`}
           >
-            <h2 className="text-[24px] font-bold  tracking-wide text-black lg:text-[32px]">
+            <h2 className="text-[24px] font-bold  tracking-wide text-contrast-dark lg:text-[32px]">
               Your Productions
             </h2>
             <div
@@ -138,12 +138,12 @@ const Home = () => {
               isProduction ? "hidden" : ""
             }`}
           >
-            <h2 className="text-[24px] font-bold tracking-wide text-black lg:text-[32px]">
+            <h2 className="text-[24px] font-bold tracking-wide text-contrast-dark lg:text-[32px]">
               Your Productions
             </h2>
             <div
               id="no_production"
-              className="my-8 w-full rounded-[5px] bg-primary-base/30 px-[20px] py-10"
+              className="my-8 w-full rounded-[5px] px-[20px] py-10"
             >
               <p className="lg:text-[16px]">
                 You don&apos;t have a Production yet, but starting one is quick
