@@ -23,9 +23,6 @@ const ListItemWithDatetime = ({
   const date = dayjs(datetime).tz("America/Vancouver").format("ll");
   const time = dayjs(datetime).tz("America/Vancouver").format("LT");
 
-  const boxColor = (theme && "text-black") ?? "";
-  const timeBoxClasses = (theme && "text-black") ?? "bg-opacity-20";
-  const hasBoxShadow = (theme && "shadow-3xl") ?? "";
   const borderColor =
     theme === "primary" ? "border-b-arc" : "border-b-primary-light";
 
@@ -37,12 +34,10 @@ const ListItemWithDatetime = ({
     >
       <div className="basis-[94px] font-bold">{title}</div>
 
-      <p className="flex flex-1 items-start">
-        <span>{date}</span>
+      <p className="flex flex-1 items-start gap-4 ">
+        <span className={`rounded  p-[6px] underline`}>{date}</span>
 
-        {/* <span className={` ${timeBoxClasses} ${hasBoxShadow} shadow-2xl`}>
-          {time}
-        </span> */}
+        <span className={`rounded p-[6px] underline shadow-2xl`}>{time}</span>
       </p>
     </li>
   );

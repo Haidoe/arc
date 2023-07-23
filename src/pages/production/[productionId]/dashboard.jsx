@@ -1,18 +1,18 @@
-import DropDown from "~/components/global/DropDown";
-import MainPageLayout from "~/components/layouts/MainPageLayout";
-import Sidebar from "~/components/production/Information";
-import { getProductionInfoById } from "~/service/production";
-import SceneChart from "~/components/dashboard/SceneChart";
-import BudgetStatusChart from "~/components/dashboard/BudgetStatusChart";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
+import { getProductionInfoById } from "~/service/production";
+
 // components
 import ActiveActors from "~/components/dashboard/ActiveActors";
 import ActiveExtras from "~/components/dashboard/ActiveExtras";
 import Head from "next/head";
 import UnfinishhedSceneSection from "~/components/dashboard/UnfinishedSceneSection";
 import Button from "~/components/Button";
-import DefaultAvatar from "~/components/global/DefaultAvatar";
+import SceneChart from "~/components/dashboard/SceneChart";
+import BudgetStatusChart from "~/components/dashboard/BudgetStatusChart";
+import DropDown from "~/components/global/DropDown";
+import MainPageLayout from "~/components/layouts/MainPageLayout";
+import Sidebar from "~/components/production/Information";
 
 dayjs.extend(LocalizedFormat);
 
@@ -31,21 +31,7 @@ const ProductionReportPage = ({ productionInfo }) => {
         </aside>
 
         <aside className="flex bg-arc p-4 py-4 shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] lg:hidden">
-          <div className="flex flex-1 border-b-2 border-primary-base p-4">
-            <DefaultAvatar />
-
-            <div className="flex flex-1 flex-col justify-between">
-              <h1 className="mt-4 text-center text-lg font-bold text-contrast-dark">
-                {productionInfo.title}
-              </h1>
-
-              <div className="flex items-end justify-end">
-                <Button buttonType="Secondary" className=" py-1 text-base">
-                  See more
-                </Button>
-              </div>
-            </div>
-          </div>
+          <Sidebar data={productionInfo} isMobile />
         </aside>
 
         <div className="grid flex-1 grid-cols-2 content-start gap-6 px-4 py-4 lg:px-8">
