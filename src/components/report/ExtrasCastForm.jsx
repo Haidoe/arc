@@ -1,7 +1,3 @@
-// react imports
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { updateShotScene } from "~/redux/features/ProductionReportSlice";
 import Image from "next/image";
 
 // components
@@ -10,12 +6,10 @@ import Delete from "~/assets/icons/Delete.svg";
 import TimeInputField from "~/components/TimeInputField";
 
 // import helper functions
-import {
-  ISOToTimeString,
-} from "~/helper/timeInputParser.js";
+import { ISOToTimeString } from "~/helper/timeInputParser.js";
 
 // ExtrasCastForm Dummy component form
-const ExtrasCastForm = ({ }) => {
+const ExtrasCastForm = ({ isReadOnly }) => {
   const extrasCastInfo = [
     {
       qty: 3,
@@ -48,7 +42,7 @@ const ExtrasCastForm = ({ }) => {
           <div className="flow-root">
             <div className="overflow-x-auto">
               <div className="inline-block min-w-full align-middle">
-                <table className="min-w-full divide-y text-base text-contrast-dark divide-primary-base">
+                <table className="min-w-full divide-y divide-primary-base text-base text-contrast-dark">
                   <thead>
                     <tr>
                       <th
@@ -57,36 +51,27 @@ const ExtrasCastForm = ({ }) => {
                       >
                         Quantity
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Description
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Notes
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Schedule
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Rate
                       </th>
-                      <th
-                        scope="col"
-                        className="relative min-w-[60px] pb-3.5 pl-3 pr-4 sm:pr-0 text-contrast-dark"
-                      >
-                        <span className="sr-only">Delete</span>
-                      </th>
+                      {/* Hide this column if the form is read only */}
+                      {!isReadOnly && (
+                        <th
+                          scope="col"
+                          className="relative min-w-[60px] pb-3.5 pl-3 pr-4 text-contrast-dark sm:pr-0"
+                        >
+                          <span className="sr-only">Delete</span>
+                        </th>
+                      )}
                     </tr>
                   </thead>
                   {extrasCastInfo?.length > 0 && (
@@ -128,16 +113,19 @@ const ExtrasCastForm = ({ }) => {
                             ${row.schedule.rate}
                           </td>
 
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right font-medium sm:pr-0">
-                            <Image
-                              className={`icon-delete-row hover:cursor-pointer`}
-                              src={Delete}
-                              alt="Delete icon"
-                            />
-                            <span className="sr-only">
-                              Delete Cast Number {idx + 1}
-                            </span>
-                          </td>
+                          {/* Hide this column if the form is read only */}
+                          {!isReadOnly && (
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right font-medium sm:pr-0">
+                              <Image
+                                className={`icon-delete-row hover:cursor-pointer`}
+                                src={Delete}
+                                alt="Delete icon"
+                              />
+                              <span className="sr-only">
+                                Delete Cast Number {idx + 1}
+                              </span>
+                            </td>
+                          )}
                         </tr>
                       ))}
                     </tbody>
@@ -147,23 +135,24 @@ const ExtrasCastForm = ({ }) => {
                 {extrasCastInfo?.length == 0 && (
                   <div className="mt-4 flex flex-col items-center gap-4 border-primary-base pt-4">
                     <div>
-                      <p className="">
-                        No not shot scenes infromation found.
-                      </p>
+                      <p className="">No not shot scenes infromation found.</p>
                     </div>
                   </div>
                 )}
               </div>
             </div>
             {/* Button to Create New Line */}
-            <div className="mt-2 flex justify-end gap-4 py-4">
-              <Button
-                buttonType="Secondary"
-                className="px-4 py-2 border-2 font-bold lg:px-8 lg:py-3"
-              >
-                Create New Line
-              </Button>
-            </div>
+            {/* Hide this button if the form is read only */}
+            {!isReadOnly && (
+              <div className="mt-2 flex justify-end gap-4 py-4">
+                <Button
+                  buttonType="Secondary"
+                  className="border-2 px-4 py-2 font-bold lg:px-8 lg:py-3"
+                >
+                  Create New Line
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       }
