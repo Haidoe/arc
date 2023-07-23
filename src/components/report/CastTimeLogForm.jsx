@@ -19,7 +19,8 @@ import { ISOToTimeString } from "~/helper/timeInputParser";
 import { updateProductionReportById } from "~/service/production";
 
 // CastTimeLog component form
-const CastTimeLogForm = ({ productionInfo }) => {
+const CastTimeLogForm = ({ productionInfo, isReadOnly }) => {
+  console.log("TEST IS READY ONLY: ", isReadOnly);
   // to show or hide the add modal
   const [showAddModal, setShowAddModal] = useState(false);
 
@@ -133,12 +134,16 @@ const CastTimeLogForm = ({ productionInfo }) => {
                       <th scope="col" className="px-3 pb-3.5 text-left ">
                         Meals
                       </th>
-                      <th
-                        scope="col"
-                        className="relative min-w-[60px] pb-3.5 pl-3 pr-4 sm:pr-0"
-                      >
-                        <span className="sr-only">Delete</span>
-                      </th>
+
+                      {/* Hide this column if the form is read only */}
+                      {!isReadOnly && (
+                        <th
+                          scope="col"
+                          className="relative min-w-[60px] pb-3.5 pl-3 pr-4 sm:pr-0"
+                        >
+                          <span className="sr-only">Delete</span>
+                        </th>
+                      )}
                     </tr>
                   </thead>
                   {castTimeLogInfo?.length > 0 && (
@@ -254,16 +259,20 @@ const CastTimeLogForm = ({ productionInfo }) => {
                               />
                             </div>
                           </td>
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right  font-medium sm:pr-0">
-                            <Image
-                              className={`icon-delete-row hover:cursor-pointer`}
-                              src={Delete}
-                              alt="Delete icon"
-                            />
-                            <span className="sr-only">
-                              Delete Cast Number {idx + 1}
-                            </span>
-                          </td>
+
+                          {/* Hide this column if the form is read only */}
+                          {!isReadOnly && (
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right  font-medium sm:pr-0">
+                              <Image
+                                className={`icon-delete-row hover:cursor-pointer`}
+                                src={Delete}
+                                alt="Delete icon"
+                              />
+                              <span className="sr-only">
+                                Delete Cast Number {idx + 1}
+                              </span>
+                            </td>
+                          )}
                         </tr>
                       ))}
                     </tbody>
@@ -282,15 +291,18 @@ const CastTimeLogForm = ({ productionInfo }) => {
               </div>
             </div>
             {/* Button to Create New Line */}
-            <div className="mt-2 flex justify-end gap-4 py-4">
-              <Button
-                onClick={addClickHandler}
-                buttonType="Secondary"
-                className="px-4 py-2 border-2 font-bold lg:px-8 lg:py-3"
-              >
-                Create New Line
-              </Button>
-            </div>
+            {/* Hide this button if the form is read only */}
+            {!isReadOnly && (
+              <div className="mt-2 flex justify-end gap-4 py-4">
+                <Button
+                  onClick={addClickHandler}
+                  buttonType="Secondary"
+                  className="border-2 px-4 py-2 font-bold lg:px-8 lg:py-3"
+                >
+                  Create New Line
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       }

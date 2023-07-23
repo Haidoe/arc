@@ -189,9 +189,12 @@ const Header = () => {
           {/* Show Divider and Sign in only for Landing Page */}
           {
             <>
-              <div className="divider-wrapper">
-                <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
-              </div>
+              {/* Hide the divider on public viewing page */}
+              {!router.pathname.includes("/view") && (
+                <div className="divider-wrapper">
+                  <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
+                </div>
+              )}
 
               <div className="registration-btns-wrapper">
                 {/* Sign In Button */}
