@@ -293,7 +293,11 @@ const CastTimeLogForm = ({ productionInfo, isReadOnly }) => {
             {/* Button to Create New Line */}
             {/* Hide this button if the form is read only */}
             {!isReadOnly && (
-              <div className="mt-2 flex justify-end gap-4 py-4">
+              <div className="mt-2 flex justify-between  gap-4 py-4">
+                <div className=" self-end text-xs ">
+                  Naming Conventions - Work:W / Start:S / Finish:F / Hold:H /
+                  Travel:TR / Fitting:FT / Rehearsal:R / Test:T
+                </div>
                 <Button
                   onClick={addClickHandler}
                   buttonType="Secondary"
