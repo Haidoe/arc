@@ -1,7 +1,3 @@
-// react imports
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { updateShotScene } from "~/redux/features/ProductionReportSlice";
 import Image from "next/image";
 
 // components
@@ -10,28 +6,30 @@ import Delete from "~/assets/icons/Delete.svg";
 import TimeInputField from "~/components/TimeInputField";
 
 // import helper functions
-import { ISOToDateVancouverString, ISOToTimeString } from "~/helper/timeInputParser.js";
+import {
+  ISOToDateVancouverString,
+  ISOToTimeString,
+} from "~/helper/timeInputParser.js";
 
 // NotShotForm Dummy component form
-const NotShotForm = ({ }) => {
-
+const NotShotForm = ({ isReadOnly }) => {
   const notShotInfo = [
     {
       date: "2023-07-02T22:00:00.000Z",
       time: "2023-07-02T22:00:00.000Z",
-      reason: "Rain"
+      reason: "Rain",
     },
     {
       date: "2023-07-02T22:00:00.000Z",
       time: "2023-07-02T22:00:00.000Z",
-      reason: "Actor injured"
+      reason: "Actor injured",
     },
     {
       date: "2023-07-02T22:00:00.000Z",
       time: "2023-07-02T22:00:00.000Z",
-      reason: "Equipment lost"
-    }
-  ]
+      reason: "Equipment lost",
+    },
+  ];
 
   return (
     <>
@@ -49,67 +47,65 @@ const NotShotForm = ({ }) => {
                       >
                         Scene No.
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Date
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Time
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Reason
                       </th>
-                      <th
-                        scope="col"
-                        className="relative min-w-[60px] py-3.5 pl-3 pr-4 sm:pr-0"
-                      >
-                        <span className="sr-only">Delete</span>
-                      </th>
+
+                      {/* Hide this column if isReadOnly  */}
+                      {!isReadOnly && (
+                        <th
+                          scope="col"
+                          className="relative min-w-[60px] py-3.5 pl-3 pr-4 sm:pr-0"
+                        >
+                          <span className="sr-only">Delete</span>
+                        </th>
+                      )}
                     </tr>
                   </thead>
                   {notShotInfo?.length > 0 && (
-                    <tbody className="divide-y text-base text-contrast-dark divide-contrast-lighter">
+                    <tbody className="divide-y divide-contrast-lighter text-base text-contrast-dark">
                       {notShotInfo.map((row, idx) => (
                         <tr key={idx}>
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium sm:pl-0">
-
                             {/* From drop down from Production Scenes Array */}
                             {idx + 1}
-
                           </td>
+
                           <td className="whitespace-nowrap px-3 py-4 ">
                             {ISOToDateVancouverString(row.date)}
                           </td>
+
                           <td className="whitespace-nowrap px-3 py-4 ">
-
-
                             <TimeInputField
                               label="not shot time"
                               isReadyOnly={true}
                               value={ISOToTimeString(row.time)}
                             />
                           </td>
+
                           <td className="whitespace-nowrap px-3 py-4 ">
                             {row.reason}
                           </td>
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right  font-medium sm:pr-0">
-                            <Image
-                              className={`icon-delete-row hover:cursor-pointer`}
-                              src={Delete}
-                              alt="Delete icon"
-                            />
-                            <span className="sr-only">
-                              Delete Cast Number {idx + 1}
-                            </span>
-                          </td>
+
+                          {/* Hide this column if isReadOnly  */}
+                          {!isReadOnly && (
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right  font-medium sm:pr-0">
+                              <Image
+                                className={`icon-delete-row hover:cursor-pointer`}
+                                src={Delete}
+                                alt="Delete icon"
+                              />
+                              <span className="sr-only">
+                                Delete Cast Number {idx + 1}
+                              </span>
+                            </td>
+                          )}
                         </tr>
                       ))}
                     </tbody>
@@ -119,23 +115,25 @@ const NotShotForm = ({ }) => {
                 {notShotInfo?.length == 0 && (
                   <div className="mt-4 flex flex-col items-center gap-4 border-primary-base pt-4">
                     <div>
-                      <p className="">
-                        No not shot scenes infromation found.
-                      </p>
+                      <p className="">No not shot scenes infromation found.</p>
                     </div>
                   </div>
                 )}
               </div>
             </div>
+
             {/* Button to Create New Line */}
-            <div className="mt-2 flex justify-end gap-4 py-4">
-              <Button
-                buttonType="Secondary"
-                className="px-4 py-2 border-2 font-bold lg:px-8 lg:py-3"
-              >
-                Create New Line
-              </Button>
-            </div>
+            {/* Hide this button if isReadOnly  */}
+            {!isReadOnly && (
+              <div className="mt-2 flex justify-end gap-4 py-4">
+                <Button
+                  buttonType="Secondary"
+                  className="border-2 px-4 py-2 font-bold lg:px-8 lg:py-3"
+                >
+                  Create New Line
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       }

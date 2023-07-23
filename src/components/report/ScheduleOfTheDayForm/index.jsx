@@ -15,7 +15,7 @@ import { datetimeToTime } from "~/helper/time";
 
 dayjs.extend(LocalizedFormat);
 
-const ScheduleOfTheDayForm = ({ className }) => {
+const ScheduleOfTheDayForm = ({ className, isReadOnly }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   //manage data from redux
@@ -67,7 +67,12 @@ const ScheduleOfTheDayForm = ({ className }) => {
         defaultOpen={true}
         className={`text-base font-bold text-contrast-dark ${className}`}
       >
-        <div onClick={() => setIsOpen(true)}>
+        <div
+          onClick={() => {
+            if (isReadOnly) return;
+            setIsOpen(true);
+          }}
+        >
           <div className="flex justify-between border-b border-primary-base pb-2">
             <p className="text-base font-bold text-tertiary-dark">
               {currentDate}

@@ -5,7 +5,7 @@ import TextInputField from '../../TextInputField'
 import Accordion from '../Accordion'
 import ActualScheduleModal from './ActualScheduleModal'
 
-const ActualScheduleForm = ({ className }) => {
+const ActualScheduleForm = ({ className, isReadOnly }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const data = useSelector((state) => state.productionReport.data)
@@ -35,7 +35,10 @@ const ActualScheduleForm = ({ className }) => {
   return (
     <>
       <Accordion title="Actual Schedule" defaultOpen={true} className={`text-contrast-dark ${className}`}>
-        <div onClick={() => setIsOpen(true)}>
+        <div onClick={() => {
+          if (isReadOnly) return;
+          setIsOpen(true);
+        }}>
           <div className="grid grid-cols-3 gap-4 text-contrast-dark gap-y-4 font-bold pb-2 border-b text-base border-primary-base">
             <p tabIndex="-1">Title</p>
             <p tabIndex="-1">Schedule</p>

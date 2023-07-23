@@ -43,8 +43,9 @@ const PublicReportPage = () => {
         return;
       }
 
-      dispatch(setProductionReport(response.data));
       setProductionInfo(response.data.Production);
+      dispatch(setProductionReport(response.data));
+      delete response.data.Production;
       setIsLoading(false);
     };
 
@@ -90,16 +91,16 @@ const PublicReportPage = () => {
 
         <div className="grid flex-1 grid-cols-2 content-start gap-4 p-4 lg:p-8">
           <div className="col-span-full bg-arc md:col-span-1">
-            <ScheduleOfTheDayForm />
+            <ScheduleOfTheDayForm isReadOnly />
           </div>
 
           <div className="col-span-full bg-arc md:col-span-1">
-            <ActualScheduleForm />
+            <ActualScheduleForm isReadOnly />
           </div>
 
           <div className="col-span-full bg-arc md:col-span-1 ">
             <Accordion title={"Not Shot Form"} defaultOpen={true}>
-              <NotShotForm />
+              <NotShotForm isReadOnly />
             </Accordion>
           </div>
 
