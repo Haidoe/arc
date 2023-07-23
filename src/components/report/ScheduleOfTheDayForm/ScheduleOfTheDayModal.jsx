@@ -132,7 +132,7 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={handleReduxUpdate}>
-      <div className="mx-[-25vw] w-[50vw]">
+      <div className="mx-[-25vw] w-[85vw] lg:w-[50vw]">
         <Accordion
           title="Schedule of the Day"
           defaultOpen={true}
