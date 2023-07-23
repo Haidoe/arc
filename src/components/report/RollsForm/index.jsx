@@ -87,7 +87,7 @@ const RollsForm = ({ }) => {
         {rollsData ? (
           <div onClick={() => setIsOpen(true)} action="" className={` text-contrast-dark text-base`} >
             <div className="pb-3 border-b border-primary-base">
-              <div className="grid text-base grid-cols-6 grid-rows-2 gap-4 gap-y-2 py-1">
+              <div className="grid text-base grid-cols-6 grid-rows-2 gap-x-4 gap-y-1 pb-1">
                 <p className="grid col-span-2 font-bold">Script Supervisor</p>
                 <p className="grid col-span-4">{scriptSupervisor}</p>
                 <p className="grid col-span-2 font-bold">Data Wrangler</p>

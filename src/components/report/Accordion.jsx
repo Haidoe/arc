@@ -37,13 +37,12 @@ const Accordion = ({
   function handleDisclosureHeaderClick(event) {
     event.preventDefault();
   }
-  
+
   return (
     <div className="w-full">
       <div
-        className={`mx-auto w-full rounded-2xl ${
-          insideModal ? "report-modal " : ""
-        }`}
+        className={`mx-auto w-full rounded-2xl ${insideModal ? "report-modal " : ""
+          }`}
       >
         <Disclosure defaultOpen={defaultOpen}>
           {({ open }) => (
@@ -51,9 +50,8 @@ const Accordion = ({
               <Disclosure.Button
                 onKeyDown={handleDisclosureKeyDown}
                 onClick={handleDisclosureHeaderClick}
-                className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left text-[16px] font-bold text-arc focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 ${
-                  insideModal ? "cursor-default" : "pointer-events-none"
-                } `}
+                className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left text-[16px] font-bold text-arc focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 ${insideModal ? "cursor-default" : "pointer-events-none"
+                  } `}
               >
                 <span>{title || "Accordion Title"}</span>
 
@@ -70,7 +68,7 @@ const Accordion = ({
                       className={`cursor-pointer mt-1 h-4 w-4 text-arc`}
                       src={Cancel}
                       alt="cancel modal"
-                      onClick={() => {onClose()}}
+                      onClick={() => { onClose() }}
                     />
                   )}
                 </div>
@@ -78,7 +76,7 @@ const Accordion = ({
 
               <Disclosure.Panel
                 onClick={handlePanelClick}
-                className={`bg-arc p-4 text-sm text-contrast-dark`}
+                className={`bg-arc px-4 py-6 text-sm text-contrast-dark`}
               >
                 <div
                   className={`${readOnlyState ? "pointer-events-none" : ""}`}
