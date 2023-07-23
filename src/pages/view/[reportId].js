@@ -105,24 +105,24 @@ const PublicReportPage = () => {
           </div>
 
           <div className="col-span-full bg-arc md:col-span-1 ">
-            <RollsForm />
+            <RollsForm isReadOnly />
           </div>
 
           <div className="col-span-full">
             <AccordionCrud title={"Cast Time Log Schedule"} defaultOpen={true}>
-              <CastTimeLogForm productionInfo={productionInfo} />
+              <CastTimeLogForm productionInfo={productionInfo} isReadOnly />
             </AccordionCrud>
           </div>
 
           <div className="col-span-full">
             <AccordionCrud title={"Scenes Shot Form"} defaultOpen={true}>
-              <ScenesShotForm productionInfo={productionInfo} />
+              <ScenesShotForm productionInfo={productionInfo} isReadOnly />
             </AccordionCrud>
           </div>
 
           <div className="col-span-full">
             <AccordionCrud title={"Extras Cast Form"} defaultOpen={true}>
-              <ExtrasCastForm />
+              <ExtrasCastForm isReadOnly />
             </AccordionCrud>
           </div>
         </div>
