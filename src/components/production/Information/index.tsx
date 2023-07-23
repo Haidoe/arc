@@ -28,7 +28,11 @@ const ProductionInformation = (props: ProductionInformationProps) => {
 
   return (
     <div className={`flex-grow  lg:px-[24px] lg:pb-12 ${wrapperClass ?? ""}`}>
-      <ul className={`pb-4 ${props.isContentVisible ? "invisible" : ""}`}>
+      <ul
+        className={`pb-4 text-contrast-dark  ${
+          props.isContentVisible ? "invisible" : ""
+        }`}
+      >
         <li className={`flex gap-4 border-b-[1.5px]  py-[20px] ${borderColor}`}>
           <div className="basis-[94px]">
             <DefaultAvatar theme="primary" />
