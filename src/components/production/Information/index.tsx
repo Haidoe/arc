@@ -34,13 +34,25 @@ const ProductionInformation = (props: ProductionInformationProps) => {
             <DefaultAvatar theme="primary" />
           </div>
 
-          <h2
-            className={`flex flex-1 items-center text-lg font-bold ${
-              isMobile ? "justify-center" : ""
-            }`}
-          >
-            {data.title}
-          </h2>
+          <div className="flex flex-1 flex-col  justify-center">
+            <h2
+              className={`text-lg font-bold ${isMobile ? "text-center" : ""}`}
+            >
+              {data.title}
+            </h2>
+
+            {isMobile && !isColapsed && (
+              <div className="flex flex-1 items-end justify-end">
+                <Button
+                  buttonType="Secondary"
+                  className="min-w-[104px] py-2 text-base font-bold"
+                  onClick={() => setIsColapsed(!isColapsed)}
+                >
+                  See more
+                </Button>
+              </div>
+            )}
+          </div>
         </li>
 
         {isColapsed && (
@@ -101,13 +113,13 @@ const ProductionInformation = (props: ProductionInformationProps) => {
           </Button>
         )}
 
-        {isMobile && (
+        {isColapsed && (
           <Button
             buttonType={"Secondary"}
             className="min-w-[104px] border-[1.5px] p-4 text-base font-bold"
             onClick={() => setIsColapsed(!isColapsed)}
           >
-            {isColapsed ? "See less" : "See more"}
+            See less
           </Button>
         )}
       </div>
