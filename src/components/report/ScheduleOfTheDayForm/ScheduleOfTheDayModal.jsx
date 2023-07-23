@@ -14,6 +14,8 @@ import { updateScheduleForDay } from "~/redux/features/ProductionReportSlice";
 import { updateProductionReportById } from "~/service/production";
 
 //Components
+import Button from "~/components/Button";
+
 const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.productionReport.data);
@@ -126,32 +128,34 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
       scheduleForDay,
     });
 
-
     onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={handleReduxUpdate}>
+    <Modal
+      isOpen={isOpen}
+      onClose={() => {
+        onClose();
+      }}
+    >
       <div className="mx-[-25vw] w-[85vw] lg:w-[50vw]">
         <Accordion
           title="Schedule of the Day"
           defaultOpen={true}
           readOnlyState={false}
           insideModal={true}
-          onClose={handleReduxUpdate}
+          onClose={() => {
+            onClose();
+          }}
         >
           <div>
             <div className="flex justify-between border-b border-primary-base pb-2 text-base font-bold text-contrast-dark">
-              <p className=" text-tertiary-dark">
-                {currentDate}
-              </p>
-              <p className=" text-tertiary-dark">
-                {currentTime}
-              </p>
+              <p className=" text-tertiary-dark">{currentDate}</p>
+              <p className=" text-tertiary-dark">{currentTime}</p>
             </div>
 
-            <div className="text-base text-contrast-dark py-2">
-              <div className="grid grid-cols-3 gap-4 pt-2 pb-2">
+            <div className="py-2 text-base text-contrast-dark">
+              <div className="grid grid-cols-3 gap-4 pb-2 pt-2">
                 <div></div>
                 <p className="font-bold">Start</p>
                 <p className="font-bold">End</p>
@@ -162,7 +166,10 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
                   ref={breakfastFromRef}
                   defaultValue={breakfastFrom}
                 />
-                <TimeInputField ref={breakfastToRef} defaultValue={breakfastTo} />
+                <TimeInputField
+                  ref={breakfastToRef}
+                  defaultValue={breakfastTo}
+                />
                 <p className="font-bold">Crew Call</p>
                 <TimeInputField
                   ref={crewCallFromRef}
@@ -181,6 +188,26 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
                 <p className="font-bold">Lunch</p>
                 <TimeInputField ref={lunchFromRef} defaultValue={lunchFrom} />
                 <TimeInputField ref={lunchToRef} defaultValue={lunchTo} />
+              </div>
+              {/* Action btns */}
+              <div className="mt-8 flex justify-end gap-4 py-4">
+                {/* Button to cancel */}
+                <Button
+                  buttonType="Secondary"
+                  className="py-2 font-bold lg:px-8 lg:py-3"
+                  onClick={onClose}
+                >
+                  Cancel
+                </Button>
+
+                {/* Button to save modal */}
+                <Button
+                  buttonType="Primary"
+                  className="py-2 font-bold lg:px-8 lg:py-3"
+                  onClick={handleReduxUpdate}
+                >
+                  Save
+                </Button>
               </div>
             </div>
           </div>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from "~/components/Modal";
 import Accordion from "../Accordion";
 import TextInputField from "~/components/TextInputField";
-
+import Button from "~/components/Button";
 //redux
 import { updateActualSchedule } from "~/redux/features/ProductionReportSlice";
 import { updateProductionReportById } from "~/service/production";
@@ -102,30 +102,28 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={handleReduxUpdate}>
+    <Modal isOpen={isOpen} onClose={() => onClose()}>
       <div className="mx-[-25vw] w-[85vw] lg:w-[50vw]">
         <Accordion
           title="Actual Schedule"
           defaultOpen={true}
           readOnlyState={false}
           insideModal={true}
-          onClose={handleReduxUpdate}
+          onClose={() => onClose()}
         >
           <div>
-            <div className="grid grid-cols-3 gap-4 text-contrast-dark text-base border-b border-primary-base pb-2 font-bold">
+            <div className="grid grid-cols-3 gap-4 border-b border-primary-base pb-2 text-base font-bold text-contrast-dark">
               <p>Title</p>
               <p>Schedule</p>
               <p>Actual</p>
             </div>
-            <div className="grid-rows-7 grid text-contrast-dark font-bold text-base grid-cols-3 gap-4 gap-y-4 pt-2">
-              <p >1st Unit</p>
+            <div className="grid-rows-7 grid grid-cols-3 gap-4 gap-y-4 pt-2 text-base font-bold text-contrast-dark">
+              <p>1st Unit</p>
               <TextInputField
                 placeholder="0"
                 maxLength="8"
                 ref={firstUnitScheduleRef}
-                defaultValue={
-                  firstUnitSchedule
-                }
+                defaultValue={firstUnitSchedule}
               />
 
               <TextInputField
@@ -190,18 +188,36 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
               <p>Holiday</p>
               <TextInputField
                 placeholder="0"
-
                 maxLength="8"
                 ref={holidayScheduleRef}
                 defaultValue={holidaySchedule}
               />
               <TextInputField
                 placeholder="0"
-
                 maxLength="8"
                 ref={holidayActualRef}
                 defaultValue={holidayActual}
               />
+            </div>
+            {/* Action btns */}
+            <div className="mt-8 flex justify-end gap-4 py-4">
+              {/* Button to cancel */}
+              <Button
+                buttonType="Secondary"
+                className="py-2 font-bold lg:px-8 lg:py-3"
+                onClick={onClose}
+              >
+                Cancel
+              </Button>
+
+              {/* Button to save modal */}
+              <Button
+                buttonType="Primary"
+                className="py-2 font-bold lg:px-8 lg:py-3"
+                onClick={handleReduxUpdate}
+              >
+                Save
+              </Button>
             </div>
           </div>
         </Accordion>
