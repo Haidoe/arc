@@ -31,13 +31,13 @@ const ListItemWithDatetime = ({
 
   return (
     <li
-      className={`gap- flex py-[20px] ${
+      className={`flex gap-4 py-[20px] ${
         isLast ? "" : `border-b-[1.5px] ${borderColor}`
       }`}
     >
       <div className="basis-[94px] font-bold">{title}</div>
 
-      <p className="flex flex-1 items-start justify-center gap-4">
+      <p className="flex flex-1 items-start gap-4 lg:justify-center">
         <span
           className={`rounded bg-[#DADAF4] p-[6px] underline ${boxColor} ${hasBoxShadow}`}
         >

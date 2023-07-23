@@ -15,7 +15,7 @@ type ProductionInformationProps = {
 
 const ProductionInformation = (props: ProductionInformationProps) => {
   const [isMobile] = useState(props.isMobile ?? false);
-  const [isColapsed, setIsColapsed] = useState(props.isMobile ? false : true);
+  const [isCollapsed, setIsCollapsed] = useState(props.isMobile ? false : true);
 
   if (!props.data) return <aside>Production Info Data Not Found...</aside>;
 
@@ -41,12 +41,12 @@ const ProductionInformation = (props: ProductionInformationProps) => {
               {data.title}
             </h2>
 
-            {isMobile && !isColapsed && (
+            {isMobile && !isCollapsed && (
               <div className="flex flex-1 items-end justify-end">
                 <Button
                   buttonType="Secondary"
                   className="min-w-[104px] py-2 text-base font-bold"
-                  onClick={() => setIsColapsed(!isColapsed)}
+                  onClick={() => setIsCollapsed(!isCollapsed)}
                 >
                   See more
                 </Button>
@@ -55,7 +55,7 @@ const ProductionInformation = (props: ProductionInformationProps) => {
           </div>
         </li>
 
-        {isColapsed && (
+        {isCollapsed && (
           <>
             <ListItem theme={props.theme} title="Description">
               {data.description}
@@ -102,7 +102,7 @@ const ProductionInformation = (props: ProductionInformationProps) => {
           isMobile ? "justify-end gap-4" : "justify-center"
         }`}
       >
-        {isColapsed && (
+        {isCollapsed && (
           <Button
             buttonType={props.theme === "primary" ? "Primary" : "Secondary"}
             className={`px-4 py-2 text-base ${
@@ -113,11 +113,11 @@ const ProductionInformation = (props: ProductionInformationProps) => {
           </Button>
         )}
 
-        {isColapsed && (
+        {isMobile && isCollapsed && (
           <Button
             buttonType={"Secondary"}
             className="min-w-[104px] border-[1.5px] p-4 text-base font-bold"
-            onClick={() => setIsColapsed(!isColapsed)}
+            onClick={() => setIsCollapsed(!isCollapsed)}
           >
             See less
           </Button>
