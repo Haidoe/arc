@@ -9,7 +9,11 @@ const handler = async (req, res) => {
         id: reportId,
       },
       include: {
-        Production: true,
+        Production: {
+          include: {
+            producer: true,
+          },
+        },
       },
     });
 
