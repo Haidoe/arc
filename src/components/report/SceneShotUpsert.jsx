@@ -211,7 +211,7 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-contrast-lighter text-base text-contrast-dark">
+                  <tbody className="divide-y divide-gray-200 text-base text-contrast-dark">
                     <tr>
                       <td className="whitespace-nowrap px-3 py-4 ">
                         {/* TODO Drop Down of Scene Number */}
@@ -293,11 +293,11 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
             </div>
           </form>
           {/* Action Buttons */}
-          <div className="mt-8 flex justify-end gap-4 py-4">
+          <div className="mt-8 flex justify-end gap-4 border-primary-base pt-4">
             {/* Button to cancel */}
             <Button
               buttonType="Secondary"
-              className="px-4 py-2 lg:px-8 lg:py-3"
+              className="px-2 py-1"
               onClick={closeModal}
             >
               Cancel
@@ -305,7 +305,7 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
             {/* Button to save modal */}
             <Button
               buttonType="Secondary"
-              className="px-4 py-2 lg:px-8 lg:py-3"
+              className="px-2 py-1"
               onClick={triggerSaveHandleModal}
             >
               {isUpdate ? "Update" : "Add"}

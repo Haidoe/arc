@@ -7,7 +7,7 @@ type ListItemProps = {
 
 const ListItem = ({ title, children, theme, isLast }: ListItemProps) => {
   const borderColor =
-    theme === "primary" ? "border-arc" : "border-primary-base";
+    theme === "primary" ? "border-arc" : "border-primary-light";
 
   return (
     <li

@@ -90,7 +90,7 @@ const ExtrasCastForm = ({ }) => {
                     </tr>
                   </thead>
                   {extrasCastInfo?.length > 0 && (
-                    <tbody className="divide-y divide-contrast-lighter text-base  text-contrast-dark">
+                    <tbody className="divide-y divide-gray-200 text-base  text-contrast-dark">
                       {extrasCastInfo.map((row, idx) => (
                         <tr key={idx}>
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium  sm:pl-0">
@@ -156,12 +156,9 @@ const ExtrasCastForm = ({ }) => {
               </div>
             </div>
             {/* Button to Create New Line */}
-            <div className="mt-2 flex justify-end gap-4 py-4">
-              <Button
-                buttonType="Secondary"
-                className="px-4 py-2 border-2 font-bold lg:px-8 lg:py-3"
-              >
-                Create New Line
+            <div className="mt-2 flex justify-end gap-4 border-primary-light pt-4">
+              <Button buttonType="Secondary" className="px-4 py-[15px]">
+                <div className="text-center border-primary-light text-sm font-bold">Create New Line</div>
               </Button>
             </div>
           </div>

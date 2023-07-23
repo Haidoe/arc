@@ -22,25 +22,26 @@ const ProductionInformation = (props: ProductionInformationProps) => {
   const { data } = props;
 
   const borderColor =
-    props.theme === "primary" ? "border-arc" : "border-primary-base";
+    props.theme === "primary" ? "border-arc" : "border-primary-light";
 
-  // const wrapperClass = props.theme && "text-arc bg-primary-light";
-
-  const wrapperClass =
-    props.theme === "primary"
-      ? "text-arc bg-primary-light"
-      : "text-contrast-dark bg-arc";
+  const wrapperClass = props.theme && "text-arc bg-primary-light";
 
   return (
-    <div className={`flex-grow lg:px-[24px] lg:pb-12 ${wrapperClass ?? ""}`}>
-      <ul className={`pb-4 ${props.isContentVisible ? "invisible" : ""}`}>
+    <div className={`flex-grow  lg:px-[24px] lg:pb-12 ${wrapperClass ?? ""}`}>
+      <ul
+        className={`pb-4 text-contrast-dark  ${
+          props.isContentVisible ? "invisible" : ""
+        }`}
+      >
         <li className={`flex gap-4 border-b-[1.5px]  py-[20px] ${borderColor}`}>
           <div className="basis-[94px]">
             <DefaultAvatar theme="primary" />
           </div>
 
           <div className="flex flex-1 flex-col  justify-center">
-            <h2 className={`text-lg font-bold ${isMobile ? "text-right" : ""}`}>
+            <h2
+              className={`text-lg font-bold ${isMobile ? "text-center" : ""}`}
+            >
               {data.title}
             </h2>
 
@@ -108,7 +109,7 @@ const ProductionInformation = (props: ProductionInformationProps) => {
         {isCollapsed && (
           <Button
             buttonType={props.theme === "primary" ? "Primary" : "Secondary"}
-            className={`mx-2 text-base ${
+            className={`px-4 py-2 text-base ${
               isMobile ? "border-[1.5px] font-bold" : ""
             } ${props.theme === "primary" ? "shadow-3xl" : ""}`}
           >
@@ -119,7 +120,7 @@ const ProductionInformation = (props: ProductionInformationProps) => {
         {isMobile && isCollapsed && (
           <Button
             buttonType={"Secondary"}
-            className="min-w-[104px] border-[1.5px] text-base font-bold"
+            className="min-w-[104px] border-[1.5px] p-4 text-base font-bold"
             onClick={() => setIsCollapsed(!isCollapsed)}
           >
             See less

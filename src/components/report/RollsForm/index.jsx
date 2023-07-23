@@ -42,7 +42,7 @@ const RollsForm = ({ }) => {
     fetchData();
   }, [productionId]);
 
-  // console.log(rollsData, "rollsDatafromapi")
+  console.log(rollsData, "rollsDatafromapi")
 
   // //Get script supervisor and data wrangler from api
   const scriptSupervisorFromApi = rollsData ? rollsData.scriptSupervisor : "";
@@ -85,65 +85,94 @@ const RollsForm = ({ }) => {
     <>
       <Accordion title="Rolls" defaultOpen={true}>
         {rollsData ? (
-          <div onClick={() => setIsOpen(true)} action="" className={` text-contrast-dark text-base`} >
-            <div className="pb-3 border-b border-primary-base">
-              <div className="grid text-base grid-cols-6 grid-rows-2 gap-4 gap-y-2 py-1">
-                <p className="grid col-span-2 font-bold">Script Supervisor</p>
-                <p className="grid col-span-4">{scriptSupervisor}</p>
-                <p className="grid col-span-2 font-bold">Data Wrangler</p>
-                <p className="grid col-span-4">{dataWrangler}</p>
+          <div onClick={() => setIsOpen(true)} action="" className={` text-contrast-dark text-base font-bold`} >
+            <div className="pb-2 border-b  border-primary-base">
+              <div className="grid text-base text-bold grid-cols-6 grid-rows-2 gap-4 gap-y-2">
+                <p tabIndex="-1" className="grid col-span-2">Script Supervisor</p>
+                <TextInputField tabIndex="-1" className="grid col-span-4" placeholder="Please input the name." value={scriptSupervisor} />
+                <p tabIndex="-1" className=" grid col-span-2">Data Wrangler</p>
+                <TextInputField tabIndex="-1" className="grid col-span-4" placeholder="Please input the name." value={dataWrangler} />
               </div>
             </div>
 
             <div className=" text-contrast-dark">
-              <div className="grid grid-rows-3 gap-x-4 divide-contrast-lighter divide-y">
-                <div className="grid grid-cols-6 gap-4 py-3.5">
-                  <div className="grid col-span-2"></div>
-                  <p className="font-bold">A Cam</p>
-                  <p className="font-bold">B Cam</p>
-                  <p className="font-bold">C Cam</p>
-                  <p className="font-bold">A Sound</p>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3.5">
-                  <p className="grid col-span-2 font-bold">Previously</p>
-                  <p>{aCamPreviously}</p>
-                  <p>{bCamPreviously}</p>
-                  <p>{cCamPreviously}</p>
-                  <p>{aSoundPreviously}</p>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3.5">
-                  <p className="grid col-span-2 font-bold">Today</p>
-                  <TextInputField
-                    tabIndex="-1"
-                    placeholder="0"
-                    key={`aCamToday-${aCamToday ?? 0}`}
-                    maxLength="3" defaultValue={aCamToday} />
-                  <TextInputField
-                    tabIndex="-1"
-                    placeholder="0"
-                    key={`bCamToday-${bCamToday ?? 0}`}
-                    maxLength="3" defaultValue={bCamToday} />
-                  <TextInputField
-                    tabIndex="-1"
-                    placeholder="0"
-                    key={`cCamToday-${cCamToday ?? 0}`}
-                    maxLength="3" defaultValue={cCamToday} />
-                  <TextInputField
-                    tabIndex="-1"
-                    placeholder="0"
-                    key={`aSoundToday-${aSoundToday ?? 0}`}
-                    maxLength="3" defaultValue={aSoundToday} />
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3.5 font-bold">
-                  <p className="grid col-span-2 font-bold">To Date</p>
-                  <p>{aCamToDate}</p>
-                  <p>{bCamToDate}</p>
-                  <p>{cCamToDate}</p>
-                  <p>{aSoundToDate}</p>
-                </div>
+              <div className="grid grid-cols-6 grid-rows-3 gap-4 py-4">
+                <div className="grid col-span-2"></div>
+                <p tabIndex="-1" className="font-bold">A Cam</p>
+                <p tabIndex="-1" className="font-bold">B Cam</p>
+                <p tabIndex="-1" className="font-bold">C Cam</p>
+                <p tabIndex="-1" className="font-bold">A Sound</p>
+                <p tabIndex="-1" className="grid col-span-2 font-bold">Previously</p>
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`aCamPreviously-${aCamPreviously ?? 0}`}
+                  maxLength="3"
+                  defaultValue={aCamPreviously} />
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`bCamPreviously-${bCamPreviously ?? 0}`}
+                  maxLength="3"
+                  defaultValue={bCamPreviously} />
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`cCamPreviously-${cCamPreviously ?? 0}`}
+                  maxLength="3"
+                  defaultValue={cCamPreviously} />
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`aSoundPreviously-${aSoundPreviously ?? 0}`}
+                  maxLength="3"
+                  defaultValue={aSoundPreviously} />
+                <p className="grid col-span-2 font-bold">Today</p>
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`aCamToday-${aCamToday ?? 0}`}
+                  maxLength="3" defaultValue={aCamToday} />
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`bCamToday-${bCamToday ?? 0}`}
+                  maxLength="3" defaultValue={bCamToday} />
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`cCamToday-${cCamToday ?? 0}`}
+                  maxLength="3" defaultValue={cCamToday} />
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`aSoundToday-${aSoundToday ?? 0}`}
+                  maxLength="3" defaultValue={aSoundToday} />
               </div>
 
-
+              <div className="grid grid-cols-6 grid-rows-1 gap-4 pt-4 border-t border-primary-base">
+                <p className="grid col-span-2 font-bold">To Date</p>
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`aCamToDate-${aCamToDate ?? 0}`}
+                  maxLength="3" defaultValue={aCamToDate} />
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`bCamToDate-${bCamToDate ?? 0}`}
+                  maxLength="3" defaultValue={bCamToDate} />
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`cCamToDate-${cCamToDate ?? 0}`}
+                  maxLength="3" defaultValue={cCamToDate} />
+                <TextInputField
+                  tabIndex="-1"
+                  placeholder="0"
+                  key={`aSoundToDate-${aSoundToDate ?? 0}`}
+                  maxLength="3" defaultValue={aSoundToDate} />
+              </div>
             </div>
           </div >
         ) : (

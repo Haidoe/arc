@@ -41,9 +41,9 @@ const ActualScheduleForm = ({ className }) => {
             <p tabIndex="-1">Schedule</p>
             <p tabIndex="-1">Actual</p>
           </div>
-          <div className="grid text-contrast-dark font-bold text-base divide-y divide-contrast-lighter">
-            <div className='grid grid-cols-3 gap-4 py-2.5'>
-              <p className="m-0 p-0">1st Unit</p>
+          <div className="grid text-contrast-dark font-bold gap-4 gap-y-4 pt-2 text-base">
+            <div className='grid grid-cols-3 gap-4'>
+              <p>1st Unit</p>
               <TextInputField
                 tabIndex="-1"
                 placeholder="0"
@@ -60,8 +60,8 @@ const ActualScheduleForm = ({ className }) => {
                 className="underline-form"
                 defaultValue={firstUnitActual} />
             </div>
-            <div className='grid grid-cols-3 gap-4 py-2.5'>
-              <p className="m-0 p-0">2nd Unit</p>
+            <div className='grid grid-cols-3 gap-4'>
+              <p>2nd Unit</p>
               <TextInputField
                 tabIndex="-1"
                 placeholder="0"
@@ -79,8 +79,8 @@ const ActualScheduleForm = ({ className }) => {
                 label="secondUnitActual"
                 defaultValue={secondUnitActual} />
             </div>
-            <div className='grid grid-cols-3 gap-4 py-2.5'>
-              <p className="m-0 p-0">Prep</p>
+            <div className='grid grid-cols-3 gap-4'>
+              <p>Prep</p>
               <TextInputField
                 tabIndex="-1"
                 placeholder="0"
@@ -98,8 +98,8 @@ const ActualScheduleForm = ({ className }) => {
                 label="prepActual"
                 defaultValue={prepActual} />
             </div>
-            <div className='grid grid-cols-3 gap-4 py-2.5'>
-              <p className="m-0 p-0">Travel</p>
+            <div className='grid grid-cols-3 gap-4'>
+              <p>Travel</p>
               <TextInputField
                 tabIndex="-1"
                 placeholder="0"
@@ -117,8 +117,8 @@ const ActualScheduleForm = ({ className }) => {
                 label="travelActual"
                 defaultValue={travelActual} />
             </div>
-            <div className='grid grid-cols-3 gap-4 py-2.5'>
-              <p className="m-0 p-0">Idle</p>
+            <div className='grid grid-cols-3 gap-4'>
+              <p>Idle</p>
               <TextInputField
                 tabIndex="-1"
                 placeholder="0"
@@ -136,8 +136,8 @@ const ActualScheduleForm = ({ className }) => {
                 label="idleActual"
                 defaultValue={idleActual} />
             </div>
-            <div className='grid grid-cols-3 gap-4 py-2.5'>
-              <p className="m-0 p-0">Holiday</p>
+            <div className='grid grid-cols-3 gap-4'>
+              <p>Holiday</p>
               <TextInputField
                 tabIndex="-1"
                 placeholder="0"
@@ -155,10 +155,22 @@ const ActualScheduleForm = ({ className }) => {
                 label="holidayActual"
                 defaultValue={holidayActual} />
             </div>
-            <div className='grid grid-cols-3 gap-4 pt-3'>
-              <p className="m-0 p-0">Total</p>
-              <p className="m-0 p-0">{totalSchedule}</p>
-              <p className="m-0 p-0">{totalActual}</p>
+            <div className='grid grid-cols-3 gap-4 file border-t border-primary-base py-2'>
+              <p>Total</p>
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`totalSchedule-${totalSchedule ?? 0}`}
+                maxLength="8"
+                label="totalSchedule"
+                defaultValue={totalSchedule} />
+              <TextInputField
+                tabIndex="-1"
+                placeholder="0"
+                key={`totalActual-${totalActual ?? 0}`}
+                maxLength="8"
+                label="totalActual"
+                defaultValue={totalActual} />
             </div>
           </div>
         </div>

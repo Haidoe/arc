@@ -142,7 +142,7 @@ const CastTimeLogForm = ({ productionInfo }) => {
                     </tr>
                   </thead>
                   {castTimeLogInfo?.length > 0 && (
-                    <tbody className="divide-y divide-contrast-lighter text-base">
+                    <tbody className="divide-y divide-gray-200 text-base">
                       {castTimeLogInfo.map((row, idx) => (
                         <tr key={idx} onClick={(e) => rowClickHandler(e, idx)}>
                           <td className="whitespace-nowrap py-4 pl-4 pr-3  font-medium sm:pl-0">
@@ -282,13 +282,15 @@ const CastTimeLogForm = ({ productionInfo }) => {
               </div>
             </div>
             {/* Button to Create New Line */}
-            <div className="mt-2 flex justify-end gap-4 py-4">
+            <div className="mt-2 flex justify-end gap-4 border-primary-light pt-4">
               <Button
                 onClick={addClickHandler}
                 buttonType="Secondary"
-                className="px-4 py-2 border-2 font-bold lg:px-8 lg:py-3"
+                className="px-4 py-[15px]"
               >
-                Create New Line
+                <div className="border-primary-light text-center text-sm font-bold">
+                  Create New Line
+                </div>
               </Button>
             </div>
           </div>

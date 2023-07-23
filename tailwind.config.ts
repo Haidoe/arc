@@ -31,7 +31,6 @@ export default {
           dark: "#CE5673",
         },
         contrast: {
-          lighter: "#DADADA",
           light: "#AAAAAA",
           base: "#2B2B2B",
           dark: "#565656",
