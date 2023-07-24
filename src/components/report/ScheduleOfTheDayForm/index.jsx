@@ -94,12 +94,14 @@ const ScheduleOfTheDayForm = ({ className, isReadOnly }) => {
                 key={`breakfastFrom-${breakfastFrom ?? 0}`}
                 label="breakfastFrom"
                 defaultValue={breakfastFrom}
+                isReadyOnly={true}
               />
               <TimeInputField
                 tabIndex="-1"
                 key={`breakfastTo-${breakfastTo ?? 0}`}
                 label="breakfastTo"
                 defaultValue={breakfastTo}
+                isReadyOnly={true}
               />
               <p className="font-bold">Crew Call</p>
               <TimeInputField
@@ -107,12 +109,14 @@ const ScheduleOfTheDayForm = ({ className, isReadOnly }) => {
                 key={`crewCallFrom-${crewCallFrom ?? 0}`}
                 label="crewCallForm"
                 defaultValue={crewCallFrom}
+                isReadyOnly={true}
               />
               <TimeInputField
                 tabIndex="-1"
                 key={`crewCallTo-${crewCallTo ?? 0}`}
                 label="crewCallTo"
                 defaultValue={crewCallTo}
+                isReadyOnly={true}
               />
               <p className="font-bold">Shooting Call</p>
               <TimeInputField
@@ -120,12 +124,14 @@ const ScheduleOfTheDayForm = ({ className, isReadOnly }) => {
                 key={`shootingCallFrom-${shootingCallFrom ?? 0}`}
                 label="shootingCallFrom"
                 defaultValue={shootingCallFrom}
+                isReadyOnly={true}
               />
               <TimeInputField
                 tabIndex="-1"
                 key={`shootingCallTo-${shootingCallTo ?? 0}`}
                 label="shootingCallTo"
                 defaultValue={shootingCallTo}
+                isReadyOnly={true}
               />
               <p className="font-bold">Lunch</p>
               <TimeInputField
@@ -133,12 +139,14 @@ const ScheduleOfTheDayForm = ({ className, isReadOnly }) => {
                 key={`lunchFrom-${lunchFrom ?? 0}`}
                 label="lunchFrom"
                 defaultValue={lunchFrom}
+                isReadyOnly={true}
               />
               <TimeInputField
                 tabIndex="-1"
                 key={`lunchTo-${lunchTo ?? 0}`}
                 label="lunchTo"
                 defaultValue={lunchTo}
+                isReadyOnly={true}
               />
             </div>
           </div>
