@@ -1,9 +1,12 @@
 import Image from "next/image";
-
+import React, { useState } from "react";
 // components
 import Button from "~/components/Button";
-import Delete from "~/assets/icons/Delete.svg";
 import TimeInputField from "~/components/TimeInputField";
+import Delete from "~/assets/icons/Delete.svg";
+import Delete_grey from "~/assets/icons/Delete_grey.svg";
+import Edit from "~/assets/icons/Edit.svg";
+import Edit_grey from "~/assets/icons/Edit_grey.svg";
 
 // import helper functions
 import {
@@ -30,6 +33,11 @@ const NotShotForm = ({ isReadOnly }) => {
       reason: "Equipment lost",
     },
   ];
+
+  // action btns hover states
+  const [isDeleteHover, setIsDeleteHover] = useState(false);
+  const [isEditHover, setIsEditHover] = useState(false);
+  const [hoverIdx, setHoverIdx] = useState(undefined);
 
   return (
     <>
@@ -96,14 +104,63 @@ const NotShotForm = ({ isReadOnly }) => {
                           {/* Hide this column if isReadOnly  */}
                           {!isReadOnly && (
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right  font-medium sm:pr-0">
-                              <Image
-                                className={`icon-delete-row hover:cursor-pointer`}
-                                src={Delete}
-                                alt="Delete icon"
-                              />
-                              <span className="sr-only">
-                                Delete Cast Number {idx + 1}
-                              </span>
+                              <div className="flex flex-row gap-2">
+                                {/* edit row btn */}
+                                <div className="edit-row-btn-container">
+                                  {isEditHover && hoverIdx == idx ? (
+                                    <Image
+                                      className={`edit-row-btn hover:cursor-pointer`}
+                                      onMouseLeave={() => {
+                                        setIsEditHover(false);
+                                        setHoverIdx(undefined);
+                                      }}
+                                      src={Edit}
+                                      alt="Delete icon"
+                                    />
+                                  ) : (
+                                    <Image
+                                      className={`edit-row-btn hover:cursor-pointer`}
+                                      onMouseEnter={(e) => {
+                                        setIsEditHover(true);
+                                        setHoverIdx(idx);
+                                      }}
+                                      src={Edit_grey}
+                                      alt="Edit icon"
+                                    />
+                                  )}
+
+                                  <span className="sr-only">
+                                    Edit Scene Row {idx + 1}
+                                  </span>
+                                </div>
+                                {/* delete row btn */}
+                                <div className="delete-row-btn-container">
+                                  {isDeleteHover && hoverIdx == idx ? (
+                                    <Image
+                                      className={`delete-row-btn hover:cursor-pointer`}
+                                      onMouseLeave={() => {
+                                        setIsDeleteHover(false);
+                                        setHoverIdx(undefined);
+                                      }}
+                                      src={Delete}
+                                      alt="Delete icon"
+                                    />
+                                  ) : (
+                                    <Image
+                                      className={`delete-row-btn hover:cursor-pointer`}
+                                      onMouseEnter={() => {
+                                        setIsDeleteHover(true);
+                                        setHoverIdx(idx);
+                                      }}
+                                      src={Delete_grey}
+                                      alt="Delete icon"
+                                    />
+                                  )}
+                                  <span className="sr-only">
+                                    Delete Scene Row {idx + 1}
+                                  </span>
+                                </div>
+                              </div>
                             </td>
                           )}
                         </tr>
