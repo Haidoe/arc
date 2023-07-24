@@ -158,22 +158,22 @@ const CastTimeLogForm = ({ productionInfo, isReadOnly }) => {
                       {castTimeLogInfo.map((row, idx) => (
                         <tr key={idx} onClick={(e) => rowClickHandler(e, idx)}>
                           <td className="items-end  whitespace-nowrap py-4 pl-4 pr-3  font-medium sm:pl-0">
-                            <div className={`${true ? "" : "mt-4"}`}>
+                            <div className={`${idx == 0 ? "mt-4" : ""}`}>
                               {idx + 1}
                             </div>
                           </td>
                           <td className="whitespace-nowrap px-3 py-4  text-contrast-dark">
-                            <div className={`${true ? "" : "mt-4"}`}>
+                            <div className={`${idx == 0 ? "mt-4" : ""}`}>
                               {row.cast}
                             </div>
                           </td>
                           <td className="whitespace-nowrap px-3 py-4  text-contrast-dark">
-                            <div className={`${true ? "" : "mt-4"}`}>
+                            <div className={`${idx == 0 ? "mt-4" : ""}`}>
                               {row.character}
                             </div>
                           </td>
                           <td className="whitespace-nowrap  px-3 py-4 text-contrast-dark">
-                            <div className={`${true ? "" : "mt-4"}`}>
+                            <div className={`${idx == 0 ? "mt-4" : ""}`}>
                               {row.status}
                             </div>
                           </td>
@@ -280,7 +280,7 @@ const CastTimeLogForm = ({ productionInfo, isReadOnly }) => {
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right font-medium sm:pr-0">
                               <div
                                 className={`flex ${
-                                  true ? "" : "mt-4"
+                                  idx == 0 ? "mt-4" : ""
                                 } flex-row gap-2`}
                               >
                                 {/* edit row btn */}
