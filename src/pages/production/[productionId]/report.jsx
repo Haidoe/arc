@@ -24,8 +24,7 @@ import CastTimeLogForm from "~/components/report/CastTimeLogForm";
 import ScenesShotForm from "~/components/report/ScenesShotForm.jsx";
 import NotShotForm from "~/components/report/NotShotForm.jsx";
 import ExtrasCastForm from "~/components/report/ExtrasCastForm.jsx";
-import DefaultAvatar from "~/components/global/DefaultAvatar";
-import Button from "~/components/Button";
+import ShareReportButton from "~/components/report/ShareReport";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
@@ -107,6 +106,10 @@ const ProductionReportPage = ({ productionInfo, report }) => {
             <AccordionCrud title={"Extras Cast Form"} defaultOpen={true}>
               <ExtrasCastForm />
             </AccordionCrud>
+          </div>
+
+          <div className="col-span-full">
+            <ShareReportButton prodData={productionInfo} />
           </div>
         </div>
       </div>
