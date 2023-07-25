@@ -15,7 +15,7 @@ import { datetimeToTime } from "~/helper/time";
 
 dayjs.extend(LocalizedFormat);
 
-const ScheduleOfTheDayForm = ({ className }) => {
+const ScheduleOfTheDayForm = ({ className, isReadOnly }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   //manage data from redux
@@ -67,7 +67,12 @@ const ScheduleOfTheDayForm = ({ className }) => {
         defaultOpen={true}
         className={`text-base font-bold text-contrast-dark ${className}`}
       >
-        <div onClick={() => setIsOpen(true)}>
+        <div
+          onClick={() => {
+            if (isReadOnly) return;
+            setIsOpen(true);
+          }}
+        >
           <div className="flex justify-between border-b border-primary-base pb-2">
             <p className="text-base font-bold text-tertiary-dark">
               {currentDate}
@@ -89,12 +94,14 @@ const ScheduleOfTheDayForm = ({ className }) => {
                 key={`breakfastFrom-${breakfastFrom ?? 0}`}
                 label="breakfastFrom"
                 defaultValue={breakfastFrom}
+                isReadyOnly={true}
               />
               <TimeInputField
                 tabIndex="-1"
                 key={`breakfastTo-${breakfastTo ?? 0}`}
                 label="breakfastTo"
                 defaultValue={breakfastTo}
+                isReadyOnly={true}
               />
               <p className="font-bold">Crew Call</p>
               <TimeInputField
@@ -102,12 +109,14 @@ const ScheduleOfTheDayForm = ({ className }) => {
                 key={`crewCallFrom-${crewCallFrom ?? 0}`}
                 label="crewCallForm"
                 defaultValue={crewCallFrom}
+                isReadyOnly={true}
               />
               <TimeInputField
                 tabIndex="-1"
                 key={`crewCallTo-${crewCallTo ?? 0}`}
                 label="crewCallTo"
                 defaultValue={crewCallTo}
+                isReadyOnly={true}
               />
               <p className="font-bold">Shooting Call</p>
               <TimeInputField
@@ -115,12 +124,14 @@ const ScheduleOfTheDayForm = ({ className }) => {
                 key={`shootingCallFrom-${shootingCallFrom ?? 0}`}
                 label="shootingCallFrom"
                 defaultValue={shootingCallFrom}
+                isReadyOnly={true}
               />
               <TimeInputField
                 tabIndex="-1"
                 key={`shootingCallTo-${shootingCallTo ?? 0}`}
                 label="shootingCallTo"
                 defaultValue={shootingCallTo}
+                isReadyOnly={true}
               />
               <p className="font-bold">Lunch</p>
               <TimeInputField
@@ -128,12 +139,14 @@ const ScheduleOfTheDayForm = ({ className }) => {
                 key={`lunchFrom-${lunchFrom ?? 0}`}
                 label="lunchFrom"
                 defaultValue={lunchFrom}
+                isReadyOnly={true}
               />
               <TimeInputField
                 tabIndex="-1"
                 key={`lunchTo-${lunchTo ?? 0}`}
                 label="lunchTo"
                 defaultValue={lunchTo}
+                isReadyOnly={true}
               />
             </div>
           </div>

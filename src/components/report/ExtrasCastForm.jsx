@@ -1,21 +1,26 @@
-// react imports
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { updateShotScene } from "~/redux/features/ProductionReportSlice";
 import Image from "next/image";
-
+import React, { useState } from "react";
 // components
 import Button from "~/components/Button";
-import Delete from "~/assets/icons/Delete.svg";
 import TimeInputField from "~/components/TimeInputField";
+import Delete from "~/assets/icons/Delete.svg";
+import Delete_grey from "~/assets/icons/Delete_grey.svg";
+import Edit from "~/assets/icons/Edit.svg";
+import Edit_grey from "~/assets/icons/Edit_grey.svg";
 
 // import helper functions
-import {
-  ISOToTimeString,
-} from "~/helper/timeInputParser.js";
+import { ISOToTimeString } from "~/helper/timeInputParser.js";
 
 // ExtrasCastForm Dummy component form
-const ExtrasCastForm = ({ }) => {
+const ExtrasCastForm = ({ isReadOnly }) => {
+
+
+    // action btns hover states
+    const [isDeleteHover, setIsDeleteHover] = useState(false);
+    const [isEditHover, setIsEditHover] = useState(false);
+  const [hoverIdx, setHoverIdx] = useState(undefined);
+  
+
   const extrasCastInfo = [
     {
       qty: 3,
@@ -41,6 +46,7 @@ const ExtrasCastForm = ({ }) => {
     },
   ];
 
+
   return (
     <>
       {
@@ -48,7 +54,7 @@ const ExtrasCastForm = ({ }) => {
           <div className="flow-root">
             <div className="overflow-x-auto">
               <div className="inline-block min-w-full align-middle">
-                <table className="min-w-full divide-y text-base text-contrast-dark divide-primary-base">
+                <table className="min-w-full divide-y divide-primary-base text-base text-contrast-dark">
                   <thead>
                     <tr>
                       <th
@@ -57,40 +63,31 @@ const ExtrasCastForm = ({ }) => {
                       >
                         Quantity
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Description
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Notes
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Schedule
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 pb-3.5 text-left "
-                      >
+                      <th scope="col" className="px-3 pb-3.5 text-left ">
                         Rate
                       </th>
-                      <th
-                        scope="col"
-                        className="relative min-w-[60px] pb-3.5 pl-3 pr-4 sm:pr-0 text-contrast-dark"
-                      >
-                        <span className="sr-only">Delete</span>
-                      </th>
+                      {/* Hide this column if the form is read only */}
+                      {!isReadOnly && (
+                        <th
+                          scope="col"
+                          className="relative min-w-[60px] pb-3.5 pl-3 pr-4 text-contrast-dark sm:pr-0"
+                        >
+                          <span className="sr-only">Delete</span>
+                        </th>
+                      )}
                     </tr>
                   </thead>
                   {extrasCastInfo?.length > 0 && (
-                    <tbody className="divide-y divide-gray-200 text-base  text-contrast-dark">
+                    <tbody className="divide-y divide-contrast-lighter text-base  text-contrast-dark">
                       {extrasCastInfo.map((row, idx) => (
                         <tr key={idx}>
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium  sm:pl-0">
@@ -128,16 +125,68 @@ const ExtrasCastForm = ({ }) => {
                             ${row.schedule.rate}
                           </td>
 
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right font-medium sm:pr-0">
-                            <Image
-                              className={`icon-delete-row hover:cursor-pointer`}
-                              src={Delete}
-                              alt="Delete icon"
-                            />
-                            <span className="sr-only">
-                              Delete Cast Number {idx + 1}
-                            </span>
-                          </td>
+                          {/* Hide this column if the form is read only */}
+                          {!isReadOnly && (
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right font-medium sm:pr-0">
+                              <div className="flex flex-row gap-2">
+                                {/* edit row btn */}
+                                <div className="edit-row-btn-container">
+                                  {isEditHover && hoverIdx == idx ? (
+                                    <Image
+                                      className={`edit-row-btn hover:cursor-pointer`}
+                                      onMouseLeave={() => {
+                                        setIsEditHover(false);
+                                        setHoverIdx(undefined);
+                                      }}
+                                      src={Edit}
+                                      alt="Delete icon"
+                                    />
+                                  ) : (
+                                    <Image
+                                      className={`edit-row-btn hover:cursor-pointer`}
+                                      onMouseEnter={(e) => {
+                                        setIsEditHover(true);
+                                        setHoverIdx(idx);
+                                      }}
+                                      src={Edit_grey}
+                                      alt="Edit icon"
+                                    />
+                                  )}
+
+                                  <span className="sr-only">
+                                    Edit Scene Row {idx + 1}
+                                  </span>
+                                </div>
+                                {/* delete row btn */}
+                                <div className="delete-row-btn-container">
+                                  {isDeleteHover && hoverIdx == idx ? (
+                                    <Image
+                                      className={`delete-row-btn hover:cursor-pointer`}
+                                      onMouseLeave={() => {
+                                        setIsDeleteHover(false);
+                                        setHoverIdx(undefined);
+                                      }}
+                                      src={Delete}
+                                      alt="Delete icon"
+                                    />
+                                  ) : (
+                                    <Image
+                                      className={`delete-row-btn hover:cursor-pointer`}
+                                      onMouseEnter={() => {
+                                        setIsDeleteHover(true);
+                                        setHoverIdx(idx);
+                                      }}
+                                      src={Delete_grey}
+                                      alt="Delete icon"
+                                    />
+                                  )}
+                                  <span className="sr-only">
+                                    Delete Scene Row {idx + 1}
+                                  </span>
+                                </div>
+                              </div>
+                            </td>
+                          )}
                         </tr>
                       ))}
                     </tbody>
@@ -147,20 +196,24 @@ const ExtrasCastForm = ({ }) => {
                 {extrasCastInfo?.length == 0 && (
                   <div className="mt-4 flex flex-col items-center gap-4 border-primary-base pt-4">
                     <div>
-                      <p className="">
-                        No not shot scenes infromation found.
-                      </p>
+                      <p className="">No not shot scenes infromation found.</p>
                     </div>
                   </div>
                 )}
               </div>
             </div>
             {/* Button to Create New Line */}
-            <div className="mt-2 flex justify-end gap-4 border-primary-light pt-4">
-              <Button buttonType="Secondary" className="px-4 py-[15px]">
-                <div className="text-center border-primary-light text-sm font-bold">Create New Line</div>
-              </Button>
-            </div>
+            {/* Hide this button if the form is read only */}
+            {!isReadOnly && (
+              <div className="mt-2 flex justify-end gap-4 py-4">
+                <Button
+                  buttonType="Secondary"
+                  className="border-2 px-4 py-2 font-bold lg:px-8 lg:py-3"
+                >
+                  Create New Line
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       }

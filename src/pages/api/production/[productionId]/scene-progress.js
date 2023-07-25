@@ -24,26 +24,6 @@ const getHandler = async (req, res) => {
       },
     });
 
-    // return res.status(200).json({
-    //   scenesProgress,
-
-    // });
-
-    //make an array of objects with the scene number and the expected and completed page portions
-
-    // const sceneProgressArray = scenesProgress.scenes.map((expected, index) => ({
-    //   // number: index + 1,
-    //   expected: expected,
-    //   completed: 0,
-    // }));
-
-    // scenesProgress.report.forEach((report) => {
-    //   report.shotScene.forEach((shotScene) => {
-    //     sceneProgressArray[shotScene.number - 1].completed +=
-    //       shotScene.pagesToday;
-    //   });
-    // });
-
     const sceneProgressArray = scenesProgress.scenes.map((expected, index) => {
       const completed = scenesProgress.report.reduce((total, report) => {
         const shotScene = report.shotScene.find(

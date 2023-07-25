@@ -24,8 +24,7 @@ import CastTimeLogForm from "~/components/report/CastTimeLogForm";
 import ScenesShotForm from "~/components/report/ScenesShotForm.jsx";
 import NotShotForm from "~/components/report/NotShotForm.jsx";
 import ExtrasCastForm from "~/components/report/ExtrasCastForm.jsx";
-import DefaultAvatar from "~/components/global/DefaultAvatar";
-import Button from "~/components/Button";
+import ShareReportButton from "~/components/report/ShareReport";
 
 const ProductionReportPage = ({ productionInfo, report }) => {
   const dispatch = useDispatch();
@@ -50,6 +49,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
       <div
         className={` flex flex-1 flex-col bg-backgroundArc transition-all lg:flex-row ${pageContainerClasses}`}
       >
+        {/* Desktop Version */}
         <aside className="relative hidden flex-shrink-0 flex-col bg-arc md:basis-[384px] lg:flex">
           <Sidebar data={productionInfo} isContentVisible={!isExpanded} />
 
@@ -66,22 +66,9 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </button>
         </aside>
 
+        {/* This is for mobile */}
         <aside className="flex bg-arc p-4 py-4 shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] lg:hidden">
-          <div className="flex flex-1 border-b-2 border-primary-base p-4">
-            <DefaultAvatar />
-
-            <div className="flex flex-1 flex-col justify-between">
-              <h1 className="mt-4 text-center text-lg font-bold text-contrast-dark">
-                {productionInfo.title}
-              </h1>
-
-              <div className="flex items-end justify-end">
-                <Button buttonType="Secondary" className=" py-1 text-base">
-                  See more
-                </Button>
-              </div>
-            </div>
-          </div>
+          <Sidebar data={productionInfo} isMobile={true} />
         </aside>
 
         <div className="grid flex-1 grid-cols-2 content-start gap-4 p-4 lg:p-8">
@@ -100,7 +87,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </div>
 
           <div className="col-span-full bg-arc md:col-span-1 ">
-            <RollsForm />
+            <RollsForm productionId={productionInfo.id} />
           </div>
 
           <div className="col-span-full">
@@ -119,6 +106,10 @@ const ProductionReportPage = ({ productionInfo, report }) => {
             <AccordionCrud title={"Extras Cast Form"} defaultOpen={true}>
               <ExtrasCastForm />
             </AccordionCrud>
+          </div>
+
+          <div className="col-span-full">
+            <ShareReportButton productionInfo={productionInfo} />
           </div>
         </div>
       </div>

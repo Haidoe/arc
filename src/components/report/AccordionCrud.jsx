@@ -30,16 +30,15 @@ const AccordionCrud = ({ title, children, defaultOpen }) => {
                 <div className="items-center sm:flex">
                   {/* Logo */}
                   <Image
-                    className={`${
-                      open ? "rotate-0 transform" : ""
-                    } h-6 w-6 text-arc`}
+                    className={`${open ? "rotate-0 transform" : ""
+                      } h-6 w-6 text-arc`}
                     src={Chevron}
                     alt="Logo"
                   />
                 </div>
               </Disclosure.Button>
               <Disclosure.Panel
-                className={`bg-arc px-4 pb-4 pt-4 text-sm text-gray-500`}
+                className={`bg-arc px-4 py-6 text-sm text-gray-500`}
               >
                 <div>{children || "Accordion Content"}</div>
               </Disclosure.Panel>

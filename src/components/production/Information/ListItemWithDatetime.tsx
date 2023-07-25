@@ -23,32 +23,21 @@ const ListItemWithDatetime = ({
   const date = dayjs(datetime).tz("America/Vancouver").format("ll");
   const time = dayjs(datetime).tz("America/Vancouver").format("LT");
 
-  const boxColor = (theme && "text-black") ?? "";
-  const timeBoxClasses = (theme && "text-black") ?? "bg-opacity-20";
-  const hasBoxShadow = (theme && "shadow-3xl") ?? "";
   const borderColor =
     theme === "primary" ? "border-b-arc" : "border-b-primary-light";
 
   return (
     <li
-      className={`gap- flex py-[20px] ${
+      className={`flex gap-4 py-[20px] ${
         isLast ? "" : `border-b-[1.5px] ${borderColor}`
       }`}
     >
       <div className="basis-[94px] font-bold">{title}</div>
 
-      <p className="flex flex-1 items-start justify-center gap-4">
-        <span
-          className={`rounded bg-[#DADAF4] p-[6px] underline ${boxColor} ${hasBoxShadow}`}
-        >
-          {date}
-        </span>
+      <p className="flex flex-1 items-start gap-4 ">
+        <span className={`rounded  p-[6px] `}>{date}</span>
 
-        <span
-          className={`rounded bg-[#dadaf4]   p-[6px] underline ${timeBoxClasses} ${hasBoxShadow} shadow-2xl`}
-        >
-          {time}
-        </span>
+        <span className={`rounded p-[6px] `}>{time}</span>
       </p>
     </li>
   );

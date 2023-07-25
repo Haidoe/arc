@@ -175,8 +175,8 @@ const Header = () => {
                 
                 ${
                   header.path === asPath || header.path === pathname
-                    ? "border-tertiary-light text-tertiary-light"
-                    : "border-transparent text-contrast-dark hover:border-tertiary-light hover:text-tertiary-light"
+                    ? "border-tertiary-light text-tertiary-light font-normal"
+                    : "border-transparent text-contrast-dark font-normal hover:font-bold"
                 }
 
                 inline-flex items-center border-b-2 px-2`}
@@ -189,9 +189,12 @@ const Header = () => {
           {/* Show Divider and Sign in only for Landing Page */}
           {
             <>
-              <div className="divider-wrapper">
-                <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
-              </div>
+              {/* Hide the divider on public viewing page */}
+              {!router.pathname.includes("/view") && (
+                <div className="divider-wrapper">
+                  <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
+                </div>
+              )}
 
               <div className="registration-btns-wrapper">
                 {/* Sign In Button */}
