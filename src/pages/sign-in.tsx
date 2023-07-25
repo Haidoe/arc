@@ -44,12 +44,12 @@ const SignInPage: NextPage = () => {
             </div>
           </header>
 
-          <section className="bg mt-20 flex flex-col items-center xs:mt-16 ">
-            <div className="flex w-full max-w-[290px]">
-              <SignInButton mode="modal">
+          <section className="bg mt-12 flex flex-col items-center xs:mt-16 ">
+            <div className="flex w-full max-w-[320px]">
+              <SignInButton>
                 <Button
                   buttonType="Primary"
-                  className="flex w-full max-w-[290px] py-[10px]"
+                  className="flex w-full max-w-[320px] py-[10px]"
                 >
                   <span className=" text-base"> Sign in with Google </span>
                 </Button>
@@ -59,8 +59,9 @@ const SignInPage: NextPage = () => {
             <span className="mt-5 text-black">or</span>
 
             <form
+              mode="modal"
               action="#"
-              className="mt-5 flex w-full max-w-[290px] flex-col gap-6 sm:gap-8"
+              className="mt-5 flex w-full max-w-[270px] flex-col gap-6 sm:gap-8"
             >
               <TextInputField label="Email" placeholder=" " />
 
@@ -93,7 +94,7 @@ const SignInPage: NextPage = () => {
           </section>
         </div>
 
-        <div className="absolute bottom-0 left-[-220px]  h-[45vh] w-[700px] xs:hidden ">
+        <div className="absolute bottom-0 left-[-220px] h-[45vh] w-[700px] xs:hidden ">
           <img
             src={"/images/sign-in-page/mobile.png"}
             alt="Sign In Artistic Hero Image"
