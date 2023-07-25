@@ -1,92 +1,89 @@
-// react imports
 import Image from "next/image";
-import Hafa from "/public/images/landing-page/Hafa.jpg";
-import Heids from "/public/images/landing-page/Heids.jpg";
-import Jade from "/public/images/landing-page/Jade.jpg";
-import JB from "/public/images/landing-page/JB.jpg";
-import Karan from "/public/images/landing-page/Karan.jpg";
-import Kat from "/public/images/landing-page/Kat.jpg";
-import Wakana from "/public/images/landing-page/Wakana.jpg";
+import Link from "next/link";
 
-// CastTimeLog component form
 const Team = () => {
-  // team members list
   const teamMembers = [
     {
       name: "Stephany Jade Becerra",
       role: "Project Manager / Designer",
       linkedIn: "https://www.linkedin.com/in/stephanyxjade/",
-      photo: Jade,
+      photo: "/images/landing-page/Jade.jpg",
     },
     {
       name: "Rafaela Jung",
       role: "Lead Designer",
       linkedIn: "https://www.linkedin.com/in/rafaelajung/",
-      photo: Hafa,
+      photo: "/images/landing-page/Hafa.jpg",
     },
     {
       name: "Wakana Kaneiwa",
       role: "UI Designer",
       linkedIn: "https://www.linkedin.com/in/wakanakaneiwa/",
-      photo: Wakana,
+      photo: "/images/landing-page/Wakana.jpg",
     },
     {
       name: "Katrina Mirambel",
       role: "UX Designer",
       linkedIn: "https://www.linkedin.com/in/katrinamirambel/",
-      photo: Kat,
+      photo: "/images/landing-page/Kat.jpg",
     },
     {
       name: "Haidren Amalia",
       role: "Lead Developer",
       linkedIn: "https://www.linkedin.com/in/haidrenamalia/",
-      photo: Heids,
+      photo: "/images/landing-page/Heids.jpg",
     },
     {
       name: "JB Sinluenam",
       role: "Full Stack Developer",
       linkedIn: "https://www.linkedin.com/in/jbsinluenam/",
-      photo: JB,
+      photo: "/images/landing-page/JB.jpg",
     },
     {
       name: "Karan Singh Dhir",
       role: "Full Stack Developer",
       linkedIn: "https://www.linkedin.com/in/ksdhir/",
-      photo: Karan,
+      photo: "/images/landing-page/Karan.jpg",
     },
   ];
 
-  //
-
   return (
-    <>
-      <div className="bg-primary-light flex flex-col gap-6 text-arc py-16 px-10 text-center">
-        <h2 className="text-3xl font-semibold section-title">Team</h2>
-        <div className="team-members-list flex flex-row flex-wrap gap-2">          
-          {/* using teamMembers.map create cards */}
-          {teamMembers.map((member, idx) => (
-            <div key={idx} className="team-member-card flex-1 flex flex-col rounded borde p-4">
-              <div className="mb-2 h-28 w-28 self-center rounded-full bg-gray-300">
-                <Image
-                  src={member.photo}
-                  alt="team member photo"
-                  className="w-full h-full rounded-full"
-                />
-              </div>
-              <h3 className="text-lg text-arc font-semibold">{member.name}</h3>
-              <p className="text-arc text-sm">{member.role}</p>
+    <section className="flex flex-col items-center gap-6 bg-primary-light px-6 py-16 text-center text-arc lg:gap-16 lg:py-28">
+      <h2 className="text-4xl font-bold">Team</h2>
+
+      <div className="flex w-full max-w-[600px] flex-wrap gap-4 lg:max-w-[1280px] lg:gap-0">
+        {teamMembers.map((member, idx) => (
+          <Link
+            href={member.linkedIn}
+            key={idx}
+            className="flex flex-1 flex-col rounded p-4 hover:bg-primary-trans"
+          >
+            <div className="relative mb-2 h-[118px] w-[118px] self-center overflow-hidden rounded-full bg-gray-300 lg:h-[144px] lg:w-[144px]">
+              <Image
+                src={member.photo}
+                alt={`${member.name} photo`}
+                layout="fill"
+                objectFit="contain"
+              />
             </div>
-          ))}
-        </div>
-        <div className="hidden md:block team-description text-m">
-          Our team of industry experts collaborated to develop Arc. With their
-          deep understanding of the filmmaking process and their passion for
-          innovation, they crafted a powerful tool that caters to the unique
-          needs and challenges of the film production, revolutionizing the way
-          filmmakers can bring their visions to the screen.
-        </div>
+
+            <h3 className="text-base font-semibold text-arc lg:text-lg">
+              {member.name}
+            </h3>
+
+            <p className="text-xs text-arc lg:text-base">{member.role}</p>
+          </Link>
+        ))}
       </div>
-    </>
+
+      <div className="team-description hidden max-w-[1024px] py-8 text-xl lg:block">
+        Our team of industry experts collaborated to develop Arc. With their
+        deep understanding of the filmmaking process and their passion for
+        innovation, they crafted a powerful tool that caters to the unique needs
+        and challenges of the film production, revolutionizing the way
+        filmmakers can bring their visions to the screen.
+      </div>
+    </section>
   );
 };
 
