@@ -25,20 +25,49 @@ import ScenesShotForm from "~/components/report/ScenesShotForm.jsx";
 import NotShotForm from "~/components/report/NotShotForm.jsx";
 import ExtrasCastForm from "~/components/report/ExtrasCastForm.jsx";
 import ShareReportButton from "~/components/report/ShareReport";
+import { LoadingPage } from "~/components/Loading";
 
-const ProductionReportPage = ({ productionInfo, report }) => {
+const ProductionReportPage = ({ productionInfo }) => {
   const dispatch = useDispatch();
+  const [isPageLoading, setIsPageLoading] = useState(true);
   const [isExpanded, setIsExpanded] = useState(true);
 
   useEffect(() => {
-    //Puting the report data in redux store
-    dispatch(setProductionReport(report));
-    // console.log(report);
+    const fetchTodaysReport = async () => {
+      try {
+        const { todayReportId } = await getTodayReportId(productionInfo.id);
+
+        let result = null;
+
+        if (!todayReportId) {
+          const response = await createDailyProductionReport(productionInfo.id);
+
+          result = response.report;
+        } else {
+          result = await getProductionReportById(
+            productionInfo.id,
+            todayReportId
+          );
+        }
+
+        dispatch(setProductionReport(result));
+      } catch (error) {
+        console.log("FAILED TO LOAD TODAY'S REPORT", error);
+      } finally {
+        setIsPageLoading(false);
+      }
+    };
+
+    fetchTodaysReport();
   }, []);
 
   const pageContainerClasses = isExpanded
     ? ""
     : "lg:ml-[-334px] lg:w-[calc(100vw+334px)]";
+
+  if (isPageLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <MainPageLayout>
@@ -87,7 +116,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </div>
 
           <div className="col-span-full bg-arc md:col-span-1 ">
-            <RollsForm />
+            <RollsForm productionId={productionInfo.id} />
           </div>
 
           <div className="col-span-full">
@@ -109,7 +138,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </div>
 
           <div className="col-span-full">
-            <ShareReportButton prodData={productionInfo} />
+            <ShareReportButton productionInfo={productionInfo} />
           </div>
         </div>
       </div>
@@ -121,26 +150,8 @@ export const getServerSideProps = async (ctx) => {
   try {
     const productionInfo = await getProductionInfoById(ctx.query.productionId);
 
-    const { todayReportId } = await getTodayReportId(ctx.query.productionId);
-
-    let result = null;
-
-    if (!todayReportId) {
-      const response = await createDailyProductionReport(
-        ctx.query.productionId
-      );
-
-      result = response.report;
-    } else {
-      result = await getProductionReportById(
-        ctx.query.productionId,
-        todayReportId
-      );
-    }
-
     return {
       props: {
-        report: result,
         productionInfo,
       },
     };

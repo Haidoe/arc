@@ -6,16 +6,19 @@ import MenuNavigationMobile from "~/components/global/MenuNavigationMobile.jsx";
 type PageLayoutProp = { children: ReactNode; hideHeader?: boolean };
 
 const MainPageLayout: FC<PageLayoutProp> = ({ children, hideHeader }) => {
-  //This is our list of pages that we will disable padding because mobile nav is not visible
-  const disabledPages = ["/", "/sign-in"];
-
   const router = useRouter();
 
   const { pathname } = router;
 
-  const adtlClasses = disabledPages.includes(pathname)
-    ? ""
-    : "pb-[100px] lg:pb-0";
+  const urlsWithMobileNav = [
+    "/home",
+    "/production/[productionId]/dashboard",
+    "/production/[productionId]/report",
+  ];
+
+  const adtlClasses = urlsWithMobileNav.includes(pathname)
+    ? "pb-[100px] lg:pb-0"
+    : "";
 
   return (
     <>

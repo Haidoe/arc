@@ -1,7 +1,6 @@
 //This api is used to get the rolls info of a production
 
 // add helpers
-import { requireAuth } from "@clerk/nextjs/api";
 import { prisma } from "~/server/db";
 
 // let productionId = "64b2e1c4b1c40edd9b54b0da";
@@ -75,4 +74,4 @@ const getHandler = async (req, res) => {
   }
 };
 
-export default requireAuth(getHandler);
+export default getHandler;
