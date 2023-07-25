@@ -2,6 +2,7 @@
 import { clerkClient, getAuth } from "@clerk/nextjs/server";
 import { LoadingPage } from "~/components/Loading";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
+import Hero from "~/components/landingPage/Hero";
 import Footer from "~/components/landingPage/Footer";
 
 import { api } from "~/utils/api";
@@ -13,6 +14,8 @@ const Home = () => {
 
   return (
     <MainPageLayout>
+      <Hero />
+      {/* 
       <div className="flex flex-1 flex-col items-center justify-center px-4 text-center lg:px-0">
         <h1 className="mb-4 inline-block bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 bg-clip-text text-4xl font-bold uppercase text-transparent">
           {data?.content}
@@ -25,7 +28,7 @@ const Home = () => {
         <p className="text-primary-1 mt-4 text-xl uppercase">
           {`We'll be back soon`}
         </p>
-      </div>
+      </div> */}
       <Footer />
     </MainPageLayout>
   );
