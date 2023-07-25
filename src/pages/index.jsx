@@ -5,6 +5,7 @@ import MainPageLayout from "~/components/layouts/MainPageLayout";
 
 // landing page components
 import Team from "~/components/landingPage/Team";
+import Pricing from "~/components/landingPage/Pricing";
 import Hero from "~/components/landingPage/Hero";
 import Footer from "~/components/landingPage/Footer";
 
@@ -40,7 +41,8 @@ const Home = () => {
         </p>
       </div> */}
 
-
+      <Pricing />
+      
       <Team />
 
       <Footer />
