@@ -22,7 +22,7 @@ function Modal({ isOpen, onClose, children, className }: ModalProps) {
         <div className="fixed inset-0 flex items-center justify-center p-4">
           {/* The actual dialog panel  */}
           <Dialog.Panel
-            className={`mx-auto max-w-sm rounded bg-white ${className ?? ""}`}
+            className={`mx-auto rounded bg-white ${className ?? ""}`}
           >
             {children}
           </Dialog.Panel>
