@@ -22,7 +22,7 @@ const Hero = () => {
       <Image src={LogoMobile} alt="Logo" className='w-[100px] md:w-[140px] lg:w-[186px]' />
       <div className='flex flex-col px-4 gap-2 md:gap-4 lg:gap-6 text-center'>
         <h1 className='text-xl md:text-3xl lg:text-6xl leading-7 '>Film producing like never before</h1>
-        <p className='text-sm md:text-lg lg:text-xl'>Unlock your creativity and bring your stories to life with Arc.</p>
+        <p className='text-sm md:text-lg lg:text-[32px]'>Unlock your creativity and bring your stories to life with Arc.</p>
       </div>
       <Button buttonType={Primary}>Get Started</Button>
       <Image src={appImagePlaceholder} alt="App Image" className=' max-w-[80%] shadow-lg shadow-contrast-base/30' />
