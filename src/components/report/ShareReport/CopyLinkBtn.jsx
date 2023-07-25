@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState } from "react";
 import getURL from "~/helper/helper";
 
@@ -28,7 +29,22 @@ const CopyLinkButton = ({ id }) => {
     return <p> Successfully Copied </p>;
   }
 
-  return <button onClick={copyContent}>Copy Link</button>;
+  return (
+    <button
+      onClick={copyContent}
+      className="flex items-center gap-2 hover:text-black"
+    >
+      <span>
+        <Image
+          src="/images/icons/link.svg"
+          width={16}
+          height={16}
+          alt="close icon"
+        />
+      </span>
+      Copy Link
+    </button>
+  );
 };
 
 export default CopyLinkButton;
