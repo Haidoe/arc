@@ -1,21 +1,16 @@
 //react-redux
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
 
 //components
-import TextInputField from '~/components/TextInputField'
-import Accordion from '../Accordion'
-import RollsFormModal from './RollsFormModal'
+import TextInputField from "~/components/TextInputField";
+import Accordion from "../Accordion";
+import RollsFormModal from "./RollsFormModal";
 import LoadingSpinner from "~/components/Loading";
 
-const RollsForm = ({ }) => {
+const RollsForm = ({ productionId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [rollsData, setRollsData] = useState(null);
-
-  // Get productionId from URL
-  const router = useRouter();
-  const { productionId } = router.query;
 
   //Get rolls previously from api
   useEffect(() => {
@@ -28,7 +23,6 @@ const RollsForm = ({ }) => {
         if (response.ok) {
           const data = await response.json();
           setRollsData(data);
-
         } else {
           throw new Error("Error fetching scene progress data");
         }
@@ -40,7 +34,7 @@ const RollsForm = ({ }) => {
     };
 
     fetchData();
-  }, [productionId]);
+  }, []);
 
   // console.log(rollsData, "rollsDatafromapi")
 
@@ -85,70 +79,80 @@ const RollsForm = ({ }) => {
     <>
       <Accordion title="Rolls" defaultOpen={true}>
         {rollsData ? (
-          <div onClick={() => setIsOpen(true)} action="" className={` text-contrast-dark text-base`} >
-            <div className="pb-3 border-b border-primary-base">
-              <div className="grid text-base grid-cols-6 grid-rows-2 gap-x-4 gap-y-1 pb-1">
-                <p className="grid col-span-2 font-bold">Script Supervisor</p>
-                <p className="grid col-span-4">{scriptSupervisor}</p>
-                <p className="grid col-span-2 font-bold">Data Wrangler</p>
-                <p className="grid col-span-4">{dataWrangler}</p>
+          <div
+            onClick={() => setIsOpen(true)}
+            action=""
+            className={` text-base text-contrast-dark`}
+          >
+            <div className="border-b border-primary-base pb-3">
+              <div className="grid grid-cols-6 grid-rows-2 gap-x-4 gap-y-1 pb-1 text-base">
+                <p className="col-span-2 grid font-bold">Script Supervisor</p>
+                <p className="col-span-4 grid">{scriptSupervisor}</p>
+                <p className="col-span-2 grid font-bold">Data Wrangler</p>
+                <p className="col-span-4 grid">{dataWrangler}</p>
               </div>
             </div>
 
             <div className=" text-contrast-dark">
-              <div className="grid grid-rows-3 gap-x-4 divide-contrast-lighter divide-y">
+              <div className="grid grid-rows-3 gap-x-4 divide-y divide-contrast-lighter">
                 <div className="grid grid-cols-6 gap-4 py-3.5">
-                  <div className="grid col-span-2"></div>
+                  <div className="col-span-2 grid"></div>
                   <p className="font-bold">A Cam</p>
                   <p className="font-bold">B Cam</p>
                   <p className="font-bold">C Cam</p>
                   <p className="font-bold">A Sound</p>
                 </div>
                 <div className="grid grid-cols-6 gap-4 py-3.5">
-                  <p className="grid col-span-2 font-bold">Previously</p>
+                  <p className="col-span-2 grid font-bold">Previously</p>
                   <p>{aCamPreviously}</p>
                   <p>{bCamPreviously}</p>
                   <p>{cCamPreviously}</p>
                   <p>{aSoundPreviously}</p>
                 </div>
                 <div className="grid grid-cols-6 gap-4 py-3.5">
-                  <p className="grid col-span-2 font-bold">Today</p>
+                  <p className="col-span-2 grid font-bold">Today</p>
                   <TextInputField
                     tabIndex="-1"
                     placeholder="0"
                     key={`aCamToday-${aCamToday ?? 0}`}
-                    maxLength="3" defaultValue={aCamToday} />
+                    maxLength="3"
+                    defaultValue={aCamToday}
+                  />
                   <TextInputField
                     tabIndex="-1"
                     placeholder="0"
                     key={`bCamToday-${bCamToday ?? 0}`}
-                    maxLength="3" defaultValue={bCamToday} />
+                    maxLength="3"
+                    defaultValue={bCamToday}
+                  />
                   <TextInputField
                     tabIndex="-1"
                     placeholder="0"
                     key={`cCamToday-${cCamToday ?? 0}`}
-                    maxLength="3" defaultValue={cCamToday} />
+                    maxLength="3"
+                    defaultValue={cCamToday}
+                  />
                   <TextInputField
                     tabIndex="-1"
                     placeholder="0"
                     key={`aSoundToday-${aSoundToday ?? 0}`}
-                    maxLength="3" defaultValue={aSoundToday} />
+                    maxLength="3"
+                    defaultValue={aSoundToday}
+                  />
                 </div>
                 <div className="grid grid-cols-6 gap-4 py-3.5 font-bold">
-                  <p className="grid col-span-2 font-bold">To Date</p>
+                  <p className="col-span-2 grid font-bold">To Date</p>
                   <p>{aCamToDate}</p>
                   <p>{bCamToDate}</p>
                   <p>{cCamToDate}</p>
                   <p>{aSoundToDate}</p>
                 </div>
               </div>
-
-
             </div>
-          </div >
+          </div>
         ) : (
           //make a div with a loading spinner in the center
-          <div className="flex justify-center items-center h-64">
+          <div className="flex h-64 items-center justify-center">
             <LoadingSpinner />
           </div>
         )}
@@ -156,12 +160,10 @@ const RollsForm = ({ }) => {
 
       <RollsFormModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
+  );
+};
 
-  )
-}
-
-export default RollsForm
-
+export default RollsForm;
 
 // Script Supervisor Harvey Spector
 // Data Wrangler 	John H.

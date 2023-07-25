@@ -105,7 +105,7 @@ const PublicReportPage = () => {
           </div>
 
           <div className="col-span-full bg-arc md:col-span-1 ">
-            <RollsForm isReadOnly />
+            <RollsForm productionId={productionInfo.id} isReadOnly />
           </div>
 
           <div className="col-span-full">

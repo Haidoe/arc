@@ -87,7 +87,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </div>
 
           <div className="col-span-full bg-arc md:col-span-1 ">
-            <RollsForm />
+            <RollsForm productionId={productionInfo.id} />
           </div>
 
           <div className="col-span-full">
