@@ -5,6 +5,7 @@ import Modal from "~/components/Modal";
 import EmailRow from "./RowEmail";
 import CopyLinkButton from "./CopyLinkBtn";
 import ShareReportForm from "./Form";
+import Image from "next/image";
 
 const ShareReportButton = ({ productionInfo }) => {
   const data = useSelector((state) => state.productionReport.data);
@@ -24,12 +25,19 @@ const ShareReportButton = ({ productionInfo }) => {
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        className="w-full max-w-[500px]"
+        className="w-full min-w-[320px] max-w-[500px]"
       >
-        <div className="p-4">
+        <div className="p-4 text-contrast-dark">
           <header className="flex items-center justify-between border-b-[1.5px] pb-4">
             <h3 className="text-base"> Share Production Report </h3>
-            <button onClick={() => setIsOpen(false)}> X </button>
+            <button onClick={() => setIsOpen(false)}>
+              <Image
+                src="/images/icons/close.svg"
+                width={16}
+                height={16}
+                alt="close icon"
+              />
+            </button>
           </header>
 
           <div className="mb-4 border-b-[1.5px] py-4">
@@ -42,7 +50,12 @@ const ShareReportButton = ({ productionInfo }) => {
             {emails.length > 0 && (
               <div className="mb-4 mt-8 flex flex-col gap-4">
                 {emails.map((email) => (
-                  <EmailRow key={email.id} email={email.email} />
+                  <EmailRow
+                    key={email.id}
+                    email={email.email}
+                    reportId={data.id}
+                    productionTitle={productionInfo.title}
+                  />
                 ))}
               </div>
             )}

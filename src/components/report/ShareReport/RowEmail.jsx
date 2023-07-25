@@ -1,6 +1,38 @@
+import dayjs from "dayjs";
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import Image from "next/image";
+import { useState } from "react";
 
-const EmailRow = ({ email }) => {
+import LoadingSpinner from "~/components/Loading";
+import getURL from "~/helper/helper";
+import sendReport from "~/service/send-mail";
+
+dayjs.extend(LocalizedFormat);
+
+const EmailRow = ({ email, productionTitle, reportId }) => {
+  const [isResending, setIsResending] = useState(false);
+  const [isCooldown, setIsCooldown] = useState(false);
+
+  const handleResend = async () => {
+    const today = dayjs().format("LL");
+
+    const subj = `${productionTitle} | Production Progress Report as of ${today}`;
+
+    const contentUrl = getURL(`/view/${reportId}`);
+
+    setIsResending(true);
+
+    await sendReport(email, subj, contentUrl);
+
+    setIsResending(false);
+
+    setIsCooldown(true);
+
+    setTimeout(() => {
+      setIsCooldown(false);
+    }, 3000);
+  };
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-2">
@@ -14,7 +46,17 @@ const EmailRow = ({ email }) => {
         <p>{email}</p>
       </div>
 
-      <button className="underline">Resend</button>
+      {isResending ? (
+        <button>
+          <LoadingSpinner />
+        </button>
+      ) : isCooldown ? (
+        <p> Sent </p>
+      ) : (
+        <button className="underline" onClick={handleResend}>
+          Resend
+        </button>
+      )}
     </div>
   );
 };
