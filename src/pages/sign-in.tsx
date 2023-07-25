@@ -59,7 +59,6 @@ const SignInPage: NextPage = () => {
             <span className="mt-5 text-black">or</span>
 
             <form
-              mode="modal"
               action="#"
               className="mt-5 flex w-full max-w-[270px] flex-col gap-6 sm:gap-8"
             >
