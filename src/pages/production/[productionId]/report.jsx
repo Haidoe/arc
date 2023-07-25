@@ -109,7 +109,7 @@ const ProductionReportPage = ({ productionInfo, report }) => {
           </div>
 
           <div className="col-span-full">
-            <ShareReportButton prodData={productionInfo} />
+            <ShareReportButton productionInfo={productionInfo} />
           </div>
         </div>
       </div>
