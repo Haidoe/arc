@@ -45,11 +45,11 @@ const SignInPage: NextPage = () => {
           </header>
 
           <section className="bg mt-12 flex flex-col items-center xs:mt-16 ">
-            <div className="flex w-full max-w-[320px]">
+            <div className="flex w-full max-w-[290px]">
               <SignInButton>
                 <Button
                   buttonType="Primary"
-                  className="flex w-full max-w-[320px] py-[10px]"
+                  className="flex w-full max-w-[290px] py-[10px]"
                 >
                   <span className=" text-base"> Sign in with Google </span>
                 </Button>
@@ -60,7 +60,7 @@ const SignInPage: NextPage = () => {
 
             <form
               action="#"
-              className="mt-5 flex w-full max-w-[270px] flex-col gap-6 sm:gap-8"
+              className="mt-5 flex w-full max-w-[290px] flex-col gap-4 sm:gap-5"
             >
               <TextInputField label="Email" placeholder=" " />
 
