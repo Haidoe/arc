@@ -2,13 +2,10 @@
 import { clerkClient, getAuth } from "@clerk/nextjs/server";
 import { LoadingPage } from "~/components/Loading";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
-<<<<<<< HEAD
 
 // landing page components
 import Team from "~/components/landingPage/Team";
-=======
 import Hero from "~/components/landingPage/Hero";
->>>>>>> dev
 import Footer from "~/components/landingPage/Footer";
 
 import { api } from "~/utils/api";
@@ -43,7 +40,7 @@ const Home = () => {
         </p>
       </div> */}
 
-      
+
       <Team />
 
       <Footer />
