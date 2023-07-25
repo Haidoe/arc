@@ -126,7 +126,7 @@ const Home = () => {
                 <Link
                   key={production.id}
                   href={`/production/${production.id}/report`}
-                  className="button w-full max-w-[400px] self-center border-[1.5px] border-primary-light bg-white text-sm font-bold text-primary-light hover:shadow-lg active:bg-primary-light active:text-white lg:py-4"
+                  className="button w-full max-w-[320px] self-center border-[1.5px] border-primary-light bg-white py-2 text-sm font-bold text-primary-light hover:shadow-lg active:bg-primary-light active:text-white lg:py-3 lg:text-base "
                 >
                   {production.title}{" "}
                 </Link>
