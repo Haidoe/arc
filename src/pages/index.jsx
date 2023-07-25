@@ -2,6 +2,9 @@
 import { clerkClient, getAuth } from "@clerk/nextjs/server";
 import { LoadingPage } from "~/components/Loading";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
+
+// landing page components
+import Team from "~/components/landingPage/Team";
 import Hero from "~/components/landingPage/Hero";
 import Footer from "~/components/landingPage/Footer";
 
@@ -36,6 +39,9 @@ const Home = () => {
           {`We'll be back soon`}
         </p>
       </div> */}
+
+
+      <Team />
 
       <Footer />
     </MainPageLayout>
