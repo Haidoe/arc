@@ -78,7 +78,7 @@ const MenuNavigationMobile = () => {
                 key={index}
               >
                 <div className="flex flex-col items-center justify-center gap-2">
-                  <div className="h-[24px] w-[24px]">
+                  <div className="flex h-[24px] w-[24px]  justify-center">
                     <UserButton />
                   </div>
 
