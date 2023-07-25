@@ -16,6 +16,7 @@ const Border = forwardRef(
       type,
       required,
       pattern,
+      readOnly = false,
     },
     ref
   ) => {
@@ -36,6 +37,7 @@ const Border = forwardRef(
           defaultValue={defaultValue}
           required={required ?? false}
           pattern={pattern}
+          readOnly={readOnly}
         />
         <label
           className={`before:content[' '] after:content[' '] text-input-border-label ${
