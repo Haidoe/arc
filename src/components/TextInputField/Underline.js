@@ -13,6 +13,7 @@ const Underline = forwardRef(
       defaultValue,
       placeholder,
       tabIndex,
+      readOnly = false,
     },
     ref
   ) => {
@@ -31,6 +32,7 @@ const Underline = forwardRef(
           } ${className}`}
           ref={ref}
           defaultValue={defaultValue}
+          readOnly={readOnly}
         />
         <label
           className={`before:content[' '] after:content[' '] text-input-underline-label ${
