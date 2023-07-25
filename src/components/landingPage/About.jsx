@@ -8,7 +8,7 @@ import aboutMobile from '~/../public/images/landing-page/aboutMobile.png'
 
 const About = () => {
   return (
-    <div className='grid md:grid-cols-2'>
+    <div className='grid md:grid-cols-2 overflow-hidden'>
       <Image src={aboutDesktop} alt='' aria-hidden='true' className='hidden relative h-full md:block'
         style={
           {
