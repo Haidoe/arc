@@ -1,16 +1,7 @@
-// import modules from next.js
+import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-// import logo
-import MenuProduction from "~/assets/icons/menu_production.svg";
-import MenuDashboard from "~/assets/icons/menu_dashboard.svg";
-import MenuReport from "~/assets/icons/menu_report.svg";
-import MenuAccount from "~/assets/icons/menu_account.svg";
-
-// import { SignOutButton, SignedIn, SignedOut } from "@clerk/clerk-react";
-// import Button from "../Button";
 
 // pattern is a string
 // dynamicPath is an object -> key being the dynamic path and value being the value of the dynamic path
@@ -22,11 +13,10 @@ const patternToUrl = (pattern, dynamicPath) => {
   return url;
 };
 
-// read route and show header depending on route
 const MenuNavigationMobile = () => {
   // get route
   const router = useRouter();
-  const { pathname, asPath, query } = router;
+  const { pathname, query } = router;
 
   const isActivePage = () => {
     if (pathname === "/home") {
@@ -40,86 +30,97 @@ const MenuNavigationMobile = () => {
     }
   };
 
-  const disabledOnPaths = ["/", "/sign-in"];
+  const urls = [
+    {
+      name: "Home",
+      path: "/home",
+      img: "/images/icons/menu_production.svg",
+      imgAlt: "Production Icon",
+    },
+    {
+      name: "Report",
+      path: "/production/[productionId]/report",
+      img: "/images/icons/menu_report.svg",
+      imgAlt: "Report Icon",
+    },
+    {
+      name: "Dashboard",
+      path: "/production/[productionId]/dashboard",
+      img: "/images/icons/menu_dashboard.svg",
+      imgAlt: "Dashboard Icon",
+    },
+    {
+      name: "Account",
+      path: "/account",
+      img: "",
+      imgAlt: "",
+    },
+  ];
+
+  const allowedUrls = [
+    "/home",
+    "/production/[productionId]/dashboard",
+    "/production/[productionId]/report",
+  ];
+
+  if (!allowedUrls.includes(pathname)) {
+    return null;
+  }
 
   return (
-    <>
-      {!disabledOnPaths.includes(pathname) && (
-        <div className="overflow-x-hidden">
-          <div className="fixed bottom-0 left-0 flex  w-full items-center justify-between gap-3 border-t-[1px] border-contrast-light bg-arc px-4 sm:gap-[4rem] md:gap-[7rem] lg:hidden">
-            {/* Production Tab */}
-            <Link href="/home" className="flex-1">
+    <nav className="fixed bottom-0 left-0 right-0  bg-arc lg:hidden">
+      <div className="flex h-[75px]">
+        {urls.map((url, index) => {
+          if (url.name === "Account") {
+            return (
               <div
-                className={`flex flex-col items-center gap-2 py-4 ${
-                  isActivePage() === "Home"
-                    ? "border-t-[6px] border-pink-500"
-                    : ""
-                }`}
+                className="flex flex-1 items-center justify-center border-t-[1px] border-contrast-light pt-[3px]"
+                key={index}
               >
-                <Image src={MenuProduction} alt="Logo" className="h-8 w-8" />
-                <span className="text-sm font-normal">Production</span>
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <div className="h-[24px] w-[24px]">
+                    <UserButton />
+                  </div>
+
+                  <span className="mt-1 text-xs">{url.name}</span>
+                </div>
               </div>
-            </Link>
-            {/* Report Tab */}
+            );
+          }
+
+          return (
             <Link
-              href={patternToUrl("/production/[productionId]/report", query)}
-              className={`flex-1 ${
-                pathname == "/home"
+              href={patternToUrl(url.path, query)}
+              key={index}
+              className={`poin flex flex-1 items-center justify-center ${
+                isActivePage() === "Home"
                   ? "pointer-events-none text-contrast-light"
                   : ""
+              }   ${
+                isActivePage() === url.name
+                  ? "border-t-[4px] border-pink-500"
+                  : "border-t-[1px] border-contrast-light pt-[3px]"
               }`}
             >
-              <div
-                className={`flex flex-col items-center gap-2 py-4 ${
-                  isActivePage() === "Report"
-                    ? "border-t-[6px] border-pink-500"
-                    : ""
-                }`}
-              >
-                <Image src={MenuReport} alt="Logo" className="h-8 w-8" />
-                <span className="text-sm font-normal">Report</span>
+              <div className="flex flex-col items-center justify-center gap-2">
+                <Image width={24} height={24} src={url.img} alt={url.imgAlt} />
+
+                <span
+                  className={` text-xs ${
+                    isActivePage() === url.name
+                      ? "font-bold text-primary-light"
+                      : ""
+                  }`}
+                >
+                  {url.name === "Home" ? "Production" : url.name}
+                </span>
               </div>
             </Link>
-            {/* Dashboard Tab */}
-            <Link
-              href={patternToUrl("/production/[productionId]/dashboard", query)}
-              className={`flex-1 ${
-                pathname == "/home"
-                  ? "pointer-events-none text-contrast-light"
-                  : ""
-              }`}
-            >
-              <div
-                className={`flex flex-col items-center gap-2 py-4 ${
-                  isActivePage() === "Dashboard"
-                    ? "border-t-[6px] border-pink-500"
-                    : ""
-                }`}
-              >
-                <Image src={MenuDashboard} alt="Logo" className="h-8 w-8" />
-                <span className="text-sm font-normal">Dashboard</span>
-              </div>
-            </Link>
-            {/* Account Tab */}
-            <Link href="#" className="flex-1">
-              <div
-                className={`flex flex-col items-center gap-2 py-4 ${
-                  isActivePage() === "Account"
-                    ? "border-t-[6px] border-pink-500"
-                    : ""
-                }`}
-              >
-                <Image src={MenuAccount} alt="Logo" className="h-8 w-8" />
-                <span className="text-sm font-normal">Account</span>
-              </div>
-            </Link>
-          </div>
-          {/* Add the rest of your content here */}
-        </div>
-      )}
-    </>
+          );
+        })}
+      </div>
+    </nav>
   );
 };
 
-// export header component
 export default MenuNavigationMobile;

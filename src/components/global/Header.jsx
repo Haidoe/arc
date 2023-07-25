@@ -8,12 +8,7 @@ import HeaderMobileLanding from "~/components/global/HeaderMobileLanding.jsx";
 
 // import logo
 import Logo from "~/assets/icons/Logo.svg";
-import {
-  SignOutButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/clerk-react";
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import Button from "../Button";
 
 // define headers on different pages
@@ -175,8 +170,8 @@ const Header = () => {
                 
                 ${
                   header.path === asPath || header.path === pathname
-                    ? "border-tertiary-light text-tertiary-light font-normal"
-                    : "border-transparent text-contrast-dark font-normal hover:font-bold"
+                    ? "border-tertiary-light font-normal text-tertiary-light"
+                    : "border-transparent font-normal text-contrast-dark hover:font-bold"
                 }
 
                 inline-flex items-center border-b-2 px-2`}
@@ -209,11 +204,6 @@ const Header = () => {
 
                 <SignedIn>
                   <UserButton />
-                  {/* <SignOutButton>
-                    <Button className=" px-4 py-2 text-base hover:bg-primary-base">
-                      Sign Out
-                    </Button>
-                  </SignOutButton> */}
                 </SignedIn>
               </div>
             </>
