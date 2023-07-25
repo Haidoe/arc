@@ -9,8 +9,11 @@ export default async function handler(
   if (req.method !== "POST") {
     res.status(405).json({ message: "Method not allowed" });
   }
+
   //Parse the body of the request as JSON and must be of type EmailOptions
-  const content = JSON.parse(req.body as string) as EmailOptions;
+  const content = req.body as EmailOptions;
+
+  // console.log("Content >> ", content);
 
   //Checking all properties of EmailOptions have been provided
   if (!content.from || !content.to || !content.subject || !content.text) {

@@ -13,6 +13,9 @@ const Border = forwardRef(
       defaultValue,
       placeholder,
       tabIndex,
+      type,
+      required,
+      pattern,
     },
     ref
   ) => {
@@ -24,13 +27,15 @@ const Border = forwardRef(
           name={name}
           id={name}
           tabIndex={tabIndex}
-          type="text"
+          type={type ?? "text"}
           placeholder={placeholder}
           className={`text-input-border-input peer text-contrast-dark ${
             isError ? "input-error" : ""
           }`}
           ref={ref}
           defaultValue={defaultValue}
+          required={required ?? false}
+          pattern={pattern}
         />
         <label
           className={`before:content[' '] after:content[' '] text-input-border-label ${
