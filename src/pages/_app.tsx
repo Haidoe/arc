@@ -18,8 +18,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <ClerkProvider {...pageProps}>
       <Head>
-        <title>Arc 🎬 </title>
-        <meta name="description" content="🎬 🎬" />
+        <title>ARC</title>
 
         <meta
           name="description"
@@ -28,8 +27,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
         <meta
           name="keywords"
-          content="Arc, arc, ARC, ARC app, arc app, arc, arc reporting, arc form, production report form, langara college, wmdd"
+          content="Arc app ca, arc, ARC, ARC app, arc app, arc, arc reporting, production report form, langara college, wmdd, WMDD, production report, production call sheets, call sheets, arc dashboard"
         />
+
         <link rel="icon" href="/favicon.svg" />
       </Head>
 
