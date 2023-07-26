@@ -34,37 +34,32 @@ const ProductionReportPage = ({ productionInfo }) => {
 
   useEffect(() => {
     // add a global variable to check if the effect is executed once
-    if (!window.isEffectExecuted) {
-      const fetchTodaysReport = async () => {
-        try {
-          const { todayReportId } = await getTodayReportId(productionInfo.id);
+    const fetchTodaysReport = async () => {
+      try {
+        const { todayReportId } = await getTodayReportId(productionInfo.id);
 
-          let result = null;
+        let result = null;
 
-          if (!todayReportId) {
-            const response = await createDailyProductionReport(
-              productionInfo.id
-            );
-            console.log(response);
-            result = response.report;
-          } else {
-            result = await getProductionReportById(
-              productionInfo.id,
-              todayReportId
-            );
-          }
-
-          dispatch(setProductionReport(result));
-        } catch (error) {
-          console.log("FAILED TO LOAD TODAY'S REPORT", error);
-        } finally {
-          setIsPageLoading(false);
+        if (!todayReportId) {
+          const response = await createDailyProductionReport(productionInfo.id);
+          console.log(response);
+          result = response.report;
+        } else {
+          result = await getProductionReportById(
+            productionInfo.id,
+            todayReportId
+          );
         }
-      };
 
-      fetchTodaysReport();
-      window.isEffectExecuted = true;
-    }
+        dispatch(setProductionReport(result));
+      } catch (error) {
+        console.log("FAILED TO LOAD TODAY'S REPORT", error);
+      } finally {
+        setIsPageLoading(false);
+      }
+    };
+
+    fetchTodaysReport();
   }, []);
 
   const pageContainerClasses = isExpanded
