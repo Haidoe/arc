@@ -51,7 +51,7 @@ const Team = () => {
     <section className="flex flex-col items-center gap-6 bg-primary-light px-6 py-16 text-center text-arc lg:gap-16">
       <h2 className="text-4xl font-bold">Team</h2>
 
-      <div className="flex w-full max-w-[600px] flex-wrap-reverse gap-4 lg:max-w-[1280px] lg:gap-0 lg:py-12">
+      <div className="flex w-full max-w-[600px] flex-wrap gap-4 lg:max-w-[1280px] lg:flex-wrap-reverse lg:gap-0 lg:py-12">
         {teamMembers.map((member, idx) => (
           <Link
             href={member.linkedIn}
