@@ -33,32 +33,38 @@ const ProductionReportPage = ({ productionInfo }) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
   useEffect(() => {
-    const fetchTodaysReport = async () => {
-      try {
-        const { todayReportId } = await getTodayReportId(productionInfo.id);
+    // add a global variable to check if the effect is executed once
+    if (!window.isEffectExecuted) {
+      const fetchTodaysReport = async () => {
+        try {
+          const { todayReportId } = await getTodayReportId(productionInfo.id);
 
-        let result = null;
+          let result = null;
 
-        if (!todayReportId) {
-          const response = await createDailyProductionReport(productionInfo.id);
+          if (!todayReportId) {
+            const response = await createDailyProductionReport(
+              productionInfo.id
+            );
+            console.log(response);
+            result = response.report;
+          } else {
+            result = await getProductionReportById(
+              productionInfo.id,
+              todayReportId
+            );
+          }
 
-          result = response.report;
-        } else {
-          result = await getProductionReportById(
-            productionInfo.id,
-            todayReportId
-          );
+          dispatch(setProductionReport(result));
+        } catch (error) {
+          console.log("FAILED TO LOAD TODAY'S REPORT", error);
+        } finally {
+          setIsPageLoading(false);
         }
+      };
 
-        dispatch(setProductionReport(result));
-      } catch (error) {
-        console.log("FAILED TO LOAD TODAY'S REPORT", error);
-      } finally {
-        setIsPageLoading(false);
-      }
-    };
-
-    fetchTodaysReport();
+      fetchTodaysReport();
+      window.isEffectExecuted = true;
+    }
   }, []);
 
   const pageContainerClasses = isExpanded
