@@ -44,10 +44,23 @@ const SignInPage: NextPage = () => {
             </div>
           </header>
 
-          <section className="bg mt-[64px] flex flex-col items-center ">
+          <section className="bg mt-12 flex flex-col items-center xs:mt-16 ">
+            <div className="flex w-full max-w-[290px]">
+              <SignInButton>
+                <Button
+                  buttonType="Primary"
+                  className="flex w-full max-w-[290px] py-[10px]"
+                >
+                  <span className=" text-base"> Sign in with Google </span>
+                </Button>
+              </SignInButton>
+            </div>
+
+            <span className="mt-5 text-black">or</span>
+
             <form
               action="#"
-              className="flex w-full max-w-[450px] flex-col gap-6 sm:gap-8"
+              className="mt-5 flex w-full max-w-[290px] flex-col gap-4 sm:gap-5"
             >
               <TextInputField label="Email" placeholder=" " />
 
@@ -59,7 +72,7 @@ const SignInPage: NextPage = () => {
 
               <div className="flex justify-center">
                 <Button
-                  buttonType="Primary"
+                  buttonType="Secondary"
                   className="w-full max-w-[290px] px-4 py-[10px]"
                 >
                   <span className=" text-base"> Login </span>
@@ -67,33 +80,20 @@ const SignInPage: NextPage = () => {
               </div>
             </form>
 
-            <div className="meta mt-8 flex flex-col items-center gap-4 text-primary-dark xs:mt-12 xs:gap-5">
+            <div className="meta mt-6 flex flex-col items-center gap-4 text-primary-dark xs:gap-5">
               <a href="#" className="underline">
                 Forgot Password?
               </a>
-
-              <span className="text-black">or</span>
 
               <span>
                 {`Don't have an account? `}
                 <a href="#" className="underline">{`Create one`}</a>
               </span>
-
-              <div className="mt-12 flex justify-center">
-                <SignInButton mode="modal">
-                  <Button
-                    buttonType="Secondary"
-                    className="w-full max-w-[290px] px-4 py-[10px]"
-                  >
-                    <span className=" text-base"> Sign in with Google </span>
-                  </Button>
-                </SignInButton>
-              </div>
             </div>
           </section>
         </div>
 
-        <div className="absolute bottom-0 left-[-220px]  h-[45vh] w-[700px] xs:hidden ">
+        <div className="absolute bottom-0 left-[-220px] h-[45vh] w-[700px] xs:hidden ">
           <img
             src={"/images/sign-in-page/mobile.png"}
             alt="Sign In Artistic Hero Image"

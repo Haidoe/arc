@@ -15,6 +15,7 @@ const BorderWithIcon = forwardRef(
       defaultValue,
       placeholder,
       tabIndex,
+      readOnly = false,
     },
     ref
   ) => {
@@ -36,6 +37,7 @@ const BorderWithIcon = forwardRef(
           } ${className}`}
           ref={ref}
           defaultValue={defaultValue}
+          readOnly={readOnly}
         />
         <label
           className={`before:content[' '] after:content[' '] text-input-border-label ${

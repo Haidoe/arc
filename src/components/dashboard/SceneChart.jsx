@@ -76,7 +76,7 @@ const SceneChart = () => {
 
     const numScenes = sceneProgressArray.length;
     const maxBarThickness = 80;
-    const minBarThickness = 35;
+    const minBarThickness = 20;
     const barThickness = Math.max(
       minBarThickness,
       maxBarThickness / numScenes

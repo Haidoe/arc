@@ -19,7 +19,10 @@ const ActiveActors = ({}) => {
 
   // if yesterday number was 200 and today number is 150 compute the increase or decrease in percentage
   const computePercentage = (yesterday, today) => {
-    if (yesterday === 0) {
+    if (today === 0 && yesterday === 0) {
+      return 0;
+    }
+    else if (yesterday === 0) {
       return 100;
     }
     return Math.round(((today - yesterday) / yesterday) * 100);
@@ -36,9 +39,19 @@ const ActiveActors = ({}) => {
     const resp_today = await fetch(GET_TODAY_ACTIVE_ACTORS);
     const result_today = await resp_today.json();
 
+    console.log(result_today)
+    
+
+
     // yesterday active actors
     const resp_yesterday = await fetch(GET_YESTERDAY_ACTIVE_ACTORS);
-    const result_yesterday = await resp_yesterday.json();
+      const result_yesterday = await resp_yesterday.json();
+    console.log(result_yesterday)
+
+    console.log(computePercentage(
+      result_yesterday.activeActors,
+      result_today.activeActors
+    ))
 
     setActiveActors(result_today.activeActors);
     setPercentageChange(
