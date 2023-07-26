@@ -16,7 +16,7 @@ import Sidebar from "~/components/production/Information";
 
 dayjs.extend(LocalizedFormat);
 
-const ProductionReportPage = ({ productionInfo }) => {
+const Dashboard = ({ productionInfo }) => {
   const today = dayjs().format("LL");
 
   return (
@@ -109,4 +109,4 @@ export const getServerSideProps = async (ctx) => {
   }
 };
 
-export default ProductionReportPage;
+export default Dashboard;

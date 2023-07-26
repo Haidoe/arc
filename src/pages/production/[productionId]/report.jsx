@@ -1,5 +1,5 @@
 // react and redux
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setProductionReport } from "~/redux/features/ProductionReportSlice";
 
@@ -28,11 +28,14 @@ import ShareReportButton from "~/components/report/ShareReport";
 import { LoadingPage } from "~/components/Loading";
 
 const ProductionReportPage = ({ productionInfo }) => {
+  const fetchReportRef = useRef(true);
+
   const dispatch = useDispatch();
   const [isPageLoading, setIsPageLoading] = useState(true);
   const [isExpanded, setIsExpanded] = useState(true);
 
   useEffect(() => {
+    // add a global variable to check if the effect is executed once
     const fetchTodaysReport = async () => {
       try {
         const { todayReportId } = await getTodayReportId(productionInfo.id);
@@ -41,7 +44,7 @@ const ProductionReportPage = ({ productionInfo }) => {
 
         if (!todayReportId) {
           const response = await createDailyProductionReport(productionInfo.id);
-
+          console.log(response);
           result = response.report;
         } else {
           result = await getProductionReportById(
@@ -58,7 +61,11 @@ const ProductionReportPage = ({ productionInfo }) => {
       }
     };
 
-    fetchTodaysReport();
+    if (fetchReportRef.current) {
+      fetchReportRef.current = false;
+      fetchTodaysReport();
+      console.log("FETCHING REPORT HERE, KARAN");
+    }
   }, []);
 
   const pageContainerClasses = isExpanded
