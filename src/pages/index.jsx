@@ -10,6 +10,7 @@ import Footer from "~/components/landingPage/Footer";
 
 import About from "~/components/landingPage/About";
 import LandingPageFeature from "~/components/landingPage/Feature";
+import LandingPageContactSection from "~/components/landingPage/Contact";
 
 const Home = () => {
   return (
@@ -23,6 +24,8 @@ const Home = () => {
       <Pricing />
 
       <Team />
+
+      <LandingPageContactSection />
 
       <Footer />
     </MainPageLayout>
