@@ -48,15 +48,15 @@ const Team = () => {
   ];
 
   return (
-    <section className="flex flex-col items-center gap-6 bg-primary-light px-6 py-16 text-center text-arc lg:gap-16 lg:py-28">
+    <section className="flex flex-col items-center gap-6 bg-primary-light px-6 py-16 text-center text-arc lg:gap-16">
       <h2 className="text-4xl font-bold">Team</h2>
 
-      <div className="flex w-full max-w-[600px] flex-wrap gap-4 lg:max-w-[1280px] lg:gap-0">
+      <div className="flex w-full max-w-[600px] flex-wrap-reverse gap-4 lg:max-w-[1280px] lg:gap-0 lg:py-12">
         {teamMembers.map((member, idx) => (
           <Link
             href={member.linkedIn}
             key={idx}
-            className="flex flex-1 flex-col rounded p-4 hover:bg-primary-trans"
+            className="flex flex-1 basis-[25%] flex-col rounded p-4 hover:bg-primary-trans"
           >
             <div className="relative mb-2 h-[118px] w-[118px] self-center overflow-hidden rounded-full bg-gray-300 lg:h-[144px] lg:w-[144px]">
               <Image
@@ -76,7 +76,7 @@ const Team = () => {
         ))}
       </div>
 
-      <div className="team-description hidden max-w-[1024px] py-8 text-xl lg:block">
+      <div className="team-description hidden max-w-[1024px] py-12 text-xl lg:block">
         Our team of industry experts collaborated to develop Arc. With their
         deep understanding of the filmmaking process and their passion for
         innovation, they crafted a powerful tool that caters to the unique needs
