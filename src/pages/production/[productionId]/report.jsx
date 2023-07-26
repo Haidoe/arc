@@ -1,5 +1,5 @@
 // react and redux
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setProductionReport } from "~/redux/features/ProductionReportSlice";
 
@@ -28,6 +28,8 @@ import ShareReportButton from "~/components/report/ShareReport";
 import { LoadingPage } from "~/components/Loading";
 
 const ProductionReportPage = ({ productionInfo }) => {
+  const fetchReportRef = useRef(true);
+
   const dispatch = useDispatch();
   const [isPageLoading, setIsPageLoading] = useState(true);
   const [isExpanded, setIsExpanded] = useState(true);
@@ -59,7 +61,11 @@ const ProductionReportPage = ({ productionInfo }) => {
       }
     };
 
-    fetchTodaysReport();
+    if (fetchReportRef.current) {
+      fetchReportRef.current = false;
+      fetchTodaysReport();
+      console.log("FETCHING REPORT HERE, KARAN");
+    }
   }, []);
 
   const pageContainerClasses = isExpanded
