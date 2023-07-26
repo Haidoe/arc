@@ -23,6 +23,25 @@ const PercentageChangeIndication = ({ change }) => {
 
   const changeType = change > 0 ? "increase" : "decrease";
 
+  if (change === 0) {
+    return (
+      <div
+        className={`
+        ${
+         "bg-primary-base text-arc"
+        }
+        inline-flex items-baseline rounded-full px-2.5 py-0.5 text-xs
+        `}
+      >
+        <span className="sr-only">
+          No change
+        </span>
+  
+        {Math.abs(displayChange) + "%"}
+      </div>
+    );
+  }
+
   return (
     <div
       className={`
