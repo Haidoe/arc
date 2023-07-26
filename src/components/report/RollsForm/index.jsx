@@ -117,7 +117,7 @@ const RollsForm = ({ productionId }) => {
                     key={`aCamToday-${aCamToday ?? 0}`}
                     maxLength="3"
                     defaultValue={aCamToday}
-                    readOnly="true"
+                    readOnly={true}
                   />
                   <TextInputField
                     tabIndex="-1"
@@ -125,7 +125,7 @@ const RollsForm = ({ productionId }) => {
                     key={`bCamToday-${bCamToday ?? 0}`}
                     maxLength="3"
                     defaultValue={bCamToday}
-                    readOnly="true"
+                    readOnly={true}
                   />
                   <TextInputField
                     tabIndex="-1"
@@ -133,7 +133,7 @@ const RollsForm = ({ productionId }) => {
                     key={`cCamToday-${cCamToday ?? 0}`}
                     maxLength="3"
                     defaultValue={cCamToday}
-                    readOnly="true"
+                    readOnly={true}
                   />
                   <TextInputField
                     tabIndex="-1"
@@ -141,7 +141,7 @@ const RollsForm = ({ productionId }) => {
                     key={`aSoundToday-${aSoundToday ?? 0}`}
                     maxLength="3"
                     defaultValue={aSoundToday}
-                    readOnly="true"
+                    readOnly={true}
                   />
                 </div>
                 <div className="grid grid-cols-6 gap-4 py-3.5 font-bold">

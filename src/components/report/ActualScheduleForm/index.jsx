@@ -54,7 +54,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 maxLength="2"
                 className="underline-form"
                 defaultValue={firstUnitSchedule}
-                readOnly="true"
+                readOnly={true}
               />
 
               <TextInputField
@@ -65,7 +65,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 label="firstUnitActual"
                 className="underline-form"
                 defaultValue={firstUnitActual}
-                readOnly="true"
+                readOnly={true}
               />
             </div>
             <div className='grid grid-cols-3 gap-4 py-2.5'>
@@ -78,7 +78,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 className="underline-form"
                 label="secondUnitSchedule"
                 defaultValue={secondUnitSchedule}
-                readOnly="true"
+                readOnly={true}
               />
               <TextInputField
                 tabIndex="-1"
@@ -88,7 +88,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 className="underline-form"
                 label="secondUnitActual"
                 defaultValue={secondUnitActual}
-                readOnly="true"
+                readOnly={true}
               />
             </div>
             <div className='grid grid-cols-3 gap-4 py-2.5'>
@@ -101,7 +101,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 className="underline-form"
                 label="prepSchedule"
                 defaultValue={prepSchedule}
-                readOnly="true"
+                readOnly={true}
               />
               <TextInputField
                 tabIndex="-1"
@@ -111,7 +111,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 className="underline-form"
                 label="prepActual"
                 defaultValue={prepActual}
-                readOnly="true"
+                readOnly={true}
               />
             </div>
             <div className='grid grid-cols-3 gap-4 py-2.5'>
@@ -124,7 +124,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 className="underline-form"
                 label="travelSchedule"
                 defaultValue={travelSchedule}
-                readOnly="true"
+                readOnly={true}
               />
               <TextInputField
                 tabIndex="-1"
@@ -134,7 +134,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 className="underline-form"
                 label="travelActual"
                 defaultValue={travelActual}
-                readOnly="true"
+                readOnly={true}
               />
             </div>
             <div className='grid grid-cols-3 gap-4 py-2.5'>
@@ -147,7 +147,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 className="underline-form"
                 label="idleSchedule"
                 defaultValue={idleSchedule}
-                readOnly="true"
+                readOnly={true}
               />
               <TextInputField
                 tabIndex="-1"
@@ -157,7 +157,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 className="underline-form"
                 label="idleActual"
                 defaultValue={idleActual}
-                readOnly="true"
+                readOnly={true}
               />
             </div>
             <div className='grid grid-cols-3 gap-4 py-2.5'>
@@ -170,7 +170,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 className="underline-form"
                 label="holidaySchedule"
                 defaultValue={holidaySchedule}
-                readOnly="true"
+                readOnly={true}
               />
               <TextInputField
                 tabIndex="-1"
@@ -180,7 +180,7 @@ const ActualScheduleForm = ({ className, isReadOnly }) => {
                 className="underline-form"
                 label="holidayActual"
                 defaultValue={holidayActual}
-                readOnly="true"
+                readOnly={true}
               />
             </div>
             <div className='grid grid-cols-3 gap-4 pt-3'>
