@@ -38,7 +38,7 @@ const ProductionReportPage = ({ productionInfo }) => {
       const fetchTodaysReport = async () => {
         try {
           const { todayReportId } = await getTodayReportId(productionInfo.id);
-
+          console.log("bingo")
           let result = null;
 
           if (!todayReportId) {
@@ -66,6 +66,13 @@ const ProductionReportPage = ({ productionInfo }) => {
       window.isEffectExecuted = true;
     }
   }, []);
+
+  // reset the global variable when the page has loaded
+  useEffect(() => {
+    if (!isPageLoading) {
+      window.isEffectExecuted = false;
+    }
+  }, [isPageLoading]);
 
   const pageContainerClasses = isExpanded
     ? ""
