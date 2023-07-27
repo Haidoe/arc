@@ -1,9 +1,16 @@
+// react essentials
 import { useEffect, useState } from "react";
-import BudgetStatusChart from "./Chart";
 import { useRouter } from "next/router";
-import { getProductionFinishRate } from "~/service/dashboard";
-import LoadingSpinner from "~/components/Loading";
 
+// api
+import { getProductionFinishRate } from "~/service/dashboard";
+
+// components
+import LoadingSpinner from "~/components/Loading";
+import BudgetStatusChart from "./Chart";
+import DropDown from "~/components/global/DropDown";
+
+// constants
 const STATUS = {
   good: "The shooting is on track to finish on time.",
   warning: "The shooting's progress is slower than expected.",
@@ -35,10 +42,11 @@ const BudgetStatusContent = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("bingo")
     const fetchData = async () => {
       try {
         const response = await getProductionFinishRate(productionId);
-
+        console.log(response)
         setData(response);
       } catch (error) {
         console.log("Finish rate error >> ", error);
@@ -50,25 +58,39 @@ const BudgetStatusContent = () => {
     fetchData();
   }, []);
 
+  const computeDates = [{name: "Today"}, {name: "Yesterday"}]
+
   return (
-    <div className="flex flex-col gap-4 rounded-[5px] bg-arc">
-      <div className="mt-4 flex justify-center">
-        {isLoading ? (
+    <div className="flex flex-row gap-4 rounded-[5px] bg-arc">
+
+      <div className="left-segement flex-1 flex flex-col gap-9">
+        <p className="mt-4 text-left text-xl text-black">
+          {getStatusMessage(data?.finishRateAvg)}
+        </p>
+
+        <div className="flex flex-col items-left">
+          <p>Production Progress by</p>
+          {/* Dropdown list */}
+          <DropDown
+            people={computeDates}
+            selected={{ name: "Today" }}
+            width="medium"
+          />
+        </div>
+      </div>
+
+      <div className="right-segment flex-1">
+
+      {isLoading ? (
           <LoadingDiv />
         ) : (
-          <div className="min-w-[150px] max-w-[200px]">
+          <div className="min-w-[150px] flex justify-center max-w-[200px]">
             <BudgetStatusChart details={data} />
           </div>
         )}
-      </div>
 
-      {data?.finishRateAvg ? (
-        <p className="mt-4 text-center text-xs text-black">
-          {getStatusMessage(data.finishRateAvg)}
-        </p>
-      ) : (
-        ""
-      )}
+      </div>
+      
     </div>
   );
 };

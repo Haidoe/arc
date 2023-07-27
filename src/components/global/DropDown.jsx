@@ -4,7 +4,14 @@ import Image from "next/image";
 import Chevron from "~/assets/icons/ChevronGray.svg";
 
 export default function DropDown({ people, selected, setSelected, width, isReadOnly, bgColor = "bg-arc" }) {
-  const widthClass = width == "small" ? "w-[5.5rem]" : "";
+
+  
+  let widthClass = "";
+  if (width == "small") {
+    widthClass = "w-[5.5rem]";
+  } else if (width == "medium") {
+    widthClass = "w-[8rem]";
+  }
 
   return (
     <div className={widthClass}>
