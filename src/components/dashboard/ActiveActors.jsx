@@ -53,6 +53,10 @@ const ActiveActors = ({}) => {
       result_today.activeActors
     ))
 
+    console.log(result_yesterday.activeActors,
+      result_today.activeActors)
+
+
     setActiveActors(result_today.activeActors);
     setPercentageChange(
       computePercentage(

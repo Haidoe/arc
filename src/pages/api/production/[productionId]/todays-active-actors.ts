@@ -9,6 +9,7 @@ type activeActorsQueryType = {
 
 function getStartAndEndDateOfToday(isYesterday: boolean): { startDate: Date; endDate: Date } {
   const today = new Date();
+  if (isYesterday) today.setDate(today.getDate() - 1);
   const startDate = new Date(today);
   startDate.setHours(0, 0, 0, 0);
 
@@ -51,7 +52,7 @@ export default requireAuth(async function handler(
       }
     });
     
-    res.json({ activeActors: activeActorsResult.length, startOfTheDay, endOfTheDay });
+    res.json({ activeActors: activeActorsResult.length });
   } catch (error) {
     res.status(400).json({ message: "Invalid Parameters" });
   }
