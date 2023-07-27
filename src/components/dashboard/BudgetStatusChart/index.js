@@ -58,13 +58,14 @@ const BudgetStatusContent = () => {
     fetchData();
   }, []);
 
-  const computeDates = [{name: "Today"}, {name: "Yesterday"}]
+  const computeDates = [{ name: "Today" }, { name: "Yesterday" }]
+  
 
   return (
-    <div className="flex flex-row gap-4 rounded-[5px] bg-arc">
+    <div className="flex flex-col md:flex-row gap-4 rounded-[5px] flex-wrap bg-arc justify-between items-center">
 
-      <div className="left-segement flex-1 flex flex-col gap-9">
-        <p className="mt-4 text-left text-xl text-black">
+      <div className="left-segement flex-1 flex flex-col gap-9 md:w-[50%]">
+        <p className="mt-4 text-center md:text-left text-xl text-black ">
           {getStatusMessage(data?.finishRateAvg)}
         </p>
 
@@ -79,18 +80,18 @@ const BudgetStatusContent = () => {
         </div>
       </div>
 
-      <div className="right-segment flex-1">
+      <div className="right-segment flex-1 flex flex-col  align-middle gap-9 md:w-[50%]">
 
       {isLoading ? (
           <LoadingDiv />
         ) : (
-          <div className="min-w-[150px] flex justify-center max-w-[200px]">
+          <div className="flex justify-center">
             <BudgetStatusChart details={data} />
           </div>
         )}
 
       </div>
-      
+
     </div>
   );
 };

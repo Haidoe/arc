@@ -3,6 +3,13 @@ import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+// constants
+const CUSTOM_LEGENDS = {
+  Good: "#ACEC8D",
+  Warning: "#EDE67E",
+  Danger: "#CA3E3E"
+};
+
 const BudgetStatusChart = ({ details }) => {
   const projectProgress = Math.floor(details.projectProgress);
   const remainingProgress = 100 - projectProgress;
@@ -10,21 +17,21 @@ const BudgetStatusChart = ({ details }) => {
   const getGradient = (chart) => {
     const {
       ctx,
-      chartArea: { top, bottom, left, right },
+      chartArea: { right },
     } = chart;
 
     // const gradientSegment = ctx.createLinearGradient(180, -50, 0, 20);
     const gradientSegment = ctx.createLinearGradient(right, 0, 0, 0);
 
-    gradientSegment.addColorStop(0.1, "#6A6AC6");
-
     if (details.finishRateAvg <= 80) {
-      gradientSegment.addColorStop(0.5, "#ACEC8D");
+      gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Good);
     } else if (details.finishRateAvg <= 100) {
-      gradientSegment.addColorStop(0.5, "#EDE67E");
+      gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Warning);
     } else {
-      gradientSegment.addColorStop(0.5, "#CA3E3E");
+      gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Danger);
     }
+
+    gradientSegment.addColorStop(0.9, "#6A6AC6");
 
     return gradientSegment;
   };
@@ -51,7 +58,7 @@ const BudgetStatusChart = ({ details }) => {
         },
         borderWidth: 0,
         cutout: "60%",
-        borderRadius: 50,
+        borderRadius: 0,
       },
     ],
   };
@@ -62,8 +69,10 @@ const BudgetStatusChart = ({ details }) => {
         display: false,
       },
     },
+    rotation: -90,
+    circumference: 180,
     layout: {
-      padding: 8,
+      padding: 0,
     },
   };
 
@@ -78,9 +87,9 @@ const BudgetStatusChart = ({ details }) => {
       const innerRadius = chart.getDatasetMeta(0).data[0].innerRadius;
       const outerRadius = chart.getDatasetMeta(0).data[0].outerRadius;
       const width = outerRadius - innerRadius;
-      const angle = Math.PI * 2;
-      ctx.arc(xCoor, yCoor, outerRadius - width / 2, 0, angle * 360, false);
-      ctx.strokeStyle = "#AAA";
+      const angle = Math.PI;
+      ctx.arc(xCoor, yCoor, outerRadius - width / 2, 0, angle, true);
+      ctx.strokeStyle = "#DADAF4";
       ctx.lineWidth = width;
       ctx.stroke();
       ctx.font = "bold 20px Arial";
@@ -92,7 +101,24 @@ const BudgetStatusChart = ({ details }) => {
   };
 
   return (
-    <Doughnut data={data} options={options} plugins={[backgroundCircle]} />
+    <div className="flex-col flex">
+      <Doughnut data={data} options={options} plugins={[backgroundCircle]} />
+
+      <div className="legend-section flex flex-row gap-2 justify-evenly">
+        {/* loop throught custom legends */}
+        {Object.keys(CUSTOM_LEGENDS).map((key, idx) => (
+
+          <div key={idx}  className="flex flex-row items-center gap-2">
+            <div
+              className="w-3 h-3 rounded-full"
+              style={{ backgroundColor: CUSTOM_LEGENDS[key] }}
+            ></div>
+            <p className="text-s">{key}</p>
+          </div>
+          
+        ))}
+      </div>
+    </div>
   );
 };
 
