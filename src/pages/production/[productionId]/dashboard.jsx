@@ -13,6 +13,7 @@ import BudgetStatusChart from "~/components/dashboard/BudgetStatusChart";
 import DropDown from "~/components/global/DropDown";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Sidebar from "~/components/production/Information";
+import Accordion from "~/components/report/Accordion";
 
 dayjs.extend(LocalizedFormat);
 
@@ -68,16 +69,22 @@ const Dashboard = ({ productionInfo }) => {
             <hr className="my-2 border-b border-contrast-light" />
           </div>
 
-          <div className="col-span-full lg:col-span-1">
-            <BudgetStatusChart />
-          </div>
-
-          <div className="col-span-full flex lg:col-span-1">
-            <UnfinishhedSceneSection />
+          <div className="col-span-full">
+            <Accordion title={"Production Progress Chart"} defaultOpen={true}>
+              <BudgetStatusChart />
+            </Accordion>
           </div>
 
           <div className="col-span-full">
-            <SceneChart />
+            <Accordion title={"Scenes Shot Chart"} defaultOpen={true}>
+              <SceneChart />
+            </Accordion>
+          </div>
+
+          <div className="col-span-full">
+            <Accordion title={"Unfinished Scenes"} defaultOpen={true}>
+              <UnfinishhedSceneSection />
+            </Accordion>
           </div>
 
           <div className="col-span-full mt-8 flex justify-end">

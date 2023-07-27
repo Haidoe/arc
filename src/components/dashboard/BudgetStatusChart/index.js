@@ -51,11 +51,7 @@ const BudgetStatusContent = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4 rounded-[5px] bg-arc p-8 ">
-      <h2 className="flex items-end justify-between text-lg font-bold text-primary-base">
-        Production Progress Chart
-      </h2>
-
+    <div className="flex flex-col gap-4 rounded-[5px] bg-arc">
       <div className="mt-4 flex justify-center">
         {isLoading ? (
           <LoadingDiv />

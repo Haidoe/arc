@@ -3,8 +3,6 @@ import React, { useState } from "react";
 // import { useSelector, useDispatch } from "react-redux";
 // import { updateShotScene } from "~/redux/features/ProductionReportSlice";
 
-import { useRouter } from "next/router";
-
 // import percentage indicator
 import PercentageChangeIndication from "~/components/dashboard/PercentageChangeIndication";
 
@@ -49,7 +47,7 @@ const ActiveExtras = ({}) => {
           {/* Display Information */}
           <div className="basis-5/8 flex w-60 flex-grow flex-col">
             <div>
-              <h3 className="text-xl font-bold text-primary-dark">
+              <h3 className="text-xl font-bold text-primary-light">
                 Active Extras
               </h3>
             </div>
@@ -59,7 +57,7 @@ const ActiveExtras = ({}) => {
           </div>
           {/* Display Computed Number */}
           <div className="basis-3/8 flex flex-row">
-            <p className="self-end text-4xl font-bold leading-none text-primary-dark">
+            <p className="self-end text-4xl font-bold leading-none text-primary-light">
               {totalActiveExtras}
             </p>
             <div className="ml-1 mb-[5px] self-end">
