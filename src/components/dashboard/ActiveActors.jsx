@@ -75,7 +75,7 @@ const ActiveActors = ({}) => {
           {/* Display Information */}
           <div className="basis-5/8 flex w-60 flex-grow flex-col">
             <div>
-              <h3 className="text-xl font-bold text-primary-dark">
+              <h3 className="text-xl font-bold text-primary-light">
                 Active Actors
               </h3>
             </div>
@@ -85,7 +85,7 @@ const ActiveActors = ({}) => {
           </div>
           {/* Display Computed Number */}
           <div className="basis-3/8 flex flex-row">
-            <p className="self-end text-4xl font-bold leading-none text-primary-dark">
+            <p className="self-end text-4xl font-bold leading-none text-primary-light">
               {activeActors}
             </p>
             <div className="ml-1 mb-[5px] self-end">

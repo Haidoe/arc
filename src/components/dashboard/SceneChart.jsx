@@ -138,8 +138,7 @@ const SceneChart = () => {
   }, [sceneProgressArray]);
 
   return (
-    <div className="bg-arc rounded p-8">
-      <p className="font-bold text-lg text-primary-base">Scenes Shot Chart</p>
+    <div className="bg-arc rounded">
       <div className="flex justify-center min-h-[300px] max-h-[450px] w-full rounded pb-4">
         {isLoading ? (
           <LoadingDiv />
