@@ -36,7 +36,7 @@ const UnfinishhedSceneSection = ({}) => {
 
       <div className="mt-4 flex flex-1 flex-col justify-center ">
         <div className="flex  flex-col p-6 pb-0 shadow-[inset_0_4px_4px_0_rgba(0,0,0,0.25)]">
-          <div className="flex max-h-[150px] flex-1 flex-col gap-3 overflow-y-auto pb-4">
+          <div className="flex max-h-[250px] flex-1 flex-col gap-3 overflow-y-auto pb-4">
             {data.map((item) => (
               <p key={item.id} className="w-full rounded bg-[#D9D9D9] p-2">
                 <span className="font-bold">{item.title}: </span>

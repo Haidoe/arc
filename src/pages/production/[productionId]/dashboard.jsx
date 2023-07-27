@@ -68,16 +68,16 @@ const Dashboard = ({ productionInfo }) => {
             <hr className="my-2 border-b border-contrast-light" />
           </div>
 
-          <div className="col-span-full lg:col-span-1">
+          <div className="col-span-full">
             <BudgetStatusChart />
-          </div>
-
-          <div className="col-span-full flex lg:col-span-1">
-            <UnfinishhedSceneSection />
           </div>
 
           <div className="col-span-full">
             <SceneChart />
+          </div>
+
+          <div className="col-span-full">
+            <UnfinishhedSceneSection />
           </div>
 
           <div className="col-span-full mt-8 flex justify-end">
