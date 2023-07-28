@@ -11,15 +11,18 @@ import Edit_grey from "~/assets/icons/Edit_grey.svg";
 // import helper functions
 import { ISOToTimeString } from "~/helper/timeInputParser.js";
 
+// information modal
+import InformationModal from "~/components/global/InformationModal";
+
 // ExtrasCastForm Dummy component form
 const ExtrasCastForm = ({ isReadOnly }) => {
-
-
-    // action btns hover states
-    const [isDeleteHover, setIsDeleteHover] = useState(false);
-    const [isEditHover, setIsEditHover] = useState(false);
+  // action btns hover states
+  const [isDeleteHover, setIsDeleteHover] = useState(false);
+  const [isEditHover, setIsEditHover] = useState(false);
   const [hoverIdx, setHoverIdx] = useState(undefined);
-  
+
+  // information modal
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
 
   const extrasCastInfo = [
     {
@@ -46,9 +49,15 @@ const ExtrasCastForm = ({ isReadOnly }) => {
     },
   ];
 
-
   return (
     <>
+      {isInfoModalOpen && (
+        <InformationModal
+          heading={"Future Component"}
+          message={"This feature will be live in the coming future"}
+          closeModalHandler={() => setIsInfoModalOpen(false)}
+        />
+      )}
       {
         <div>
           <div className="flow-root">
@@ -140,6 +149,7 @@ const ExtrasCastForm = ({ isReadOnly }) => {
                                       }}
                                       src={Edit}
                                       alt="Delete icon"
+                                      onClick={() => setIsInfoModalOpen(true)}
                                     />
                                   ) : (
                                     <Image
@@ -150,6 +160,7 @@ const ExtrasCastForm = ({ isReadOnly }) => {
                                       }}
                                       src={Edit_grey}
                                       alt="Edit icon"
+                                      onClick={() => setIsInfoModalOpen(true)}
                                     />
                                   )}
 
@@ -162,6 +173,7 @@ const ExtrasCastForm = ({ isReadOnly }) => {
                                   {isDeleteHover && hoverIdx == idx ? (
                                     <Image
                                       className={`delete-row-btn hover:cursor-pointer`}
+                                      onClick={() => setIsInfoModalOpen(true)}
                                       onMouseLeave={() => {
                                         setIsDeleteHover(false);
                                         setHoverIdx(undefined);
@@ -172,6 +184,7 @@ const ExtrasCastForm = ({ isReadOnly }) => {
                                   ) : (
                                     <Image
                                       className={`delete-row-btn hover:cursor-pointer`}
+                                      onClick={() => setIsInfoModalOpen(true)}
                                       onMouseEnter={() => {
                                         setIsDeleteHover(true);
                                         setHoverIdx(idx);
@@ -209,6 +222,7 @@ const ExtrasCastForm = ({ isReadOnly }) => {
                 <Button
                   buttonType="Secondary"
                   className="border-2 px-4 py-2 font-bold lg:px-8 lg:py-3"
+                  onClick={() => setIsInfoModalOpen(true)}
                 >
                   Create New Line
                 </Button>

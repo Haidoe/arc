@@ -8,6 +8,9 @@ import Delete_grey from "~/assets/icons/Delete_grey.svg";
 import Edit from "~/assets/icons/Edit.svg";
 import Edit_grey from "~/assets/icons/Edit_grey.svg";
 
+// information modal
+import InformationModal from "~/components/global/InformationModal";
+
 // import helper functions
 import {
   ISOToDateVancouverString,
@@ -16,6 +19,9 @@ import {
 
 // NotShotForm Dummy component form
 const NotShotForm = ({ isReadOnly }) => {
+  // information modal
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+
   const notShotInfo = [
     {
       date: "2023-07-02T22:00:00.000Z",
@@ -41,6 +47,13 @@ const NotShotForm = ({ isReadOnly }) => {
 
   return (
     <>
+      {isInfoModalOpen && (
+        <InformationModal
+          heading={"Future Component"}
+          message={"This feature will be live in the coming future"}
+          closeModalHandler={() => setIsInfoModalOpen(false)}
+        />
+      )}
       {
         <div>
           <div className="flow-root">
@@ -110,6 +123,7 @@ const NotShotForm = ({ isReadOnly }) => {
                                   {isEditHover && hoverIdx == idx ? (
                                     <Image
                                       className={`edit-row-btn hover:cursor-pointer`}
+                                      onClick={() => setIsInfoModalOpen(true)}
                                       onMouseLeave={() => {
                                         setIsEditHover(false);
                                         setHoverIdx(undefined);
@@ -120,6 +134,7 @@ const NotShotForm = ({ isReadOnly }) => {
                                   ) : (
                                     <Image
                                       className={`edit-row-btn hover:cursor-pointer`}
+                                      onClick={() => setIsInfoModalOpen(true)}
                                       onMouseEnter={(e) => {
                                         setIsEditHover(true);
                                         setHoverIdx(idx);
@@ -138,6 +153,7 @@ const NotShotForm = ({ isReadOnly }) => {
                                   {isDeleteHover && hoverIdx == idx ? (
                                     <Image
                                       className={`delete-row-btn hover:cursor-pointer`}
+                                      onClick={() => setIsInfoModalOpen(true)}
                                       onMouseLeave={() => {
                                         setIsDeleteHover(false);
                                         setHoverIdx(undefined);
@@ -148,6 +164,7 @@ const NotShotForm = ({ isReadOnly }) => {
                                   ) : (
                                     <Image
                                       className={`delete-row-btn hover:cursor-pointer`}
+                                      onClick={() => setIsInfoModalOpen(true)}
                                       onMouseEnter={() => {
                                         setIsDeleteHover(true);
                                         setHoverIdx(idx);
@@ -186,6 +203,7 @@ const NotShotForm = ({ isReadOnly }) => {
                 <Button
                   buttonType="Secondary"
                   className="border-2 px-4 py-2 font-bold lg:px-8 lg:py-3"
+                  onClick={() => setIsInfoModalOpen(true)}
                 >
                   Create New Line
                 </Button>
