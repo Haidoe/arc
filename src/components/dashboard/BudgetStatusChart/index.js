@@ -64,9 +64,19 @@ function getDatesFromSpecificDateToEnd(startDateStr) {
 
 function datesInDropDownFormat(datesArray) {
   const dropdownformat = datesArray.map((date, idx) => {
-    return { name: date.toLocaleDateString(), offset: idx };
+    return { name: date.toLocaleDateString(), offset: idx + 1 };
   });
-  return dropdownformat;
+
+  console.clear();
+  const includeToday = [
+    {
+      name: new Date().toLocaleDateString(),
+      offset: 0,
+    },
+    ...dropdownformat,
+  ];
+
+  return includeToday;
 }
 
 const BudgetStatusContent = () => {
@@ -77,6 +87,7 @@ const BudgetStatusContent = () => {
   const [isLoading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState({
     name: new Date().toLocaleDateString(),
+    offset: 0,
   });
   const [dropdownDates, setDropdownDates] = useState([selectedDate]);
 
@@ -92,6 +103,7 @@ const BudgetStatusContent = () => {
       const startDate = response.startDate;
       const allDatesArray = getDatesFromSpecificDateToEnd(startDate);
       const dropdownDatesArray = datesInDropDownFormat(allDatesArray);
+      console.log(dropdownDatesArray);
       setDropdownDates(dropdownDatesArray);
     } catch (error) {
       console.log("Finish rate error >> ", error);
