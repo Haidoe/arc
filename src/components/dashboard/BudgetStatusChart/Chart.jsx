@@ -1,4 +1,5 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useEffect, useRef } from "react";
 import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -7,10 +8,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const CUSTOM_LEGENDS = {
   Good: "#ACEC8D",
   Warning: "#EDE67E",
-  Danger: "#CA3E3E"
+  Danger: "#CA3E3E",
 };
 
 const BudgetStatusChart = ({ details }) => {
+  const chartRef = useRef(null);
 
   // display consumed hours
   const consumedHours = `${details.totalHoursUsed}/${details.totalHours} hours`;
@@ -80,6 +82,11 @@ const BudgetStatusChart = ({ details }) => {
     },
   };
 
+  useEffect(() => {
+    // ChartJS.pluginService.register(backgroundCircle);
+    console.log(chartRef.current.update());
+  });
+
   const backgroundCircle = {
     id: "budgetStatusBgCircle",
     beforeDatasetsDraw(chart, args, options) {
@@ -102,30 +109,32 @@ const BudgetStatusChart = ({ details }) => {
       ctx.fillStyle = "#495367";
       // fill percentage text in center
       ctx.fillText(`${projectProgress}%`, xCoor, yCoor - 35);
-      
+
       ctx.font = "16px Arial";
       ctx.fillStyle = "#696969";
       ctx.fillText(`${consumedHours}`, xCoor, yCoor - 5);
     },
-
   };
 
   return (
-    <div className="flex-col flex relative">
-      <Doughnut data={data} options={options} plugins={[backgroundCircle]} />
+    <div className="relative flex flex-col">
+      <Doughnut
+        ref={chartRef}
+        data={data}
+        options={options}
+        plugins={[backgroundCircle]}
+      />
 
-      <div className="legend-section absolute bottom-6 z-20 flex flex-row gap-2 w-[300px] justify-center">
+      <div className="legend-section z-5 absolute bottom-6 flex w-[300px] flex-row justify-center gap-2">
         {/* loop throught custom legends */}
         {Object.keys(CUSTOM_LEGENDS).map((key, idx) => (
-
-          <div key={idx}  className="flex flex-row items-center gap-2">
+          <div key={idx} className="flex flex-row items-center gap-2">
             <div
-              className="w-3 h-3 rounded-full"
+              className="h-3 w-3 rounded-full"
               style={{ backgroundColor: CUSTOM_LEGENDS[key] }}
             ></div>
             <p className="text-s">{key}</p>
           </div>
-          
         ))}
       </div>
     </div>
