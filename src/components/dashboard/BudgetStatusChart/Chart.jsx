@@ -11,6 +11,10 @@ const CUSTOM_LEGENDS = {
 };
 
 const BudgetStatusChart = ({ details }) => {
+
+  // display consumed hours
+  const consumedHours = `${details.totalHoursUsed}/${details.totalHours} hours`;
+
   const projectProgress = Math.floor(details.projectProgress);
   const remainingProgress = 100 - projectProgress;
 
@@ -31,7 +35,7 @@ const BudgetStatusChart = ({ details }) => {
       gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Danger);
     }
 
-    gradientSegment.addColorStop(0.9, "#6A6AC6");
+    gradientSegment.addColorStop(0.1, "#6A6AC6");
 
     return gradientSegment;
   };
@@ -40,7 +44,7 @@ const BudgetStatusChart = ({ details }) => {
     labels: ["Progress of the production", "Remaining progress"],
     datasets: [
       {
-        label: "",
+        label: "Percentage:",
         data: [projectProgress, remainingProgress],
 
         backgroundColor: (context) => {
@@ -57,7 +61,7 @@ const BudgetStatusChart = ({ details }) => {
           return "transparent";
         },
         borderWidth: 0,
-        cutout: "60%",
+        cutout: "80%",
         borderRadius: 0,
       },
     ],
@@ -92,19 +96,25 @@ const BudgetStatusChart = ({ details }) => {
       ctx.strokeStyle = "#DADAF4";
       ctx.lineWidth = width;
       ctx.stroke();
-      ctx.font = "bold 20px Arial";
+      ctx.font = "bold 30px Arial";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillStyle = "#000";
-      ctx.fillText(`${projectProgress} %`, xCoor, yCoor);
+      ctx.fillStyle = "#495367";
+      // fill percentage text in center
+      ctx.fillText(`${projectProgress}%`, xCoor, yCoor - 35);
+      
+      ctx.font = "16px Arial";
+      ctx.fillStyle = "#696969";
+      ctx.fillText(`${consumedHours}`, xCoor, yCoor - 5);
     },
+
   };
 
   return (
-    <div className="flex-col flex">
+    <div className="flex-col flex relative">
       <Doughnut data={data} options={options} plugins={[backgroundCircle]} />
 
-      <div className="legend-section flex flex-row gap-2 justify-evenly">
+      <div className="legend-section absolute bottom-6 z-20 flex flex-row gap-2 w-[300px] justify-center">
         {/* loop throught custom legends */}
         {Object.keys(CUSTOM_LEGENDS).map((key, idx) => (
 
