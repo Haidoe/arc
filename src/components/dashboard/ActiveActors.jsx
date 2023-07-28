@@ -1,5 +1,5 @@
 // // react imports
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { useSelector, useDispatch } from "react-redux";
 // import { updateShotScene } from "~/redux/features/ProductionReportSlice";
 
@@ -66,7 +66,11 @@ const ActiveActors = ({}) => {
     );
   };
 
-  getTodayActiveActors();
+
+
+  useEffect(() => {
+    getTodayActiveActors();
+  }, []);
 
   return (
     <>

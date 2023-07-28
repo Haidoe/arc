@@ -1,30 +1,43 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useEffect, useRef } from "react";
 import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+// constants
+const CUSTOM_LEGENDS = {
+  Good: "#ACEC8D",
+  Warning: "#EDE67E",
+  Danger: "#CA3E3E",
+};
+
 const BudgetStatusChart = ({ details }) => {
+  const chartRef = useRef(null);
+
+  // display consumed hours
+  const consumedHours = `${details.totalHoursUsed}/${details.totalHours} hours`;
+
   const projectProgress = Math.floor(details.projectProgress);
   const remainingProgress = 100 - projectProgress;
 
   const getGradient = (chart) => {
     const {
       ctx,
-      chartArea: { top, bottom, left, right },
+      chartArea: { right },
     } = chart;
 
     // const gradientSegment = ctx.createLinearGradient(180, -50, 0, 20);
     const gradientSegment = ctx.createLinearGradient(right, 0, 0, 0);
 
-    gradientSegment.addColorStop(0.1, "#6A6AC6");
-
     if (details.finishRateAvg <= 80) {
-      gradientSegment.addColorStop(0.5, "#ACEC8D");
+      gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Good);
     } else if (details.finishRateAvg <= 100) {
-      gradientSegment.addColorStop(0.5, "#EDE67E");
+      gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Warning);
     } else {
-      gradientSegment.addColorStop(0.5, "#CA3E3E");
+      gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Danger);
     }
+
+    gradientSegment.addColorStop(0.1, "#6A6AC6");
 
     return gradientSegment;
   };
@@ -33,7 +46,7 @@ const BudgetStatusChart = ({ details }) => {
     labels: ["Progress of the production", "Remaining progress"],
     datasets: [
       {
-        label: "",
+        label: "Percentage:",
         data: [projectProgress, remainingProgress],
 
         backgroundColor: (context) => {
@@ -50,8 +63,8 @@ const BudgetStatusChart = ({ details }) => {
           return "transparent";
         },
         borderWidth: 0,
-        cutout: "60%",
-        borderRadius: 50,
+        cutout: "80%",
+        borderRadius: 0,
       },
     ],
   };
@@ -62,10 +75,17 @@ const BudgetStatusChart = ({ details }) => {
         display: false,
       },
     },
+    rotation: -90,
+    circumference: 180,
     layout: {
-      padding: 8,
+      padding: 0,
     },
   };
+
+  useEffect(() => {
+    // ChartJS.pluginService.register(backgroundCircle);
+    console.log(chartRef.current.update());
+  });
 
   const backgroundCircle = {
     id: "budgetStatusBgCircle",
@@ -78,21 +98,46 @@ const BudgetStatusChart = ({ details }) => {
       const innerRadius = chart.getDatasetMeta(0).data[0].innerRadius;
       const outerRadius = chart.getDatasetMeta(0).data[0].outerRadius;
       const width = outerRadius - innerRadius;
-      const angle = Math.PI * 2;
-      ctx.arc(xCoor, yCoor, outerRadius - width / 2, 0, angle * 360, false);
-      ctx.strokeStyle = "#AAA";
+      const angle = Math.PI;
+      ctx.arc(xCoor, yCoor, outerRadius - width / 2, 0, angle, true);
+      ctx.strokeStyle = "#DADAF4";
       ctx.lineWidth = width;
       ctx.stroke();
-      ctx.font = "bold 20px Arial";
+      ctx.font = "bold 30px Arial";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillStyle = "#000";
-      ctx.fillText(`${projectProgress} %`, xCoor, yCoor);
+      ctx.fillStyle = "#495367";
+      // fill percentage text in center
+      ctx.fillText(`${projectProgress}%`, xCoor, yCoor - 35);
+
+      ctx.font = "16px Arial";
+      ctx.fillStyle = "#696969";
+      ctx.fillText(`${consumedHours}`, xCoor, yCoor - 5);
     },
   };
 
   return (
-    <Doughnut data={data} options={options} plugins={[backgroundCircle]} />
+    <div className="relative flex flex-col">
+      <Doughnut
+        ref={chartRef}
+        data={data}
+        options={options}
+        plugins={[backgroundCircle]}
+      />
+
+      <div className="legend-section z-5 absolute bottom-6 flex w-[300px] flex-row justify-center gap-2">
+        {/* loop throught custom legends */}
+        {Object.keys(CUSTOM_LEGENDS).map((key, idx) => (
+          <div key={idx} className="flex flex-row items-center gap-2">
+            <div
+              className="h-3 w-3 rounded-full"
+              style={{ backgroundColor: CUSTOM_LEGENDS[key] }}
+            ></div>
+            <p className="text-s">{key}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
