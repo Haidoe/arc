@@ -35,7 +35,11 @@ const Accordion = ({
   }
 
   function handleDisclosureHeaderClick(event) {
-    event.preventDefault();
+    if (event.target.className.includes("chevron-accordion-toggle")) {
+      console.log('clicked toggle')
+    } else {
+      event.preventDefault();
+    }
   }
 
   return (
@@ -50,19 +54,21 @@ const Accordion = ({
               <Disclosure.Button
                 onKeyDown={handleDisclosureKeyDown}
                 onClick={handleDisclosureHeaderClick}
-                className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left text-[16px] font-bold text-arc focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 ${insideModal ? "cursor-default" : "pointer-events-none"
+                className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left text-[16px] font-bold text-arc focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 ${insideModal ? "cursor-default" : "cursor-default md:pointer-events-none"
                   } `}
               >
                 <span>{title || "Accordion Title"}</span>
 
                 <div className="items-center sm:flex">
                   {/* Logo */}
-                  {/* <Image
-                    className={`${open ? "rotate-180 transform" : ""
-                      } h-6 w-6 text-arc`}
+                  
+                  {!insideModal && (<Image
+                    className={`${open ? "transform" : "transform rotate-180"
+                      } h-6 w-6 text-arc md:hidden cursor-pointer chevron-accordion-toggle`}
                     src={Chevron}
                     alt="Logo"
-                  /> */}
+                  />)}
+
                   {insideModal && (
                     <Image
                       className={`cursor-pointer mt-1 h-4 w-4 text-arc`}
