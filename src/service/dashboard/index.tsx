@@ -6,9 +6,10 @@ import type {
 import getURL from "~/helper/helper";
 
 export const getProductionFinishRate = async (
-  productionId: string
+  productionId: string,
+  uptoISO: string
 ): Promise<FinishRateResponse> => {
-  const url = getURL(`/api/production/${productionId}/finish-rate`);
+  const url = getURL(`/api/production/${productionId}/finish-rate?upto=${uptoISO}`);
 
   const response = await fetch(url);
 
