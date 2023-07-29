@@ -12,7 +12,7 @@ export default requireAuth(async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  const { productionId } = req.query as { productionId: string };
+  const { productionId, upto } = req.query as { productionId: string, upto: string };
 
   //I have to get the userId to make sure that the user is part of the production
   const { userId } = getAuth(req);
@@ -22,10 +22,16 @@ export default requireAuth(async function handler(
     const result = await prisma.production.findFirstOrThrow({
       where: {
         id: productionId,
-        producerId: userId ?? "",
+        producerId: userId ?? ""
       },
       include: {
-        report: true,
+        report: {
+          where: {
+            created: {
+              lte: upto
+            }
+          }
+        },
       },
     });
 
@@ -53,7 +59,7 @@ export default requireAuth(async function handler(
       }
     );
 
-    const totalHours = reports.reduce((a, b) => a + b, 0);
+    const totalHoursUsed = reports.reduce((a, b) => a + b, 0);
 
     //Removing with no valid reports
     const reportsFiltered = reports.filter((report: number) => report !== 0);
@@ -80,7 +86,8 @@ export default requireAuth(async function handler(
       totalDays,
       projectProgress: parseFloat(rate.toFixed(2)),
       finishRateAvg: finishRateAvg2Decimals,
-      totalHours,
+      totalHoursUsed,
+      totalHours: totalDays * WORKING_HOURS_PER_DAY,
     });
   } catch (error) {
     res.status(400).json({ message: "Invalid Parameters" });

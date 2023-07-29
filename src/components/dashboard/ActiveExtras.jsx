@@ -3,8 +3,6 @@ import React, { useState } from "react";
 // import { useSelector, useDispatch } from "react-redux";
 // import { updateShotScene } from "~/redux/features/ProductionReportSlice";
 
-import { useRouter } from "next/router";
-
 // import percentage indicator
 import PercentageChangeIndication from "~/components/dashboard/PercentageChangeIndication";
 
@@ -12,28 +10,28 @@ import PercentageChangeIndication from "~/components/dashboard/PercentageChangeI
 const ActiveExtras = ({}) => {
   
   const extrasCastInfo = [
-    {
-      qty: 3,
-      name: "Poor New Yorkers in slum",
-      notes: "All returning tomorrow",
-      schedule: {
-        in: "2023-07-02T22:00:00.000Z",
-        out: "2023-07-02T22:00:00.000Z",
-        meal: "2023-07-02T22:00:00.000Z",
-        rate: 100,
-      },
-    },
-    {
-      qty: 2,
-      name: "Bodyguards of the Senetor Pablo",
-      notes: "Required in 5 scenes",
-      schedule: {
-        in: "2023-07-02T22:00:00.000Z",
-        out: "2023-07-02T22:00:00.000Z",
-        meal: "2023-07-02T22:00:00.000Z",
-        rate: 150,
-      },
-    },
+    // {
+    //   qty: 3,
+    //   name: "Poor New Yorkers in slum",
+    //   notes: "All returning tomorrow",
+    //   schedule: {
+    //     in: "2023-07-02T22:00:00.000Z",
+    //     out: "2023-07-02T22:00:00.000Z",
+    //     meal: "2023-07-02T22:00:00.000Z",
+    //     rate: 100,
+    //   },
+    // },
+    // {
+    //   qty: 2,
+    //   name: "Bodyguards of the Senetor Pablo",
+    //   notes: "Required in 5 scenes",
+    //   schedule: {
+    //     in: "2023-07-02T22:00:00.000Z",
+    //     out: "2023-07-02T22:00:00.000Z",
+    //     meal: "2023-07-02T22:00:00.000Z",
+    //     rate: 150,
+    //   },
+    // },
   ];
 
   const totalActiveExtras = extrasCastInfo.reduce((acc, val) => {
@@ -49,7 +47,7 @@ const ActiveExtras = ({}) => {
           {/* Display Information */}
           <div className="basis-5/8 flex w-60 flex-grow flex-col">
             <div>
-              <h3 className="text-xl font-bold text-primary-dark">
+              <h3 className="text-xl font-bold text-primary-light">
                 Active Extras
               </h3>
             </div>
@@ -59,12 +57,12 @@ const ActiveExtras = ({}) => {
           </div>
           {/* Display Computed Number */}
           <div className="basis-3/8 flex flex-row">
-            <p className="self-end text-4xl font-bold leading-none text-primary-dark">
+            <p className="self-end text-4xl font-bold leading-none text-primary-light">
               {totalActiveExtras}
             </p>
             <div className="ml-1 mb-[5px] self-end">
               <PercentageChangeIndication
-                change={100}
+                change={0}
               />
             </div>
           </div>

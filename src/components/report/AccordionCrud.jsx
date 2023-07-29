@@ -15,6 +15,15 @@ const AccordionCrud = ({ title, children, defaultOpen }) => {
     }
   }
 
+
+  function handleDisclosureHeaderClick(event) {
+    if (event.target.className.includes("chevron-accordion-toggle")) {
+      console.log('clicked toggle')
+    } else {
+      event.preventDefault();
+    }
+  }
+
   return (
     <div className="w-full">
       <div className={`mx-auto w-full rounded-2xl`}>
@@ -23,15 +32,16 @@ const AccordionCrud = ({ title, children, defaultOpen }) => {
             <>
               <Disclosure.Button
                 onKeyDown={handleDisclosureKeyDown}
-                className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left  font-medium text-arc hover:bg-primary-base focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75`}
+                onClick={handleDisclosureHeaderClick}
+                className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left  font-medium text-arc focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 cursor-default`}
               >
                 <span>{title || "Accordion Title"}</span>
 
                 <div className="items-center sm:flex">
                   {/* Logo */}
                   <Image
-                    className={`${open ? "rotate-0 transform" : ""
-                      } h-6 w-6 text-arc`}
+                    className={`${open ? "transform" : "trasnform rotate-180"
+                      } h-6 w-6 text-arc md:hidden cursor-pointer chevron-accordion-toggle`}
                     src={Chevron}
                     alt="Logo"
                   />

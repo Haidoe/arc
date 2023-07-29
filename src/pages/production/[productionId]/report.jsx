@@ -27,12 +27,27 @@ import ExtrasCastForm from "~/components/report/ExtrasCastForm.jsx";
 import ShareReportButton from "~/components/report/ShareReport";
 import { LoadingPage } from "~/components/Loading";
 
+// store and get expanded value from local storage
+
+function getExpandedValue() {
+  if(typeof window === 'undefined') return true;
+  if (localStorage.getItem("isExpanded") == null) {
+    return true;
+  } else {
+    return JSON.parse(localStorage.getItem("isExpanded"));
+  }
+}
+
+function setExpandedValue(value) {
+  localStorage.setItem("isExpanded", JSON.stringify(value));
+}
+
 const ProductionReportPage = ({ productionInfo }) => {
   const fetchReportRef = useRef(true);
 
   const dispatch = useDispatch();
   const [isPageLoading, setIsPageLoading] = useState(true);
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(getExpandedValue());
 
   useEffect(() => {
     // add a global variable to check if the effect is executed once
@@ -91,7 +106,10 @@ const ProductionReportPage = ({ productionInfo }) => {
 
           <button
             className="absolute right-[-.75rem] top-[8px] h-[28px] w-[28px] rounded-full bg-arc text-primary-dark shadow-3xl"
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={() => {
+              setExpandedValue(!isExpanded);
+              setIsExpanded(!isExpanded);
+            }}
           >
             {isExpanded ? `<` : `>`}
             <span className="sr-only">
