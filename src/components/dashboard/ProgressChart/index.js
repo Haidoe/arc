@@ -7,10 +7,9 @@ import { getProductionFinishRate } from "~/service/dashboard";
 
 // components
 import LoadingSpinner from "~/components/Loading";
-import BudgetStatusChart from "./Chart";
+import ProgressChart from "./Chart";
 import DropDown from "~/components/global/DropDown";
 import Calendar from "~/assets/icons/Calendar.svg";
-import { set } from "zod";
 
 // constants
 const STATUS = {
@@ -79,7 +78,7 @@ function datesInDropDownFormat(datesArray) {
   return includeToday;
 }
 
-const BudgetStatusContent = () => {
+const ProgressSection = () => {
   const router = useRouter();
   const { productionId } = router.query;
 
@@ -127,26 +126,34 @@ const BudgetStatusContent = () => {
   }, []);
 
   return (
-    <div className="flex flex-col flex-wrap items-center justify-between gap-4 rounded-[5px] bg-arc md:flex-row">
-      <div className="left-segement flex flex-1 flex-col gap-9 md:w-[50%]">
-        <p className="mt-4 text-center text-xl text-black md:text-left ">
+    <div className="flex flex-col gap-4 rounded-[5px] bg-arc md:flex-row">
+      <div className="flex flex-1 flex-col gap-9">
+        <p className="flex flex-1 items-center text-center text-xl text-black lg:text-left  ">
           {getStatusMessage(data?.finishRateAvg)}
         </p>
 
-        <div className="items-left flex flex-col">
+        <div className="items-left mb-4 flex flex-col">
           <p>Production Progress by</p>
 
-          <div className="flex flex-row">
-            <Image src={Calendar} alt="calendar" />
-            {/* Dropdown list */}
-            <DropDown
-              people={dropdownDates}
-              selected={selectedDate}
-              setSelected={(z) => {
-                recomputeGraph(z);
-              }}
-              width="medium"
+          <div className="relative ml-[-8px]">
+            <Image
+              src={Calendar}
+              alt="calendar"
+              height={36}
+              className="absolute bottom-0 left-2 z-10"
             />
+            {/* Dropdown list */}
+            <div className="ml-8">
+              <DropDown
+                people={dropdownDates}
+                selected={selectedDate}
+                setSelected={(z) => {
+                  recomputeGraph(z);
+                }}
+                inputClassName="pl-2"
+                width="medium"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -156,7 +163,7 @@ const BudgetStatusContent = () => {
           <LoadingDiv />
         ) : (
           <div className="flex justify-center">
-            <BudgetStatusChart details={data} />
+            <ProgressChart details={data} />
           </div>
         )}
       </div>
@@ -164,4 +171,4 @@ const BudgetStatusContent = () => {
   );
 };
 
-export default BudgetStatusContent;
+export default ProgressSection;

@@ -63,13 +63,14 @@ const BudgetStatusChart = ({ details }) => {
           return "transparent";
         },
         borderWidth: 0,
-        cutout: "80%",
+        cutout: "85%",
         borderRadius: 0,
       },
     ],
   };
 
   const options = {
+    aspectRatio: 2,
     plugins: {
       legend: {
         display: false,
@@ -77,9 +78,6 @@ const BudgetStatusChart = ({ details }) => {
     },
     rotation: -90,
     circumference: 180,
-    layout: {
-      padding: 0,
-    },
   };
 
   useEffect(() => {
@@ -117,15 +115,17 @@ const BudgetStatusChart = ({ details }) => {
   };
 
   return (
-    <div className="relative flex flex-col">
-      <Doughnut
-        ref={chartRef}
-        data={data}
-        options={options}
-        plugins={[backgroundCircle]}
-      />
+    <div className="flex w-full flex-col items-center justify-center">
+      <div className="relative w-[80%]">
+        <Doughnut
+          ref={chartRef}
+          data={data}
+          options={options}
+          plugins={[backgroundCircle]}
+        />
+      </div>
 
-      <div className="legend-section z-5 absolute bottom-6 flex w-[300px] flex-row justify-center gap-2">
+      <div className="mt-4 flex justify-center gap-4 py-8">
         {/* loop throught custom legends */}
         {Object.keys(CUSTOM_LEGENDS).map((key, idx) => (
           <div key={idx} className="flex flex-row items-center gap-2">

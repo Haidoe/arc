@@ -9,7 +9,7 @@ import Head from "next/head";
 import UnfinishhedSceneSection from "~/components/dashboard/UnfinishedSceneSection";
 import Button from "~/components/Button";
 import SceneChart from "~/components/dashboard/SceneChart";
-import BudgetStatusChart from "~/components/dashboard/BudgetStatusChart";
+import ProgressChart from "~/components/dashboard/ProgressChart";
 import DropDown from "~/components/global/DropDown";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Sidebar from "~/components/production/Information";
@@ -71,7 +71,7 @@ const Dashboard = ({ productionInfo }) => {
 
           <div className="col-span-full">
             <Accordion title={"Production Progress Chart"} defaultOpen={true}>
-              <BudgetStatusChart />
+              <ProgressChart />
             </Accordion>
           </div>
 
