@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "~/redux/store";
 import Head from "next/head";
 import { Ubuntu } from "next/font/google";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const ubuntu = Ubuntu({
   weight: ["400", "700"],
@@ -39,9 +40,11 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         }
       `}</style>
 
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+      <QueryClientProvider client={new QueryClient()}>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </QueryClientProvider>
     </ClerkProvider>
   );
 };
