@@ -14,25 +14,39 @@ import DropDown from "~/components/global/DropDown";
 import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Sidebar from "~/components/production/Information";
 import Accordion from "~/components/report/Accordion";
+import { useRouter } from "next/router";
+import { LoadingPage } from "~/components/Loading";
+import { useQuery } from "@tanstack/react-query";
 
 dayjs.extend(LocalizedFormat);
 
-const Dashboard = ({ productionInfo }) => {
+const Dashboard = () => {
+  const { query } = useRouter();
+  const { productionId } = query;
+
+  const production = useQuery({
+    queryKey: ["production", productionId],
+    enabled: !!productionId,
+    queryFn: () => getProductionInfoById(productionId),
+  });
+
   const today = dayjs().format("LL");
+
+  if (production.isLoading) return <LoadingPage />;
 
   return (
     <MainPageLayout>
       <Head>
-        <title> {productionInfo.title} | Dashboard | Arc </title>
+        <title> {production.data.title} | Dashboard | Arc </title>
       </Head>
 
       <div className="flex flex-1 flex-col bg-backgroundArc lg:flex-row">
         <aside className="hidden flex-shrink-0 flex-col bg-arc sm:basis-[384px] lg:flex">
-          <Sidebar data={productionInfo} theme="primary" />
+          <Sidebar data={production.data} theme="primary" />
         </aside>
 
         <aside className="flex bg-arc p-4 py-4 shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] lg:hidden">
-          <Sidebar data={productionInfo} isMobile />
+          <Sidebar data={production.data} isMobile />
         </aside>
 
         <div className="grid flex-1 grid-cols-2 content-start gap-6 px-4 py-4 lg:px-8">
@@ -88,32 +102,12 @@ const Dashboard = ({ productionInfo }) => {
           </div>
 
           <div className="col-span-full mt-8 flex justify-end">
-            <Button className="min-w-[240px] text-xs"> Download Report </Button>
+            <Button className="min-w-[240px] text-xs">Download Report</Button>
           </div>
         </div>
       </div>
     </MainPageLayout>
   );
-};
-
-export const getServerSideProps = async (ctx) => {
-  try {
-    const productionInfo = await getProductionInfoById(ctx.query.productionId);
-
-    return {
-      props: {
-        productionInfo,
-      },
-    };
-  } catch (error) {
-    //Redirect if the productionId is not valid
-    return {
-      redirect: {
-        destination: "/home",
-        permanent: false,
-      },
-    };
-  }
 };
 
 export default Dashboard;

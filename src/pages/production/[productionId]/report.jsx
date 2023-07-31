@@ -54,7 +54,7 @@ const ProductionReportPage = ({ productionId }) => {
   const [isExpanded, setIsExpanded] = useState(getExpandedValue());
 
   const production = useQuery({
-    queryKey: ["prod", productionId],
+    queryKey: ["production", productionId],
     queryFn: () => getProductionInfoById(productionId),
   });
 
