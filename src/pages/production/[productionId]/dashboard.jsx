@@ -11,7 +11,6 @@ import Button from "~/components/Button";
 import SceneChart from "~/components/dashboard/SceneChart";
 import ProgressChart from "~/components/dashboard/ProgressChart";
 import DropDown from "~/components/global/DropDown";
-import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Sidebar from "~/components/production/Information";
 import Accordion from "~/components/report/Accordion";
 import { useRouter } from "next/router";
@@ -35,7 +34,7 @@ const Dashboard = () => {
   if (production.isLoading) return <LoadingPage />;
 
   return (
-    <MainPageLayout>
+    <>
       <Head>
         <title> {production.data.title} | Dashboard | Arc </title>
       </Head>
@@ -106,7 +105,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-    </MainPageLayout>
+    </>
   );
 };
 

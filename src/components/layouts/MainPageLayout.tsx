@@ -3,9 +3,9 @@ import type { FC, ReactNode } from "react";
 import Header from "~/components/global/Header.jsx";
 import MenuNavigationMobile from "~/components/global/MenuNavigationMobile.jsx";
 
-type PageLayoutProp = { children: ReactNode; hideHeader?: boolean };
+type PageLayoutProp = { children: ReactNode };
 
-const MainPageLayout: FC<PageLayoutProp> = ({ children, hideHeader }) => {
+const MainPageLayout: FC<PageLayoutProp> = ({ children }) => {
   const router = useRouter();
 
   const { pathname } = router;
@@ -20,12 +20,14 @@ const MainPageLayout: FC<PageLayoutProp> = ({ children, hideHeader }) => {
     ? "pb-[100px] lg:pb-0"
     : "";
 
+  const hideHeaderUrls = ["/sign-in"];
+
   return (
     <>
       <div
         className={`bg-base flex min-h-screen min-w-[320px] flex-col ${adtlClasses} `}
       >
-        {!hideHeader && <Header />}
+        {!hideHeaderUrls.includes(pathname) && <Header />}
 
         <main className="flex flex-1 flex-col">{children}</main>
 

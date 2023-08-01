@@ -1,8 +1,6 @@
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/router";
 
-import MainPageLayout from "~/components/layouts/MainPageLayout";
-
 // landing page components
 import Team from "~/components/landingPage/Team";
 import Pricing from "~/components/landingPage/Pricing";
@@ -22,7 +20,7 @@ const Home = () => {
   }
 
   return (
-    <MainPageLayout>
+    <>
       <Hero />
 
       <About />
@@ -36,7 +34,7 @@ const Home = () => {
       <LandingPageContactSection />
 
       <Footer />
-    </MainPageLayout>
+    </>
   );
 };
 

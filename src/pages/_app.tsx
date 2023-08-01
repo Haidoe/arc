@@ -14,6 +14,7 @@ const ubuntu = Ubuntu({
 
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
+import MainPageLayout from "~/components/layouts/MainPageLayout";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -42,7 +43,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
       <QueryClientProvider client={new QueryClient()}>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <MainPageLayout>
+            <Component {...pageProps} />
+          </MainPageLayout>
         </Provider>
       </QueryClientProvider>
     </ClerkProvider>

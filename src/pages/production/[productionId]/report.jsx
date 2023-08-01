@@ -1,4 +1,5 @@
 // react and redux
+import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setProductionReport } from "~/redux/features/ProductionReportSlice";
@@ -12,8 +13,6 @@ import {
 } from "~/service/production";
 
 // components
-import Head from "next/head";
-import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Sidebar from "~/components/production/Information";
 import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
 import ActualScheduleForm from "~/components/report/ActualScheduleForm";
@@ -102,7 +101,7 @@ const ProductionReportPage = ({ productionId }) => {
   }
 
   return (
-    <MainPageLayout>
+    <>
       <Head>
         <title>{production.data.title} | Arc </title>
       </Head>
@@ -177,7 +176,7 @@ const ProductionReportPage = ({ productionId }) => {
           </div>
         </div>
       </div>
-    </MainPageLayout>
+    </>
   );
 };
 

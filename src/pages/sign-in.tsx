@@ -4,12 +4,11 @@ import { SignInButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Button from "~/components/Button";
 import TextInputField from "~/components/TextInputField/NonRefBorderedTextField";
-import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Head from "next/head";
 
 const SignInPage: NextPage = () => {
   return (
-    <MainPageLayout hideHeader>
+    <>
       <Head>
         <title>Sign in | Arc </title>
       </Head>
@@ -101,7 +100,7 @@ const SignInPage: NextPage = () => {
           />
         </div>
       </div>
-    </MainPageLayout>
+    </>
   );
 };
 
