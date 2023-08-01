@@ -49,7 +49,6 @@ const tiers = [
       "Advanced access control to add team members",
       "Host on your own server",
       "Privacy matters: Database Sovereignty",
-      "Custom reporting tools",
     ],
     mostPopular: false,
   },
@@ -102,14 +101,15 @@ const Pricing = () => {
           </RadioGroup>
         </div>
         <div className="isolate mx-auto mt-0 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {tiers.map((tier) => (
+          {tiers.map((tier, idx) => (
             <div
               key={tier.id}
               className={classNames(
                 tier.mostPopular
                   ? "border border-primary-base text-primary-light"
                   : "border border-contrast-light text-contrast-dark",
-                "rounded-3xl p-8"
+                "rounded-3xl p-8",
+                idx === 2 ? "pb-8" : "pb-14",
               )}
             >
               <div className="flex items-center justify-between gap-x-4">
