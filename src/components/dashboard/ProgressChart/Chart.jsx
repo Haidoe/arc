@@ -70,7 +70,7 @@ const BudgetStatusChart = ({ details }) => {
   };
 
   const options = {
-    aspectRatio: 2,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
@@ -116,8 +116,9 @@ const BudgetStatusChart = ({ details }) => {
 
   return (
     <div className="flex w-full flex-col items-center justify-center">
-      <div className="relative w-[80%]">
+      <div className="relative w-full">
         <Doughnut
+          height={225}
           ref={chartRef}
           data={data}
           options={options}
@@ -125,7 +126,7 @@ const BudgetStatusChart = ({ details }) => {
         />
       </div>
 
-      <div className="mt-4 flex justify-center gap-4 py-8">
+      <div className="mt-4 flex justify-center gap-4 pt-4">
         {/* loop throught custom legends */}
         {Object.keys(CUSTOM_LEGENDS).map((key, idx) => (
           <div key={idx} className="flex flex-row items-center gap-2">

@@ -126,24 +126,25 @@ const ProgressSection = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4 rounded-[5px] bg-arc md:flex-row">
-      <div className="flex flex-1 flex-col gap-9">
-        <p className="flex flex-1 items-center text-center text-xl text-black lg:text-left  ">
+    <div className="flex flex-col gap-6 rounded-[5px] bg-arc lg:flex-row lg:gap-4">
+      <div className="flex flex-1 flex-col gap-4 lg:gap-9">
+        <p className="flex flex-1 flex-col text-center text-lg  text-black lg:justify-center lg:text-left lg:text-xl">
           {getStatusMessage(data?.finishRateAvg)}
         </p>
 
-        <div className="items-left mb-4 flex flex-col">
-          <p>Production Progress by</p>
+        <div className="items-left flex flex-col justify-end">
+          <p className="text-center lg:text-left">Production Progress by</p>
 
-          <div className="relative ml-[-8px]">
-            <Image
-              src={Calendar}
-              alt="calendar"
-              height={36}
-              className="absolute bottom-0 left-2 z-10"
-            />
+          <div className=" ml-[-8px] flex justify-center lg:justify-start">
             {/* Dropdown list */}
-            <div className="ml-8">
+            <div className="relative z-10  ml-8 pl-[12px]">
+              <Image
+                src={Calendar}
+                alt="calendar"
+                height={36}
+                className="absolute bottom-0 left-[-1rem] z-10"
+              />
+
               <DropDown
                 people={dropdownDates}
                 selected={selectedDate}
@@ -158,7 +159,7 @@ const ProgressSection = () => {
         </div>
       </div>
 
-      <div className="right-segment flex flex-1 flex-col  gap-9 align-middle md:w-[50%]">
+      <div className="right-segment flex flex-1 flex-col  gap-9 align-middle lg:w-[50%]">
         {isLoading ? (
           <LoadingDiv />
         ) : (
