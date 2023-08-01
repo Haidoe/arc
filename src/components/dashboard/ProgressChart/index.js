@@ -135,7 +135,7 @@ const ProgressSection = () => {
         <div className="items-left flex flex-col justify-end">
           <p className="text-center lg:text-left">Production Progress by</p>
 
-          <div className=" ml-[-8px] flex justify-center lg:justify-start">
+          <div className=" ml-[-8px] flex justify-center lg:ml-[-16px] lg:justify-start">
             {/* Dropdown list */}
             <div className="relative z-10  ml-8 pl-[12px]">
               <Image
