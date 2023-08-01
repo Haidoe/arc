@@ -43,7 +43,7 @@ const linksOnHeader = {
       disabled: false,
     },
     {
-      name: "Report",
+      name: "Production Report",
       path: "#",
       disabled: true,
     },
@@ -60,7 +60,7 @@ const linksOnHeader = {
       disabled: false,
     },
     {
-      name: "Report",
+      name: "Production Report",
       path: "/production/[productionId]/report",
       disabled: false,
     },
@@ -77,7 +77,7 @@ const linksOnHeader = {
       disabled: false,
     },
     {
-      name: "Report",
+      name: "Production Report",
       path: "/production/[productionId]/report",
       disabled: false,
     },
