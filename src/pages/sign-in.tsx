@@ -6,6 +6,8 @@ import Button from "~/components/Button";
 import TextInputField from "~/components/TextInputField/NonRefBorderedTextField";
 import Head from "next/head";
 
+const signInImageUrl = "/images/sign-in-page/desktop-new.png";
+
 const SignInPage: NextPage = () => {
   return (
     <>
@@ -14,13 +16,15 @@ const SignInPage: NextPage = () => {
       </Head>
 
       <div className="relative flex min-w-[320px] flex-1 overflow-hidden bg-arc">
-        <div className="relative hidden flex-[35] lg:block">
-          <Image
-            src={"/images/sign-in-page/desktop.png"}
-            alt="Sign In Artistic Hero Image"
-            fill
-          />
-        </div>
+        <div
+          className="relative hidden flex-[35] lg:block"
+          style={{
+            backgroundImage: `url(${signInImageUrl})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "right",
+          }}
+        ></div>
 
         <div className="z-10 flex flex-[29] flex-col px-4 py-[100px] pt-[2rem] sm:py-[100px] lg:pr-[100px]">
           <header className="flex justify-center lg:pt-[40px]">
@@ -50,7 +54,7 @@ const SignInPage: NextPage = () => {
                   buttonType="Primary"
                   className="flex w-full max-w-[290px] py-[10px]"
                 >
-                  <span className=" text-base"> Sign in with Google </span>
+                  <span className=" text-base">Sign in with Google </span>
                 </Button>
               </SignInButton>
             </div>
@@ -92,11 +96,11 @@ const SignInPage: NextPage = () => {
           </section>
         </div>
 
-        <div className="absolute bottom-0 left-[-220px] h-[45vh] w-[700px] xs:hidden ">
+        <div className="absolute bottom-0 h-[45vh] w-full md:hidden ">
           <img
-            src={"/images/sign-in-page/mobile.png"}
+            src={"/images/sign-in-page/mobile-new.svg"}
             alt="Sign In Artistic Hero Image"
-            className="rotate-[-27deg]"
+            className="h-full w-full object-cover"
           />
         </div>
       </div>

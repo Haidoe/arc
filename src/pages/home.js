@@ -8,7 +8,7 @@ import LogoOffWhite from "~/assets/icons/LogoOffWhite.svg";
 import { loadDemoProductionInfo } from "~/helper/loadDemoProductionInfo";
 import Link from "next/link";
 
-const homePageImageUrl = "/images/home-page/home-page-image.svg";
+const homePageImageUrl = "/images/home-page/home-page-image-new.png";
 
 const Home = () => {
   const [isProduction, setIsProduction] = useState(false);
@@ -62,19 +62,19 @@ const Home = () => {
       {/* --------------------------------------------------------- */}
       {/* LEFT COLUMN */}
       <div
-        className="hidden bg-cover bg-center bg-no-repeat text-center lg:flex lg:flex-col lg:items-center lg:align-top"
+        className="hidden lg:block"
         style={{
           backgroundImage: `url(${homePageImageUrl})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "right",
         }}
       >
-        <div className="mt-12 flex flex-col items-center gap-3">
+        {/* <div className="mt-12 flex flex-col items-center gap-3">
           <h1 className="text-[64px] text-arc ">Welcome to</h1>
-          {/* //if screen is wider than 1024px, logo width is 220px */}
+          //if screen is wider than 1024px, logo width is 220px
           <Image src={LogoOffWhite} alt="logo" width={220} />
-        </div>
+        </div> */}
       </div>
 
       {/* --------------------------------------------------------- */}
@@ -105,6 +105,9 @@ const Home = () => {
           <h2 className="text-[24px] font-bold  tracking-wide text-contrast-dark lg:text-[32px]">
             Your Productions
           </h2>
+          <p className="mt-4 text-contrast-dark lg:text-[16px]">
+            Please first select a production to view or create a report.
+          </p>
           <div
             id="production_items"
             className="mt-6 flex w-full flex-col gap-3 lg:mt-6 lg:gap-4"
@@ -114,7 +117,7 @@ const Home = () => {
               <Link
                 key={production.id}
                 href={`/production/${production.id}/report`}
-                className="button w-full max-w-[320px] self-center border-[1.5px] border-primary-light bg-white py-2 text-sm font-bold text-primary-light hover:shadow-lg active:bg-primary-light active:text-white lg:py-3 lg:text-base "
+                className="button w-full max-w-[400px] self-center border-[1.5px] border-primary-light bg-white py-2 text-sm font-bold text-primary-light hover:shadow-lg active:bg-primary-light active:text-white lg:py-3 lg:text-base "
               >
                 {production.title}{" "}
               </Link>
@@ -158,7 +161,6 @@ const Home = () => {
         <Button
           buttonType={"Disabled"}
           className="mt-4 self-center px-12 lg:mt-6"
-          onClick={handleDemoClick}
           disabled={isProjectLoading}
         >
           Create New Production
