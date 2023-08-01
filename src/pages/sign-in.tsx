@@ -92,7 +92,7 @@ const SignInPage: NextPage = () => {
           </section>
         </div>
 
-        <div className="absolute bottom-0 left-[-220px] h-[45vh] w-[700px] xs:hidden ">
+        <div className="absolute bottom-0 left-[-220px] h-[45vh] w-[700px] lg:hidden ">
           <img
             src={"/images/sign-in-page/mobile.png"}
             alt="Sign In Artistic Hero Image"
