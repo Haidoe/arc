@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 //Components
@@ -13,34 +13,6 @@ import { updateRolls } from "~/redux/features/ProductionReportSlice";
 import { updateProductionReportById } from "~/service/production";
 
 const RollsFormModal = ({ isOpen, onClose }) => {
-  // // Get productionId from URL
-  // const router = useRouter();
-  // const { productionId } = router.query;
-
-  // //Get rolls previously from api
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `/api/production/${productionId}/rollsInfo`
-  //       );
-
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         setRollsData(data);
-
-  //       } else {
-  //         throw new Error("Error fetching scene progress data");
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       console.log("done");
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [productionId]);
 
   //redux
   const dispatch = useDispatch();
@@ -103,6 +75,13 @@ const RollsFormModal = ({ isOpen, onClose }) => {
 
     onClose();
   };
+
+  useEffect(() => {
+    if (aCamTodayRef.current) {
+      aCamTodayRef.current?.focus();
+    }
+
+  }, []);
 
   return (
     <Modal isOpen={isOpen} onClose={() => onClose()}>
