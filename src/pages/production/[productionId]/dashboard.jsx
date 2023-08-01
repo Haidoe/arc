@@ -7,7 +7,6 @@ import ActiveActors from "~/components/dashboard/ActiveActors";
 import ActiveExtras from "~/components/dashboard/ActiveExtras";
 import Head from "next/head";
 import UnfinishhedSceneSection from "~/components/dashboard/UnfinishedSceneSection";
-import Button from "~/components/Button";
 import SceneChart from "~/components/dashboard/SceneChart";
 import ProgressChart from "~/components/dashboard/ProgressChart";
 import Sidebar from "~/components/production/Information";
@@ -15,6 +14,7 @@ import Accordion from "~/components/report/Accordion";
 import { useRouter } from "next/router";
 import { LoadingPage } from "~/components/Loading";
 import { useQuery } from "@tanstack/react-query";
+import DownloadReportButton from "~/components/DownloadReportButton";
 
 dayjs.extend(LocalizedFormat);
 
@@ -91,8 +91,8 @@ const Dashboard = () => {
             </Accordion>
           </div>
 
-          <div className="col-span-full flex justify-end">
-            <Button className="min-w-[240px] text-xs">Download Report</Button>
+          <div className="col-span-full flex flex-col items-center justify-end lg:flex-row">
+            <DownloadReportButton />
           </div>
         </div>
       </div>
