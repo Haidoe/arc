@@ -104,6 +104,7 @@ const NotShotForm = ({ isReadOnly }) => {
 
                           <td className="whitespace-nowrap px-3 py-4 ">
                             <TimeInputField
+                              tabIndex="-1"
                               label="not shot time"
                               isReadyOnly={true}
                               value={ISOToTimeString(row.time)}
@@ -189,7 +190,7 @@ const NotShotForm = ({ isReadOnly }) => {
                 {notShotInfo?.length == 0 && (
                   <div className="mt-4 flex flex-col items-center gap-4 border-primary-base pt-4">
                     <div>
-                      <p className="">No not shot scenes infromation found.</p>
+                      <p className="">No not shot scenes infomation found.</p>
                     </div>
                   </div>
                 )}
