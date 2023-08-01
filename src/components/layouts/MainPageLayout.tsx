@@ -17,7 +17,7 @@ const MainPageLayout: FC<PageLayoutProp> = ({ children }) => {
   ];
 
   const adtlClasses = urlsWithMobileNav.includes(pathname)
-    ? "pb-[100px] lg:pb-0"
+    ? "pb-[70px] lg:pb-0"
     : "";
 
   const hideHeaderUrls = ["/sign-in"];
