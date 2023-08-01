@@ -3,10 +3,9 @@ import Image from 'next/image'
 
 //components
 import LogoMobile from '~/assets/icons/LogoMobile.svg'
-import Button from '~/components/Button'
-import Primary from '../Button/Primary'
 import appImagePlaceholder from '~/../public/images/landing-page/appImagePlaceholder.jpg'
 import Link from 'next/link'
+
 
 
 const Hero = () => {
