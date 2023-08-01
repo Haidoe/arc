@@ -2,7 +2,10 @@ import Image from "next/image";
 
 const LandingPageFeature = () => {
   return (
-    <section className="relative flex flex-col gap-8 bg-arc p-12 px-6 lg:items-center lg:gap-12 lg:px-12 lg:py-28">
+    <section
+      id="features"
+      className="relative flex flex-col gap-8 bg-arc p-12 px-6 lg:items-center lg:gap-12 lg:px-12 lg:py-28"
+    >
       <h2 className="z-10 text-xl font-bold text-primary-dark lg:text-center lg:text-5xl">
         Features
       </h2>
