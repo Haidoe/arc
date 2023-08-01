@@ -6,7 +6,9 @@ import Button from "~/components/Button";
 import TextInputField from "~/components/TextInputField/NonRefBorderedTextField";
 import Head from "next/head";
 
-const signInImageUrl = "/images/sign-in-page/desktop-new.svg";
+const signInImageFullUrl = "/images/sign-in-page/desktop-full.png";
+
+import triangleMask from "~/../public/images/landing-page/triangleMask.png";
 
 const SignInPage: NextPage = () => {
   return (
@@ -19,12 +21,19 @@ const SignInPage: NextPage = () => {
         <div
           className="relative hidden flex-[35] lg:block"
           style={{
-            backgroundImage: `url(${signInImageUrl})`,
+            backgroundImage: `url(${signInImageFullUrl})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "right",
           }}
-        ></div>
+        >
+          <Image
+            src={triangleMask}
+            alt=""
+            aria-hidden="true"
+            className="absolute right-0 top-0 z-10 hidden h-full max-w-[220px] md:block"
+          />
+        </div>
 
         <div className="z-10 flex flex-[29] flex-col px-4 py-[100px] pt-[2rem] sm:py-[100px] lg:pr-[100px]">
           <header className="flex justify-center lg:pt-[40px]">
