@@ -62,7 +62,7 @@ const ExtrasCastForm = ({ isReadOnly }) => {
         <div>
           <div className="flow-root">
             <div className="overflow-x-auto">
-              <div className="inline-block min-w-full align-middle">
+              <div className="inline-block md:min-w-full min-w-[1000px] align-middle">
                 <table className="min-w-full divide-y divide-primary-base text-base text-contrast-dark">
                   <thead>
                     <tr>
@@ -90,6 +90,7 @@ const ExtrasCastForm = ({ isReadOnly }) => {
                           scope="col"
                           className="relative min-w-[60px] pb-3.5 pl-3 pr-4 text-contrast-dark sm:pr-0"
                         >
+                          <span className="sr-only">Edit</span>
                           <span className="sr-only">Delete</span>
                         </th>
                       )}

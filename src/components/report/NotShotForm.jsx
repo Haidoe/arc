@@ -58,7 +58,7 @@ const NotShotForm = ({ isReadOnly }) => {
         <div>
           <div className="flow-root">
             <div className="overflow-x-auto">
-              <div className="inline-block min-w-full align-middle">
+              <div className="inline-block md:min-w-full min-w-[550px] align-middle">
                 <table className="min-w-full divide-y divide-primary-base">
                   <thead className="text-base font-bold text-contrast-dark">
                     <tr>
@@ -84,6 +84,7 @@ const NotShotForm = ({ isReadOnly }) => {
                           scope="col"
                           className="relative min-w-[60px] py-3.5 pl-3 pr-4 sm:pr-0"
                         >
+                          <span className="sr-only">Edit</span>
                           <span className="sr-only">Delete</span>
                         </th>
                       )}
