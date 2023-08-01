@@ -4,8 +4,8 @@ import Link from "next/link";
 const Team = () => {
   const teamMembers = [
     {
-      name: "Stephany Jade Becerra",
-      role: "Project Manager / Designer",
+      name: "Stephany Jade",
+      role: "Project Manager / UI/UX Designer",
       linkedIn: "https://www.linkedin.com/in/stephanyxjade/",
       photo: "/images/landing-page/Jade.jpg",
     },
