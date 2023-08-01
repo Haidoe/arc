@@ -10,7 +10,6 @@ import UnfinishhedSceneSection from "~/components/dashboard/UnfinishedSceneSecti
 import Button from "~/components/Button";
 import SceneChart from "~/components/dashboard/SceneChart";
 import ProgressChart from "~/components/dashboard/ProgressChart";
-import DropDown from "~/components/global/DropDown";
 import Sidebar from "~/components/production/Information";
 import Accordion from "~/components/report/Accordion";
 import { useRouter } from "next/router";
@@ -48,8 +47,8 @@ const Dashboard = () => {
           <Sidebar data={production.data} isMobile />
         </aside>
 
-        <div className="grid flex-1 grid-cols-2 content-start gap-6 px-4 py-4 lg:px-8">
-          <div className="col-span-full mt-6">
+        <div className="grid flex-1 grid-cols-2 content-start gap-6 p-4 lg:p-8">
+          <div className="col-span-full">
             <div className="flex items-end justify-between">
               <h2 className="flex-grow text-2xl font-bold text-primary-dark">
                 {today}
@@ -92,7 +91,7 @@ const Dashboard = () => {
             </Accordion>
           </div>
 
-          <div className="col-span-full mt-8 flex justify-end">
+          <div className="col-span-full flex justify-end">
             <Button className="min-w-[240px] text-xs">Download Report</Button>
           </div>
         </div>

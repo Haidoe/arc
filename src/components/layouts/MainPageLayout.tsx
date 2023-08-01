@@ -25,11 +25,11 @@ const MainPageLayout: FC<PageLayoutProp> = ({ children }) => {
   return (
     <>
       <div
-        className={`bg-base flex min-h-screen min-w-[320px] flex-col ${adtlClasses} `}
+        className={`bg-base flex min-h-screen min-w-[320px] flex-col ${adtlClasses}`}
       >
         {!hideHeaderUrls.includes(pathname) && <Header />}
 
-        <main className="flex flex-1 flex-col">{children}</main>
+        <main className="relative flex flex-1 flex-col">{children}</main>
 
         <MenuNavigationMobile />
       </div>

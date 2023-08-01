@@ -171,7 +171,7 @@ const ProductionReportPage = ({ productionId }) => {
             </AccordionCrud>
           </div>
 
-          <div className="col-span-full">
+          <div className="col-span-full flex justify-end">
             <ShareReportButton productionInfo={production.data} />
           </div>
         </div>
