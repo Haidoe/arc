@@ -15,7 +15,7 @@ import Calendar from "~/assets/icons/Calendar.svg";
 const STATUS = {
   good: "The shooting is on track to finish on time.",
   warning: "The shooting's progress is slower than expected.",
-  danger: "The shooting is severely behind schedule. Urgent action is required",
+  danger: "The shooting is severely behind schedule.\nUrgent action is required",
 };
 
 const LoadingDiv = () => (
@@ -128,7 +128,7 @@ const ProgressSection = () => {
   return (
     <div className="flex flex-col gap-6 rounded-[5px] bg-arc lg:flex-row lg:gap-4">
       <div className="flex flex-1 flex-col gap-4 lg:gap-9">
-        <p className="flex flex-1 flex-col text-center text-lg  text-black lg:justify-center lg:text-left lg:text-xl">
+        <p className="flex flex-1 flex-col text-center text-lg whitespace-pre-wrap text-black lg:justify-center lg:text-left lg:text-xl">
           {getStatusMessage(data?.finishRateAvg)}
         </p>
 
