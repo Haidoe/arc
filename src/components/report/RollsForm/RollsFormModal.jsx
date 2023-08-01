@@ -143,24 +143,28 @@ const RollsFormModal = ({ isOpen, onClose }) => {
 
               <div className="col-span-2 grid font-bold">Today</div>
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="3"
                 ref={aCamTodayRef}
                 defaultValue={aCamToday}
               />
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="3"
                 ref={bCamTodayRef}
                 defaultValue={bCamToday}
               />
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="3"
                 ref={cCamTodayRef}
                 defaultValue={cCamToday}
               />
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="3"
                 ref={aSoundTodayRef}

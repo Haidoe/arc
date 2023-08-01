@@ -131,6 +131,8 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
+
+
   return (
     <Modal
       isOpen={isOpen}
