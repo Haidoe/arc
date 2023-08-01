@@ -113,16 +113,19 @@ const ExtrasCastForm = ({ isReadOnly }) => {
                           <td className="whitespace-nowrap px-3 py-4 ">
                             <div className="flex gap-1">
                               <TimeInputField
+                                tabIndex="-1"
                                 label="schedule in"
                                 isReadyOnly={true}
                                 value={ISOToTimeString(row.schedule.in)}
                               />
                               <TimeInputField
+                                tabIndex="-1"
                                 label="schedule out"
                                 isReadyOnly={true}
                                 value={ISOToTimeString(row.schedule.out)}
                               />
                               <TimeInputField
+                                tabIndex="-1"
                                 label="meal break"
                                 isReadyOnly={true}
                                 value={ISOToTimeString(row.schedule.meal)}

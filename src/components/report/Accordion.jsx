@@ -52,6 +52,7 @@ const Accordion = ({
           {({ open }) => (
             <>
               <Disclosure.Button
+                tabIndex="-1"
                 onKeyDown={handleDisclosureKeyDown}
                 onClick={handleDisclosureHeaderClick}
                 className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left text-[16px] font-bold text-arc focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 ${insideModal ? "cursor-default" : "cursor-default md:pointer-events-none"
@@ -61,7 +62,7 @@ const Accordion = ({
 
                 <div className="items-center sm:flex">
                   {/* Logo */}
-                  
+
                   {!insideModal && (<Image
                     className={`${open ? "transform" : "transform rotate-180"
                       } h-6 w-6 text-arc md:hidden cursor-pointer chevron-accordion-toggle`}
