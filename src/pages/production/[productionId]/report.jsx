@@ -27,6 +27,7 @@ import ShareReportButton from "~/components/report/ShareReport";
 import { LoadingPage } from "~/components/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import DownloadReportButton from "~/components/DownloadReportButton";
 
 // store and get expanded value from local storage
 
@@ -171,7 +172,8 @@ const ProductionReportPage = ({ productionId }) => {
             </AccordionCrud>
           </div>
 
-          <div className="col-span-full flex justify-end">
+          <div className="col-span-full flex flex-col items-center gap-4 lg:flex-row lg:justify-end">
+            <DownloadReportButton />
             <ShareReportButton productionInfo={production.data} />
           </div>
         </div>

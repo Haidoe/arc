@@ -20,7 +20,9 @@ const ShareReportButton = ({ productionInfo }) => {
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}> Share Report </Button>
+      <Button onClick={() => setIsOpen(true)} className="min-w-[240px]">
+        Share Report
+      </Button>
 
       <Modal
         isOpen={isOpen}
