@@ -50,7 +50,7 @@ const Dashboard = () => {
         <div className="grid flex-1 grid-cols-2 content-start gap-6 p-4 lg:p-8">
           <div className="col-span-full">
             <div className="flex items-end justify-between">
-              <h2 className="flex-grow text-2xl font-bold text-primary-dark">
+              <h2 className="flex-grow text-lg font-bold text-primary-dark lg:text-2xl">
                 {today}
               </h2>
             </div>
@@ -67,7 +67,7 @@ const Dashboard = () => {
           </div>
 
           <div className="col-span-full mt-6">
-            <h2 className="text-2xl font-bold text-primary-dark">
+            <h2 className="text-lg font-bold text-primary-dark lg:text-2xl">
               General Reports
             </h2>
             <hr className="my-2 border-b border-contrast-light" />
