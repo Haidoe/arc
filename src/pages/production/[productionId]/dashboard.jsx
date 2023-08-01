@@ -54,14 +54,6 @@ const Dashboard = () => {
               <h2 className="flex-grow text-2xl font-bold text-primary-dark">
                 {today}
               </h2>
-
-              <div>
-                <DropDown
-                  people={[{ name: "Today" }]}
-                  selected={{ name: "Today" }}
-                  isReadOnly={true}
-                />
-              </div>
             </div>
 
             <hr className="my-2 border-b border-contrast-light" />
