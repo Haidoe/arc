@@ -119,9 +119,9 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
     };
 
     //Updating the redux
-    console.log("Before dispatching" + scheduleForDay);
+    // console.log("Before dispatching" + scheduleForDay);
     dispatch(updateScheduleForDay(scheduleForDay));
-    console.log("After dispatching" + scheduleForDay);
+    // console.log("After dispatching" + scheduleForDay);
 
     updateProductionReportById({
       ...data,
