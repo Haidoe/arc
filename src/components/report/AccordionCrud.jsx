@@ -34,7 +34,7 @@ const AccordionCrud = ({ title, children, defaultOpen }) => {
                 tabIndex="-1"
                 onKeyDown={handleDisclosureKeyDown}
                 onClick={handleDisclosureHeaderClick}
-                className={`flex w-full justify-between rounded-sm bg-primary-light px-4 py-2 text-left  font-medium text-arc focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 cursor-default`}
+                className={`flex w-full justify-between rounded-t-sm bg-primary-light px-4 py-2 text-left  font-medium text-arc focus:outline-none focus-visible:bg-primary-base focus-visible:ring focus-visible:ring-opacity-75 cursor-default`}
               >
                 <span>{title || "Accordion Title"}</span>
 
