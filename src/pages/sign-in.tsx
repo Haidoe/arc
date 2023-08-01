@@ -6,7 +6,7 @@ import Button from "~/components/Button";
 import TextInputField from "~/components/TextInputField/NonRefBorderedTextField";
 import Head from "next/head";
 
-const signInImageUrl = "/images/sign-in-page/desktop-new.png";
+const signInImageUrl = "/images/sign-in-page/desktop-new.svg";
 
 const SignInPage: NextPage = () => {
   return (

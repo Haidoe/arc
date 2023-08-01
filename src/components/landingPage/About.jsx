@@ -3,13 +3,13 @@ import Image from 'next/image'
 // const aboutDesktop = '/public/images/landingPage/aboutDesktop.png'
 // const aboutMobile = '/public/images/landingPage/aboutMobilePhoto.png'
 
-import aboutDesktop from '~/../public/images/landing-page/aboutDesktop-new.png'
+import aboutDesktop from '~/../public/images/landing-page/aboutDesktop-new.svg'
 import aboutMobile from '~/../public/images/landing-page/aboutMobile-new.svg'
 
 const About = () => {
   return (
     <div className='grid md:grid-cols-2 overflow-hidden bg-arc'>
-      <Image src={aboutDesktop} alt='' aria-hidden='true' className='hidden relative h-full md:block'
+      <Image src={aboutDesktop} alt='' aria-hidden='true' className='hidden relative h-full w-full md:block'
         style={
           {
             objectFit: 'cover',
