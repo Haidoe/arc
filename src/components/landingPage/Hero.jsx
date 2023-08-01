@@ -6,6 +6,7 @@ import LogoMobile from '~/assets/icons/LogoMobile.svg'
 import Button from '~/components/Button'
 import Primary from '../Button/Primary'
 import appImagePlaceholder from '~/../public/images/landing-page/appImagePlaceholder.jpg'
+import Link from 'next/link'
 
 
 const Hero = () => {
@@ -24,7 +25,7 @@ const Hero = () => {
         <h1 className='text-xl md:text-3xl lg:text-6xl leading-7 '>Film producing like never before</h1>
         <p className='text-sm md:text-lg lg:text-[32px]'>Unlock your creativity and bring your stories to life with Arc.</p>
       </div>
-      <Button buttonType={Primary}>Get Started</Button>
+      <Link className='active-border-primary-base border-[1.5px] border-primary-base bg-primary-base px-4 py-2 text-sm font-bold text-white hover:border-primary-light hover:bg-primary-light hover:shadow-primary-base/50 active:border-primary-base active:bg-primary-base active:shadow-inner lg:px-8 lg:py-3 lg:text-base rounded-[5px]' href='/sign-in'>Get Started</Link>
       <Image src={appImagePlaceholder} alt="App Image" className=' max-w-[80%] shadow-lg shadow-contrast-base/30' />
     </div>
 
