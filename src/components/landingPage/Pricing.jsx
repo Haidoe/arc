@@ -64,7 +64,10 @@ const Pricing = () => {
 
   return (
     <div className="bg-arc">
-      <section className="relative flex flex-col gap-8 overflow-hidden p-12 px-6 lg:items-center lg:gap-12 lg:px-12 lg:py-28">
+      <section
+        id="pricing"
+        className="relative flex flex-col gap-8 overflow-hidden p-12 px-6 lg:items-center lg:gap-12 lg:px-12 lg:py-28"
+      >
         <div className="section-description">
           <h2 className="mt-2 text-left text-xl font-bold tracking-tight text-primary-dark lg:text-center  lg:text-5xl">
             Pricing plans
