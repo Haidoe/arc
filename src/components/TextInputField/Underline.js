@@ -1,3 +1,4 @@
+import { type } from "os";
 import React, { forwardRef } from "react";
 
 // eslint-disable-next-line react/display-name
@@ -14,6 +15,7 @@ const Underline = forwardRef(
       placeholder,
       tabIndex,
       readOnly = false,
+      type,
     },
     ref
   ) => {
@@ -24,7 +26,7 @@ const Underline = forwardRef(
           onChange={onChange}
           name={name}
           id={name}
-          type="text"
+          type={type ?? "text"}
           tabIndex={tabIndex}
           placeholder={placeholder}
           className={`text-input-underline-input peer text-contrast-dark ${

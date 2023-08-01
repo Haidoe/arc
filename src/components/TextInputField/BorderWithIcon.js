@@ -1,5 +1,6 @@
 import { ReactSVG } from "react-svg";
 import React, { forwardRef } from "react";
+import { type } from "os";
 
 // eslint-disable-next-line react/display-name
 const BorderWithIcon = forwardRef(
@@ -16,6 +17,7 @@ const BorderWithIcon = forwardRef(
       placeholder,
       tabIndex,
       readOnly = false,
+      type,
     },
     ref
   ) => {
@@ -29,7 +31,7 @@ const BorderWithIcon = forwardRef(
           onChange={onChange}
           name={name}
           id={name}
-          type="text"
+          type={type ?? "text"}
           tabIndex={tabIndex}
           placeholder={placeholder}
           className={`text-input-border-input peer text-sm text-contrast-dark ${
