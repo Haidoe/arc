@@ -54,7 +54,7 @@ const LandingPageFeature = () => {
         src="/images/landing-page/feature-bg-1.svg"
         width={800}
         height={800}
-        className="absolute right-0 top-0 hidden lg:block"
+        className="absolute right-0 top-0"
       />
 
       {/* Subtle gradient purple background */}
