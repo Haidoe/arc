@@ -1,6 +1,9 @@
+import { useState } from "react";
 import Button from "~/components/Button";
+import InformationModal from "~/components/global/InformationModal";
 
-const UnfinishhedSceneSection = ({}) => {
+const UnfinishhedSceneSection = () => {
+  const [infoModalOpen, setIsInfoModalOpen] = useState(false);
   const data = [
     {
       id: 1,
@@ -25,28 +28,43 @@ const UnfinishhedSceneSection = ({}) => {
   ];
 
   return (
-    <section className="flex flex-1 flex-col gap-4 rounded-[5px] bg-arc">
-      <header className="flex flex-col items-end gap-4">
-        <p className="text-contrast-dark">30/100</p>
-      </header>
+    <>
+      <section className="flex flex-1 flex-col gap-4 rounded-[5px] bg-arc">
+        <header className="flex flex-col items-end gap-4">
+          <p className="text-contrast-dark">30/100</p>
+        </header>
 
-      <div className="mt-0 flex flex-1 flex-col justify-center ">
-        <div className="flex  flex-col p-6 pb-0 shadow-[inset_0_4px_4px_0_rgba(0,0,0,0.25)]">
-          <div className="flex max-h-[250px] flex-1 flex-col gap-3 overflow-y-auto pb-4">
-            {data.map((item) => (
-              <p key={item.id} className="w-full rounded bg-[#D9D9D9] p-2">
-                <span className="font-bold">{item.title}: </span>
-                {item.description}
-              </p>
-            ))}
+        <div className="mt-0 flex flex-1 flex-col justify-center ">
+          <div className="flex  flex-col p-6 pb-0 shadow-[inset_0_4px_4px_0_rgba(0,0,0,0.25)]">
+            <div className="flex max-h-[250px] flex-1 flex-col gap-3 overflow-y-auto pb-4">
+              {data.map((item) => (
+                <p key={item.id} className="w-full rounded bg-[#D9D9D9] p-2">
+                  <span className="font-bold">{item.title}: </span>
+                  {item.description}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      <footer className="flex justify-center">
-        <Button className="py-2 text-xs bg-primary-light hover:bg-primary-base"> More </Button>
-      </footer>
-    </section>
+        <footer className="flex justify-center">
+          <Button
+            className="bg-primary-base py-2 text-xs hover:bg-primary-base"
+            onClick={() => setIsInfoModalOpen(true)}
+          >
+            More
+          </Button>
+        </footer>
+      </section>
+
+      {infoModalOpen && (
+        <InformationModal
+          heading={"Future Feature"}
+          message={"This feature will be live in the coming future"}
+          closeModalHandler={() => setIsInfoModalOpen(false)}
+        />
+      )}
+    </>
   );
 };
 
