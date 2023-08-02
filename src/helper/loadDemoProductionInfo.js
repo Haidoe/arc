@@ -1,5 +1,42 @@
 import SampleProductionInfo from "~/jsons/sample_productionInfo.json" assert { type: "json" };
 
+// get back date to offset days ago
+function getBackDate(offset) {
+  const d = new Date();
+  // date 2 days ago
+  d.setDate(d.getDate() - offset);
+  // set hours to 00:00:00
+  d.setHours(0, 0, 0, 0);
+
+  const isoDate = d.toISOString();
+  return isoDate
+}
+
+// get forward date to given offset days from now
+function getForwardDate(offset) {
+  const d = new Date();
+  d.setDate(d.getDate() + offset);
+  // set hours to 23:59:59
+  d.setHours(23, 59, 59, 999);
+  const isoDate = d.toISOString();
+  return isoDate;
+}
+
+
+function updateContents(movieToPost) {
+  const d = new Date();
+  const isoDate = d.toISOString();
+  movieToPost.created = isoDate;
+  movieToPost.updated = isoDate;
+
+  movieToPost.duration = {
+    startDate: getBackDate(2),
+    estimatedFinishDate: getForwardDate(30),
+  }
+
+  return movieToPost
+}
+
 //This function is used to load the demo production info to the database
 //Import SampleProductionInfo from "~/jsons/sample_productionInfo.json";
 
@@ -16,13 +53,19 @@ export const loadDemoProductionInfo = async () => {
   const shuffledProductionInfo = [...SampleProductionInfo];
   shuffleArray(shuffledProductionInfo);
 
+  // console.log("shuffledProductionInfo:", shuffledProductionInfo);
+
+  const movieToPost = shuffledProductionInfo[0];
+  const updatedMovieToPost = updateContents(movieToPost)
+
+
   const config = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      productionInfo: shuffledProductionInfo,
+      productionInfo: [updatedMovieToPost],
     }),
   };
 
