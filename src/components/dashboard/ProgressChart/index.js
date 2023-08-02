@@ -49,6 +49,7 @@ function offsetDate(negativeOffset) {
 function getDatesFromSpecificDateToEnd(startDateStr) {
   const startDate = new Date(startDateStr);
   const currentDate = new Date();
+  currentDate.setHours(23, 59, 59, 999);
   const datesArray = [];
 
   while (startDate <= currentDate) {
@@ -63,15 +64,11 @@ function getDatesFromSpecificDateToEnd(startDateStr) {
 
 function datesInDropDownFormat(datesArray) {
   const dropdownformat = datesArray.map((date, idx) => {
-    return { name: date.toLocaleDateString(), offset: idx + 1 };
+    return { name: date.toLocaleDateString(), offset: idx };
   });
 
   console.clear();
   const includeToday = [
-    {
-      name: new Date().toLocaleDateString(),
-      offset: 0,
-    },
     ...dropdownformat,
   ];
 
@@ -102,7 +99,6 @@ const ProgressSection = () => {
       const startDate = response.startDate;
       const allDatesArray = getDatesFromSpecificDateToEnd(startDate);
       const dropdownDatesArray = datesInDropDownFormat(allDatesArray);
-      console.log(dropdownDatesArray);
       setDropdownDates(dropdownDatesArray);
     } catch (error) {
       console.log("Finish rate error >> ", error);
