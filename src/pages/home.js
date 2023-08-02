@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { LoadingPage } from "~/components/Loading";
 import Button from "~/components/Button";
 import favicon from "/public/favicon.svg";
-import LogoOffWhite from "~/assets/icons/LogoOffWhite.svg";
 import { loadDemoProductionInfo } from "~/helper/loadDemoProductionInfo";
 import Link from "next/link";
 
