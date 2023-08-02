@@ -1,3 +1,4 @@
+import { type } from "os";
 import React, { forwardRef } from "react";
 
 // eslint-disable-next-line react/display-name
@@ -13,6 +14,7 @@ const Borderless = forwardRef(
       tabIndex,
       required = false,
       readOnly = false,
+      type,
     },
     ref
   ) => {
@@ -22,7 +24,7 @@ const Borderless = forwardRef(
         onChange={onChange}
         name={name}
         id={name}
-        type="text"
+        type={type ?? "text"}
         placeholder={placeholder}
         tabIndex={tabIndex}
         className={`text-input-borderless-input peer text-contrast-dark ${className}`}

@@ -4,8 +4,8 @@ import Link from "next/link";
 const Team = () => {
   const teamMembers = [
     {
-      name: "Stephany Jade Becerra",
-      role: "Project Manager / Designer",
+      name: "Stephany Jade",
+      role: "Project Manager / UI/UX Designer",
       linkedIn: "https://www.linkedin.com/in/stephanyxjade/",
       photo: "/images/landing-page/Jade.jpg",
     },
@@ -48,7 +48,10 @@ const Team = () => {
   ];
 
   return (
-    <section className="flex flex-col items-center gap-6 bg-primary-light px-6 py-16 text-center text-arc lg:gap-16">
+    <section
+      id="team"
+      className="flex flex-col items-center gap-6 bg-primary-light px-6 py-16 text-center text-arc lg:gap-16"
+    >
       <h2 className="text-4xl font-bold">Team</h2>
 
       <div className="flex w-full max-w-[600px] flex-wrap gap-4 lg:max-w-[1280px] lg:flex-wrap-reverse lg:gap-0 lg:py-12">

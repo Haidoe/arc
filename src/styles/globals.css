@@ -47,7 +47,7 @@
   }
 
   .report-modal .time-input {
-    @apply w-full px-3 pb-1 pt-2 text-[16px];
+    @apply w-full px-2 pb-1 pt-2 text-sm sm:px-3 sm:text-base;
   }
 
   /* .underline-form {

@@ -81,7 +81,7 @@ const ShareReportForm = ({ addEmail, productionInfo, data }) => {
           </div>
         </button>
       ) : (
-        <button className="rounded-[5px] border-primary-base bg-primary-base px-4 py-2 text-white hover:border-primary-base hover:bg-primary-base active:border-primary-base active:bg-primary-base">
+        <button className="rounded-[5px] border-primary-base bg-primary-base px-4 py-2 text-white hover:border-primary-base hover:bg-[#8585DB] active:border-primary-base active:bg-primary-base">
           Invite
         </button>
       )}

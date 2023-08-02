@@ -6,7 +6,6 @@ import { setProductionReport } from "~/redux/features/ProductionReportSlice";
 
 // components
 import Head from "next/head";
-import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Sidebar from "~/components/production/Information";
 import ScheduleOfTheDayForm from "~/components/report/ScheduleOfTheDayForm";
 import ActualScheduleForm from "~/components/report/ActualScheduleForm";
@@ -59,7 +58,7 @@ const PublicReportPage = () => {
   if (isLoading) return <LoadingPage />;
 
   return (
-    <MainPageLayout>
+    <>
       <Head>
         <title>{productionInfo.title} | Arc </title>
       </Head>
@@ -127,7 +126,7 @@ const PublicReportPage = () => {
           </div>
         </div>
       </div>
-    </MainPageLayout>
+    </>
   );
 };
 

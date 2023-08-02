@@ -63,6 +63,7 @@ const ScheduleOfTheDayForm = ({ className, isReadOnly }) => {
   return (
     <>
       <Accordion
+        tabIndex="-1"
         title="Schedule of The Day"
         defaultOpen={true}
         className={`text-base font-bold text-contrast-dark ${className}`}

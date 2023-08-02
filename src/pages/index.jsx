@@ -1,6 +1,5 @@
-//eslint-disable-next-line
-import { clerkClient, getAuth } from "@clerk/nextjs/server";
-import MainPageLayout from "~/components/layouts/MainPageLayout";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/router";
 
 // landing page components
 import Team from "~/components/landingPage/Team";
@@ -13,8 +12,15 @@ import LandingPageFeature from "~/components/landingPage/Feature";
 import LandingPageContactSection from "~/components/landingPage/Contact";
 
 const Home = () => {
+  const { isSignedIn } = useUser();
+  const router = useRouter();
+
+  if (typeof isSignedIn !== "undefined" && isSignedIn) {
+    router.push("/home");
+  }
+
   return (
-    <MainPageLayout>
+    <>
       <Hero />
 
       <About />
@@ -28,30 +34,8 @@ const Home = () => {
       <LandingPageContactSection />
 
       <Footer />
-    </MainPageLayout>
+    </>
   );
-};
-
-export const getServerSideProps = async (ctx) => {
-  const { userId } = getAuth(ctx.req);
-
-  const user = userId ? await clerkClient.users.getUser(userId) : undefined;
-
-  //Redirect to home if user is already logged in
-  if (user) {
-    return {
-      redirect: {
-        destination: "/home",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      userId: userId ? userId : null,
-    },
-  };
 };
 
 export default Home;

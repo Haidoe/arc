@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 //Modal
@@ -119,9 +119,9 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
     };
 
     //Updating the redux
-    console.log("Before dispatching" + scheduleForDay);
+    // console.log("Before dispatching" + scheduleForDay);
     dispatch(updateScheduleForDay(scheduleForDay));
-    console.log("After dispatching" + scheduleForDay);
+    // console.log("After dispatching" + scheduleForDay);
 
     updateProductionReportById({
       ...data,
@@ -130,6 +130,15 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
 
     onClose();
   };
+
+  //useRef for auto focus on the first input field
+  useEffect(() => {
+    if (breakfastFromRef.current) {
+      breakfastFromRef.current?.focus();
+    }
+
+  }, []);
+
 
   return (
     <Modal

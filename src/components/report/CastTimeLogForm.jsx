@@ -116,7 +116,7 @@ const CastTimeLogForm = ({ productionInfo, isReadOnly }) => {
         <div>
           <div className="flow-root">
             <div className="overflow-x-auto">
-              <div className="inline-block min-w-full align-middle">
+              <div className="inline-block md:min-w-full align-middle">
                 <table className="text-bold min-w-full divide-y divide-primary-base text-base text-contrast-dark">
                   <thead>
                     <tr>
@@ -148,6 +148,7 @@ const CastTimeLogForm = ({ productionInfo, isReadOnly }) => {
                           scope="col"
                           className="relative min-w-[120px] pb-3.5 pl-3 pr-4 sm:pr-0"
                         >
+                          <span className="sr-only">Edit</span>
                           <span className="sr-only">Delete</span>
                         </th>
                       )}
@@ -279,9 +280,8 @@ const CastTimeLogForm = ({ productionInfo, isReadOnly }) => {
                           {!isReadOnly && (
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right font-medium sm:pr-0">
                               <div
-                                className={`flex ${
-                                  idx == 0 ? "mt-4" : ""
-                                } flex-row gap-2`}
+                                className={`flex ${idx == 0 ? "mt-4" : ""
+                                  } flex-row gap-2`}
                               >
                                 {/* edit row btn */}
                                 <div className="edit-row-btn-container">
@@ -361,18 +361,20 @@ const CastTimeLogForm = ({ productionInfo, isReadOnly }) => {
             {/* Button to Create New Line */}
             {/* Hide this button if the form is read only */}
             {!isReadOnly && (
-              <div className="mt-2 flex justify-between  gap-4 py-4">
-                <div className=" self-end text-xs ">
+              <div className=" flex flex-col mt-2 gap-4 py-4">
+                <div className="text-xs">
                   Naming Conventions - Work:W / Start:S / Finish:F / Hold:H /
                   Travel:TR / Fitting:FT / Rehearsal:R / Test:T
                 </div>
-                <Button
-                  onClick={addClickHandler}
-                  buttonType="Secondary"
-                  className="border-2 px-4 py-2 font-bold lg:px-8 lg:py-3"
-                >
-                  Create New Line
-                </Button>
+                <div className="self-end ">
+                  <Button
+                    onClick={addClickHandler}
+                    buttonType="Secondary"
+                    className="border-2 px-4 py-2 font-bold lg:px-8 lg:py-3"
+                  >
+                    Create New Line
+                  </Button>
+                </div>
               </div>
             )}
           </div>
