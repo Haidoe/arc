@@ -24,6 +24,10 @@ function getForwardDate(offset) {
 
 
 function updateContents(movieToPost) {
+
+  // skip storing url in db
+  delete movieToPost.imgURL;
+
   const d = new Date();
   const isoDate = d.toISOString();
   movieToPost.created = isoDate;
@@ -74,3 +78,10 @@ export const loadDemoProductionInfo = async () => {
 
   return data; // You can optionally return the response data if needed
 };
+
+
+export const getMovieImage = (movieTitle) => {
+  
+  const filterMovie = SampleProductionInfo.filter((movie) => movie.title === movieTitle);
+  return filterMovie[0]?.imgURL;
+}

@@ -5,6 +5,7 @@ import InformationModal from "~/components/global/InformationModal";
 import type { ProductionWithProducer } from "~/types/types";
 import ListItemWithDatetime from "./ListItemWithDatetime";
 import Button from "~/components/Button";
+import { getMovieImage } from "~/helper/loadDemoProductionInfo";
 
 type ProductionInformationProps = {
   data: ProductionWithProducer | null;
@@ -49,7 +50,7 @@ const ProductionInformation = (props: ProductionInformationProps) => {
             className={`flex gap-4 border-b-[1.5px]  py-[20px] ${borderColor}`}
           >
             <div className="basis-[94px]">
-              <DefaultAvatar theme="primary" />
+              <DefaultAvatar theme="primary" imgURL={getMovieImage(props.data.title)} />
             </div>
 
             <div className="flex flex-1 flex-col  justify-center">

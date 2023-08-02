@@ -1,5 +1,6 @@
 [
   {
+    "imgURL": "https://images.unsplash.com/photo-1561648386-c3ea30177e45",
     "title": "Napoleon",
     "director": "Ridley Scott",
     "firstAssistantDirector": "Raymond Kirk",
@@ -77,6 +78,7 @@
     "dataWrangler": "Sophie Williams"
   },
   {
+    "imgURL": "https://images.unsplash.com/photo-1600359746315-119f1360d663",
     "title": "Wonka (2023)",
     "director": "Paul King",
     "firstAssistantDirector": "Ben Howard",
@@ -168,6 +170,7 @@
     "dataWrangler": "Lucas Roberts"
   },
   {
+    "imgURL": "https://images.unsplash.com/photo-1563475454428-db1b68095419",
     "title": "Barbie (2023)",
     "director": "Greta Gerwig",
     "firstAssistantDirector": "Michael Johnson",
@@ -260,6 +263,7 @@
     "dataWrangler": "Julian Schmidt"
   },
   {
+    "imgURL": "https://images.unsplash.com/photo-1580741569354-08feedd159f9",
     "title": "Oppenheimer",
     "director": "Christopher Nolan",
     "firstAssistantDirector": "Nilo Otero",
