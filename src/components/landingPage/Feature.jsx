@@ -17,7 +17,14 @@ const LandingPageFeature = () => {
 
       <ul className="z-10 flex max-w-[1280px] flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-8">
         <li className="flex gap-4">
-          <div className="h-[72px] w-[72px] rounded-full bg-[#545454] lg:h-[144px] lg:w-[144px]" />
+          <div className="relative h-[72px] w-[72px]  lg:h-[144px] lg:w-[144px]">
+            <Image
+              src="/images/landing-page/features/callsheets.png"
+              alt="Production Calls Sheets"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
 
           <div className="flex flex-1 flex-col justify-center text-base lg:justify-center lg:gap-6">
             <h3 className="font-bold lg:text-xl"> Production Calls Sheets</h3>
@@ -28,7 +35,14 @@ const LandingPageFeature = () => {
         </li>
 
         <li className="flex gap-4">
-          <div className="h-[72px] w-[72px] rounded-full bg-[#545454] lg:h-[144px] lg:w-[144px]" />
+          <div className="relative h-[72px] w-[72px]  lg:h-[144px] lg:w-[144px]">
+            <Image
+              src="/images/landing-page/features/production.png"
+              alt="Production Report"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
 
           <div className="flex flex-1 flex-col justify-center text-base lg:justify-center lg:gap-6">
             <h3 className="font-bold lg:text-xl"> Production Reports </h3>
@@ -39,7 +53,14 @@ const LandingPageFeature = () => {
         </li>
 
         <li className="flex gap-4">
-          <div className="h-[72px] w-[72px] rounded-full bg-[#545454] lg:h-[144px] lg:w-[144px]" />
+          <div className="relative h-[72px] w-[72px]  lg:h-[144px] lg:w-[144px]">
+            <Image
+              src="/images/landing-page/features/dashboard.png"
+              alt="Dashboard Icon"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
 
           <div className="flex flex-1 flex-col justify-center text-base lg:justify-center lg:gap-6">
             <h3 className="font-bold lg:text-xl">Dashboards</h3>
