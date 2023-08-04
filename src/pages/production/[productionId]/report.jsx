@@ -104,7 +104,7 @@ const ProductionReportPage = ({ productionId }) => {
   return (
     <>
       <Head>
-        <title>{production.data.title} | Arc </title>
+        <title>{production.data.title} | ARC </title>
       </Head>
 
       <div
