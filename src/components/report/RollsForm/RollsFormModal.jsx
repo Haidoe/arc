@@ -13,7 +13,6 @@ import { updateRolls } from "~/redux/features/ProductionReportSlice";
 import { updateProductionReportById } from "~/service/production";
 
 const RollsFormModal = ({ isOpen, onClose }) => {
-
   //redux
   const dispatch = useDispatch();
   const data = useSelector((state) => state.productionReport.data);
@@ -76,12 +75,12 @@ const RollsFormModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  useEffect(() => {
-    if (aCamTodayRef.current) {
-      aCamTodayRef.current?.focus();
-    }
-
-  }, []);
+  // TODO : FIX FOCUS
+  // useEffect(() => {
+  //   if (aCamTodayRef.current) {
+  //     aCamTodayRef.current?.focus();
+  //   }
+  // }, []);
 
   return (
     <Modal isOpen={isOpen} onClose={() => onClose()}>

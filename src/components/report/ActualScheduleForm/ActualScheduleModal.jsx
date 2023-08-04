@@ -101,12 +101,12 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  useEffect(() => {
-    if (firstUnitScheduleRef.current) {
-      firstUnitScheduleRef.current?.focus();
-    }
-
-  }, []);
+  // TODO: FIX FOCUS
+  // useEffect(() => {
+  //   if (firstUnitScheduleRef.current) {
+  //     firstUnitScheduleRef.current?.focus();
+  //   }
+  // }, []);
 
   return (
     <Modal isOpen={isOpen} onClose={() => onClose()}>
