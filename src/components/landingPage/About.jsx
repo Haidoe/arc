@@ -6,7 +6,7 @@ import Image from 'next/image'
 import aboutDesktop from '~/../public/images/landing-page/aboutDesktop-new.svg'
 import aboutMobile from '~/../public/images/landing-page/aboutMobile-new.svg'
 import aboutDesktopFull from '~/../public/images/landing-page/aboutDesktopFull.png'
-import triangleMask from '~/../public/images/landing-page/triangleMask.png'
+import triangleMask from '~/../public/images/landing-page/triangleMask-2.png'
 
 
 
