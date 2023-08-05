@@ -28,6 +28,7 @@ import { LoadingPage } from "~/components/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import DownloadReportButton from "~/components/DownloadReportButton";
+import Image from "next/image";
 
 // store and get expanded value from local storage
 
@@ -119,13 +120,19 @@ const ProductionReportPage = ({ productionId }) => {
           />
 
           <button
-            className="absolute right-[-.75rem] top-[8px] h-[28px] w-[28px] rounded-full bg-arc text-primary-dark shadow-3xl"
+            className="absolute right-[-1rem] top-[16px] flex h-[88px] w-[35px] items-center justify-center rounded-[5px] bg-primary-dark text-white"
             onClick={() => {
               setExpandedValue(!isExpanded);
               setIsExpanded(!isExpanded);
             }}
           >
-            {isExpanded ? `<` : `>`}
+            <Image
+              src="/images/icons/chevron-right.svg"
+              alt="chevron icon"
+              width={8}
+              height={16}
+              className={`transform ${isExpanded ? "rotate-180" : ""}`}
+            />
             <span className="sr-only">
               {isExpanded
                 ? `Minimize Production Info Sidebar`
