@@ -129,8 +129,8 @@ const ProductionReportPage = ({ productionId }) => {
             <Image
               src="/images/icons/chevron-right.svg"
               alt="chevron icon"
-              width={8}
-              height={16}
+              width={12}
+              height={24}
               className={`transform ${isExpanded ? "rotate-180" : ""}`}
             />
             <span className="sr-only">
