@@ -50,7 +50,7 @@ const Team = () => {
   return (
     <section
       id="team"
-      className="flex flex-col items-center gap-6 bg-primary-light px-6 py-16 text-center text-arc lg:gap-8"
+      className="flex flex-col items-center gap-6 bg-primary-dark px-6 py-16 text-center text-arc lg:gap-8"
     >
       <h2 className="text-4xl font-bold">Team</h2>
 

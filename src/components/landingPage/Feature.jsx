@@ -15,8 +15,8 @@ const LandingPageFeature = () => {
         and limitless possibilities for bringing their visions to the screen.
       </p>
 
-      <ul className="z-10 flex max-w-[1280px] flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-8">
-        <li className="flex gap-4">
+      <ul className="z-10 flex max-w-[1280px] flex-col gap-4 lg:mt-4 lg:grid lg:grid-cols-3 lg:gap-8">
+        <li className="flex gap-4 lg:flex-col lg:items-center">
           <div className="relative h-[72px] w-[72px]  lg:h-[144px] lg:w-[144px]">
             <Image
               src="/images/landing-page/features/callsheets.png"
@@ -27,14 +27,16 @@ const LandingPageFeature = () => {
           </div>
 
           <div className="flex flex-1 flex-col justify-center text-base lg:justify-center lg:gap-6">
-            <h3 className="font-bold lg:text-xl"> Production Calls Sheets</h3>
-            <p className="lg:text-lg">
-              Create the planning for your film production.{" "}
+            <h3 className="font-bold lg:text-center lg:text-xl">
+              Production Calls Sheets
+            </h3>
+            <p className="lg:text-center lg:text-lg">
+              Create the planning for your film production.
             </p>
           </div>
         </li>
 
-        <li className="flex gap-4">
+        <li className="flex gap-4 lg:flex-col lg:items-center">
           <div className="relative h-[72px] w-[72px]  lg:h-[144px] lg:w-[144px]">
             <Image
               src="/images/landing-page/features/production.png"
@@ -45,14 +47,16 @@ const LandingPageFeature = () => {
           </div>
 
           <div className="flex flex-1 flex-col justify-center text-base lg:justify-center lg:gap-6">
-            <h3 className="font-bold lg:text-xl"> Production Reports </h3>
-            <p className="lg:text-lg">
+            <h3 className="font-bold lg:text-center lg:text-xl">
+              Production Reports
+            </h3>
+            <p className="lg:text-center lg:text-lg">
               A smooth control and management experience for any producer.
             </p>
           </div>
         </li>
 
-        <li className="flex gap-4">
+        <li className="flex gap-4 lg:flex-col lg:items-center">
           <div className="relative h-[72px] w-[72px]  lg:h-[144px] lg:w-[144px]">
             <Image
               src="/images/landing-page/features/dashboard.png"
@@ -63,8 +67,8 @@ const LandingPageFeature = () => {
           </div>
 
           <div className="flex flex-1 flex-col justify-center text-base lg:justify-center lg:gap-6">
-            <h3 className="font-bold lg:text-xl">Dashboards</h3>
-            <p className="lg:text-lg">
+            <h3 className="font-bold lg:text-center lg:text-xl">Dashboards</h3>
+            <p className="lg:text-center lg:text-lg">
               Analyze and compare information about the status of your
               production.
             </p>
