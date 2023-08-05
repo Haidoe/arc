@@ -27,7 +27,10 @@ const LandingPageContactSection = () => {
   };
 
   return (
-    <section className="relative flex flex-col items-center gap-8 overflow-hidden p-12 px-6 lg:gap-12 lg:px-12 lg:py-28">
+    <section
+      id="contact"
+      className="relative flex flex-col items-center gap-8 overflow-hidden p-12 px-6 lg:gap-12 lg:px-12 lg:py-28"
+    >
       <h2 className="z-10 text-xl font-bold text-primary-dark lg:text-center lg:text-5xl">
         Contact
       </h2>

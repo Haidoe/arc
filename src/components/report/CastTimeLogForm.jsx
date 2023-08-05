@@ -116,7 +116,7 @@ const CastTimeLogForm = ({ productionInfo, isReadOnly }) => {
         <div>
           <div className="flow-root">
             <div className="overflow-x-auto">
-              <div className="inline-block min-w-full align-middle">
+              <div className="inline-block md:min-w-full align-middle">
                 <table className="text-bold min-w-full divide-y divide-primary-base text-base text-contrast-dark">
                   <thead>
                     <tr>
@@ -148,6 +148,7 @@ const CastTimeLogForm = ({ productionInfo, isReadOnly }) => {
                           scope="col"
                           className="relative min-w-[120px] pb-3.5 pl-3 pr-4 sm:pr-0"
                         >
+                          <span className="sr-only">Edit</span>
                           <span className="sr-only">Delete</span>
                         </th>
                       )}

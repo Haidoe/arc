@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 //Components
@@ -100,6 +100,13 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
     //closing the modal
     onClose();
   };
+
+  // TODO: FIX FOCUS
+  // useEffect(() => {
+  //   if (firstUnitScheduleRef.current) {
+  //     firstUnitScheduleRef.current?.focus();
+  //   }
+  // }, []);
 
   return (
     <Modal isOpen={isOpen} onClose={() => onClose()}>

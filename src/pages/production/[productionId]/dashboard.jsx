@@ -35,7 +35,7 @@ const Dashboard = () => {
   return (
     <>
       <Head>
-        <title> {production.data.title} | Dashboard | Arc </title>
+        <title> {production.data.title} | Dashboard | ARC </title>
       </Head>
 
       <div className="flex flex-1 flex-col bg-backgroundArc lg:flex-row">
