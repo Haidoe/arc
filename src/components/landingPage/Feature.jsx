@@ -10,14 +10,14 @@ const LandingPageFeature = () => {
         Features
       </h2>
 
-      <p className="z-10 text-sm lg:px-[10%] lg:text-center lg:text-xl">
+      <p className="z-10 text-sm lg:px-[20%] lg:py-4 lg:text-center lg:text-xl">
         Empowering filmmakers with cutting-edge tools, seamless collaboration,
         and limitless possibilities for bringing their visions to the screen.
       </p>
 
       <ul className="z-10 flex max-w-[1280px] flex-col gap-4 lg:mt-4 lg:grid lg:grid-cols-3 lg:gap-8">
         <li className="flex gap-4 lg:flex-col lg:items-center">
-          <div className="relative h-[72px] w-[72px]  lg:h-[144px] lg:w-[144px]">
+          <div className="relative h-[72px] w-[72px]  lg:h-[180px] lg:w-[180px]">
             <Image
               src="/images/landing-page/features/callsheets.png"
               alt="Production Calls Sheets"
@@ -37,7 +37,7 @@ const LandingPageFeature = () => {
         </li>
 
         <li className="flex gap-4 lg:flex-col lg:items-center">
-          <div className="relative h-[72px] w-[72px]  lg:h-[144px] lg:w-[144px]">
+          <div className="relative h-[72px] w-[72px]  lg:h-[180px] lg:w-[180px]">
             <Image
               src="/images/landing-page/features/production.png"
               alt="Production Report"
@@ -57,7 +57,7 @@ const LandingPageFeature = () => {
         </li>
 
         <li className="flex gap-4 lg:flex-col lg:items-center">
-          <div className="relative h-[72px] w-[72px]  lg:h-[144px] lg:w-[144px]">
+          <div className="relative h-[72px] w-[72px]  lg:h-[180px] lg:w-[180px]">
             <Image
               src="/images/landing-page/features/dashboard.png"
               alt="Dashboard Icon"
