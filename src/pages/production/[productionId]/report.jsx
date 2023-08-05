@@ -112,7 +112,11 @@ const ProductionReportPage = ({ productionId }) => {
       >
         {/* Desktop Version */}
         <aside className="relative hidden flex-shrink-0 flex-col bg-arc md:basis-[384px] lg:flex">
-          <Sidebar data={production.data} isContentVisible={!isExpanded} />
+          <Sidebar
+            data={production.data}
+            isContentVisible={!isExpanded}
+            theme="primary"
+          />
 
           <button
             className="absolute right-[-.75rem] top-[8px] h-[28px] w-[28px] rounded-full bg-arc text-primary-dark shadow-3xl"
