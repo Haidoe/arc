@@ -1,15 +1,14 @@
 import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LoadingPage } from "~/components/Loading";
+const homePageImageUrl = "/images/landing-page/aboutDesktopFull.png";
+import triangleMask from "~/../public/images/landing-page/triangleMask.png";
 import Button from "~/components/Button";
 import favicon from "/public/favicon.svg";
 import { loadDemoProductionInfo } from "~/helper/loadDemoProductionInfo";
 import Link from "next/link";
-
-const homePageImageUrl = "/images/landing-page/aboutDesktopFull.png";
-import triangleMask from "~/../public/images/landing-page/triangleMask.png";
 
 const Home = () => {
   const [isProjectLoading, setIsProjectLoading] = useState(false);
