@@ -1,53 +1,46 @@
 import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { LoadingPage } from "~/components/Loading";
+const homePageImageUrl = "/images/landing-page/aboutDesktopFull.png";
+import triangleMask from "~/../public/images/landing-page/triangleMask.png";
 import Button from "~/components/Button";
 import favicon from "/public/favicon.svg";
 import { loadDemoProductionInfo } from "~/helper/loadDemoProductionInfo";
 import Link from "next/link";
 
-const homePageImageUrl = "/images/landing-page/aboutDesktopFull.png";
-import triangleMask from "~/../public/images/landing-page/triangleMask.png";
-
 const Home = () => {
-  const [isProduction, setIsProduction] = useState(false);
-  const [productionIds, setProductionIds] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [isProjectLoading, setIsProjectLoading] = useState(false);
   const user = useUser();
 
-  useEffect(() => {
-    if (user && user.user && user.user.id && isLoading) {
-      getProductionInfo();
-    }
-  }, [user, isLoading]);
-
-  const getProductionInfo = async () => {
+  const getProductionInfo = async (userId) => {
     try {
-      const response = await fetch(
-        `/api/user/productions?userId=${user.user.id}`
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        const productionInfo = data.productionInfo;
-        // console.log("productionInfo:", productionInfo);
-        // console.log(productionInfo.length);
-        if (productionInfo.length > 0) {
-          setIsProduction(true);
-          setProductionIds(productionInfo);
+      if (userId) {
+        const response = await fetch(`/api/user/productions?userId=${userId}`);
+        if (response.ok) {
+          const data = await response.json();
+          return data.productionInfo;
         }
-        setIsLoading(false);
-      } else {
-        setIsLoading(false);
       }
     } catch (error) {
-      setIsLoading(false);
+      throw new Error("Error fetching productions");
     }
   };
 
+  const {
+    data: productionIds,
+    isLoading,
+    isError,
+  } = useQuery(["productions", user?.user?.id], () =>
+    getProductionInfo(user?.user?.id)
+  );
+
+  const isProduction =
+    !isLoading && !isError && productionIds && productionIds.length > 0;
+
   if (isLoading) return <LoadingPage />;
+  if (isError) return <div>Error: {isError.message}</div>;
 
   //NOTE: this function is used to load the demo production info to the database
   const handleDemoClick = async () => {
@@ -112,15 +105,16 @@ const Home = () => {
             className="mt-6 flex w-full flex-col gap-3 lg:mt-6 lg:gap-4"
           >
             {/* //map through productionIds and create a button for each one  */}
-            {productionIds.map((production) => (
-              <Link
-                key={production.id}
-                href={`/production/${production.id}/report`}
-                className="button w-full max-w-[400px] self-center border-[1.5px] border-primary-light bg-white py-2 text-sm font-bold text-primary-light hover:shadow-lg active:bg-primary-light active:text-white lg:py-3 lg:text-base "
-              >
-                {production.title}{" "}
-              </Link>
-            ))}
+            {productionIds &&
+              productionIds.map((production) => (
+                <Link
+                  key={production.id}
+                  href={`/production/${production.id}/report`}
+                  className="button w-full max-w-[400px] self-center border-[1.5px] border-primary-light bg-white py-2 text-sm font-bold text-primary-light hover:shadow-lg active:bg-primary-light active:text-white lg:py-3 lg:text-base "
+                >
+                  {production.title}{" "}
+                </Link>
+              ))}
           </div>
         </div>
 
