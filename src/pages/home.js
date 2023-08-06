@@ -7,7 +7,8 @@ import favicon from "/public/favicon.svg";
 import { loadDemoProductionInfo } from "~/helper/loadDemoProductionInfo";
 import Link from "next/link";
 
-const homePageImageUrl = "/images/home-page/home-page-image-new.png";
+const homePageImageUrl = "/images/landing-page/aboutDesktopFull.png";
+import triangleMask from "~/../public/images/landing-page/triangleMask.png";
 
 const Home = () => {
   const [isProduction, setIsProduction] = useState(false);
@@ -57,11 +58,11 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-1 lg:grid lg:grid-cols-2">
+    <div className="flex flex-1 bg-arc lg:grid lg:grid-cols-2">
       {/* --------------------------------------------------------- */}
       {/* LEFT COLUMN */}
       <div
-        className="hidden lg:block"
+        className="relative hidden lg:block"
         style={{
           backgroundImage: `url(${homePageImageUrl})`,
           backgroundRepeat: "no-repeat",
@@ -69,11 +70,12 @@ const Home = () => {
           backgroundPosition: "right",
         }}
       >
-        {/* <div className="mt-12 flex flex-col items-center gap-3">
-          <h1 className="text-[64px] text-arc ">Welcome to</h1>
-          //if screen is wider than 1024px, logo width is 220px
-          <Image src={LogoOffWhite} alt="logo" width={220} />
-        </div> */}
+        <Image
+          src={triangleMask}
+          alt="triangle-mask"
+          aria-hidden="true"
+          className="absolute right-0 top-0 z-10 h-full w-auto"
+        />
       </div>
 
       {/* --------------------------------------------------------- */}
@@ -87,8 +89,6 @@ const Home = () => {
             src={favicon}
             alt="logo"
             width={screen.width > 1024 ? 80 : 60}
-            // width={80}
-            // height={80}
             className=" self-center lg:hidden"
           />
         </div>
