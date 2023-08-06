@@ -85,7 +85,7 @@ const Pricing = () => {
                       tier.mostPopular
                         ? "text-primary-light"
                         : "text-contrast-dark",
-                      "text-lg font-semibold leading-8"
+                      "text-xl  sm:text-[32px] font-semibold leading-8"
                     )}
                   >
                     {tier.name}
@@ -96,10 +96,10 @@ const Pricing = () => {
                     </p>
                   ) : null}
                 </div>
-                <p className="mt-4 h-full max-h-[50px] text-sm leading-6 text-contrast-dark">
+                <p className="mt-4 mb-6 h-full max-h-[50px] text-[15px] leading-6 text-contrast-dark">
                   {tier.description}
                 </p>
-                <p className="mt-10 lg:mt-20 [@media(min-width:1100px)]:mt-10 flex items-baseline gap-x-1">
+                <p className="mt-16 lg:mt-20 [@media(min-width:1100px)]:mt-10 flex items-baseline gap-x-1">
                   <span className="text-4xl font-bold tracking-tight text-contrast-base">
                     {tier.price["Monthly"]}
                   </span>
@@ -115,7 +115,7 @@ const Pricing = () => {
                   className={classNames(
                     tier.mostPopular
                       ? "bg-primary-base text-white shadow-sm hover:bg-primary-light"
-                      : "text-primary-base ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300",
+                      : "text-primary-base ring-1 ring-inset ring-primary-base hover:outline-primary-light",
                     "mt-6 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-base"
                   )}
                 >
@@ -123,7 +123,7 @@ const Pricing = () => {
                 </a>
                 <ul
                   role="list"
-                  className="mt-8 space-y-3 text-sm leading-6 text-contrast-dark xl:mt-10"
+                  className="mt-8 space-y-3 text-md leading-6 text-contrast-dark xl:mt-10"
                 >
                   {tier.features.map((feature) => (
                     <li key={feature} className="flex gap-x-3">
