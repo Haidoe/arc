@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 //Components
@@ -13,35 +13,6 @@ import { updateRolls } from "~/redux/features/ProductionReportSlice";
 import { updateProductionReportById } from "~/service/production";
 
 const RollsFormModal = ({ isOpen, onClose }) => {
-  // // Get productionId from URL
-  // const router = useRouter();
-  // const { productionId } = router.query;
-
-  // //Get rolls previously from api
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `/api/production/${productionId}/rollsInfo`
-  //       );
-
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         setRollsData(data);
-
-  //       } else {
-  //         throw new Error("Error fetching scene progress data");
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       console.log("done");
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [productionId]);
-
   //redux
   const dispatch = useDispatch();
   const data = useSelector((state) => state.productionReport.data);
@@ -104,6 +75,13 @@ const RollsFormModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
+  // TODO : FIX FOCUS
+  // useEffect(() => {
+  //   if (aCamTodayRef.current) {
+  //     aCamTodayRef.current?.focus();
+  //   }
+  // }, []);
+
   return (
     <Modal isOpen={isOpen} onClose={() => onClose()}>
       <div className="mx-[-25vw] w-[85vw] lg:w-[50vw]">
@@ -143,24 +121,28 @@ const RollsFormModal = ({ isOpen, onClose }) => {
 
               <div className="col-span-2 grid font-bold">Today</div>
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="3"
                 ref={aCamTodayRef}
                 defaultValue={aCamToday}
               />
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="3"
                 ref={bCamTodayRef}
                 defaultValue={bCamToday}
               />
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="3"
                 ref={cCamTodayRef}
                 defaultValue={cCamToday}
               />
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="3"
                 ref={aSoundTodayRef}

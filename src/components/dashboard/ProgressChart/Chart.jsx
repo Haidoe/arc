@@ -29,12 +29,16 @@ const BudgetStatusChart = ({ details }) => {
     // const gradientSegment = ctx.createLinearGradient(180, -50, 0, 20);
     const gradientSegment = ctx.createLinearGradient(right, 0, 0, 0);
 
-    if (details.finishRateAvg <= 80) {
-      gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Good);
-    } else if (details.finishRateAvg <= 100) {
+    // 100% to 110% = Green
+    // 111% to 125% = Yellow
+    // Over 126% = Red
+
+    if (details.statusRate > 125) {
+      gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Danger);
+    } else if (details.statusRate <= 125 && details.statusRate > 110) {
       gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Warning);
     } else {
-      gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Danger);
+      gradientSegment.addColorStop(0.6, CUSTOM_LEGENDS.Good);
     }
 
     gradientSegment.addColorStop(0.1, "#6A6AC6");
@@ -70,7 +74,7 @@ const BudgetStatusChart = ({ details }) => {
   };
 
   const options = {
-    aspectRatio: 2,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
@@ -116,8 +120,9 @@ const BudgetStatusChart = ({ details }) => {
 
   return (
     <div className="flex w-full flex-col items-center justify-center">
-      <div className="relative w-[80%]">
+      <div className="relative w-full">
         <Doughnut
+          height={225}
           ref={chartRef}
           data={data}
           options={options}
@@ -125,7 +130,7 @@ const BudgetStatusChart = ({ details }) => {
         />
       </div>
 
-      <div className="mt-4 flex justify-center gap-4 py-8">
+      <div className="mt-4 flex justify-center gap-4 pt-4">
         {/* loop throught custom legends */}
         {Object.keys(CUSTOM_LEGENDS).map((key, idx) => (
           <div key={idx} className="flex flex-row items-center gap-2">

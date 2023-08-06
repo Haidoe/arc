@@ -47,7 +47,7 @@ const ActiveExtras = ({}) => {
           {/* Display Information */}
           <div className="basis-5/8 flex w-60 flex-grow flex-col">
             <div>
-              <h3 className="text-xl font-bold text-primary-light">
+              <h3 className="text-lg lg:text-xl font-bold text-primary-light">
                 Active Extras
               </h3>
             </div>

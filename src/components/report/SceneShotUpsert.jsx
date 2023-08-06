@@ -1,5 +1,5 @@
 import Button from "~/components/Button";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import DropDown from "~/components/global/DropDown.jsx";
 
 // redux
@@ -11,6 +11,16 @@ import { updateProductionReportById } from "~/service/production";
 
 // status drop down
 const dayOrNightArray = [{ name: "D" }, { name: "N" }];
+
+// api to call scene progress
+async function sceneProgressApi(productionId) {
+// handles pages/api/production/[id]/scene-progress
+  
+  const response = await fetch(`/api/production/${productionId}/scene-progress`);
+  const data = await response.json();
+  return data;
+  
+}
 
 // handles add or update to in the modal
 const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
@@ -27,12 +37,33 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
   const isUpdate = idx !== undefined ? true : false;
   const allScenesArray = productionInfo.scenes;
 
-  const allScenes = allScenesArray.map((item, idx) => {
+  const allScenes_custom = allScenesArray.map((item, idx) => {
     return {
       name: idx + 1,
       page: item,
     };
   });
+
+  const [allScenes, setAllScenes] = useState(allScenes_custom);
+
+  // =======================> Effects
+
+  useEffect(() => {
+    const updatedScenes = [...allScenes];
+    sceneProgressApi(productionInfo.id).then(({sceneProgressArray}) => {
+      
+      const pagesShot = sceneProgressArray.map((item, idx) => {
+        updatedScenes[idx].pagesShot = item.completed;
+        return {completed: item.completed}
+       });      
+      // console.log(pagesShot);
+
+      setAllScenes(updatedScenes);
+
+    });
+  }, []);
+
+
 
   // =======================> Initial Values
 
@@ -59,12 +90,6 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
     ? { name: scenesShot[idx].dayOrNight }
     : dayOrNightArray[0];
 
-  // // pages
-  // const pages_iv = isUpdate ? scenesShot[idx].pages : 0;
-
-  // pages shot
-  const pagesShot_iv = isUpdate ? scenesShot[idx].pagesShot : 0;
-
   // page today
   const pagesToday_iv = isUpdate ? scenesShot[idx].pagesToday : 0;
 
@@ -80,8 +105,6 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
   const set = useRef(set_iv);
   const location = useRef(location_iv);
   const casts = useRef(casts_iv);
-
-  const pagesShot = useRef(pagesShot_iv);
   const pagesToday = useRef(pagesToday_iv);
 
   // ======================> Event Handlers
@@ -97,8 +120,8 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
       casts: casts.current.value.split(","),
       dayOrNight: selectedDayOrNight.name,
       pages: selectedNumber.page ? parseInt(selectedNumber.page) : 0,
-      pagesShot: pagesShot.current.value
-        ? parseInt(pagesShot.current.value)
+      pagesShot: selectedNumber.pagesShot
+        ? parseInt(selectedNumber.pagesShot)
         : 0,
       pagesToday: pagesToday.current.value
         ? parseInt(pagesToday.current.value)
@@ -130,9 +153,9 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
       casts: casts.current.value.split(","),
       dayOrNight: selectedDayOrNight.name,
       pages: selectedNumber.page ? parseInt(selectedNumber.page) : 0,
-      pagesShot: pagesShot.current.value
-        ? parseInt(pagesShot.current.value)
-        : 0,
+      pagesShot: selectedNumber.pagesShot
+      ? parseInt(selectedNumber.pagesShot)
+      : 0,
       pagesToday: pagesToday.current.value
         ? parseInt(pagesToday.current.value)
         : 0,
@@ -269,12 +292,7 @@ const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
 
                       <td className="whitespace-nowrap px-3 py-4 ">
                         {/* TODO Page Shot */}
-                        <NumberInputField
-                          className="rounded-sm border border-gray-500 px-2 py-2"
-                          label="Page Shot"
-                          defaultValue={pagesShot_iv}
-                          ref={pagesShot}
-                        />
+                        {selectedNumber.pagesShot}
                       </td>
 
                       <td className="whitespace-nowrap px-3 py-4 ">

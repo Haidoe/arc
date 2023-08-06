@@ -7,48 +7,52 @@ import ActiveActors from "~/components/dashboard/ActiveActors";
 import ActiveExtras from "~/components/dashboard/ActiveExtras";
 import Head from "next/head";
 import UnfinishhedSceneSection from "~/components/dashboard/UnfinishedSceneSection";
-import Button from "~/components/Button";
 import SceneChart from "~/components/dashboard/SceneChart";
 import ProgressChart from "~/components/dashboard/ProgressChart";
-import DropDown from "~/components/global/DropDown";
-import MainPageLayout from "~/components/layouts/MainPageLayout";
 import Sidebar from "~/components/production/Information";
 import Accordion from "~/components/report/Accordion";
+import { useRouter } from "next/router";
+import { LoadingPage } from "~/components/Loading";
+import { useQuery } from "@tanstack/react-query";
+import DownloadReportButton from "~/components/DownloadReportButton";
 
 dayjs.extend(LocalizedFormat);
 
-const Dashboard = ({ productionInfo }) => {
+const Dashboard = () => {
+  const { query } = useRouter();
+  const { productionId } = query;
+
+  const production = useQuery({
+    queryKey: ["production", productionId],
+    enabled: !!productionId,
+    queryFn: () => getProductionInfoById(productionId),
+  });
+
   const today = dayjs().format("LL");
 
+  if (production.isLoading) return <LoadingPage />;
+
   return (
-    <MainPageLayout>
+    <>
       <Head>
-        <title> {productionInfo.title} | Dashboard | Arc </title>
+        <title> {production.data.title} | Dashboard | ARC </title>
       </Head>
 
       <div className="flex flex-1 flex-col bg-backgroundArc lg:flex-row">
         <aside className="hidden flex-shrink-0 flex-col bg-arc sm:basis-[384px] lg:flex">
-          <Sidebar data={productionInfo} theme="primary" />
+          <Sidebar data={production.data} theme="primary" />
         </aside>
 
         <aside className="flex bg-arc p-4 py-4 shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] lg:hidden">
-          <Sidebar data={productionInfo} isMobile />
+          <Sidebar data={production.data} isMobile />
         </aside>
 
-        <div className="grid flex-1 grid-cols-2 content-start gap-6 px-4 py-4 lg:px-8">
-          <div className="col-span-full mt-6">
+        <div className="grid flex-1 grid-cols-2 content-start gap-6 p-4 lg:p-8">
+          <div className="col-span-full">
             <div className="flex items-end justify-between">
-              <h2 className="flex-grow text-2xl font-bold text-primary-dark">
+              <h2 className="flex-grow text-lg font-bold text-primary-dark lg:text-2xl">
                 {today}
               </h2>
-
-              <div>
-                <DropDown
-                  people={[{ name: "Today" }]}
-                  selected={{ name: "Today" }}
-                  isReadOnly={true}
-                />
-              </div>
             </div>
 
             <hr className="my-2 border-b border-contrast-light" />
@@ -63,7 +67,7 @@ const Dashboard = ({ productionInfo }) => {
           </div>
 
           <div className="col-span-full mt-6">
-            <h2 className="text-2xl font-bold text-primary-dark">
+            <h2 className="text-lg font-bold text-primary-dark lg:text-2xl">
               General Reports
             </h2>
             <hr className="my-2 border-b border-contrast-light" />
@@ -87,33 +91,13 @@ const Dashboard = ({ productionInfo }) => {
             </Accordion>
           </div>
 
-          <div className="col-span-full mt-8 flex justify-end">
-            <Button className="min-w-[240px] text-xs"> Download Report </Button>
+          <div className="col-span-full flex flex-col items-center justify-end lg:flex-row">
+            <DownloadReportButton />
           </div>
         </div>
       </div>
-    </MainPageLayout>
+    </>
   );
-};
-
-export const getServerSideProps = async (ctx) => {
-  try {
-    const productionInfo = await getProductionInfoById(ctx.query.productionId);
-
-    return {
-      props: {
-        productionInfo,
-      },
-    };
-  } catch (error) {
-    //Redirect if the productionId is not valid
-    return {
-      redirect: {
-        destination: "/home",
-        permanent: false,
-      },
-    };
-  }
 };
 
 export default Dashboard;

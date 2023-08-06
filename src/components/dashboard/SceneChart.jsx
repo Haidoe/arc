@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import LoadingSpinner, { LoadingPage } from "~/components/Loading";
+import LoadingSpinner from "~/components/Loading";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -73,7 +73,7 @@ const SceneChart = () => {
     const remainingData = sceneProgressArray.map((scene) => scene.remaining);
     const expectedData = sceneProgressArray.map((scene) => scene.expected);
 
-
+    const completedScenes = sceneProgressArray.filter((scene) => scene.completed === scene.expected).length;
     const numScenes = sceneProgressArray.length;
     const maxBarThickness = 80;
     const minBarThickness = 20;
@@ -81,6 +81,8 @@ const SceneChart = () => {
       minBarThickness,
       maxBarThickness / numScenes
     );
+
+    const scenesInfo = `${completedScenes}/${numScenes} ${completedScenes > 1 ? `scenes shot` : `scene shot`}`;
 
     setChartData({
       labels: labels,
@@ -115,6 +117,9 @@ const SceneChart = () => {
         },
         title: {
           display: true,
+          text: scenesInfo,
+          position: "top",
+          align: "start"
         },
       },
       maintainAspectRatio: false,
@@ -139,7 +144,7 @@ const SceneChart = () => {
 
   return (
     <div className="bg-arc rounded">
-      <div className="flex justify-center min-h-[300px] max-h-[450px] w-full rounded pb-4">
+      <div className="flex justify-center min-h-[300px] max-h-[450px] w-full rounded pb-4 overflow-auto">
         {isLoading ? (
           <LoadingDiv />
         ) : (

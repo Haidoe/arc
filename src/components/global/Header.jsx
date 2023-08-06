@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 // import components
 import HeaderMobileLanding from "~/components/global/HeaderMobileLanding.jsx";
@@ -129,18 +130,29 @@ const Header = () => {
   const router = useRouter();
   const { pathname, asPath, query } = router;
 
-  // console.log(router)
-  // console.log(pathname);
-
   const headerLinks = linksOnHeader[pathname] || [];
 
-  // console.log(">>", headerLinks, pathname);
+  const [top, setTop] = useState(true);
+
+  useEffect(() => {
+    const scrollHandler = () => {
+      window.pageYOffset > 10 ? setTop(false) : setTop(true);
+    };
+
+    window.addEventListener("scroll", scrollHandler);
+
+    return () => window.removeEventListener("scroll", scrollHandler);
+  }, [top]);
 
   return (
-    <header>
+    <header className={`sticky top-0 z-20 bg-arc`}>
       {/* For Desktop */}
-      <div className="hidden items-center justify-between bg-arc px-8 py-3 lg:flex">
-        <div className="hidden items-center sm:flex">
+      <div
+        className={`hidden items-stretch justify-between bg-arc px-8 lg:flex ${
+          top ? "" : "shadow-3xl-lighter"
+        }`}
+      >
+        <div className="hidden items-center py-2 sm:flex">
           {/* Logo */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <Link href="/">
@@ -155,13 +167,15 @@ const Header = () => {
             </div>
           </Link>
         </div>
-        <div className="hidden items-center justify-around sm:flex">
+
+        <div className="hidden justify-around sm:flex">
           {/* Header Links */}
-          <div className="links-wrapper flex space-x-2">
+          <div className="flex">
             {headerLinks.map((header, index) => (
               <Link
                 href={patternToUrl(header.path, query)}
                 key={index}
+                title={header.name}
                 className={`${
                   header.disabled
                     ? "pointer-events-none text-contrast-light"
@@ -173,10 +187,12 @@ const Header = () => {
                     ? "border-tertiary-light font-normal text-tertiary-light"
                     : "border-transparent font-normal text-contrast-dark hover:font-bold"
                 }
-
-                inline-flex items-center border-b-2 px-2`}
+                relative inline-flex items-center border-b-4
+                px-2 before:invisible before:block before:font-bold before:content-[attr(title)]`}
               >
-                {header.name}
+                <span className="absolute inset-0 flex items-center justify-center hover:font-bold">
+                  {header.name}
+                </span>
               </Link>
             ))}
           </div>
@@ -186,12 +202,12 @@ const Header = () => {
             <>
               {/* Hide the divider on public viewing page */}
               {!router.pathname.includes("/view") && (
-                <div className="divider-wrapper">
+                <div className="divider-wrapper flex items-center">
                   <div className="mx-4 h-6 w-px bg-contrast-dark"></div>
                 </div>
               )}
 
-              <div className="registration-btns-wrapper">
+              <div className="registration-btns-wrapper  flex items-center">
                 {/* Sign In Button */}
                 {/* todo height 48 width 88 */}
                 <SignedOut>

@@ -7,6 +7,7 @@ import { prisma } from "~/server/db";
 // let productionId = "648fe91b5a6933035f1b9ab2";
 
 // handles pages/api/production/[id]/scene-progress
+// handles pages/api/production/648fe91b5a6933035f1b9ab2/scene-progress
 const getHandler = async (req, res) => {
   try {
     const { productionId } = req.query;
@@ -56,3 +57,5 @@ const getHandler = async (req, res) => {
 };
 
 export default requireAuth(getHandler);
+
+// export default getHandler;

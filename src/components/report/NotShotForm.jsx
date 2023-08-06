@@ -58,7 +58,7 @@ const NotShotForm = ({ isReadOnly }) => {
         <div>
           <div className="flow-root">
             <div className="overflow-x-auto">
-              <div className="inline-block min-w-full align-middle">
+              <div className="inline-block md:min-w-full min-w-[550px] align-middle">
                 <table className="min-w-full divide-y divide-primary-base">
                   <thead className="text-base font-bold text-contrast-dark">
                     <tr>
@@ -84,6 +84,7 @@ const NotShotForm = ({ isReadOnly }) => {
                           scope="col"
                           className="relative min-w-[60px] py-3.5 pl-3 pr-4 sm:pr-0"
                         >
+                          <span className="sr-only">Edit</span>
                           <span className="sr-only">Delete</span>
                         </th>
                       )}
@@ -104,6 +105,7 @@ const NotShotForm = ({ isReadOnly }) => {
 
                           <td className="whitespace-nowrap px-3 py-4 ">
                             <TimeInputField
+                              tabIndex="-1"
                               label="not shot time"
                               isReadyOnly={true}
                               value={ISOToTimeString(row.time)}
@@ -189,7 +191,7 @@ const NotShotForm = ({ isReadOnly }) => {
                 {notShotInfo?.length == 0 && (
                   <div className="mt-4 flex flex-col items-center gap-4 border-primary-base pt-4">
                     <div>
-                      <p className="">No not shot scenes infromation found.</p>
+                      <p className="">No not shot scenes infomation found.</p>
                     </div>
                   </div>
                 )}

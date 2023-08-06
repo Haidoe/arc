@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 //Components
@@ -101,6 +101,13 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
+  // TODO: FIX FOCUS
+  // useEffect(() => {
+  //   if (firstUnitScheduleRef.current) {
+  //     firstUnitScheduleRef.current?.focus();
+  //   }
+  // }, []);
+
   return (
     <Modal isOpen={isOpen} onClose={() => onClose()}>
       <div className="mx-[-25vw] w-[85vw] lg:w-[50vw]">
@@ -120,6 +127,7 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
             <div className="grid-rows-7 grid grid-cols-3 gap-4 gap-y-4 pt-2 text-base font-bold text-contrast-dark">
               <p>1st Unit</p>
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={firstUnitScheduleRef}
@@ -127,6 +135,7 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
               />
 
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={firstUnitActualRef}
@@ -134,12 +143,14 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
               />
               <p>2nd Unit</p>
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={secondUnitScheduleRef}
                 defaultValue={secondUnitSchedule}
               />
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={secondUnitActualRef}
@@ -148,12 +159,14 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
 
               <p>Prep</p>
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={prepScheduleRef}
                 defaultValue={prepSchedule}
               />
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={prepActualRef}
@@ -161,12 +174,14 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
               />
               <p>Travel</p>
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={travelScheduleRef}
                 defaultValue={travelSchedule}
               />
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={travelActualRef}
@@ -174,12 +189,14 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
               />
               <p>Idle</p>
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={idleScheduleRef}
                 defaultValue={idleSchedule}
               />
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={idleActualRef}
@@ -187,12 +204,14 @@ const ActualScheduleModal = ({ isOpen, onClose }) => {
               />
               <p>Holiday</p>
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={holidayScheduleRef}
                 defaultValue={holidaySchedule}
               />
               <TextInputField
+                type="number"
                 placeholder="0"
                 maxLength="8"
                 ref={holidayActualRef}
