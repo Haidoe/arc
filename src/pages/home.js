@@ -1,52 +1,46 @@
 import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { LoadingPage } from "~/components/Loading";
+const homePageImageUrl = "/images/landing-page/aboutDesktopFull.png";
+import triangleMask from "~/../public/images/landing-page/triangleMask.png";
 import Button from "~/components/Button";
 import favicon from "/public/favicon.svg";
 import { loadDemoProductionInfo } from "~/helper/loadDemoProductionInfo";
 import Link from "next/link";
 
-const homePageImageUrl = "/images/home-page/home-page-image-new.png";
-
 const Home = () => {
-  const [isProduction, setIsProduction] = useState(false);
-  const [productionIds, setProductionIds] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [isProjectLoading, setIsProjectLoading] = useState(false);
   const user = useUser();
 
-  useEffect(() => {
-    if (user && user.user && user.user.id && isLoading) {
-      getProductionInfo();
-    }
-  }, [user, isLoading]);
-
-  const getProductionInfo = async () => {
+  const getProductionInfo = async (userId) => {
     try {
-      const response = await fetch(
-        `/api/user/productions?userId=${user.user.id}`
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        const productionInfo = data.productionInfo;
-        // console.log("productionInfo:", productionInfo);
-        // console.log(productionInfo.length);
-        if (productionInfo.length > 0) {
-          setIsProduction(true);
-          setProductionIds(productionInfo);
+      if (userId) {
+        const response = await fetch(`/api/user/productions?userId=${userId}`);
+        if (response.ok) {
+          const data = await response.json();
+          return data.productionInfo;
         }
-        setIsLoading(false);
-      } else {
-        setIsLoading(false);
       }
     } catch (error) {
-      setIsLoading(false);
+      throw new Error("Error fetching productions");
     }
   };
 
+  const {
+    data: productionIds,
+    isLoading,
+    isError,
+  } = useQuery(["productions", user?.user?.id], () =>
+    getProductionInfo(user?.user?.id)
+  );
+
+  const isProduction =
+    !isLoading && !isError && productionIds && productionIds.length > 0;
+
   if (isLoading) return <LoadingPage />;
+  if (isError) return <div>Error: {isError.message}</div>;
 
   //NOTE: this function is used to load the demo production info to the database
   const handleDemoClick = async () => {
@@ -57,11 +51,11 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-1 lg:grid lg:grid-cols-2">
+    <div className="flex flex-1 bg-arc lg:grid lg:grid-cols-2">
       {/* --------------------------------------------------------- */}
       {/* LEFT COLUMN */}
       <div
-        className="hidden lg:block"
+        className="relative hidden lg:block"
         style={{
           backgroundImage: `url(${homePageImageUrl})`,
           backgroundRepeat: "no-repeat",
@@ -69,11 +63,12 @@ const Home = () => {
           backgroundPosition: "right",
         }}
       >
-        {/* <div className="mt-12 flex flex-col items-center gap-3">
-          <h1 className="text-[64px] text-arc ">Welcome to</h1>
-          //if screen is wider than 1024px, logo width is 220px
-          <Image src={LogoOffWhite} alt="logo" width={220} />
-        </div> */}
+        <Image
+          src={triangleMask}
+          alt="triangle-mask"
+          aria-hidden="true"
+          className="absolute right-0 top-0 z-10 h-full w-auto"
+        />
       </div>
 
       {/* --------------------------------------------------------- */}
@@ -87,8 +82,6 @@ const Home = () => {
             src={favicon}
             alt="logo"
             width={screen.width > 1024 ? 80 : 60}
-            // width={80}
-            // height={80}
             className=" self-center lg:hidden"
           />
         </div>
@@ -112,15 +105,16 @@ const Home = () => {
             className="mt-6 flex w-full flex-col gap-3 lg:mt-6 lg:gap-4"
           >
             {/* //map through productionIds and create a button for each one  */}
-            {productionIds.map((production) => (
-              <Link
-                key={production.id}
-                href={`/production/${production.id}/report`}
-                className="button w-full max-w-[400px] self-center border-[1.5px] border-primary-light bg-white py-2 text-sm font-bold text-primary-light hover:shadow-lg active:bg-primary-light active:text-white lg:py-3 lg:text-base "
-              >
-                {production.title}{" "}
-              </Link>
-            ))}
+            {productionIds &&
+              productionIds.map((production) => (
+                <Link
+                  key={production.id}
+                  href={`/production/${production.id}/report`}
+                  className="button w-full max-w-[400px] self-center border-[1.5px] border-primary-light bg-white py-2 text-sm font-bold text-primary-light hover:shadow-lg active:bg-primary-light active:text-white lg:py-3 lg:text-base "
+                >
+                  {production.title}{" "}
+                </Link>
+              ))}
           </div>
         </div>
 

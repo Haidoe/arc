@@ -3,7 +3,7 @@ import Image from "next/image";
 
 //components
 import LogoMobile from "~/assets/icons/LogoMobile.svg";
-import appImagePlaceholder from "~/../public/images/landing-page/appImagePlaceholder.jpg";
+import appImagePlaceholder from "~/../public/images/landing-page/HeroDesktop.png";
 import Link from "next/link";
 
 const Hero = () => {
@@ -40,7 +40,7 @@ const Hero = () => {
       <Image
         src={appImagePlaceholder}
         alt="App Image"
-        className=" max-w-[80%] shadow-lg shadow-contrast-base/30"
+        className=" max-w-[80%]"
       />
     </div>
   );
