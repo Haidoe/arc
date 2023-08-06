@@ -2,6 +2,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+import Image from "next/image";
+
+// redux actions
 import { setProductionReport } from "~/redux/features/ProductionReportSlice";
 
 // components
@@ -68,13 +71,24 @@ const PublicReportPage = () => {
       >
         {/* Desktop Version */}
         <aside className="relative hidden flex-shrink-0 flex-col bg-arc md:basis-[384px] lg:flex">
-          <Sidebar data={productionInfo} isContentVisible={!isExpanded} />
+          <Sidebar
+            data={productionInfo}
+            isContentVisible={!isExpanded}
+            theme="primary"
+          />
 
           <button
-            className="absolute right-[-.75rem] top-[8px] h-[28px] w-[28px] rounded-full bg-arc text-primary-dark shadow-3xl"
+            className="absolute right-[-1rem] top-[16px] flex h-[88px] w-[28px]  items-center justify-center rounded-[5px] bg-primary-dark text-white"
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            {isExpanded ? `<` : `>`}
+            <Image
+              src="/images/icons/chevron-right.svg"
+              alt="chevron icon"
+              width={12}
+              height={24}
+              className={`transform ${isExpanded ? "rotate-180" : ""}`}
+            />
+
             <span className="sr-only">
               {isExpanded
                 ? `Minimize Production Info Sidebar`
