@@ -1,7 +1,7 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-export default function InformationModal({heading, message, closeModalHandler}) {
+export default function InformationModal({ heading, message, closeModalHandler }) {
   const [open, setOpen] = useState(true)
 
   const cancelButtonRef = useRef(null)
@@ -9,7 +9,7 @@ export default function InformationModal({heading, message, closeModalHandler}) 
   function onConfirm() {
     setOpen(false);
     if (actionHandler) {
-      actionHandler(); 
+      actionHandler();
     }
   }
 
@@ -63,7 +63,7 @@ export default function InformationModal({heading, message, closeModalHandler}) 
                     onClick={() => cancelHandler()}
                     ref={cancelButtonRef}
                   >
-                    Cancel
+                    Close
                   </button>
                 </div>
               </Dialog.Panel>
