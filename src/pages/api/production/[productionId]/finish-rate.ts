@@ -12,7 +12,10 @@ export default requireAuth(async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  const { productionId, upto } = req.query as { productionId: string, upto: string };
+  const { productionId, upto } = req.query as {
+    productionId: string;
+    upto: string;
+  };
 
   //I have to get the userId to make sure that the user is part of the production
   const { userId } = getAuth(req);
@@ -22,15 +25,15 @@ export default requireAuth(async function handler(
     const result = await prisma.production.findFirstOrThrow({
       where: {
         id: productionId,
-        producerId: userId ?? ""
+        producerId: userId ?? "",
       },
       include: {
         report: {
           where: {
             created: {
-              lte: upto
-            }
-          }
+              lte: upto,
+            },
+          },
         },
       },
     });
@@ -52,21 +55,16 @@ export default requireAuth(async function handler(
           const totalSchedule =
             firstInputSchedule + prepSchedule + idleSchedule + travelSchedule;
 
-          return totalSchedule;
+          return totalSchedule < WORKING_HOURS_PER_DAY
+            ? WORKING_HOURS_PER_DAY
+            : totalSchedule;
         }
 
-        return 0;
+        return WORKING_HOURS_PER_DAY;
       }
     );
 
     const totalHoursUsed = reports.reduce((a, b) => a + b, 0);
-
-    //Removing with no valid reports
-    const reportsFiltered = reports.filter((report: number) => report !== 0);
-
-    const reportsComputed: number[] = reportsFiltered.map((report: number) => {
-      return (report / WORKING_HOURS_PER_DAY) * 100;
-    });
 
     const startDate = result.duration?.startDate ?? null;
     const estimatedFinishDate = result.duration?.estimatedFinishDate ?? null;
@@ -74,20 +72,21 @@ export default requireAuth(async function handler(
 
     const rate = (result.report.length / totalDays) * 100;
 
-    const finishRateAvg =
-      reportsComputed.reduce((a, b) => a + b, 0) / reportsComputed.length;
-
-    const finishRateAvg2Decimals = parseFloat(finishRateAvg.toFixed(2));
-
     res.json({
       reports,
+      totalDays,
+      workingHoursPerDay: WORKING_HOURS_PER_DAY,
+      totalHours: totalDays * WORKING_HOURS_PER_DAY,
+      totalHoursUsed,
+      statusRate: parseFloat(
+        (
+          ((reports.length * WORKING_HOURS_PER_DAY) / totalHoursUsed) *
+          100
+        ).toFixed(2)
+      ),
       startDate,
       estimatedFinishDate,
-      totalDays,
       projectProgress: parseFloat(rate.toFixed(2)),
-      finishRateAvg: finishRateAvg2Decimals,
-      totalHoursUsed,
-      totalHours: totalDays * WORKING_HOURS_PER_DAY,
     });
   } catch (error) {
     res.status(400).json({ message: "Invalid Parameters" });
