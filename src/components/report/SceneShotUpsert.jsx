@@ -1,5 +1,5 @@
 import Button from "~/components/Button";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import DropDown from "~/components/global/DropDown.jsx";
 
 // redux
@@ -12,9 +12,36 @@ import { updateProductionReportById } from "~/service/production";
 // status drop down
 const dayOrNightArray = [{ name: "D" }, { name: "N" }];
 
+// api to call scene progress
+async function sceneProgressApi(productionId) {
+// handles pages/api/production/[id]/scene-progress
+  
+  const response = await fetch(`/api/production/${productionId}/scene-progress`);
+  const data = await response.json();
+  return data;
+  
+}
+
+
 // handles add or update to in the modal
 const ScenesShotUpsert = ({ idx, closeModal, productionInfo }) => {
   const formRef = useRef(null);
+
+
+  // use effect to call api
+
+  useEffect(() => {
+    sceneProgressApi(productionInfo.id).then(({sceneProgressArray}) => {
+      
+      const pagesShot = sceneProgressArray.map((item) => {
+        return {completed: item.completed}
+       });
+      
+      console.log(pagesShot);
+
+    });
+  }, []);
+
 
   // =======================> Resources
 
