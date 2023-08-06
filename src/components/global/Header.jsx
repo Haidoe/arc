@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 // import components
 import HeaderMobileLanding from "~/components/global/HeaderMobileLanding.jsx";
@@ -131,10 +132,26 @@ const Header = () => {
 
   const headerLinks = linksOnHeader[pathname] || [];
 
+  const [top, setTop] = useState(true);
+
+  useEffect(() => {
+    const scrollHandler = () => {
+      window.pageYOffset > 10 ? setTop(false) : setTop(true);
+    };
+
+    window.addEventListener("scroll", scrollHandler);
+
+    return () => window.removeEventListener("scroll", scrollHandler);
+  }, [top]);
+
   return (
-    <header>
+    <header className={`sticky top-0 z-20 bg-arc`}>
       {/* For Desktop */}
-      <div className="hidden items-stretch justify-between bg-arc px-8 lg:flex">
+      <div
+        className={`hidden items-stretch justify-between bg-arc px-8 lg:flex ${
+          top ? "" : "shadow-3xl-lighter"
+        }`}
+      >
         <div className="hidden items-center py-2 sm:flex">
           {/* Logo */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
