@@ -131,14 +131,12 @@ const ScheduleOfTheDayModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  //useRef for auto focus on the first input field
-  useEffect(() => {
-    if (breakfastFromRef.current) {
-      breakfastFromRef.current?.focus();
-    }
-
-  }, []);
-
+  // TODO : FIX FOCUS
+  // useEffect(() => {
+  //   if (breakfastFromRef.current) {
+  //     breakfastFromRef.current?.focus();
+  //   }
+  // }, []);
 
   return (
     <Modal

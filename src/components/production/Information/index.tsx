@@ -25,13 +25,11 @@ const ProductionInformation = (props: ProductionInformationProps) => {
   const { data } = props;
 
   const borderColor =
-    props.theme === "primary" ? "border-arc" : "border-primary-base";
-
-  // const wrapperClass = props.theme && "text-arc bg-primary-light";
+    props.theme === "primary" ? "border-[#8585DB]" : "border-primary-base";
 
   const wrapperClass =
     props.theme === "primary"
-      ? "text-arc bg-primary-light"
+      ? "text-arc bg-primary-dark"
       : "text-contrast-dark bg-arc";
 
   return (
@@ -50,7 +48,10 @@ const ProductionInformation = (props: ProductionInformationProps) => {
             className={`flex gap-4 border-b-[1.5px]  py-[20px] ${borderColor}`}
           >
             <div className="basis-[94px]">
-              <DefaultAvatar theme="primary" imgURL={getMovieImage(props.data.title)} />
+              <DefaultAvatar
+                theme="primary"
+                imgURL={getMovieImage(props.data.title)}
+              />
             </div>
 
             <div className="flex flex-1 flex-col  justify-center">

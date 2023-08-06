@@ -10,40 +10,65 @@ const LandingPageFeature = () => {
         Features
       </h2>
 
-      <p className="z-10 text-sm lg:px-[10%] lg:text-center lg:text-xl">
+      <p className="z-10 text-sm lg:px-[20%] lg:py-4 lg:text-center lg:text-xl">
         Empowering filmmakers with cutting-edge tools, seamless collaboration,
         and limitless possibilities for bringing their visions to the screen.
       </p>
 
-      <ul className="z-10 flex max-w-[1280px] flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-8">
-        <li className="flex gap-4">
-          <div className="h-[72px] w-[72px] rounded-full bg-[#545454] lg:h-[144px] lg:w-[144px]" />
+      <ul className="z-10 flex max-w-[1280px] flex-col gap-4 lg:mt-4 lg:grid lg:grid-cols-3 lg:gap-8">
+        <li className="flex gap-4 lg:flex-col lg:items-center">
+          <div className="relative h-[72px] w-[72px]  lg:h-[180px] lg:w-[180px]">
+            <Image
+              src="/images/landing-page/features/callsheets.png"
+              alt="Production Calls Sheets"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
 
           <div className="flex flex-1 flex-col justify-center text-base lg:justify-center lg:gap-6">
-            <h3 className="font-bold lg:text-xl"> Production Calls Sheets</h3>
-            <p className="lg:text-lg">
-              Create the planning for your film production.{" "}
+            <h3 className="font-bold lg:text-center lg:text-xl">
+              Production Calls Sheets
+            </h3>
+            <p className="lg:text-center lg:text-lg">
+              Create the planning for your film production.
             </p>
           </div>
         </li>
 
-        <li className="flex gap-4">
-          <div className="h-[72px] w-[72px] rounded-full bg-[#545454] lg:h-[144px] lg:w-[144px]" />
+        <li className="flex gap-4 lg:flex-col lg:items-center">
+          <div className="relative h-[72px] w-[72px]  lg:h-[180px] lg:w-[180px]">
+            <Image
+              src="/images/landing-page/features/production.png"
+              alt="Production Report"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
 
           <div className="flex flex-1 flex-col justify-center text-base lg:justify-center lg:gap-6">
-            <h3 className="font-bold lg:text-xl"> Production Reports </h3>
-            <p className="lg:text-lg">
+            <h3 className="font-bold lg:text-center lg:text-xl">
+              Production Reports
+            </h3>
+            <p className="lg:text-center lg:text-lg">
               A smooth control and management experience for any producer.
             </p>
           </div>
         </li>
 
-        <li className="flex gap-4">
-          <div className="h-[72px] w-[72px] rounded-full bg-[#545454] lg:h-[144px] lg:w-[144px]" />
+        <li className="flex gap-4 lg:flex-col lg:items-center">
+          <div className="relative h-[72px] w-[72px]  lg:h-[180px] lg:w-[180px]">
+            <Image
+              src="/images/landing-page/features/dashboard.png"
+              alt="Dashboard Icon"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
 
           <div className="flex flex-1 flex-col justify-center text-base lg:justify-center lg:gap-6">
-            <h3 className="font-bold lg:text-xl">Dashboards</h3>
-            <p className="lg:text-lg">
+            <h3 className="font-bold lg:text-center lg:text-xl">Dashboards</h3>
+            <p className="lg:text-center lg:text-lg">
               Analyze and compare information about the status of your
               production.
             </p>

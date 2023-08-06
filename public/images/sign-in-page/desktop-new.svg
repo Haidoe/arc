@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 818 1089">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-3 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-4 {
+        fill: #f16889;
+        opacity: .8;
+      }
+    </style>
+    <clipPath id="clippath">
+      <polygon class="cls-1" points="817.48 1088 .48 1088 .48 0 589.64 0 817.48 1088"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <polygon class="cls-1" points="817.48 1088.42 .48 1088.42 .48 1 589.64 1 817.48 1088.42"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g class="cls-2">
+        <g class="cls-3">
+          <image width="2400" height="1600" transform="translate(-348.18) scale(.68)" xlink:href="../../../Downloads/brands-people-br2HgQuvq6I-unsplash.jpg"/>
+        </g>
+        <image width="4000" height="2667" transform="translate(-413.52 -25) scale(.43)" xlink:href="../../../Downloads/brands-people-br2HgQuvq6I-unsplash (3).jpg"/>
+      </g>
+      <polygon class="cls-4" points="818 1089 0 1089 0 0 589.88 0 818 1089"/>
+    </g>
+  </g>
+</svg>

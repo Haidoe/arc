@@ -24,7 +24,7 @@ const ListItemWithDatetime = ({
   const time = dayjs(datetime).tz("America/Vancouver").format("LT");
 
   const borderColor =
-    theme === "primary" ? "border-b-arc" : "border-b-primary-light";
+    theme === "primary" ? "border-b-[#8585DB]" : "border-b-primary-light";
 
   return (
     <li

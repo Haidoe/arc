@@ -15,7 +15,8 @@ import Calendar from "~/assets/icons/Calendar.svg";
 const STATUS = {
   good: "The shooting is on track to finish on time.",
   warning: "The shooting's progress is slower than expected.",
-  danger: "The shooting is severely behind schedule.\nUrgent action is required",
+  danger:
+    "The shooting is severely behind schedule.\nUrgent action is required",
 };
 
 const LoadingDiv = () => (
@@ -26,12 +27,16 @@ const LoadingDiv = () => (
 );
 
 const getStatusMessage = (rate) => {
-  if (rate <= 80) {
-    return STATUS.good;
-  } else if (rate <= 100) {
+  // 100% to 110% = Green
+  // 111% to 125% = Yellow
+  // Over 126% = Red
+
+  if (rate > 125) {
+    return STATUS.danger;
+  } else if (rate <= 125 && rate > 110) {
     return STATUS.warning;
   } else {
-    return STATUS.danger;
+    return STATUS.good;
   }
 };
 
@@ -49,6 +54,7 @@ function offsetDate(negativeOffset) {
 function getDatesFromSpecificDateToEnd(startDateStr) {
   const startDate = new Date(startDateStr);
   const currentDate = new Date();
+  currentDate.setHours(23, 59, 59, 999);
   const datesArray = [];
 
   while (startDate <= currentDate) {
@@ -63,17 +69,11 @@ function getDatesFromSpecificDateToEnd(startDateStr) {
 
 function datesInDropDownFormat(datesArray) {
   const dropdownformat = datesArray.map((date, idx) => {
-    return { name: date.toLocaleDateString(), offset: idx + 1 };
+    return { name: date.toLocaleDateString(), offset: idx };
   });
 
   console.clear();
-  const includeToday = [
-    {
-      name: new Date().toLocaleDateString(),
-      offset: 0,
-    },
-    ...dropdownformat,
-  ];
+  const includeToday = [...dropdownformat];
 
   return includeToday;
 }
@@ -102,7 +102,6 @@ const ProgressSection = () => {
       const startDate = response.startDate;
       const allDatesArray = getDatesFromSpecificDateToEnd(startDate);
       const dropdownDatesArray = datesInDropDownFormat(allDatesArray);
-      console.log(dropdownDatesArray);
       setDropdownDates(dropdownDatesArray);
     } catch (error) {
       console.log("Finish rate error >> ", error);
@@ -128,8 +127,8 @@ const ProgressSection = () => {
   return (
     <div className="flex flex-col gap-6 rounded-[5px] bg-arc lg:flex-row lg:gap-4">
       <div className="flex flex-1 flex-col gap-4 lg:gap-9">
-        <p className="flex flex-1 flex-col text-center text-lg whitespace-pre-wrap text-contrast-dark lg:justify-center lg:text-left lg:text-xl">
-          {getStatusMessage(data?.finishRateAvg)}
+        <p className="flex flex-1 flex-col whitespace-pre-wrap text-center text-lg text-contrast-dark lg:justify-center lg:text-left lg:text-xl">
+          {getStatusMessage(data?.statusRate)}
         </p>
 
         <div className="items-left flex flex-col justify-end">

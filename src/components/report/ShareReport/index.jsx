@@ -7,15 +7,31 @@ import CopyLinkButton from "./CopyLinkBtn";
 import ShareReportForm from "./Form";
 import Image from "next/image";
 
+function getEmails() {
+  if (typeof window === "undefined") return [];
+
+  if (localStorage.getItem("shareReportEmails") == null) {
+    return [];
+  } else {
+    const parsedEmails = JSON.parse(localStorage.getItem("shareReportEmails"));
+    return parsedEmails;
+  }
+}
+
+function setEmailsLocalStorage(value) {
+  localStorage.setItem("shareReportEmails", JSON.stringify(value));
+}
+
 const ShareReportButton = ({ productionInfo }) => {
   const data = useSelector((state) => state.productionReport.data);
   const [isOpen, setIsOpen] = useState(false);
-  const [emails, setEmails] = useState([]);
+  const [emails, setEmails] = useState(getEmails());
 
   const addEmail = (email) => {
     const newEmails = [...emails];
     newEmails.push({ email, id: emails.length });
     setEmails(newEmails);
+    setEmailsLocalStorage(newEmails);
   };
 
   return (
