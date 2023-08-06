@@ -86,7 +86,8 @@ export default requireAuth(async function handler(
       ),
       startDate,
       estimatedFinishDate,
-      projectProgress: parseFloat(rate.toFixed(2)),
+      projectProgress:
+        parseFloat(rate.toFixed(2)) >= 100 ? 100 : parseFloat(rate.toFixed(2)),
     });
   } catch (error) {
     res.status(400).json({ message: "Invalid Parameters" });
