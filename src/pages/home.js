@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { LoadingPage } from "~/components/Loading";
 const homePageImageUrl = "/images/landing-page/aboutDesktopFull.png";
 import triangleMask from "~/../public/images/landing-page/triangleMask.png";
@@ -10,48 +11,97 @@ import favicon from "/public/favicon.svg";
 import { loadDemoProductionInfo } from "~/helper/loadDemoProductionInfo";
 import Link from "next/link";
 
+// information modal
+import InformationModal from "~/components/global/InformationModal";
+
+const getProductionInfo = async (userId) => {
+  try {
+    if (userId) {
+      const response = await fetch(`/api/user/productions?userId=${userId}`);
+      if (response.ok) {
+        const data = await response.json();
+        return data.productionInfo;
+      }
+    }
+  } catch (error) {
+    throw new Error("Error fetching productions");
+  }
+};
+
 const Home = () => {
   const [isProjectLoading, setIsProjectLoading] = useState(false);
-  const user = useUser();
+  // const [isProduction, setIsProduction] = useState(true);
 
-  const getProductionInfo = async (userId) => {
+  // information modal
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+
+  const user = useUser();
+  const queryClient = useQueryClient();
+  const { data: productionIds = [], isLoading } = useQuery({
+    queryKey: ["productions", user?.user?.id],
+    enabled: !!user?.user?.id,
+    queryFn: () => getProductionInfo(user?.user?.id),
+  });
+
+  //   const production = useQuery({
+  //   queryKey: ["production", productionId],
+  //   enabled: !!productionId,
+  //   queryFn: () => getProductionInfoById(productionId),
+  // });
+
+  //NOTE: this function is used to load the demo production info to the database
+  // Function to handle the "Create Sample Production" button click
+  const handleDemoClick = async () => {
+    setIsProjectLoading(true);
     try {
-      if (userId) {
-        const response = await fetch(`/api/user/productions?userId=${userId}`);
-        if (response.ok) {
-          const data = await response.json();
-          return data.productionInfo;
-        }
-      }
+      // Call the mutation function to create the demo production
+      const mutationResult = await createDemoProductionMutation.mutateAsync();
+
+      // Handle the result of the mutation if needed
+      console.log("Mutation result:", mutationResult);
+
+      setIsProjectLoading(false);
     } catch (error) {
-      throw new Error("Error fetching productions");
+      console.error("Error creating demo production:", error);
+      setIsProjectLoading(false);
     }
   };
 
-  const {
-    data: productionIds,
-    isLoading,
-    isError,
-  } = useQuery(["productions", user?.user?.id], () =>
-    getProductionInfo(user?.user?.id)
+  // Define the mutation function to create a new production or load demo data
+  const createDemoProductionMutation = useMutation(
+    () => loadDemoProductionInfo(),
+    {
+      // onSuccess will be called when the mutation is successful
+      onSuccess: () => {
+        // Invalidate the productionIds query to trigger a revalidation
+        queryClient.invalidateQueries("productions");
+      },
+    }
   );
 
-  const isProduction =
-    !isLoading && !isError && productionIds && productionIds.length > 0;
+  const router = useRouter();
+
+  if (!user.isSignedIn) {
+    console.log(router);
+    // router.push("/sign-in");
+    return <LoadingPage />;
+  }
+
+  const isProduction = productionIds.length > 0;
 
   if (isLoading) return <LoadingPage />;
-  if (isError) return <div>Error: {isError.message}</div>;
-
-  //NOTE: this function is used to load the demo production info to the database
-  const handleDemoClick = async () => {
-    setIsProjectLoading(true);
-    await loadDemoProductionInfo();
-    getProductionInfo();
-    setIsProjectLoading(false);
-  };
 
   return (
     <div className="flex flex-1 bg-arc lg:grid lg:grid-cols-2">
+      {isInfoModalOpen && (
+        <InformationModal
+          heading={"Full Version Feature"}
+          message={
+            "This feature will be live in the full version. For demo purposes, please kindly select the 'Create Sample Production' button."
+          }
+          closeModalHandler={() => setIsInfoModalOpen(false)}
+        />
+      )}
       {/* --------------------------------------------------------- */}
       {/* LEFT COLUMN */}
       <div
@@ -81,7 +131,7 @@ const Home = () => {
           <Image
             src={favicon}
             alt="logo"
-            width={screen.width > 1024 ? 80 : 60}
+            // width={screen.width > 1024 ? 80 : 60}
             className=" self-center lg:hidden"
           />
         </div>
@@ -145,15 +195,16 @@ const Home = () => {
 
         <Button
           buttonType={"Primary"}
-          className="mt-4 self-center px-12 lg:mt-6"
+          className="mt-4 min-w-[260px] self-center lg:mt-6 lg:min-w-[270px]"
           onClick={handleDemoClick}
           disabled={isProjectLoading}
         >
           {isProjectLoading ? "Loading..." : "Create Sample Production"}
         </Button>
         <Button
-          buttonType={"Disabled"}
-          className="mt-4 self-center px-12 lg:mt-6"
+          buttonType={"Secondary"}
+          onClick={() => setIsInfoModalOpen(true)}
+          className="mt-4 min-w-[260px] self-center lg:mt-6 lg:min-w-[270px]"
           disabled={isProjectLoading}
         >
           Create New Production
