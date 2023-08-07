@@ -9,7 +9,7 @@ import triangleMask from '~/../public/images/landing-page/triangleMask.png'
 
 const About = () => {
   return (
-    <div className='grid md:grid-cols-2 overflow-hidden bg-arc'>
+    <div id="about" className='grid md:grid-cols-2 overflow-hidden bg-arc'>
       <div className="relative">
         <Image src={triangleMask} alt="triangle-mask" aria-hidden="true" className="absolute z-10 top-0 right-0 h-full w-auto" />
         <Image src={aboutDesktop} alt='' aria-hidden='true' className='hidden relative w-full h-full md:block'
