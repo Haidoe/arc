@@ -1,8 +1,3 @@
-// // react imports
-import React, { useState } from "react";
-// import { useSelector, useDispatch } from "react-redux";
-// import { updateShotScene } from "~/redux/features/ProductionReportSlice";
-
 // import percentage indicator
 import PercentageChangeIndication from "~/components/dashboard/PercentageChangeIndication";
 
@@ -10,28 +5,28 @@ import PercentageChangeIndication from "~/components/dashboard/PercentageChangeI
 const ActiveExtras = ({}) => {
   
   const extrasCastInfo = [
-    // {
-    //   qty: 3,
-    //   name: "Poor New Yorkers in slum",
-    //   notes: "All returning tomorrow",
-    //   schedule: {
-    //     in: "2023-07-02T22:00:00.000Z",
-    //     out: "2023-07-02T22:00:00.000Z",
-    //     meal: "2023-07-02T22:00:00.000Z",
-    //     rate: 100,
-    //   },
-    // },
-    // {
-    //   qty: 2,
-    //   name: "Bodyguards of the Senetor Pablo",
-    //   notes: "Required in 5 scenes",
-    //   schedule: {
-    //     in: "2023-07-02T22:00:00.000Z",
-    //     out: "2023-07-02T22:00:00.000Z",
-    //     meal: "2023-07-02T22:00:00.000Z",
-    //     rate: 150,
-    //   },
-    // },
+    {
+      qty: 3,
+      name: "Poor New Yorkers in slum",
+      notes: "All returning tomorrow",
+      schedule: {
+        in: "2023-07-02T22:00:00.000Z",
+        out: "2023-07-02T22:00:00.000Z",
+        meal: "2023-07-02T22:00:00.000Z",
+        rate: 100,
+      },
+    },
+    {
+      qty: 2,
+      name: "Bodyguards of the Senetor Pablo",
+      notes: "Required in 5 scenes",
+      schedule: {
+        in: "2023-07-02T22:00:00.000Z",
+        out: "2023-07-02T22:00:00.000Z",
+        meal: "2023-07-02T22:00:00.000Z",
+        rate: 150,
+      },
+    },
   ];
 
   const totalActiveExtras = extrasCastInfo.reduce((acc, val) => {
