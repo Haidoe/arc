@@ -80,7 +80,7 @@ export default requireAuth(async function handler(
       totalHoursUsed,
       statusRate: parseFloat(
         (
-          ((reports.length * WORKING_HOURS_PER_DAY) / totalHoursUsed) *
+          (totalHoursUsed / (reports.length * WORKING_HOURS_PER_DAY)) *
           100
         ).toFixed(2)
       ),
