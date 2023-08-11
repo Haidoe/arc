@@ -7,13 +7,13 @@ type ListItemProps = {
 
 const DefaultAvatar = (props: ListItemProps) => {
   return (
-    <div className="m-0 h-[88px] w-[88px] overflow-hidden rounded-full bg-primary-base shadow-3xl">
+    <div className="relative m-0 h-[88px] w-[88px] overflow-hidden rounded-full bg-primary-base shadow-3xl">
       {props.theme === "primary" && (
         <Image
           src={props.imgURL ?? "/images/default-production-avatar.png"}
           alt="Default production avatar"
-          width={88}
-          height={88}
+          layout="fill"
+          objectFit="cover"
         />
       )}
 
