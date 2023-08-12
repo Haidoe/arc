@@ -6,7 +6,7 @@ const tiers = [
     name: "Basic",
     id: "tier-freelancer",
     href: "#pricing",
-    price: { Monthly: "Free"},
+    price: { Monthly: "Free" },
     description:
       "A basic plan for small production companies and students to explore and test the product.",
     features: [
@@ -21,7 +21,7 @@ const tiers = [
     name: "Studio",
     id: "tier-startup",
     href: "#pricing",
-    price: { Monthly: "$1,199"},
+    price: { Monthly: "$799" },
     description:
       "Highly recommended for medium size production houses and growing independent companies.",
     features: [
@@ -37,7 +37,7 @@ const tiers = [
     name: "Enterprise",
     id: "tier-enterprise",
     href: "#pricing",
-    price: { Monthly: "Custom"},
+    price: { Monthly: "Custom" },
     description:
       "Dedicated support and infrastructure for large scale production companies. A customized experience and solution.",
     features: [],
