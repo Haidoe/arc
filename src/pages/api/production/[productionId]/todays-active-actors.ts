@@ -48,11 +48,13 @@ export default requireAuth(async function handler(
 
     const activeActorsResult = result.filter((report) => {
       if (report.castTimeLog.length) {
-        return report.castTimeLog;
+        return report.castTimeLog.length
       }
+    }).map((report) => {
+      return report.castTimeLog
     });
     
-    res.json({ activeActors: activeActorsResult.length });
+    res.json({ activeActors: activeActorsResult[0]?.length || 0 });
   } catch (error) {
     res.status(400).json({ message: "Invalid Parameters" });
   }
