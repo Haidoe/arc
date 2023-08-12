@@ -52,6 +52,8 @@ const ActiveActors = ({}) => {
       result_yesterday.activeActors,
       result_today.activeActors
     ))
+    
+    console.log(result_today)
 
     console.log(result_yesterday.activeActors,
       result_today.activeActors)
