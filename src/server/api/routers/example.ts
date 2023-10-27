@@ -15,12 +15,15 @@ export const exampleRouter = createTRPCRouter({
       };
     }),
   foo: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findFirstOrThrow();
+    // return ctx.prisma.example.findFirstOrThrow();
+    return null;
   }),
   getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findMany();
+    // return ctx.prisma.example.findMany();
+    return null;
   }),
   bar: privateProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findFirstOrThrow();
+    // return ctx.prisma.example.findFirstOrThrow();
+    return null;
   }),
 });
