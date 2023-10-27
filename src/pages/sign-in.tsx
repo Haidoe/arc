@@ -14,7 +14,7 @@ const SignInPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Sign in | Arc </title>
+        <title>Sign in | ARC </title>
       </Head>
 
       <div className="relative flex min-w-[320px] flex-1 overflow-hidden bg-arc">
